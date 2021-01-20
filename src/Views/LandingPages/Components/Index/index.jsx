@@ -1,12 +1,12 @@
-import { Fragment } from 'react';
+import { Wrapper } from '../../Css/index';
 
 export default function Index(props) {
-    return <Fragment>
+    return <Wrapper>
         <GetStarted />
         <WillSection />
         <Forms />
         <LastWill />
-    </Fragment>
+    </Wrapper>
 }
 
 function GetStarted(props) {

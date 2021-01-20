@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+// import { Router, Route, Switch } from "react-router-dom";
+// import Header from "./Views/Header/header";
+// import Footer from "./Views/Footer/footer";
+// import Index from "./Views/LandingPages/Components/Index";
+// import { createBrowserHistory } from "history";
 import './App.css';
-
+// const createBrowserHistory = require("history").createBrowserHistory;
+// const history = createBrowserHistory();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>Hello WOrd</div>
+    // <Router >
+    //   <Switch>
+    //     <Header />
+    //     <Route exact path="/" name="Index" component={Index} />
+    //     <Footer />
+    //   </Switch>
+    // </Router>
   );
 }
 
