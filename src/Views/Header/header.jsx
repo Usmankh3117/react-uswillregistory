@@ -1,3 +1,5 @@
+import Image from "../Common/Components/image";
+
 export default function Header(props) {
     return <section class="header-section">
         <div class="header-top-part">
@@ -5,7 +7,7 @@ export default function Header(props) {
                 <div class="upper-header">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-6">
-                            <img src="./dist/assets/img/header-logo-a.png" alt="logo" class="logo-img" />
+                            <Image  name="header-logo-a.png" alt="logo" class="logo-img" />
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6">
                         </div>
@@ -50,7 +52,7 @@ export default function Header(props) {
             </div>
         </div>
         <div class="header-right-img">
-            <img src="./dist/assets/img/header-logo.png" alt="" />
+            <Image  name="header-logo.png" alt="" />
         </div>
     </section>
 }

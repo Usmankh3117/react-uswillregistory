@@ -1,5 +1,5 @@
 import { Wrapper } from '../../Css/index';
-
+import Image from "../../../Common/Components/image";
 export default function Index(props) {
     return <Wrapper>
         <GetStarted />
@@ -12,7 +12,7 @@ export default function Index(props) {
 function GetStarted(props) {
     return <section class="get-started">
         <div class="started-img">
-            <img src="./dist/assets/img/index-page-img1.png" alt="" />
+            <Image name="index-page-img1.png" alt="" />
         </div>
     </section>
 }
@@ -24,7 +24,7 @@ function WillSection(props) {
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-3 col-md-3 col-sm-6 will-div">
                         <div class="top-image">
-                            <img src="./dist/assets/img/will-img.png" alt="" />
+                            <Image name="will-img.png" alt="" />
                         </div>
                         <div class="will-icon">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -40,7 +40,7 @@ function WillSection(props) {
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 will-div">
                         <div class="top-image">
-                            <img src="./dist/assets/img/will-img.png" alt="" />
+                            <Image name="will-img.png" alt="" />
                         </div>
                         <div class="will-icon">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -56,7 +56,7 @@ function WillSection(props) {
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 will-div">
                         <div class="top-image">
-                            <img src="./dist/assets/img/will-img.png" alt="" />
+                            <Image name="will-img.png" alt="" />
                         </div>
                         <div class="will-icon">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -72,7 +72,7 @@ function WillSection(props) {
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 will-div">
                         <div class="top-image">
-                            <img src="./dist/assets/img/will-img.png" alt="" />
+                            <Image name="will-img.png" alt="" />
                         </div>
                         <div class="will-icon">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -100,11 +100,11 @@ function Forms(props) {
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-2 col-md-2 col-sm-2"></div>
                     <div class="col-lg-4 col-md-4 col-sm-4 witnesa-page-form">
-                        <img src="./dist/assets/img/form1.png" alt="" />
+                        <Image name="form1.png" alt="" />
                         <span>Witnesa page form</span>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 self-affidevit-form">
-                        <img src="./dist/assets/img/form2.png" alt="" />
+                        <Image name="form2.png" alt="" />
                         <span>Self affidevit form</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2"></div>
@@ -172,7 +172,7 @@ function LastWill(props) {
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6 last-will-img">
-                            <img src="./dist/assets/img/last-will.png" alt="last will" />
+                            <Image name="last-will.png" alt="last will" />
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@ function LastWill(props) {
         </div>
 
         <div class="make-your-will">
-            <img src="./dist/assets/img/make-will.png" alt="make your will" />
+            <Image name="make-will.png" alt="make your will" />
             <button>GET STARTED</button>
         </div>
     </section>

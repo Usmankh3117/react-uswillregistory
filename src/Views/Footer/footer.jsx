@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "../Common/Components/image";
 
 export default function Footer(props) {
     return <Fragment>
@@ -8,23 +9,23 @@ export default function Footer(props) {
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <img src="./dist/assets/img/footer-logo1.png" alt="logo" />
+                                <Image name="footer-logo1.png" alt="logo" />
                             </div>
                             <div class="footer__widget">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis.</p>
                             </div>
                             <ul class="list-group list-group-horizontal">
                                 <li class="list-group-item footer-store-logo">
-                                    <img src="./dist/assets/img/twitter.png" alt="img1" />
+                                    <Image name="twitter.png" alt="img1" />
                                 </li>
                                 <li class="list-group-item footer-store-logo">
-                                    <img src="./dist/assets/img/fb.png" alt="img1" />
+                                    <Image name="fb.png" alt="img1" />
                                 </li>
                                 <li class="list-group-item footer-store-logo">
-                                    <img src="./dist/assets/img/google.png" alt="img1" />
+                                    <Image name="google.png" alt="img1" />
                                 </li>
                                 <li class="list-group-item footer-store-logo">
-                                    <img src="./dist/assets/img/insta.png" alt="img1" />
+                                    <Image name="insta.png" alt="img1" />
                                 </li>
 
                             </ul>
