@@ -1,57 +1,57 @@
 import Image from "../Common/Components/image";
 
 export default function Header(props) {
-    return <section class="header-section">
-        <div class="header-top-part">
-            <div class="container">
-                <div class="upper-header">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <Image  name="header-logo-a.png" alt="logo" class="logo-img" />
+    return <section className="header-section">
+        <div className="header-top-part">
+            <div className="container">
+                <div className="upper-header">
+                    <div className="row">
+                        <div className="col-lg-4 col-md-4 col-sm-6">
+                            <Image  name="header-logo-a.png" alt="logo" className="logo-img" />
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6">
+                        <div className="col-lg-8 col-md-8 col-sm-6">
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="header-lower-part">
-            <div class="container">
-                <div class="lower-header">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu active-menu">Home</a>
+        <div className="header-lower-part">
+            <div className="container">
+                <div className="lower-header">
+                    <ul className="list-group">
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu active-menu">Home</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">Contact us Pages</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">Contact us Pages</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">About Us</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">About Us</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">Site Map</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">Site Map</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">Dictionary</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">Dictionary</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">Terms of Service</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">Terms of Service</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">Privacy Notice</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">Privacy Notice</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">For Non Profit</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">For Non Profit</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="top-menu">FAQ</a>
+                        <li className="list-group-item">
+                            <a href="#" className="top-menu">FAQ</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="header-right-img">
+        <div className="header-right-img">
             <Image  name="header-logo.png" alt="" />
         </div>
     </section>
