@@ -1,5 +1,5 @@
-import { Fragment } from "react";
 import { Wrapper } from "../../Css/faq";
+import Image from "../../../Common/Components/image";
 
 export default function Faq(props) {
     return <Wrapper>

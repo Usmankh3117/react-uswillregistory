@@ -1,4 +1,5 @@
 import { Wrapper } from "../../Css/contactus";
+import Image from "../../../Common/Components/image";
 
 export default function ContactUs(props) {
     return <Wrapper>
