@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export default function Login(props) {
+export default function VerifyAccount(props) {
     return <Fragment>
 
     </Fragment>
