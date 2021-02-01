@@ -4,7 +4,7 @@ import { AuthWrapper } from "./authWrapper";
 import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
 import { ApiClearAction } from "../../ApiCallStatus/Actions/action";
-import { getLoginDashboardLink } from '../../../Services/common';
+import { getDashboardLink } from '../../../Services/common';
 import Swal from 'sweetalert2';
 const defaultState = {
 	email: "",
@@ -13,26 +13,13 @@ const defaultState = {
 	messageType: "",
 	messageFor: ""
 }
-function Login(props) {
+function LoginSupplier(props) {
 	const [state, setState] = useState(defaultState);
-	const urlParams = new URLSearchParams(window.location.search);
-	const msg = urlParams.get('msg');
 	useEffect(() => {
-		// if (props.user.isLogin) {
-		// 	props.history.push(getDashboardLink());
-		// }
-		if (msg && msg === 'expired') {
-			var uri = window.location.toString();
-			if (uri.indexOf("?") > 0) {
-				var clean_uri = uri.substring(0, uri.indexOf("?"));
-				window.history.replaceState({}, document.title, clean_uri);
-			}
-			Swal.fire("Error!", "Your session has been expired.", "error");
-		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
 			setState(defaultState)
 			props.ApiClearAction();
-			let redirectUrl = getLoginDashboardLink();
+			let redirectUrl=getDashboardLink();
 			props.history.push(redirectUrl)
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
@@ -40,6 +27,7 @@ function Login(props) {
 			props.ApiClearAction();
 		}
 	});
+
 	const handleStateChange = (e) => {
 		let id = e.target.id;
 		let val = e.target.value;
@@ -57,6 +45,7 @@ function Login(props) {
 			})
 		}
 	}
+
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
 		let isValid = true;
@@ -66,19 +55,20 @@ function Login(props) {
 		}
 		return isValid;
 	}
+
 	return (
 		<AuthWrapper>
 			<div className="authHolder">
 				<div className="formHolder">
-					<h1>Login</h1>
-					<form className="authMeshForm needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+					<h1>Login as Supplier ...</h1>
+					<form className="authMeshForm needs-validation" autoComplete={false} onSubmit={(e) => handleSubmit(e)} noValidate>
 						<div className="form-group floating-label-wrap">
-							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
+							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required autoComplete={false} />
 							<label className="foating-labels-sty">Email</label>
 							<span className="animated-border"></span>
 						</div>
 						<div className="form-group floating-label-wrap mb-0">
-							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
+							<input type="password" className="form-control" id="password" placeholder="Passowrd" value={state.password} onChange={(e) => handleStateChange(e)} required  autoComplete="new-password"/>
 							<label className="foating-labels-sty">Password</label>
 							<span className="animated-border"></span>
 						</div>
@@ -103,8 +93,10 @@ function Login(props) {
 				<div className="textBlock">
 					<div className="d-flex">
 						<div className="textHolder w-100">
-							<h2>Don't have an account?</h2>
-							<Link className="btn btn-secondary d-block text-center bg-white mr-auto ml-0" to="/signUp">Sign Up</Link>
+							{/* <h2 className="login-title">Supplier Login here!</h2> */}
+							<div className="login-icon-wrap">
+								<img src={require("../../../assets/images/supplier-icon1.svg")} className="img-fluid" alt='icon' />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -114,8 +106,7 @@ function Login(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	apiCallStatus: state.apicallStatusReducer,
-	user: { isLogin: state.authReducer.isLogin, }
+	apiCallStatus: state.apicallStatusReducer
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -125,4 +116,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Login)
+)(LoginSupplier)
