@@ -11,111 +11,111 @@ export default function Index(props) {
 
 function Search(props) {
     return <Fragment>
-        <section class="search-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                    <div class="col-lg-8 col-md-8 col-sm-8">
-                        <div class="search">
-                            <div class="search__form">
+        <section className="search-section">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div className="col-lg-8 col-md-8 col-sm-8">
+                        <div className="search">
+                            <div className="search__form">
                                 <form action="#">
                                     <input type="text" placeholder="Search for Products... " />
-                                    <button type="submit" class="site-btn"><i class="fa fa-search" style={{ fontSize: "22px" }}></i></button>
+                                    <button type="submit" className="site-btn"><i className="fa fa-search" style={{ fontSize: "22px" }}></i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
             </div>
         </section>
-        <section class="search-alpha-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                    <div class="col-lg-10 col-md-10 col-sm-10">
-                        <ul class="search-list-group">
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">A</a>
+        <section className="search-alpha-section">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-1 col-md-1 col-sm-1"></div>
+                    <div className="col-lg-10 col-md-10 col-sm-10">
+                        <ul className="search-list-group">
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">A</a>
                             </li>
-                            <li class="search-list-group-item search-active-menu">
-                                <a href="#" class="search-menu">B</a>
+                            <li className="search-list-group-item search-active-menu">
+                                <a href="#" className="search-menu">B</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">C</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">C</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">D</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">D</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">E</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">E</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">F</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">F</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">G</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">G</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">H</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">H</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">I</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">I</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">J</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">J</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">K</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">K</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">L</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">L</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">M</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">M</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">N</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">N</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">O</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">O</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">P</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">P</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">Q</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">Q</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">R</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">R</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">S</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">S</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">T</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">T</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">U</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">U</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">V</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">V</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">W</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">W</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">X</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">X</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">Y</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">Y</a>
                             </li>
-                            <li class="search-list-group-item">
-                                <a href="#" class="search-menu">Z</a>
+                            <li className="search-list-group-item">
+                                <a href="#" className="search-menu">Z</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                    <div className="col-lg-1 col-md-1 col-sm-1"></div>
                 </div>
             </div>
         </section>
@@ -123,72 +123,35 @@ function Search(props) {
 }
 
 function SearchDetail(props) {
-    return <section class="search-details-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">A</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    return <section className="search-details-section">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">A</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-up" aria-hidden="true"></i>
                     </div>
-                    <div class="row search-detail">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div className="row search-detail">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">B</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                    </div>
-                    <div class="row search-detail">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                                <p>Lorem ipsum dolor sit</p>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
                                 <p>Lorem ipsum dolor sit</p>
@@ -199,83 +162,120 @@ function SearchDetail(props) {
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">C</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">B</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                    </div>
+                    <div className="row search-detail">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                                <p>Lorem ipsum dolor sit</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">D</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">C</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">E</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">D</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">F</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">E</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">G</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">F</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">H</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">G</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">I</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">H</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">J</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">I</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">K</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">J</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
-                    <span class="search-heading">L</span>
-                    <div class="search-detail-icon">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">K</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
+                    <span className="search-heading">L</span>
+                    <div className="search-detail-icon">
+                        <i className="fa fa-arrow-down" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -285,8 +285,8 @@ function SearchDetail(props) {
 
 
 function LastWill(props) {
-    return <section class="last-will-section">
-        <div class="make-your-will">
+    return <section className="last-will-section">
+        <div className="make-your-will">
             <Image name="make-will.png" alt="make your will" />
             <button>GET STARTED</button>
         </div>

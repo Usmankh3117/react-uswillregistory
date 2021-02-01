@@ -1,13 +1,39 @@
-import React from 'react';
-import { Wrapper } from '../Css/authStyle.jsx';
+import { Fragment } from 'react';
+import Image from '../../Common/Components/image'
 
-export const AuthWrapper = ({ children }) => (
-    <Wrapper>
-        <div className="authBlockHolder d-flex h-100">
-            {children}
-        </div>
-        <div className="authLogoholder">
-            <img className="img-fluid" src={require('../../../assets/images/logo.png')} alt="Logo" />
-        </div>
-    </Wrapper>
+export const AuthWrapper = (props) => (
+    <Fragment>
+        <section className="sign-in-section">
+            <div className="container">
+                <div className="row">
+                    <div className="heading-section">
+                        <h1 className="heading"><span className="bold">{props.name}</span> Form</h1>
+                        <span className="link">Please ! Login to this form or <a href="#">Create an account</a></span>
+                    </div>
+                </div>
+                <div className="row mg-top-30"></div>
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 login-img-div mg-bottom-30">
+                        <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 for-bg-shadow">
+                                <div className="col-lg-6 col-md-6 col-sm-6" style={{ padding: "0px" }}>
+                                    <Image name="signin-image-large.png" alt="signup-img" style={{ width: "100%", borderRadius: "25px 0px 0px 25px" }} />
+                                </div>
+                                <div className="col-lg-6 col-md-6 col-sm-6 login-form-div">
+                                    <div className="row mg-top-30"></div>
+                                    <div className="form-heading">
+                                        <h2 style={{"color": "#033168"}}>Login</h2>
+                                    </div>
+                                    {props.children}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div className="row mg-top-30"></div>
+        <div className="row mg-top-30"></div>
+        <div className="row mg-top-30"></div>
+    </Fragment>
 );

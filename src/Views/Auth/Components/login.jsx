@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { AuthWrapper } from "./authWrapper";
+import { Wrapper } from '../Css/login';
 import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
 import { ApiClearAction } from "../../ApiCallStatus/Actions/action";
-import { getLoginDashboardLink } from '../../../Services/common';
 import Swal from 'sweetalert2';
 const defaultState = {
 	email: "",
@@ -32,7 +32,7 @@ function Login(props) {
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
 			setState(defaultState)
 			props.ApiClearAction();
-			let redirectUrl = getLoginDashboardLink();
+			let redirectUrl = '/';
 			props.history.push(redirectUrl)
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
@@ -67,49 +67,57 @@ function Login(props) {
 		return isValid;
 	}
 	return (
-		<AuthWrapper>
-			<div className="authHolder">
-				<div className="formHolder">
-					<h1>Login</h1>
-					<form className="authMeshForm needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-						<div className="form-group floating-label-wrap">
-							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
-							<label className="foating-labels-sty">Email</label>
-							<span className="animated-border"></span>
+		<Wrapper>
+			<AuthWrapper name="Sign In">
+				<div className="login-form">
+					<form action="">
+						<div className="input-group">
+							<span className="input-group-addon"><i className="fa fa-user"></i></span>
+							<input id="username" type="text" className="form-control" name="username" placeholder="Username" />
 						</div>
-						<div className="form-group floating-label-wrap mb-0">
-							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
-							<label className="foating-labels-sty">Password</label>
-							<span className="animated-border"></span>
+						<div className="input-group">
+							<span className="input-group-addon"><i className="fa fa-lock"></i></span>
+							<input id="pass" type="text" className="form-control" name="password" placeholder="Password" />
 						</div>
-						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-							<div className="loader-img text-center">
-								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
-							</div>
-							: ""}
-						{/* {props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed ?
-							<div className="alert alert-danger">
-								{props.apiCallStatus.message}
-							</div>
-							: ""} */}
-						<div className="form-group pt-3">
-							<Link className="linkForgotPass cur-poi" to="/forgotPasword">Forgot Password?</Link>
+						<div className="input-group1">
+							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" value="rememberme" />
+							<label for="rememberme"> Remember Me?</label>
+							<a href="#">Forget Password?</a>
 						</div>
-						<div className="formBtnHolder">
-							<button type="submit" className="btn btn-secondary d-block text-center w-100" onClick={(e) => handleSubmit(e)}>Login</button>
+						<div className="submit-btn">
+							<input id="submit" className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
 						</div>
+
 					</form>
-				</div>
-				<div className="textBlock">
-					<div className="d-flex">
-						<div className="textHolder w-100">
-							<h2>Don't have an account?</h2>
-							<Link className="btn btn-secondary d-block text-center bg-white mr-auto ml-0" to="/signUp">Sign Up</Link>
+					<div className="row mg-top-15"></div>
+					<div className="create-one-account">
+						<span className="text">Don't have any account? <a className="create-one" href="#">Create One</a></span>
+					</div>
+					<div className="row mg-top-15"></div>
+					<div className="row">
+						<div className="col-lg-12 col-md-12 col-sm-12 or-outer-div">
+							<div className="or-div">
+								<span className="or">OR</span>
+							</div>
 						</div>
 					</div>
+
+					<div className="row">
+						<div className="row mg-top-30"></div>
+						<div className="row mg-top-30"></div>
+						<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
+							<i className="fa fa-facebook bottom-icons" style={{ padding: "10px 14px" }}></i>
+							<i className="fa fa-instagram bottom-icons"></i>
+							<i className="fa fa-google bottom-icons"></i>
+						</div>
+					</div>
+
+					<div className="row mg-top-25"></div>
+					<div className="row mg-top-21"></div>
+
 				</div>
-			</div>
-		</AuthWrapper>
+			</AuthWrapper>
+		</Wrapper>
 	);
 }
 
