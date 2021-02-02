@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AuthWrapper } from "./authWrapper";
+import { Wrapper } from '../Css/resetPassword';
 import { connect } from 'react-redux';
 import { resetPassword, validateToken } from "../ApiCalls/auth";
 import { ApiClearAction } from "../../ApiCallStatus/Actions/action";
@@ -27,7 +28,7 @@ function ResetPassword(props) {
                 'Password Updated!',
                 'We sent you an email with your user name and password. Please check your mailbox.',
                 'success'
-              )
+            )
             props.history.push('/login')
         }
         if (props.apiCallStatus.apiCallFor === "validateToken" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
@@ -76,52 +77,34 @@ function ResetPassword(props) {
         return isValid;
     }
     return (
-        <AuthWrapper>
-            <div className="authHolder resetPassScreen reset-wrap">
-                <div className="formHolder">
-                    <h1>Reset your Password</h1>
-                    {/* <p>Enter your email address below and we'll send you a secure link to reset your password.</p> */}
-                    {state.isValidaToken ?
-                        <form className="authMeshForm resetPassForm needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-                            <div className="form-group floating-label-wrap">
-                                <input type="password" className="form-control" id="password" placeholder="Password" value={state.password} onChange={(e) => handleStateChange(e)} required />
-                                <label className="foating-labels-sty">Password</label>
-							<span className="animated-border"></span>
+        <Wrapper>
+            <AuthWrapper formName="Reset Password" name="Reset" formDescription="Please reset your password below!" >
+                <div className="login-form">
+                    <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input id="pass" type="text" class="form-control" name="password" placeholder="Old Password" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input id="pass" type="text" class="form-control" name="new-password" placeholder="New Password" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input id="pass" type="text" class="form-control" name="re-new-password" placeholder="Re-write Password" />
+                        </div>
+                        {props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                            <div className="loader-img text-center">
+                                <img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
                             </div>
-                            <div className="form-group floating-label-wrap mb-0">
-                                <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password" value={state.confirmPassword} onChange={(e) => handleStateChange(e)} required />
-                                <label className="foating-labels-sty">Repeat Password</label>
-							    <span className="animated-border"></span>
-                            </div>
-                            {props.apiCallStatus.apiCallFor === "resetPassword" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                                <div className="loader-img text-center">
-                                    <img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
-                                </div>
-                                : ""}
-                            {state.messageFor === "resetPassword" && state.messageType !== "" && state.messageFor !== "" ?
-                                <div className={"alert alert-" + state.messageType}>
-                                    {state.message}
-                                </div>
-                                : ""}
-                            {props.apiCallStatus.apiCallFor === "resetPassword" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed ?
-                                <div className="alert alert-danger">
-                                    {props.apiCallStatus.message}
-                                </div>
-                                : ""}
-                            {props.apiCallStatus.apiCallFor === "resetPassword" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                                <div className="alert alert-success">
-                                    {props.apiCallStatus.message}
-                                </div>
-                                : ""}
-                            <div clasName="formBtnHolder">
-                                <button className="btn btn-secondary d-block text-center w-100" onClick={(e) => handleSubmit(e)}>Upate password</button>
-                            </div>
-                        </form> : <div className="loader-img text-center">
-                            <img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
-                        </div>}
+                            : ""}
+                        <div className="submit-btn">
+                            <input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </AuthWrapper>
+            </AuthWrapper>
+        </Wrapper>
     );
 }
 

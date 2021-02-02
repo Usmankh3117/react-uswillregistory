@@ -8,7 +8,9 @@ export const AuthWrapper = (props) => (
                 <div className="row">
                     <div className="heading-section">
                         <h1 className="heading"><span className="bold">{props.name}</span> Form</h1>
-                        <span className="link">Please ! Login to this form or <a href="#">Create an account</a></span>
+                        {props.description ?
+                            <span className="link">{props.description} <a href={props.linkUrl}>{props.linkLabel}</a></span> : ""}
+
                     </div>
                 </div>
                 <div className="row mg-top-30"></div>
@@ -22,7 +24,8 @@ export const AuthWrapper = (props) => (
                                 <div className="col-lg-6 col-md-6 col-sm-6 login-form-div">
                                     <div className="row mg-top-30"></div>
                                     <div className="form-heading">
-                                        <h2 style={{"color": "#033168"}}>Login</h2>
+                                        <h2 style={{ "color": "#033168" }}>{props.formName}</h2>
+                                        {props.formDescription ? <p> {props.formDescription}</p> : ""}
                                     </div>
                                     {props.children}
                                 </div>

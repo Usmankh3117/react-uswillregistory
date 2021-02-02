@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { AuthWrapper } from "./authWrapper";
+import { Wrapper } from '../Css/verifyAccount';
 import { connect } from 'react-redux';
 import { verifyUser } from "../ApiCalls/auth";
 
@@ -11,31 +12,22 @@ function VerifyAccount(props) {
 
 
     return (
-        <AuthWrapper>
-            <div className="authHolder resetPassScreen">
-                <div className="formHolder">
-
-                    {props.apiCallStatus.isStarted.indexOf("verifyUser") !== -1 ?
-                        <div className="loader-img text-center">
-                            <img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
-                        </div> : props.apiCallStatus.apiCallFor === "verifyUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                            <React.Fragment>
-                                <h1>Account Activated</h1>
-                                <p>Login to your main dashboard below to start using Mesh:</p>
-                                <div clasName="formBtnHolder">
-                                    <Link to="/login" className="btn btn-secondary d-block text-center w-100" >Login</Link>
-                                </div>
-                            </React.Fragment> : props.apiCallStatus.apiCallFor === "verifyUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed ?
-                                <React.Fragment>
-                                    <h1>Error in activation</h1>
-                                    <div className="alert alert-danger">
-                                        {props.apiCallStatus.message}
-                                    </div>
-                                </React.Fragment>
-                                : ""}
+        <Wrapper>
+            <AuthWrapper formName="Verification" name="Account" formDescription="Please Verify your account" >
+                <div className="login-form">
+                    <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+                        {props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                            <div className="loader-img text-center">
+                                <img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
+                            </div>
+                            : ""}
+                        <div className="submit-btn">
+                            <input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </AuthWrapper >
+            </AuthWrapper>
+        </Wrapper>
     );
 }
 

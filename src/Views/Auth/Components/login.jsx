@@ -4,7 +4,7 @@ import { AuthWrapper } from "./authWrapper";
 import { Wrapper } from '../Css/login';
 import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
-import { ApiClearAction } from "../../ApiCallStatus/Actions/action";
+import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 const defaultState = {
 	email: "",
@@ -18,9 +18,6 @@ function Login(props) {
 	const urlParams = new URLSearchParams(window.location.search);
 	const msg = urlParams.get('msg');
 	useEffect(() => {
-		// if (props.user.isLogin) {
-		// 	props.history.push(getDashboardLink());
-		// }
 		if (msg && msg === 'expired') {
 			var uri = window.location.toString();
 			if (uri.indexOf("?") > 0) {
@@ -31,13 +28,13 @@ function Login(props) {
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
 			setState(defaultState)
-			props.ApiClearAction();
+			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
 			let redirectUrl = '/';
 			props.history.push(redirectUrl)
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
 			Swal.fire("Error!", props.apiCallStatus.message, "error");
-			props.ApiClearAction();
+			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
 		}
 	});
 	const handleStateChange = (e) => {
@@ -68,24 +65,29 @@ function Login(props) {
 	}
 	return (
 		<Wrapper>
-			<AuthWrapper name="Sign In">
+			<AuthWrapper formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
 				<div className="login-form">
-					<form action="">
+					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 						<div className="input-group">
 							<span className="input-group-addon"><i className="fa fa-user"></i></span>
-							<input id="username" type="text" className="form-control" name="username" placeholder="Username" />
+							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 						</div>
 						<div className="input-group">
 							<span className="input-group-addon"><i className="fa fa-lock"></i></span>
-							<input id="pass" type="text" className="form-control" name="password" placeholder="Password" />
+							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
 						</div>
+						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+							<div className="loader-img text-center">
+								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
+							</div>
+							: ""}
 						<div className="input-group1">
 							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" value="rememberme" />
 							<label for="rememberme"> Remember Me?</label>
 							<a href="#">Forget Password?</a>
 						</div>
 						<div className="submit-btn">
-							<input id="submit" className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
+							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
 						</div>
 
 					</form>
@@ -111,10 +113,8 @@ function Login(props) {
 							<i className="fa fa-google bottom-icons"></i>
 						</div>
 					</div>
-
 					<div className="row mg-top-25"></div>
 					<div className="row mg-top-21"></div>
-
 				</div>
 			</AuthWrapper>
 		</Wrapper>
@@ -128,6 +128,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	login: (data) => dispatch(LoginUser(data)),
+	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 	ApiClearAction: () => dispatch(ApiClearAction())
 })
 export default connect(

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { AuthWrapper } from "./authWrapper";
+import { Wrapper } from '../Css/forgotPassword';
 import { connect } from 'react-redux';
 import { forgotPassword } from "../ApiCalls/auth";
 const defaultState = {
@@ -30,7 +31,6 @@ function ForgotPassword(props) {
 			props.forgotPassword({ email: state.email })
 		}
 	}
-
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
 		let isValid = true;
@@ -41,48 +41,26 @@ function ForgotPassword(props) {
 		return isValid;
 	}
 	return (
-		<AuthWrapper>
-			<div className="authHolder resetPassScreen">
-				<div className="formHolder">
-					<h1>Forgot your Password</h1>
-					<p className="form-short-des">Enter your email address below and we'll send you a secure link to reset your password.</p>
-					{/* <p>Click the secure link we sent you to reset your password. If you didn’t receive an e-mail, check your spam folder.</p> */}
-					<form className="authMeshForm resetPassForm needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-						<div className="form-group floating-label-wrap mb-0">
+		<Wrapper>
+			<AuthWrapper formName="Forget Password" name="Forget" formDescription="Please enter your email below!" >
+				<div className="login-form">
+					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+						<div className="input-group">
+							<span className="input-group-addon"><i className="fa fa-user"></i></span>
 							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
-							<label className="foating-labels-sty">Email</label>
-							<span className="animated-border"></span>
 						</div>
-						{props.apiCallStatus.apiCallFor === "forgotPassword" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 							<div className="loader-img text-center">
 								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
 							</div>
 							: ""}
-						{props.apiCallStatus.apiCallFor === "forgotPassword" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed ?
-							<div className="alert alert-danger">
-								{props.apiCallStatus.message}
-							</div>
-							: ""}
-						{props.apiCallStatus.apiCallFor === "forgotPassword" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-							<div className="alert alert-success mt-3">
-								{props.apiCallStatus.message}
-							</div>
-							: ""}
-						<div clasName="formBtnHolder">
-							<button className="btn btn-secondary d-block text-center w-100" onClick={(e) => handleSubmit(e)}>Send Email</button>
+						<div className="submit-btn">
+							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
 						</div>
 					</form>
 				</div>
-				<div className="textBlock">
-					<div className="d-flex">
-						<div className="textHolder w-100">
-							<h2>Don't have an account?</h2>
-							<Link className="btn btn-secondary d-block text-center bg-white mr-auto ml-0" to="/signup">Sign Up</Link>
-						</div>
-					</div>
-				</div>
-			</div>
-		</AuthWrapper>
+			</AuthWrapper>
+		</Wrapper>
 	);
 }
 
