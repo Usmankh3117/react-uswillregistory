@@ -15,7 +15,7 @@ export const AuthWrapper = (props) => (
                 </div>
                 <div className="row mg-top-30"></div>
                 <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 login-img-div mg-bottom-30">
+                    <div className={`col-lg-12 col-md-12 col-sm-12 mg-bottom-30 ${props.parentClass}`}>
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12 for-bg-shadow">
                                 <div className="col-lg-6 col-md-6 col-sm-6" style={{ padding: "0px" }}>

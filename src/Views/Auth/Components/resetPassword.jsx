@@ -81,17 +81,17 @@ function ResetPassword(props) {
             <AuthWrapper formName="Reset Password" name="Reset" formDescription="Please reset your password below!" >
                 <div className="login-form">
                     <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input id="pass" type="text" class="form-control" name="password" placeholder="Old Password" />
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                            <input id="pass" type="text" className="form-control" name="password" placeholder="Old Password" />
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input id="pass" type="text" class="form-control" name="new-password" placeholder="New Password" />
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                            <input id="pass" type="text" className="form-control" name="new-password" placeholder="New Password" />
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input id="pass" type="text" class="form-control" name="re-new-password" placeholder="Re-write Password" />
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                            <input id="pass" type="text" className="form-control" name="re-new-password" placeholder="Re-write Password" />
                         </div>
                         {props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                             <div className="loader-img text-center">

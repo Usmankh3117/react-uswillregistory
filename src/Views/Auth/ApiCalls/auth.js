@@ -7,14 +7,9 @@ import { setCookie } from "../../../Services/cookies";
 export function signUpUser(data) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "signUpUser" }));
-    let myJson = await FETCH("POST", Constant.apiURl + "/auth/register", {
-      email: data.email,
-      password: data.password,
-      type: data.userType,
-      subType: data.userType,
-    });
+    let myJson = await FETCH("POST", Constant.apiURl + "/register", data);
     if (myJson && myJson.code === 200) {
-      dispatch(logInAction(UpdateAuthCookiesState(myJson)));
+      // dispatch(logInAction(UpdateAuthCookiesState(myJson)));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "signUpUser",

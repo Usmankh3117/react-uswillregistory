@@ -65,7 +65,7 @@ function Login(props) {
 	}
 	return (
 		<Wrapper>
-			<AuthWrapper formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
+			<AuthWrapper parentclassName="login-img-div" formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
 				<div className="login-form">
 					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 						<div className="input-group">
@@ -76,11 +76,11 @@ function Login(props) {
 							<span className="input-group-addon"><i className="fa fa-lock"></i></span>
 							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
 						</div>
-						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+						{/* {props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 							<div className="loader-img text-center">
 								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
 							</div>
-							: ""}
+							: ""} */}
 						<div className="input-group1">
 							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" value="rememberme" />
 							<label for="rememberme"> Remember Me?</label>
@@ -129,7 +129,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	login: (data) => dispatch(LoginUser(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
-	ApiClearAction: () => dispatch(ApiClearAction())
 })
 export default connect(
 	mapStateToProps,

@@ -61,3 +61,11 @@ Object.size = function (obj) {
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function getYearList() {
+  let arr = [];
+  for (let index = 1990; index <= 2021; index++) {
+    arr.push(index);
+  }
+  return arr
+}

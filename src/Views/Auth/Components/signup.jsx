@@ -5,15 +5,73 @@ import { connect } from 'react-redux';
 import { AuthWrapper } from "./authWrapper";
 import { signUpUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import csc from 'country-state-city'
+import { getYearList } from '../../../Services/common';
 
 const defaultState = {
-	email: "",
-	password: "",
-	repeatPassword: "",
-	message: "",
-	messageType: "",
-	messageFor: ""
+	"email": "",
+	"first_name": "",
+	"middle_name": "",
+	"last_name": "",
+	"birthdate": "",
+	"country": "",
+	"state": "",
+	"gender": "",
+	"password": "",
+	"repeatPassword": "",
+	"day": "",
+	"month": "",
+	"year": "",
+	"stateList": [],
+	"countryList": csc.getAllCountries(),
+	"daysList": ["01",
+		"02",
+		"03",
+		"04",
+		"05",
+		"06",
+		"07",
+		"08",
+		"09",
+		"10",
+		"11",
+		"12",
+		"13",
+		"14",
+		"15",
+		"16",
+		"17",
+		"18",
+		"19",
+		"20",
+		"21",
+		"22",
+		"23",
+		"24",
+		"25",
+		"26",
+		"27",
+		"28",
+		"29",
+		"30",
+		"31"],
+	"monthsList": ["January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"],
+	"yearsList": getYearList(),
+	"message": "",
+	"messageType": "",
+	"messageFor": ""
 }
 
 function SignUp(props) {
@@ -33,20 +91,39 @@ function SignUp(props) {
 		let id = e.target.id;
 		let val = e.target.value;
 		let cloneState = { ...state };
+		if (id === "country") {
+			cloneState['state'] = "";
+			cloneState['stateList'] = csc.getStatesOfCountry(val);
+		}
 		cloneState[id] = val;
 		setState(cloneState);
 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let isValid = validateForm();
-		if (isValid) {
-			props.signUp({
-				email: state.email,
-				password: state.password,
-				userType: state.userType
-			})
-		}
+		props.signUp({
+			"email": "facere",
+			"password": "pariatur",
+			"first_name": "perspiciatis",
+			"middle_name": "numquam",
+			"last_name": "aut",
+			"birthdate": "rerum",
+			"state": "AR",
+			"gender": "reprehenderit"
+		})
+		// let isValid = validateForm();
+		// if (isValid) {
+		// 	props.signUp({
+		// 		"email": "facere",
+		// 		"password": "pariatur",
+		// 		"first_name": "perspiciatis",
+		// 		"middle_name": "numquam",
+		// 		"last_name": "aut",
+		// 		"birthdate": "rerum",
+		// 		"state": "AR",
+		// 		"gender": "reprehenderit"
+		// 	})
+		// }
 	}
 
 	const validateForm = () => {
@@ -62,110 +139,116 @@ function SignUp(props) {
 			isValid = false;
 			Swal.fire("Error!", "Password and confirm password does not match", "error");
 		}
-
 		return isValid;
-
 	}
 	return (
 		<Wrapper>
-			<AuthWrapper formName="Register" name="Register" description="Please ! Register your self and make an" linkUrl="" linkLabel="Account">
-				<div class="register-form">
-					<form action="">
-						<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="input-group1">
-									<input id="firstname" type="text" class="form-control1" name="firstname" placeholder="First Name" />
-								</div>
+			<AuthWrapper parentClass="register-form-div" formName="Register" name="Register" description="Please ! Register your self and make an" linkUrl="" linkLabel="Account">
+				<div className="register-form">
+					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+						<div className="row">
+							<div className="col-lg-4 col-md-4 col-sm-4">
+								<Input id={state.first_name} type="text" className="form-control1" name="first_name" placeholder="First Name" />
 							</div>
 
-							<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="input-group1">
-									<input id="" type="text" class="form-control1" name="" placeholder="Middle Name" />
-								</div>
+							<div className="col-lg-4 col-md-4 col-sm-4">
+								<Input id={state.middle_name} type="text" className="form-control1" name="middle_name" placeholder="Middle Name" />
 							</div>
 
-							<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="input-group1">
-									<input id="" type="text" class="form-control1" name="" placeholder="Last Name" />
-								</div>
+							<div className="col-lg-4 col-md-4 col-sm-4">
+								<Input id={state.last_name} type="text" className="form-control1" name="last_name" placeholder="Last Name" />
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="input-group1">
-									<input id="" type="text" class="form-control1" name="" placeholder="Email" />
-								</div>
+						<div className="row">
+							<div className="col-lg-12 col-md-12 col-sm-12">
+								<Input id={state.email} type="email" className="form-control1" name="email" placeholder="Email" />
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="input-group1">
-									<input id="" type="password" class="form-control1" name="" placeholder="Your Password" />
-								</div>
+						<div className="row">
+							<div className="col-lg-12 col-md-12 col-sm-12">
+								<Input id={state.password} type="password" className="form-control1" name="password" placeholder="Your Password" />
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="input-group1">
-									<input id="" type="password" class="form-control1" name="" placeholder="Retype Password" />
-								</div>
+						<div className="row">
+							<div className="col-lg-12 col-md-12 col-sm-12">
+								<Input id={state.repeatPassword} type="password" className="form-control1" name="repeatPassword" placeholder="Retype Password" />
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="input-group1">
-									<select name="State" id="State" class="form-control1">
-										<option value="State">State</option>
-										<option value="State2">State2</option>
-										<option value="State3">State3</option>
+						<div className="row">
+							<div className="col-lg-6 col-md-6 col-sm-6">
+								<div className="input-group1">
+									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)}>
+										<option value="">Select Country</option>
+										{state.countryList.map((item, index) => {
+											return <option key={index} value={item.isoCode} selected={state.country === item.isoCode}>{item.name}</option>
+										})}
+									</select>
+								</div>
+							</div>
+							<div className="col-lg-6 col-md-6 col-sm-6">
+								<div className="input-group1">
+									<select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)}>
+										<option value="">Select State</option>
+										{state.stateList.map((item, index) => {
+											return <option key={index} value={item.name} selected={state.state === item.name}>{item.name}</option>
+										})}
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="input-group1">
-									<select name="days" id="days" class="form-control1">
-										<option value="Days">Days</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
+						<div className="row">
+							<div className="col-lg-4 col-md-4 col-sm-4">
+								<div className="input-group1">
+									<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)}>
+										<option value="">Day</option>
+										{state.daysList.map((item, index) => {
+											return <option key={index} value={item} selected={state.day === item}>{item}</option>
+										})}
 									</select>
 								</div>
 							</div>
 
-							<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="input-group1">
-									<select name="month" id="month" class="form-control1">
-										<option value="Month">Month</option>
-										<option value="feb">Feb</option>
-										<option value="March">March</option>
+							<div className="col-lg-4 col-md-4 col-sm-4">
+								<div className="input-group1">
+									<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)}>
+										<option value="">Month</option>
+										{state.monthsList.map((item, index) => {
+											return <option key={index} value={item} selected={state.month === item}>{item}</option>
+										})}
 									</select>
 								</div>
 							</div>
 
-							<div class="col-sm-4">
-								<div class="input-group1">
-									<select name="year" id="year" class="form-control1">
-										<option value="Year">Year</option>
-										<option value="2011">2011</option>
-										<option value="2012">2012</option>
+							<div className="col-sm-4">
+								<div className="input-group1">
+									<select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)}>
+										<option value="">Year</option>
+										{state.yearsList.map((item, index) => {
+											return <option key={index} value={item} selected={state.year === item}>{item}</option>
+										})}
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="submit-btn">
-							<input id="submit" class="submit" type="submit" value="Sign In" class="form-control1" name="submit" />
+						<div className="submit-btn">
+							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign Up" name="submit" />
 						</div>
 					</form>
 
-					<div class="row mg-top-25"></div>
-					<div class="row mg-top-30"></div>
+					<div className="row mg-top-25"></div>
+					<div className="row mg-top-30"></div>
 
 				</div>
 			</AuthWrapper>
 		</Wrapper>
 	);
+}
+
+const Input = (props) => {
+	return <div className="input-group1">
+		<input {...props} required />
+	</div>
 }
 
 const mapStateToProps = (state, ownProps) => ({

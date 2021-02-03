@@ -1,7 +1,9 @@
-body {
-  font-family: Gotham Narrow SSm A,Gotham Narrow SSm B,Rubik,Lucida Grande,Lucida Sans Unicode,Tahoma,sans-serif !important;
-}
+
+
 .header-section {
+  /* position:relative; */
+}
+.icondiv {
   position:relative;
 }
 
@@ -15,11 +17,13 @@ body {
 }
 .header-right-img {
   position: absolute;
-  right: 0%;
-  top: 0%;
+  right: 3%;
+  top: 12%;
+  width: 150px;
+  z-index: 1;
 }
 .header-right-img > img {
-  width: 79%;
+  width: 100%;
 }
 
 .right-aline {
@@ -34,7 +38,8 @@ float: right;
 }
 
 .logo-img {
-width: 100%;
+  width: 100%;
+  padding: 12px;
 }
 .mg-top-10 {
   margin-top: 10px;
@@ -45,11 +50,26 @@ width: 100%;
 .mg-top-20 {
   margin-top: 20px;
 }
+.mg-top-21 {
+  margin-top: 21px;
+}
 .mg-top-25 {
   margin-top: 25px;
 }
+.mg-top-28 {
+  margin-top: 28px;
+}
 .mg-top-30 {
   margin-top: 30px;
+}
+.mg-top-50 {
+  margin-top: 50px;
+}
+.mg-top-100 {
+  margin-top: 100px;
+}
+.mg-top-extra {
+  margin-top: 34px;
 }
 /* -----------------
   header
@@ -151,7 +171,11 @@ list-style: none;
 }
 
 .footer__about__logo {
-margin-bottom: 15px;
+  margin-bottom: 15px;
+  width: 100px;
+}
+.footer__about__logo > img{
+width: 100%;
 }
 
 .footer__about__logo a {
@@ -273,8 +297,19 @@ float: right;
 .footer-store-logo > img {
   width: 100%;
 }
+.footer-store-logo1 {
+  background-color: #2a2a2c !important;
+}
+
+.footer-store-logo1 > img {
+  width: 50%;
+  border-radius: 5px;
+}
 .footer-list-div {
   margin-top: 8%;
+}
+.pad-right-15 {
+  padding-right: 15px;
 }
 
 .footer-heading {
@@ -310,12 +345,15 @@ float: right;
   font-size: 20px;
 }
 .footer-icon-signin {
-  background-color: #fff !important;
-  color: #242424 !important;
+  background-color: #2a2a2c !important;
+  color: #fff !important;
 }
-.green {
-  color: #4faa43 !important;
+.footer-icon-signin1 {
+  background-color: #2a2a2c !important;
+  color: #fff !important;
+  margin-top: 5px;
 }
+
 .footer-icon-signin > i {
   font-size: 20px;
 }
@@ -329,45 +367,404 @@ float: right;
   border: none;
   height: 10px;
 }
+.footer-submit-btn1 {
+  font-size: 20px;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  color: #1e1f26;
+  background-color: white;
+  border: none;
+  height: 10px;
+}
 .footer-form {
   margin-top: -5px !important;
 }
 .footer-form > form > input {
   color: black;
 }
+.footer1 {
+  background: #2a2a2c;
+  padding: 10px;
+}
+.list-group1 {
+  display: flex;
+  border-radius: .25rem;
+  padding-left: 0;
+  /* margin-bottom: 20px; */
+}
+.list-group-item1 {
+  position: relative;
+  display: block;
+  /* padding: 0px 10px; */
+}
+.list-group-item1:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
 
+.margin-top-10 {
+  margin-top: 10%;
+}
 
+.bold {
+  font-weight: bold;
+}
+.blue {
+  color: #033168;
+}
+.center {
+  text-align: center;
+}
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
+@media only screen and (min-width: 1441px) {
+  .last-will-section > .make-your-will {
+     right: 37% !important;
+  }
+  .last-section > .make-will {
+      top: 78% !important;
+      right: 37% !important;
+  }
+  .c-details {
+      border: 1px solid #ffffff;
+      box-shadow: 0px 0px 10px #ececec;
+      margin: 15px;
+      width: 30% !important;
+      position: relative !important;
+  }
+  .faq-div {
+      width: 47% !important;
+  }
+}
 @media only screen and (min-width: 1200px) {
 /* .container {
   max-width: 1170px;
-} */
+  } */
+  .will-div {
+      box-shadow: 0px 0px 10px #ececec;
+      border-radius: 5px;
+      position: relative;
+      width: 22% !important;
+      margin: 15px;
+  }
+  .will-icon {
+      font-size: 20px !important;
+  }
+  .witnesa-page-form > span {
+      background: #00387b;
+      padding: 24px 5px 29px 0px !important;
+      font-size: 19px !important;
+      color: white;
+      margin-left: -5px;
+      font-weight: 500;
+  }
+  .self-affidevit-form > span {
+      background: #d81212;
+      padding: 25px 5px 30px 0px !important;
+      font-size: 19px !important;
+      color: white;
+      margin-left: -5px;
+      font-weight: 500;
+      width: 100%;
+  }
+  .login-form-div {
+     padding-bottom: 8px;
+  }
 }
+
 
 /* Medium Device = 1200px */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .header-right-img > img {
-      width: 66%;
+  .header-right-img {
+      position: absolute;
+      right: 2%;
+      top: 14%;
+      width: 100px;
+      z-index: 1;
+  }
+  .will-div {
+      box-shadow: 0px 0px 10px #ececec;
+      border-radius: 5px;
+      position: relative;
+      width: 20% !important;
+      margin: 15px;
+  }
+  .will-icon {
+      font-size: 20px !important;
+  }
+  .witnesa-page-form > span {
+      background: #00387b;
+      padding: 25px 5px 28px 0px !important;
+      font-size: 19px !important;
+      color: white;
+      margin-left: -5px;
+      font-weight: 500;
+  }
+  .self-affidevit-form > span {
+      background: #d81212;
+      padding: 25px 5px 29px 0px !important;
+      font-size: 19px !important;
+      color: white;
+      margin-left: -5px;
+      font-weight: 500;
+      width: 100%;
+  }
+  .last-will-section > .make-your-will {
+      position: absolute;
+      top: 95%;
+      right: 17% !important;
+  }
+  .last-section > .make-will {
+      position: absolute;
+      top: 95%;
+      right: 17% !important;
+  }
+
+  .mg-top-top-extra {
+      margin-top: 69px !important;
+  }
+  .mg-top-bottom-extra {
+      margin-top: 111px !important;
+  }
+  .mg-top-top-extra-reset {
+      margin-top: 33px !important;
+  }
+  .mg-top-bottom-extra-reset {
+      margin-top: 31px !important;
+  }
+  .mg-top-top-extra-verify {
+      margin-top: 155px !important;
+  }
+  .mg-top-bottom-extra-verify {
+      margin-top: 158px !important;
   }
 }
 
 /* Tablet Device = 768px */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-
+  .header-right-img {
+      position: absolute;
+      right: 4%;
+      top: 7%;
+      width: 84px;
+      z-index: 1;
+  }
+  
+  .logo-img {
+      width: 70% !important;
+      padding: 12px !important;
+  }
+  .will-div {
+      box-shadow: 0px 0px 10px #ececec;
+      border-radius: 5px;
+      position: relative;
+      width: 20% !important;
+      margin: 15px;
+  }
+  .witnesa-page-form > img {
+      width: 35%;
+  }
+  .witnesa-page-form > span {
+      padding: 14px 3px 16px 0px !important;
+      font-size: 16px !important;
+  }
+  .self-affidevit-form > img {
+      width: 35%;
+  }
+  .self-affidevit-form > span {
+      padding: 15px 3px 16px 0px !important;
+      font-size: 16px !important;
+  }
+  .last-will-img > img {
+     width: 100%;
+  }
+  .last-section > .make-will > img {
+     width: 100%;
+  }
+  .margin-top-10 {
+      margin-top: 0% !important;
+  }
+  .last-will-section > .make-your-will {
+      right: 4% !important;
+  }
+  .last-section > .make-will {
+      right: 4% !important;
+  }
+  .c-details {
+      margin: 5px !important;
+  }
+  .faq-div {
+      width: 100% !important;
+  }
+  .mg-top-top-extra {
+      margin-top: 25px !important;
+  }
+  .mg-top-bottom-extra {
+      margin-top: 63px !important;
+  }
+  .mg-top-top-extra-reset {
+      margin-top: 0px !important;
+  }
+  .mg-top-bottom-extra-reset {
+      margin-top: 12px !important;
+  }
+  .form-heading > h2 {
+      font-size: 30px !important;   
+  }
+  .form-heading > p {
+      font-size: 22px !important;   
+  }
+  .login-form > form > .input-group > .form-control {
+      font-size: 18px !important;
+      margin:0px !important;
+  }
+  .login-form > form > .input-group {
+     margin-top: 10px;
+  }
+  .login-form > form > .input-group > span {
+      font-size: 20px !important;
+      padding: 10px 22px !important;
+  }
+  .mg-top-top-extra-verify {
+      margin-top: 100px !important;
+  }
+  .mg-top-bottom-extra-verify {
+      margin-top: 101px !important;
+  }
+  .profile-section-div > div > span {
+      font-size: 10px !important;
+  }
+  .profile-section-div > div > img {
+      width: 30px !important;
+  }
+  .profile-section-div {
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+      height: 50px !important;
+  }
 }
 
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
-
+  .header-right-img {
+      position: absolute;
+      right: 4%;
+      top: 7%;
+      width: 60px;
+      z-index: 1;
+  }
+  .logo-img {
+      width: 44% !important;
+      padding: 12px;
+  }
+  .list-group {
+      display: contents;
+      border-radius: .25rem;
+      margin-top: 35px !important;
+      margin-bottom: 35px !important;
+      padding-left: 0;
+  }
+  .will-div {
+     width: 100% !important;
+      margin: 0px !important;
+  }
+  .self-affidevit-form {
+     margin-top: 10% !important;
+  }
+  .last-will-section > .make-your-will {
+      position: absolute;
+      top: 98% !important;
+      right: 0% !important;
+  }
+  .last-section > .make-will > img {
+      width: 100%;
+   }
+  .last-section > .make-will {
+      right: 0% !important;
+  }
+  .last-will-section > .make-your-will > img {
+     width: 100%;
+  }
+  .footer-store-logo > img {
+      /* width: 10% !important; */
+  }
+  .footer__about > .list-group {
+      display: flex !important;
+  }
+  .c-details {
+      margin: 5px !important;
+  }
+  .faq-div {
+      width: 100% !important;
+  }
+  .search-menu {
+      font-size: 24px !important;
+  }
+  .mg-top-top-extra {
+      margin-top: 13px !important;
+  }
+  .mg-top-bottom-extra {
+      margin-top: 54px !important;
+  }
+  .mg-top-top-extra-reset {
+      margin-top: 0px !important;
+  }
+  .mg-top-bottom-extra-reset {
+      margin-top: 20px !important;
+  }
+  .mg-top-top-extra-verify {
+      margin-top: 100px !important;
+  }
+  .mg-top-bottom-extra-verify {
+      margin-top: 100px !important;
+  }
+  .footer-logo {
+      width: 90% !important;
+  }
+  
+  
 }
 
 /* Small Device = 320px */
 
 @media only screen and (max-width: 479px) {
-
+  .c-details {
+      width: 100% !important;
+      margin-top: 10% !important;
+  }
+  .logo-img {
+      width: 50% !important;
+  }
+  .faq-div {
+      width: 100% !important;
+  }
+  .search-menu {
+      font-size: 14px !important;
+  }
+  .mg-top-top-extra {
+      margin-top: 0px !important;
+  }
+  .mg-top-bottom-extra {
+      margin-top: 28px;
+  }
+  .mg-top-top-extra-reset {
+      margin-top: 0px !important;
+  }
+  .mg-top-bottom-extra-reset {
+      margin-top: 20px !important;
+  }
+  .mg-top-top-extra-verify {
+      margin-top: 0px !important;
+  }
+  .mg-top-bottom-extra-verify {
+      margin-top: 15px !important;
+  }
+  .footer-logo {
+      width: 25% !important;
+  }
 }

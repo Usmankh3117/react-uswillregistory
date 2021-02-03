@@ -1,7 +1,7 @@
-var env = "localhost";
+var env = "development";
 export const Constant = {
     apiURl:
         env === "development"
-            ? "http://3.129.171.117:4000/v1"
+            ? "http://freeonlinewill.theuswillregistry.org/api/v1"
             : "http://localhost:8080/v1"
 };
