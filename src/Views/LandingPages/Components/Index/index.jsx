@@ -1,3 +1,4 @@
+import React from "react";
 import { Wrapper } from '../../Css/index';
 import Image from "../../../Common/Components/image";
 export default function Index(props) {

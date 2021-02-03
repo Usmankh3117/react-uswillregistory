@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "../Common/Components/image";
 
 export default function Header(props) {

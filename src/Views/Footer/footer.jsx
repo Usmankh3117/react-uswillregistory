@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Image from "../Common/Components/image";
 
 export default function Footer(props) {
@@ -90,7 +90,7 @@ export default function Footer(props) {
 
 
         </footer>
-        <footer style={{backgroundColor: "#1a1919"}}>
+        <footer style={{ backgroundColor: "#1a1919" }}>
             <div className="container">
                 <div className="row">
 

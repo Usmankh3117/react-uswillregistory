@@ -8,6 +8,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 import csc from 'country-state-city'
 import { getYearList } from '../../../Services/common';
+import Image from '../../Common/Components/image';
 
 const defaultState = {
 	"email": "",
@@ -101,43 +102,47 @@ function SignUp(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.signUp({
-			"email": "facere",
-			"password": "pariatur",
-			"first_name": "perspiciatis",
-			"middle_name": "numquam",
-			"last_name": "aut",
-			"birthdate": "rerum",
-			"state": "AR",
-			"gender": "reprehenderit"
-		})
-		// let isValid = validateForm();
-		// if (isValid) {
-		// 	props.signUp({
-		// 		"email": "facere",
-		// 		"password": "pariatur",
-		// 		"first_name": "perspiciatis",
-		// 		"middle_name": "numquam",
-		// 		"last_name": "aut",
-		// 		"birthdate": "rerum",
-		// 		"state": "AR",
-		// 		"gender": "reprehenderit"
-		// 	})
-		// }
+		// props.signUp({
+		// 	"email": "facere",
+		// 	"password": "pariatur",
+		// 	"first_name": "perspiciatis",
+		// 	"middle_name": "numquam",
+		// 	"last_name": "aut",
+		// 	"birthdate": "rerum",
+		// 	"state": "AR",
+		// 	"gender": "reprehenderit"
+		// })
+		let isValid = validateForm();
+		if (isValid) {
+			props.signUp({
+				"email": "facere",
+				"password": "pariatur",
+				"first_name": "perspiciatis",
+				"middle_name": "numquam",
+				"last_name": "aut",
+				"birthdate": "rerum",
+				"state": "AR",
+				"gender": "reprehenderit"
+			})
+		}
 	}
 
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
 		let isValid = true;
+		let msg = "";
 		if (form.checkValidity() === false) {
 			isValid = false;
 			form.classList.add('was-validated');
 		} else if (state.password.length < 6) {
 			isValid = false;
-			Swal.fire("Error!", "Password must be greater than 6 characters", "error");
+			msg = "Password must be greater than 6 characters";
 		} else if (state.password !== state.repeatPassword) {
 			isValid = false;
-			Swal.fire("Error!", "Password and confirm password does not match", "error");
+			msg = "Password and confirm password does not match";
+		}
+		if (!isValid) {
+			Swal.fire("Error!", msg, "error");
 		}
 		return isValid;
 	}
@@ -231,6 +236,11 @@ function SignUp(props) {
 								</div>
 							</div>
 						</div>
+						{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+							<div className="loader-img text-center">
+								<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+							</div>
+							: ""}
 						<div className="submit-btn">
 							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign Up" name="submit" />
 						</div>

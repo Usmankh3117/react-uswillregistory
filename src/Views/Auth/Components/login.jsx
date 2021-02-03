@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
+import Image from '../../Common/Components/image';
+
 const defaultState = {
 	email: "",
 	password: "",
@@ -76,11 +78,11 @@ function Login(props) {
 							<span className="input-group-addon"><i className="fa fa-lock"></i></span>
 							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
 						</div>
-						{/* {props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 							<div className="loader-img text-center">
-								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
+								<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
 							</div>
-							: ""} */}
+							: ""}
 						<div className="input-group1">
 							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" value="rememberme" />
 							<label for="rememberme"> Remember Me?</label>
@@ -121,6 +123,11 @@ function Login(props) {
 	);
 }
 
+const Input = (props) => {
+	return <div className="input-group1">
+		<input {...props} required />
+	</div>
+}
 const mapStateToProps = (state, ownProps) => ({
 	apiCallStatus: state.apicallStatusReducer,
 	user: { isLogin: state.authReducer.isLogin, }
