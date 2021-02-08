@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "../Common/Components/image";
+import { Link } from "react-router-dom";
 
 export default function Header(props) {
     return <section className="header-section">
@@ -28,6 +29,12 @@ export default function Header(props) {
                         <ul className="list-group">
                             <li className="list-group-item">
                                 <a href="#" className="top-menu active-menu">Home</a>
+                            </li>
+                            <li className="list-group-item">
+                                <Link to="/login" className="top-menu active-menu">Login</Link>
+                            </li>
+                            <li className="list-group-item">
+                                <Link to="/signup" className="top-menu active-menu">Sign Up</Link>
                             </li>
                             <li className="list-group-item">
                                 <a href="#" className="top-menu">Contact us Pages</a>

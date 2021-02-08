@@ -1,3 +1,4 @@
+import React from 'react';
 import { Wrapper } from '../../Css/lastWill';
 export default function Index(props) {
     return <Wrapper>
@@ -63,7 +64,7 @@ function TabContent(props) {
                 <div className="row">
                     <div className="col-lg-12 col-lg-12 col-sm-12">
                         <h4 className="form-inner-heading">Full Legal Name</h4>
-                        <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" } >
+                        <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" }} >
                             <input type="text" name="first-name" className="input-field" placeholder="First Name" />
                         </div>
                         <div className="col-lg-4 col-lg-4 col-sm-4">

@@ -1,3 +1,4 @@
+import React, { Fragment } from 'react';
 import { Wrapper } from "../../Css/privacy";
 export default function Privacy(props) {
     return <Wrapper className="pp-section">

@@ -1,6 +1,6 @@
+import React, { Fragment } from 'react';
 import { Wrapper } from '../../Css/search';
 import Image from "../../../Common/Components/image";
-import { Fragment } from 'react';
 export default function Index(props) {
     return <Wrapper>
         <Search />

@@ -6,14 +6,17 @@ import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
+import { Constant } from "../../../Constants/constant";
 import Image from '../../Common/Components/image';
+import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
-	email: "",
-	password: "",
+	email: "tes1@gmail.com",
+	password: "User@123",
 	message: "",
 	messageType: "",
-	messageFor: ""
+	messageFor: "",
+	rememberMe: getCookie("rememberMe")
 }
 function Login(props) {
 	const [state, setState] = useState(defaultState);
@@ -35,10 +38,34 @@ function Login(props) {
 			props.history.push(redirectUrl)
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
-			Swal.fire("Error!", props.apiCallStatus.message, "error");
+			let msg = '';
+			if (typeof props.apiCallStatus.message === 'object') {
+				if(props.apiCallStatus.message[0]){
+					msg = props.apiCallStatus.message[0];
+				}else{
+					for (const property in props.apiCallStatus.message) {
+						if (props.apiCallStatus.message[property][0] !== "") {
+							msg = props.apiCallStatus.message[property][0];
+							break;
+						}
+					}
+				}
+			} else {
+				msg = props.apiCallStatus.message;
+			}
+			Swal.fire("Error!", msg, "error");
 			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
 		}
 	});
+	useEffect(() => {
+		if (state.rememberMe === "true") {
+			setState({
+				...state,
+				email: getCookie("uemail"),
+				password: getCookie("pass")
+			})
+		}
+	}, [])
 	const handleStateChange = (e) => {
 		let id = e.target.id;
 		let val = e.target.value;
@@ -50,6 +77,11 @@ function Login(props) {
 		e.preventDefault();
 		let isValid = validateForm();
 		if (isValid) {
+			if (state.rememberMe === "true") {
+				setCookie("rememberMe", "true", Constant.cookieExpireDays);
+				setCookie("uemail", state.email, Constant.cookieExpireDays);
+				setCookie("pass", state.password, Constant.cookieExpireDays);
+			}
 			props.login({
 				email: state.email,
 				password: state.password
@@ -64,6 +96,28 @@ function Login(props) {
 			form.classList.add('was-validated');
 		}
 		return isValid;
+	}
+	const handleRememberMe = () => {
+		/**
+		 * saves credentials to save users time to keep logging back
+		 */
+		if (state.rememberMe === "true") {
+			setState({
+				...state,
+				rememberMe: ""
+			})
+			setCookie("rememberMe", "", 0);
+			setCookie("uemail", state.email, 0);
+			setCookie("pass", state.password, 0);
+		} else {
+			setState({
+				rememberMe: "true"
+			})
+			setCookie("rememberMe", "true", Constant.cookieExpireDays);
+			setCookie("uemail", state.email, Constant.cookieExpireDays);
+			setCookie("pass", state.password, Constant.cookieExpireDays);
+		}
+
 	}
 	return (
 		<Wrapper>
@@ -84,7 +138,7 @@ function Login(props) {
 							</div>
 							: ""}
 						<div className="input-group1">
-							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" value="rememberme" />
+							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
 							<label for="rememberme"> Remember Me?</label>
 							<a href="#">Forget Password?</a>
 						</div>
@@ -95,7 +149,7 @@ function Login(props) {
 					</form>
 					<div className="row mg-top-15"></div>
 					<div className="create-one-account">
-						<span className="text">Don't have any account? <a className="create-one" href="#">Create One</a></span>
+						<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create One</Link></span>
 					</div>
 					<div className="row mg-top-15"></div>
 					<div className="row">
@@ -123,11 +177,6 @@ function Login(props) {
 	);
 }
 
-const Input = (props) => {
-	return <div className="input-group1">
-		<input {...props} required />
-	</div>
-}
 const mapStateToProps = (state, ownProps) => ({
 	apiCallStatus: state.apicallStatusReducer,
 	user: { isLogin: state.authReducer.isLogin, }
@@ -137,7 +186,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	login: (data) => dispatch(LoginUser(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Login)
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps
+// )(Login)
+
+export default function LoginTest(props) {
+    return <div>Login</div>
+}

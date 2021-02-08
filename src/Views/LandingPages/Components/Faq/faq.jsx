@@ -1,3 +1,4 @@
+import React, { Fragment } from 'react';
 import { Wrapper } from "../../Css/faq";
 import Image from "../../../Common/Components/image";
 

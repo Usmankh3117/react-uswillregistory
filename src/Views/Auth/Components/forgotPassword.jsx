@@ -4,6 +4,8 @@ import { AuthWrapper } from "./authWrapper";
 import { Wrapper } from '../Css/forgotPassword';
 import { connect } from 'react-redux';
 import { forgotPassword } from "../ApiCalls/auth";
+import Image from '../../Common/Components/image';
+
 const defaultState = {
 	email: "",
 	message: "",
@@ -14,7 +16,12 @@ function ForgotPassword(props) {
 	const [state, setState] = useState(defaultState);
 	useEffect(() => {
 		if (props.apiCallStatus.apiCallFor === "forgotPassword" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
-			setState(defaultState)
+			setState({
+				...defaultState,
+				"message": props.apiCallStatus.message,
+				"messageType": "success",
+				"messageFor": "forgotPassword"
+			})
 		}
 	});
 	const handleStateChange = (e) => {
@@ -28,6 +35,12 @@ function ForgotPassword(props) {
 		e.preventDefault();
 		let isValid = validateForm();
 		if (isValid) {
+			setState({
+				...state,
+				"message": "",
+				"messageType": "",
+				"messageFor": ""
+			})
 			props.forgotPassword({ email: state.email })
 		}
 	}
@@ -49,13 +62,18 @@ function ForgotPassword(props) {
 							<span className="input-group-addon"><i className="fa fa-user"></i></span>
 							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 						</div>
-						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+						{props.apiCallStatus.apiCallFor === "forgotPassword" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 							<div className="loader-img text-center">
-								<img style={{ width: "46px" }} src={require("../../../assets/images/Spinner-1s-200px.gif")} alt='' />
+								<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='' />
+							</div>
+							: ""}
+						{state.messageFor === "forgotPassword" && state.message !== "" ?
+							<div className={`alert alert-${state.messageType}`}>
+								{state.message}
 							</div>
 							: ""}
 						<div className="submit-btn">
-							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
+							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Send Email" className="form-control" name="submit" />
 						</div>
 					</form>
 				</div>

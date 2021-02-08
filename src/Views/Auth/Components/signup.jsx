@@ -8,23 +8,26 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 import csc from 'country-state-city'
 import { getYearList } from '../../../Services/common';
+import moment from 'moment';
 import Image from '../../Common/Components/image';
 
 const defaultState = {
-	"email": "",
-	"first_name": "",
-	"middle_name": "",
-	"last_name": "",
-	"birthdate": "",
-	"country": "",
-	"state": "",
-	"gender": "",
-	"password": "",
-	"repeatPassword": "",
-	"day": "",
-	"month": "",
-	"year": "",
-	"stateList": [],
+	"form": {
+		"email": "tes@gmail.com",
+		"first_name": "User",
+		"middle_name": "USer",
+		"last_name": "User",
+		// "birthdate": "",
+		"country": "",
+		"state": "",
+		"gender": "male",
+		"password": "User@123",
+		"repeatPassword": "User@123",
+		"day": "",
+		"month": "",
+		"year": "",
+	},
+	"stateList": csc.getStatesOfCountry("US"),
 	"countryList": csc.getAllCountries(),
 	"daysList": ["01",
 		"02",
@@ -57,18 +60,18 @@ const defaultState = {
 		"29",
 		"30",
 		"31"],
-	"monthsList": ["January",
-		"February",
-		"March",
-		"April",
+	"monthsList": ["Jan",
+		"Feb",
+		"Mar",
+		"Apr",
 		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December"],
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec"],
 	"yearsList": getYearList(),
 	"message": "",
 	"messageType": "",
@@ -84,7 +87,18 @@ function SignUp(props) {
 			// props.history.push("/create-vessel")
 		}
 		if (props.apiCallStatus.apiCallFor === "signUpUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
-			Swal.fire("Error!", props.apiCallStatus.message, "error");
+			let msg = '';
+			if (typeof props.apiCallStatus.message === 'object') {
+				for (const property in props.apiCallStatus.message) {
+					if (props.apiCallStatus.message[property][0] !== "") {
+						msg = props.apiCallStatus.message[property][0];
+						break;
+					}
+				}
+			} else {
+				msg = props.apiCallStatus.message;
+			}
+			Swal.fire("Error!", msg, "error");
 			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
 		}
 	});
@@ -93,36 +107,31 @@ function SignUp(props) {
 		let val = e.target.value;
 		let cloneState = { ...state };
 		if (id === "country") {
-			cloneState['state'] = "";
+			cloneState['form']['state'] = "";
 			cloneState['stateList'] = csc.getStatesOfCountry(val);
 		}
-		cloneState[id] = val;
+		cloneState['form'][id] = val;
+		cloneState["message"] = "";
+		cloneState["messageType"] = "";
+		cloneState["messageFor"] = "";
 		setState(cloneState);
 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// props.signUp({
-		// 	"email": "facere",
-		// 	"password": "pariatur",
-		// 	"first_name": "perspiciatis",
-		// 	"middle_name": "numquam",
-		// 	"last_name": "aut",
-		// 	"birthdate": "rerum",
-		// 	"state": "AR",
-		// 	"gender": "reprehenderit"
-		// })
 		let isValid = validateForm();
 		if (isValid) {
+			let birthDate = `${state.form.day}-${state.form.month}-${state.form.year}`;
+			birthDate = moment(birthDate).format('YYYY-MM-DD');
 			props.signUp({
-				"email": "facere",
-				"password": "pariatur",
-				"first_name": "perspiciatis",
-				"middle_name": "numquam",
-				"last_name": "aut",
-				"birthdate": "rerum",
-				"state": "AR",
-				"gender": "reprehenderit"
+				"email": state.form.email,
+				"password": state.form.password,
+				"first_name": state.form.first_name,
+				"middle_name": state.form.middle_name,
+				"last_name": state.form.last_name,
+				"birthdate": birthDate,
+				"state": state.form.state,
+				"gender": state.form.gender
 			})
 		}
 	}
@@ -134,15 +143,31 @@ function SignUp(props) {
 		if (form.checkValidity() === false) {
 			isValid = false;
 			form.classList.add('was-validated');
-		} else if (state.password.length < 6) {
+			let obj = { ...state.form };
+			for (const property in obj) {
+				if (obj[property] === "") {
+					let elem = document.getElementById(property);
+					if (elem) {
+						elem.focus();
+					}
+					msg = `${property.replace("_", " ")} is required`;
+					break;
+				}
+			}
+		} else if (state.form.password.length < 6) {
 			isValid = false;
 			msg = "Password must be greater than 6 characters";
-		} else if (state.password !== state.repeatPassword) {
+		} else if (state.form.password !== state.form.repeatPassword) {
 			isValid = false;
 			msg = "Password and confirm password does not match";
 		}
 		if (!isValid) {
-			Swal.fire("Error!", msg, "error");
+			setState({
+				...state,
+				"message": msg,
+				"messageType": "danger",
+				"messageFor": "signUp"
+			})
 		}
 		return isValid;
 	}
@@ -153,50 +178,59 @@ function SignUp(props) {
 					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 						<div className="row">
 							<div className="col-lg-4 col-md-4 col-sm-4">
-								<Input id={state.first_name} type="text" className="form-control1" name="first_name" placeholder="First Name" />
+								<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
 							</div>
 
 							<div className="col-lg-4 col-md-4 col-sm-4">
-								<Input id={state.middle_name} type="text" className="form-control1" name="middle_name" placeholder="Middle Name" />
+								<Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
 							</div>
 
 							<div className="col-lg-4 col-md-4 col-sm-4">
-								<Input id={state.last_name} type="text" className="form-control1" name="last_name" placeholder="Last Name" />
+								<Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
 							</div>
 						</div>
 
 						<div className="row">
 							<div className="col-lg-12 col-md-12 col-sm-12">
-								<Input id={state.email} type="email" className="form-control1" name="email" placeholder="Email" />
+								<Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
 							</div>
 						</div>
 						<div className="row">
 							<div className="col-lg-12 col-md-12 col-sm-12">
-								<Input id={state.password} type="password" className="form-control1" name="password" placeholder="Your Password" />
+								<Input value={state.form.password} type="password" className="form-control1" id="password" placeholder="Your Password" onChange={(e) => handleStateChange(e)} />
 							</div>
 						</div>
 						<div className="row">
 							<div className="col-lg-12 col-md-12 col-sm-12">
-								<Input id={state.repeatPassword} type="password" className="form-control1" name="repeatPassword" placeholder="Retype Password" />
+								<Input value={state.form.repeatPassword} type="password" className="form-control1" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
 							</div>
 						</div>
 						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-6">
+							{/* <div className="col-lg-6 col-md-6 col-sm-6">
 								<div className="input-group1">
-									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)}>
+									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)} required>
 										<option value="">Select Country</option>
 										{state.countryList.map((item, index) => {
-											return <option key={index} value={item.isoCode} selected={state.country === item.isoCode}>{item.name}</option>
+											return <option key={index} value={item.isoCode} selected={state.form.country === item.isoCode}>{item.name}</option>
 										})}
+									</select>
+								</div>
+							</div> */}
+							<div className="col-lg-6 col-md-6 col-sm-6">
+								<div className="input-group1">
+									<select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+										<option value="">Select gender</option>
+										<option value={'male'} selected={state.form.gender === 'male'}>Male</option>
+										<option value={'female'} selected={state.form.gender === 'female'}>Female</option>
 									</select>
 								</div>
 							</div>
 							<div className="col-lg-6 col-md-6 col-sm-6">
 								<div className="input-group1">
-									<select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)}>
+									<select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
 										<option value="">Select State</option>
 										{state.stateList.map((item, index) => {
-											return <option key={index} value={item.name} selected={state.state === item.name}>{item.name}</option>
+											return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
 										})}
 									</select>
 								</div>
@@ -205,10 +239,10 @@ function SignUp(props) {
 						<div className="row">
 							<div className="col-lg-4 col-md-4 col-sm-4">
 								<div className="input-group1">
-									<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)}>
+									<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 										<option value="">Day</option>
 										{state.daysList.map((item, index) => {
-											return <option key={index} value={item} selected={state.day === item}>{item}</option>
+											return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
 										})}
 									</select>
 								</div>
@@ -216,10 +250,10 @@ function SignUp(props) {
 
 							<div className="col-lg-4 col-md-4 col-sm-4">
 								<div className="input-group1">
-									<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)}>
+									<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 										<option value="">Month</option>
 										{state.monthsList.map((item, index) => {
-											return <option key={index} value={item} selected={state.month === item}>{item}</option>
+											return <option key={index} value={item} selected={state.form.month === item}>{item}</option>
 										})}
 									</select>
 								</div>
@@ -227,10 +261,10 @@ function SignUp(props) {
 
 							<div className="col-sm-4">
 								<div className="input-group1">
-									<select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)}>
+									<select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 										<option value="">Year</option>
 										{state.yearsList.map((item, index) => {
-											return <option key={index} value={item} selected={state.year === item}>{item}</option>
+											return <option key={index} value={item} selected={state.form.year === item}>{item}</option>
 										})}
 									</select>
 								</div>
@@ -239,6 +273,11 @@ function SignUp(props) {
 						{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 							<div className="loader-img text-center">
 								<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+							</div>
+							: ""}
+						{state.messageFor === "signUp" && state.message !== "" ?
+							<div className={`alert alert-${state.messageType}`}>
+								{state.message}
 							</div>
 							: ""}
 						<div className="submit-btn">
@@ -251,7 +290,7 @@ function SignUp(props) {
 
 				</div>
 			</AuthWrapper>
-		</Wrapper>
+		</Wrapper >
 	);
 }
 
@@ -270,7 +309,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	signUp: (data) => dispatch(signUpUser(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName))
 })
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SignUp);
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps
+// )(SignUp);
+export default function SignUpTest(props) {
+    return <div>SignUp</div>
+}

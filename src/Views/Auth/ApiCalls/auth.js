@@ -8,8 +8,7 @@ export function signUpUser(data) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "signUpUser" }));
     let myJson = await FETCH("POST", Constant.apiURl + "/register", data);
-    if (myJson && myJson.code === 200) {
-      // dispatch(logInAction(UpdateAuthCookiesState(myJson)));
+    if (myJson && myJson.status === "success") {
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "signUpUser",
@@ -21,7 +20,7 @@ export function signUpUser(data) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "signUpUser",
-          message: myJson.message,
+          message: myJson.errors,
         })
       );
     }
@@ -31,12 +30,12 @@ export function signUpUser(data) {
 export function LoginUser(data) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "LoginUser" }));
-    let myJson = await FETCH("POST", Constant.apiURl + "/auth/login", {
+    let myJson = await FETCH("POST", Constant.apiURl + "/login", {
       email: data.email,
       password: data.password,
     });
-    if (myJson && myJson.code === 200) {
-      dispatch(logInAction(UpdateAuthCookiesState(myJson)));
+    if (myJson && myJson.status === "success") {
+      // dispatch(logInAction(UpdateAuthCookiesState(myJson)));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "LoginUser",
@@ -48,7 +47,7 @@ export function LoginUser(data) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "LoginUser",
-          message: myJson.message,
+          message: myJson.errors,
         })
       );
     }
@@ -60,12 +59,12 @@ export function forgotPassword(data) {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "forgotPassword" }));
     let myJson = await FETCH(
       "POST",
-      Constant.apiURl + "/auth/send-password-reset",
+      Constant.apiURl + "/reset-password-link",
       {
         email: data.email,
       }
     );
-    if (myJson && myJson.code === 200) {
+    if (myJson && myJson.status === "success") {
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "forgotPassword",
@@ -77,7 +76,7 @@ export function forgotPassword(data) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "forgotPassword",
-          message: myJson.message,
+          message: myJson.errors,
         })
       );
     }
@@ -87,10 +86,7 @@ export function forgotPassword(data) {
 export function resetPassword(data) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "resetPassword" }));
-    let myJson = await FETCH("POST", Constant.apiURl + "/auth/reset-password", {
-      password: data.password,
-      resetToken: data.token,
-    });
+    let myJson = await FETCH("POST", Constant.apiURl + "/reset-password", data);
     if (myJson && myJson.code === 200) {
       dispatch(
         Actions.ApiFulfilledAction({
@@ -110,38 +106,13 @@ export function resetPassword(data) {
   };
 }
 
-export function validateToken(token) {
-  return async (dispatch) => {
-    dispatch(Actions.ApiRequestedAction({ apiCallFor: "validateToken" }));
-    let myJson = await FETCH("POST", Constant.apiURl + "/auth/validate-token", {
-      access_token: token,
-    });
-    if (myJson && myJson.code === 200) {
-      dispatch(
-        Actions.ApiFulfilledAction({
-          apiCallFor: "validateToken",
-          message: myJson.message,
-        })
-      );
-    } else {
-      dispatch(
-        Actions.ApiRejectedAction({
-          statusCode: myJson.statusCode,
-          apiCallFor: "validateToken",
-          message: myJson.message,
-        })
-      );
-    }
-  };
-}
 
 export function verifyUser(userId) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "verifyUser" }));
-    let myJson = await FETCH("POST", Constant.apiURl + "/auth/verify-user", {
-      userId,
-    });
-    if (myJson && myJson.code === 200) {
+    let url = Constant.apiURl + "/verify/" + userId;
+    let myJson = await FETCH("GET", url);
+    if (myJson && myJson.status === "success") {
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "verifyUser",
@@ -181,7 +152,7 @@ function UpdateAuthCookiesState(myJson) {
   setCookie("roleName", myJson.user.roleName);
   setCookie("vesselCount", myJson.user.vesselCount);
   setCookie("isShipManager", myJson.user.isShipManager);
-  setCookie("isFirstTimeLogin",isFirstTimeLogin);
+  setCookie("isFirstTimeLogin", isFirstTimeLogin);
   setCookie("token", token);
   setCookie("userType", userType);
   setCookie("isVerified", isVerified);
