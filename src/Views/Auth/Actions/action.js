@@ -17,16 +17,8 @@ export function logOutAction() {
       isLogin: false,
       token: "",
       userType: "",
-      isShipManager: false,
-      isVerified: false,
       userId: "",
-      logo: "",
-      roles: [],
-      permission: {},
-      isSubAdmin: false,
-      activeVesselId: "",
-      subType: "",
-      roleName: "",
+      user: {},
     },
   };
 }

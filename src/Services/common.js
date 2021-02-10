@@ -22,18 +22,8 @@ export function getHeaders(isFormData) {
 export function logoutUser() {
   setCookie("token", "");
   setCookie("userType", "");
-  setCookie("isVerified", "");
-  setCookie("vesselCount", "");
-  setCookie("isShipManager", "");
   setCookie("userId", "");
   setCookie("email", "");
-  setCookie("logo", "");
-  setCookie("roles", "");
-  setCookie("permission", "");
-  setCookie("isSubAdmin", "");
-  setCookie("roleName", "");
-  setCookie("subType", "");
-  setCookie("activeVesselId", "");
 }
 
 export const Sum = (a, b) => {
@@ -67,5 +57,21 @@ export function getYearList() {
   for (let index = 1990; index <= 2021; index++) {
     arr.push(index);
   }
-  return arr
+  return arr;
+}
+
+export function UpdateAuthCookiesState(myJson) {
+  let token = myJson.access_token ? myJson.access_token : getCookie("token");
+  let userType = myJson.user.user_type;
+  let userId = myJson.user.id;
+  let email = myJson.user.email;
+  setCookie("token", token);
+  setCookie("userType", userType);
+  setCookie("userId", userId);
+  setCookie("email", email);
+  return {
+    isLogin: true,
+    token,
+    user: myJson.user,
+  };
 }

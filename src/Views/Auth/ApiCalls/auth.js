@@ -1,8 +1,9 @@
 import * as Actions from "../../ApiCallStatus/Actions/action";
-import { logInAction } from "../Actions/action";
+import { getUserDetailAction } from "../../Profile/Actions/action";
+import { logInAction, logOutAction } from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
 import { FETCH } from "../../../Services/fetch";
-import { setCookie } from "../../../Services/cookies";
+import { UpdateAuthCookiesState } from "../../../Services/common";
 
 export function signUpUser(data) {
   return async (dispatch) => {
@@ -36,6 +37,7 @@ export function LoginUser(data) {
     });
     if (myJson && myJson.status === "success") {
       dispatch(logInAction(UpdateAuthCookiesState(myJson)));
+      dispatch(getUserDetailAction(myJson.user));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "LoginUser",
@@ -47,6 +49,31 @@ export function LoginUser(data) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "LoginUser",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function LogoutUser(data) {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "LogoutUser" }));
+    let myJson = await FETCH("POST", Constant.apiURl + "/logout");
+    if (myJson && myJson.status === "success") {
+      logoutUser();
+      dispatch(logOutAction());
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "LogoutUser",
+          message: myJson.message,
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "LogoutUser",
           message: myJson.errors,
         })
       );
@@ -126,18 +153,4 @@ export function verifyUser(userId) {
   };
 }
 
-function UpdateAuthCookiesState(myJson) {
-  let token = myJson.access_token;
-  let userType = myJson.user.user_type;
-  let userId = myJson.user.id;
-  let email = myJson.user.email;
-  setCookie("token", token);
-  setCookie("userType", userType);
-  setCookie("userId", userId);
-  setCookie("email", email);
-  return {
-    isLogin: true,
-    token,
-    user: myJson.user,
-  };
-}
+

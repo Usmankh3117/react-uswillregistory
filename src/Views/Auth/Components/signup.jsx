@@ -116,7 +116,6 @@ function SignUp(props) {
 		cloneState["messageFor"] = "";
 		setState(cloneState);
 	}
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let isValid = validateForm();
@@ -135,7 +134,6 @@ function SignUp(props) {
 			})
 		}
 	}
-
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
 		let isValid = true;

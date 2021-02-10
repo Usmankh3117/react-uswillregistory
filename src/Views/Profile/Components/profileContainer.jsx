@@ -2,9 +2,13 @@ import React from "react";
 import Image from '../../Common/Components/image';
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
+import { Wrapper } from '../Css/profile';
 
 function ProfileContainer(props) {
-    return <section className="profile-section">
+    const redirectToEdit = () => {
+        props.history.push('/edit-profile');
+    }
+    return <Wrapper className="profile-section">
         <div className="container">
             <div className="row mg-top-50"></div>
 
@@ -47,16 +51,13 @@ function ProfileContainer(props) {
                 <div className="col-lg-8 col-md-8 col-sm-8 center">
                     <h1 ><span className="bold blue">Complete</span> your will form</h1>
                     <div className="row mg-top-20"></div>
-                    <button className="click-here-btn">Click Here</button>
+                    <button className="click-here-btn" onClick={()=>redirectToEdit()}>Click Here</button>
                 </div>
                 <div className="col-lg-2 col-md-2 col-sm-2"></div>
             </div>
             <div className="row mg-top-50"></div>
-
-
         </div>
-
-    </section>;
+    </Wrapper>;
 }
 
 

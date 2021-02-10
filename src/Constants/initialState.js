@@ -20,5 +20,8 @@ var StoreState = {
     isStarted: [],
     isError: [],
   },
+  profile: {
+    userDetail: {},
+  },
 };
 export default StoreState;
