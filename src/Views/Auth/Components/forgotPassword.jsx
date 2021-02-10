@@ -4,6 +4,7 @@ import { AuthWrapper } from "./authWrapper";
 import { Wrapper } from '../Css/forgotPassword';
 import { connect } from 'react-redux';
 import { forgotPassword } from "../ApiCalls/auth";
+import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Image from '../../Common/Components/image';
 
 const defaultState = {
@@ -22,6 +23,7 @@ function ForgotPassword(props) {
 				"messageType": "success",
 				"messageFor": "forgotPassword"
 			})
+			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
 		}
 	});
 	const handleStateChange = (e) => {
@@ -87,7 +89,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	forgotPassword: (data) => dispatch(forgotPassword(data))
+	forgotPassword: (data) => dispatch(forgotPassword(data)),
+	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })
 export default connect(
 	mapStateToProps,

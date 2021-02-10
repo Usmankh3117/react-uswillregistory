@@ -309,10 +309,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	signUp: (data) => dispatch(signUpUser(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName))
 })
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(SignUp);
-export default function SignUpTest(props) {
-    return <div>SignUp</div>
-}
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SignUp);

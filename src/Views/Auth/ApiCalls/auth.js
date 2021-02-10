@@ -35,7 +35,7 @@ export function LoginUser(data) {
       password: data.password,
     });
     if (myJson && myJson.status === "success") {
-      // dispatch(logInAction(UpdateAuthCookiesState(myJson)));
+      dispatch(logInAction(UpdateAuthCookiesState(myJson)));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "LoginUser",
@@ -57,13 +57,9 @@ export function LoginUser(data) {
 export function forgotPassword(data) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "forgotPassword" }));
-    let myJson = await FETCH(
-      "POST",
-      Constant.apiURl + "/reset-password-link",
-      {
-        email: data.email,
-      }
-    );
+    let myJson = await FETCH("POST", Constant.apiURl + "/reset-password-link", {
+      email: data.email,
+    });
     if (myJson && myJson.status === "success") {
       dispatch(
         Actions.ApiFulfilledAction({
@@ -106,7 +102,6 @@ export function resetPassword(data) {
   };
 }
 
-
 export function verifyUser(userId) {
   return async (dispatch) => {
     dispatch(Actions.ApiRequestedAction({ apiCallFor: "verifyUser" }));
@@ -132,51 +127,17 @@ export function verifyUser(userId) {
 }
 
 function UpdateAuthCookiesState(myJson) {
-  let token = myJson.token.accessToken;
-  let userType = myJson.user.type;
-  let isFirstTimeLogin = myJson.user.isFirstTimeLogin;
-  let isVerified = true;
+  let token = myJson.access_token;
+  let userType = myJson.user.user_type;
   let userId = myJson.user.id;
   let email = myJson.user.email;
-  let logo = myJson.user.logo;
-  let roles = [];
-  if (myJson.user.roles && myJson.user.roles.length > 0) {
-    myJson.user.roles.forEach((element) => {
-      roles.push(element.path);
-    });
-  }
-  let isSubAdmin =
-    myJson.user.roleName && myJson.user.roleName !== "" ? true : false;
-  let permission = myJson.user.permission;
-  setCookie("activeVesselId", myJson.user.vesselId);
-  setCookie("roleName", myJson.user.roleName);
-  setCookie("vesselCount", myJson.user.vesselCount);
-  setCookie("isShipManager", myJson.user.isShipManager);
-  setCookie("isFirstTimeLogin", isFirstTimeLogin);
   setCookie("token", token);
   setCookie("userType", userType);
-  setCookie("isVerified", isVerified);
   setCookie("userId", userId);
   setCookie("email", email);
-  setCookie("logo", logo.originalname);
-  setCookie("roles", JSON.stringify(roles));
-  setCookie("permission", JSON.stringify(myJson.user.permission));
-  setCookie("isSubAdmin", isSubAdmin);
-  setCookie("subType", myJson.user.subType);
   return {
     isLogin: true,
     token,
-    userType,
-    isShipManager: myJson.user.isShipManager,
-    isFirstTimeLogin,
-    isVerified,
-    userId,
-    logo,
-    roles,
-    permission,
-    isSubAdmin,
-    activeVesselId: myJson.user.vesselId,
-    subType: myJson.user.subType,
-    roleName: myJson.user.roleName,
+    user: myJson.user,
   };
 }

@@ -7,10 +7,9 @@ var StoreState = {
   auth: {
     isLogin: getCookie("token") === "" ? false : true,
     token: getCookie("token"),
-    isVerified: getCookie("isVerified") === "true" ? true : false,
     userType: getCookie("userType"),
     userId: getCookie("userId"),
-    logo: getCookie("logo"),
+    user: {},
   },
   apiCall: {
     apiCallFor: "",

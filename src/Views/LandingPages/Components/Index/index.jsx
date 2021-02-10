@@ -1,17 +1,15 @@
 import React from "react";
 import { Wrapper } from '../../Css/index';
 import Image from "../../../Common/Components/image";
+
 export default function Index(props) {
-    return <div>Index</div>
+    return <Wrapper>
+        <GetStarted />
+        <WillSection />
+        <Forms />
+        <LastWill />
+    </Wrapper>
 }
-// export default function Index(props) {
-//     return <Wrapper>
-//         <GetStarted />
-//         <WillSection />
-//         <Forms />
-//         <LastWill />
-//     </Wrapper>
-// }
 
 function GetStarted(props) {
     return <section className="get-started">

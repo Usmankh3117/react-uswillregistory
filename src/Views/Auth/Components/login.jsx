@@ -11,7 +11,7 @@ import Image from '../../Common/Components/image';
 import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
-	email: "tes1@gmail.com",
+	email: "sharoza51@gmail.com",
 	password: "User@123",
 	message: "",
 	messageType: "",
@@ -34,7 +34,7 @@ function Login(props) {
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
 			setState(defaultState)
 			props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
-			let redirectUrl = '/';
+			let redirectUrl = '/profile';
 			props.history.push(redirectUrl)
 		}
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
@@ -186,11 +186,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	login: (data) => dispatch(LoginUser(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(Login)
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login)
 
-export default function LoginTest(props) {
-    return <div>Login</div>
-}
