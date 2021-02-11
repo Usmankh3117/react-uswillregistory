@@ -5,9 +5,9 @@ import csc from 'country-state-city'
 import moment from 'moment';
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
-import { getUserDetail, updateUserDetail } from "../ApiCalls/profile";
-import { Wrapper } from '../Css/editProfile';
+import { getUserDetail, updateUserDetail, getCityByState } from "../ApiCalls/profile";
 import { getYearList } from '../../../Services/common';
+import '../Css/editProfile.css';
 
 const defaultState = {
     "form": {
@@ -15,12 +15,14 @@ const defaultState = {
         "first_name": "",
         "middle_name": "",
         "last_name": "",
-        // "birthdate": "",
-        "country": "",
+        "address_1": "",
+        "address_2": "",
+        "city": "",
+        "zipcode": "",
+        "bio": "",
+        "mobile": "",
         "state": "",
         "gender": "",
-        "password": "",
-        "repeatPassword": "",
         "day": "",
         "month": "",
         "year": "",
@@ -79,7 +81,57 @@ function EditProfile(props) {
     const [state, setState] = useState(defaultState);
     useEffect(() => {
         if ((props.apiCallStatus.apiCallFor === "getUserDetail" || props.apiCallStatus.apiCallFor === "updateUserDetail") && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
-            setState(defaultState)
+            let date = moment(props.userDetail.birthdate);
+            let day = date.day();
+            let month = date.format('MMM');
+            let year = date.format('yyyy');
+            if (day <= 9) {
+                day = "0" + day;
+            } else {
+                day = JSON.stringify(day);
+            }
+            setState({
+                ...state,
+                form: {
+                    email: props.userDetail.email,
+                    first_name: props.userDetail.first_name,
+                    last_name: props.userDetail.last_name,
+                    middle_name: props.userDetail.middle_name,
+                    state: props.userDetail.state_abbr,
+                    gender: props.userDetail.gender,
+                    "address_1": props.userDetail.address_1,
+                    "address_2": props.userDetail.address_2,
+                    "city": props.userDetail.city,
+                    "zipcode": props.userDetail.zipcode,
+                    "bio": props.userDetail.bio,
+                    "mobile": props.userDetail.mobile,
+                    "day": day,
+                    "month": month,
+                    "year": parseInt(year),
+                },
+            })
+            if(props.apiCallStatus.apiCallFor === "updateUserDetail"){
+                Swal.fire("Success!", props.apiCallStatus.message, "success");
+            }
+            props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
+        }
+        if (props.apiCallStatus.apiCallFor === "updateUserDetail" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
+            let msg = '';
+            if (typeof props.apiCallStatus.message === 'object') {
+                if (props.apiCallStatus.message[0]) {
+                    msg = props.apiCallStatus.message[0];
+                } else {
+                    for (const property in props.apiCallStatus.message) {
+                        if (props.apiCallStatus.message[property][0] !== "") {
+                            msg = props.apiCallStatus.message[property][0];
+                            break;
+                        }
+                    }
+                }
+            } else {
+                msg = props.apiCallStatus.message;
+            }
+            Swal.fire("Error!", msg, "error");
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
         }
     });
@@ -93,6 +145,9 @@ function EditProfile(props) {
         if (id === "country") {
             cloneState['form']['state'] = "";
             cloneState['stateList'] = csc.getStatesOfCountry(val);
+        } else if (id === "state") {
+            cloneState['form']['city'] = "";
+            props.getCityByState(props.userDetail.state_abbr)
         }
         cloneState['form'][id] = val;
         cloneState["message"] = "";
@@ -108,13 +163,18 @@ function EditProfile(props) {
             birthDate = moment(birthDate).format('YYYY-MM-DD');
             props.updateUserDetail({
                 "email": state.form.email,
-                "password": state.form.password,
                 "first_name": state.form.first_name,
                 "middle_name": state.form.middle_name,
                 "last_name": state.form.last_name,
                 "birthdate": birthDate,
                 "state": state.form.state,
-                "gender": state.form.gender
+                "gender": state.form.gender,
+                "address_1": state.form.address_1,
+                "address_2": state.form.address_2,
+                "city": state.form.city,
+                "zipcode": state.form.zipcode,
+                "bio": state.form.bio,
+                "mobile": state.form.mobile
             })
         }
     }
@@ -127,7 +187,7 @@ function EditProfile(props) {
             form.classList.add('was-validated');
             let obj = { ...state.form };
             for (const property in obj) {
-                if (obj[property] === "") {
+                if (obj[property] === "" || obj[property] === null) {
                     let elem = document.getElementById(property);
                     if (elem) {
                         elem.focus();
@@ -136,24 +196,18 @@ function EditProfile(props) {
                     break;
                 }
             }
-        } else if (state.form.password.length < 6) {
-            isValid = false;
-            msg = "Password must be greater than 6 characters";
-        } else if (state.form.password !== state.form.repeatPassword) {
-            isValid = false;
-            msg = "Password and confirm password does not match";
         }
         if (!isValid) {
             setState({
                 ...state,
                 "message": msg,
                 "messageType": "danger",
-                "messageFor": "signUp"
+                "messageFor": "updateUserDetail"
             })
         }
         return isValid;
     }
-    return <Wrapper className="profile-section">
+    return <section className="profile-section">
         <div className="container">
             <div className="row mg-top-50"></div>
             <div className="row">
@@ -214,22 +268,15 @@ function EditProfile(props) {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
+                                    <div className="col-lg-6 col-md-6 col-sm-6">
                                         <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
-                                        <Input value={state.form.password} type="password" className="form-control1" id="password" placeholder="Your Password" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
-                                        <Input value={state.form.repeatPassword} type="password" className="form-control1" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="row">
                                     <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12 col-sm-12">
                                         <div className="input-group1">
                                             <select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
                                                 <option value="">Select gender</option>
@@ -238,6 +285,8 @@ function EditProfile(props) {
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="row">
                                     <div className="col-lg-6 col-md-6 col-sm-6">
                                         <div className="input-group1">
                                             <select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
@@ -247,6 +296,18 @@ function EditProfile(props) {
                                                 })}
                                             </select>
                                         </div>
+                                    </div>
+                                    <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
+                                    </div>
+
+                                    <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
                                     </div>
                                 </div>
                                 <div className="row">
@@ -283,18 +344,32 @@ function EditProfile(props) {
                                         </div>
                                     </div>
                                 </div>
-                                {props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12 col-sm-12">
+                                        <div className="input-group1">
+                                            <textarea className="form-control1" rows="4" cols="50" id="address_1" value={state.form.address_1} placeholder="Address 1" onChange={(e) => handleStateChange(e)} required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12 col-sm-12">
+                                        <div className="input-group1">
+                                            <textarea className="form-control1" rows="4" cols="50" id="address_2" value={state.form.address_2} placeholder="Address 2" onChange={(e) => handleStateChange(e)} required />
+                                        </div>
+                                    </div>
+                                </div>
+                                {props.apiCallStatus.apiCallFor === "updateUserDetail" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                     <div className="loader-img text-center">
                                         <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
                                     </div>
                                     : ""}
-                                {state.messageFor === "signUp" && state.message !== "" ?
+                                {state.messageFor === "updateUserDetail" && state.message !== "" ?
                                     <div className={`alert alert-${state.messageType}`}>
                                         {state.message}
                                     </div>
                                     : ""}
                                 <div className="submit-btn">
-                                    <input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign Up" name="submit" />
+                                    <input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Update" name="submit" />
                                 </div>
                             </form>
                             <div className="row mg-top-25"></div>
@@ -304,7 +379,7 @@ function EditProfile(props) {
                 </div>
             </div>
         </div>
-    </Wrapper>;
+    </section>;
 }
 
 const Input = (props) => {
@@ -318,10 +393,13 @@ const mapStateToProps = (state, ownProps) => ({
     user: {
         isLogin: state.authReducer.isLogin,
         userId: state.authReducer.userId
-    }
+    },
+    userDetail: state.profileReducer.userDetail,
+    cityList: state.profileReducer.cityList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    getCityByState: (state) => dispatch(getCityByState(state)),
     updateUserDetail: (data) => dispatch(updateUserDetail(data)),
     getUserDetail: () => dispatch(getUserDetail()),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),

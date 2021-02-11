@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Image from "../Common/Components/image";
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 function Footer(props) {
     return <Fragment>

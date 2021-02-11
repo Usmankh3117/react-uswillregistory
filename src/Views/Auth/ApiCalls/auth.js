@@ -3,7 +3,7 @@ import { getUserDetailAction } from "../../Profile/Actions/action";
 import { logInAction, logOutAction } from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
 import { FETCH } from "../../../Services/fetch";
-import { UpdateAuthCookiesState } from "../../../Services/common";
+import { logoutUser, UpdateAuthCookiesState } from "../../../Services/common";
 
 export function signUpUser(data) {
   return async (dispatch) => {

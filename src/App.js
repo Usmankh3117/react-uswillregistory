@@ -25,7 +25,7 @@ const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      <Header />
+      <Header history={history}/>
       <Switch>
         <Route exact path="/" name="Index" component={Index} />
         <Route exact path="/contact-us" name="ContactUs" component={ContactUs} />

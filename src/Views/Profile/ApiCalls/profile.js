@@ -1,5 +1,5 @@
 import * as Actions from "../../ApiCallStatus/Actions/action";
-import { getUserDetailAction } from "../Actions/action";
+import { getUserDetailAction ,getCityByStateAction} from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
 import { FETCH } from "../../../Services/fetch";
 import { UpdateAuthCookiesState } from "../../../Services/common";
@@ -49,6 +49,31 @@ export function updateUserDetail(data) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "updateUserDetail",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function getCityByState(state) {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "getCityByState" }));
+    let url =  Constant.apiURl + "/state-zipcodes/"+state;
+    let myJson = await FETCH("GET",url);
+    if (myJson && myJson.status === "success") {
+      dispatch(getCityByStateAction(myJson.zipcodes));
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "getCityByState",
+          message: myJson.message,
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "getCityByState",
           message: myJson.errors,
         })
       );

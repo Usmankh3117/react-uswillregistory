@@ -22,6 +22,7 @@ var StoreState = {
   },
   profile: {
     userDetail: {},
+    cityList:[]
   },
 };
 export default StoreState;

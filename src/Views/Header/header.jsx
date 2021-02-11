@@ -38,18 +38,18 @@ function Header(props) {
             <div className="header-lower-part">
                 <div className="container">
                     <div className="lower-header">
-                        <ul className={`list-group ${props.user.isLogin ? "border-right" : ""}`}>
+                        <ul className={`list-group ${props.user.isLogin ? "right" : ""}`}>
                             {props.user.isLogin ? <React.Fragment>
                                 <li className="list-group-item border-right">
                                     <Image name="user_img.png" alt="img" className="top-name-img" />
-                                    {/* <select name="profile" id="profile" class="profile-dropdown">
-                                    <option value="Name">Name</option>
-                                    <option value="Name2">Name2</option>
-                                    <option value="Name3">Name3</option>
-                                </select> */}
+                                    <select name="profile" id="profile" class="profile-dropdown">
+                                        <option value="Name">Name</option>
+                                        <option value="Name2">Name2</option>
+                                        <option value="Name3">Name3</option>
+                                    </select>
                                 </li>
                                 <li className="list-group-item">
-                                    <button onClick={() => logoutUser()} className="top-menu">Logout</button>
+                                    <a onClick={() => logoutUser()} className="top-menu">Logout</a>
                                 </li>
                             </React.Fragment> :
                                 <React.Fragment>
