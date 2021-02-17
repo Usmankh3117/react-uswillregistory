@@ -13,6 +13,7 @@ import Search from "./Views/LandingPages/Components/Search/search";
 // Private Routes
 import Profile from "./Views/Profile/Components/profileContainer";
 import EditProfile from "./Views/Profile/Components/editProfile";
+import QuestionsForm from "./Views/QuestionsForm/Components/questionContainer";
 // Auth Routes
 import Login from "./Views/Auth/Components/login";
 import SignUp from "./Views/Auth/Components/signup";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/verify/:id" name="VerifyAccount" component={VerifyAccount}/>
         <Route exact path="/profile" name="Profile" component={Profile} />
         <Route exact path="/edit-profile" name="EditProfile" component={EditProfile} />
+        <Route exact path="/form" name="QuestionsForm" component={QuestionsForm}/>
       </Switch>
       <Footer />
     </Router>

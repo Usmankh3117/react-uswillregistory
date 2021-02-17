@@ -1,770 +1,1395 @@
 
 
-.header-section {
-	/* position:relative; */
-  }
-  .icondiv {
-	position:relative;
-  }
-  
-  .header-top-part {
-	background-color: #033168;
-	padding: 3px;
-  }
-  .header-lower-part {
-	background-color: #fff;
-	padding: 6px;
-  }
-  .header-right-img {
-	position: absolute;
-	right: 3%;
-	top: 12%;
-	width: 150px;
-	z-index: 1;
-  }
-  .header-right-img > img {
-	width: 100%;
-  }
-  
-  .right-aline {
-  float: right;
-  }
-  
-  .list-group-horizontal {
-	margin-top: 3%;
-  }
-  .list-group-item {
-	border: none !important;
-  }
-  
-  .logo-img {
-	width: 100%;
-	padding: 12px;
-  }
-  .mg-top-10 {
-	margin-top: 10px;
-  }
-  .mg-top-15 {
-	margin-top: 15px;
-  }
-  .mg-top-20 {
-	margin-top: 20px;
-  }
-  .mg-top-21 {
-	margin-top: 21px;
-  }
-  .mg-top-25 {
-	margin-top: 25px;
-  }
-  .mg-top-28 {
-	margin-top: 28px;
-  }
-  .mg-top-30 {
-	margin-top: 30px;
-  }
-  .mg-top-50 {
-	margin-top: 50px;
-  }
-  .mg-top-100 {
-	margin-top: 100px;
-  }
-  .mg-top-extra {
-	margin-top: 34px;
-  }
-  /* -----------------
-	header
-  ------------------*/
-  .list-group {
-	display: flex;
-	border-radius: .25rem;
-	margin-top: 35px !important;
-	margin-bottom: 35px !important;
-	padding-left: 0;
-  }
-  
-  .list-group-item {
-	border: none !important;
-  }
-  .top-menu {
-	font-size: 15px;
-	color: #3c3c3c;
-	line-height: 5px;
-	/* display: block; */
-	text-decoration: none !important;
-  }
-  .active-menu {
-	color: #023169;
-  }
-  /*  
-  .list-group {
-	display: unset;
-  } */
-  
-  /*---------------------
+.icondiv {
+    position:relative;
+}
+ 
+.header-top-part {
+    background-color: #033168;
+    padding: 3px;
+}
+.header-lower-part {
+    background-color: #fff;
+    padding: 6px;
+}
+.header-right-img {
+    position: absolute;
+    right: 3%;
+    top: 12%;
+    width: 150px;
+    z-index: 1;
+}
+.header-right-img > img {
+    width: 100%;
+}
+
+.right-aline {
+	float: right;
+}
+
+.list-group-horizontal {
+    margin-top: 3%;
+}
+.list-group-item {
+    border: none !important;
+}
+
+.logo-img {
+    width: 100%;
+    padding: 12px;
+}
+.mg-top-10 {
+    margin-top: 10px;
+}
+.mg-top-15 {
+    margin-top: 15px;
+}
+.mg-top-20 {
+    margin-top: 20px;
+}
+.mg-top-21 {
+    margin-top: 21px;
+}
+.mg-top-25 {
+    margin-top: 25px;
+}
+.mg-top-28 {
+    margin-top: 28px;
+}
+.mg-top-30 {
+    margin-top: 30px;
+}
+.mg-top-50 {
+    margin-top: 50px;
+}
+.mg-top-100 {
+    margin-top: 100px;
+}
+.mg-top-extra {
+    margin-top: 34px;
+}
+/* -----------------
+    header
+ ------------------*/
+.list-group {
+    display: flex;
+    border-radius: .25rem;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+    padding-left: 0;
+}
+
+.list-group-item {
+    border: none !important;
+}
+.top-menu {
+    font-size: 15px;
+    color: #3c3c3c;
+    line-height: 5px;
+    /* display: block; */
+    text-decoration: none !important;
+}
+.active-menu {
+    color: #023169;
+}
+/*  
+.list-group {
+    display: unset;
+} */
+
+/*---------------------
   rating
-  -----------------------*/
-  
-  *{
-	margin: 0;
-	padding: 0;
-  }
-  .rate {
-	float: left;
-	height: 34px;
-	padding: 0 2px;
-  }
-  .rate:not(:checked) > input {
-	position:absolute;
-	top:-9999px;
-  }
-  .rate:not(:checked) > label {
-	float:right;
-	width:1em;
-	overflow:hidden;
-	white-space:nowrap;
-	cursor:pointer;
-	font-size:24px;
-	color:#ccc;
-  }
-  .rate:not(:checked) > label:before {
-	content: '★ ';
-  }
-  .rate > input:checked ~ label {
-	color: #ffc700;    
-  }
-  .rate:not(:checked) > label:hover,
-  .rate:not(:checked) > label:hover ~ label {
-	color: #deb217;  
-  }
-  .rate > input:checked + label:hover,
-  .rate > input:checked + label:hover ~ label,
-  .rate > input:checked ~ label:hover,
-  .rate > input:checked ~ label:hover ~ label,
-  .rate > label:hover ~ input:checked ~ label {
-	color: #c59b08;
-  }
-  
-  
-  
-  /*---------------------
+-----------------------*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 34px;
+    padding: 0 2px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:24px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+
+
+/*---------------------
   Footer
-  -----------------------*/
-  .mr-2 {
-  border: 1px solid #c7c7c7;
-  margin-bottom: 10px;
-  }
-  .footer {
-  background: #2a2a2c;
-  padding-top: 70px;
-  padding-bottom: 0;
-  }
-  
-  .footer__about {
-  margin-bottom: 30px;
-  }
-  
-  .footer__about ul li {
-  font-size: 16px;
-  color: #cfe9e0;
-  line-height: 36px;
-  list-style: none;
-  }
-  
-  .footer__about__logo {
-	margin-bottom: 15px;
-	width: 100px;
-  }
-  .footer__about__logo > img{
-  width: 100%;
-  }
-  
-  .footer__about__logo a {
-  display: inline-block;
-  }
-  
-  .footer__widget {
-  /* margin-bottom: 30px; */
-  overflow: hidden;
-  }
-  
-  .footer__widget h5 {
-  color: #cfe9e0;
-  font-weight: 700;
-  margin-bottom: 10px;
-  }
-  
-  .footer__widget ul {
-  width: 50%;
-	float: left;
-	margin-top: 10%;
-  }
-  
-  .footer__widget ul li {
-  list-style: none;
-  }
-  
-  .footer__widget ul li a {
-  color: #cfe9e0;
-  font-size: 14px;
-  line-height: 35px;
-	white-space: nowrap;
-  }
-  
-  .footer__widget p {
-  font-size: 14px;
-  color: #cfe9e0;
-  margin-bottom: 30px;
-  }
-  
-  .footer__widget form {
-  position: relative;
-  margin-bottom: 30px;
-  }
-  
-  .footer__widget form input {
-  width: 100%;
-  font-size: 16px;
-  padding-left: 20px;
-  color: #cfe9e0;
-  height: 46px;
-  border: 1px solid #ededed;
-  }
-  
-  .footer__widget form input::placeholder {
-  color: #cfe9e0;
-  }
-  
-  .footer__widget form button {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0 26px;
-  height: 100%;
-  }
-  
-  .footer__widget .footer__widget__social a {
-  display: inline-block;
-  height: 41px;
-  width: 41px;
-  font-size: 16px;
-  color: #cfe9e0;
-  border: 1px solid #ededed;
-  border-radius: 50%;
-  line-height: 38px;
-  text-align: center;
-  background: #ffffff;
-  -webkit-transition: all, 0.3s;
-  -moz-transition: all, 0.3s;
-  -ms-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-  margin-right: 10px;
-  }
-  
-  .footer__widget .footer__widget__social a:last-child {
-  margin-right: 0;
-  }
-  
-  .footer__widget .footer__widget__social a:hover {
-  background: #7fad39;
-  color: #ffffff;
-  border-color: #ffffff;
-  }
-  
-  .footer__copyright {
-  border-top: 2px solid #555;
-  padding: 15px 0;
-  overflow: hidden;
-  margin-top: 20px;
-  }
-  
-  .footer__copyright__text {
-  font-size: 14px;
-  color: #cfe9e0;
-  float: left;
-  line-height: 25px;
-  }
-  
-  .footer__copyright__payment {
-  float: right;
-  }
-  
-  
-  .footer-store-logo {
-	background-color: #2a2a2c !important;
-  }
-  
-  .footer-store-logo > img {
-	width: 100%;
-  }
-  .footer-store-logo1 {
-	background-color: #2a2a2c !important;
-  }
-  
-  .footer-store-logo1 > img {
-	width: 50%;
-	border-radius: 5px;
-  }
-  .footer-list-div {
-	margin-top: 8%;
-  }
-  .pad-right-15 {
-	padding-right: 15px;
-  }
-  
-  .footer-heading {
-	font-weight: 300;
-	/* display: inline-block; */
-	padding-bottom: 5px;
-	position: relative;
-  }
-  .footer-heading::before {
-	content: "";
-	position: absolute;
-	width: 15%;
-	height: 1px;
-	bottom: 0;
-	left: 0%;
-	/* border-bottom: 1px solid #cfe9e0; */
-  }
-  
-  .copyrights {
-	margin-top: 15px;
-  }
-  .copyrights > p {
-	color: #c7e1d8;
-	text-align: center;
-	font-size: 12px;
-  }
-  
-  .footer-icon {
-	background-color: #1e1f26 !important;
-	color: #cfe9e0 !important;
-  }
-  .footer-icon > i {
-	font-size: 20px;
-  }
-  .footer-icon-signin {
-	background-color: #2a2a2c !important;
-	color: #fff !important;
-  }
-  .footer-icon-signin1 {
-	background-color: #2a2a2c !important;
-	color: #fff !important;
-	margin-top: 5px;
-  }
-  
-  .footer-icon-signin > i {
-	font-size: 20px;
-  }
-  .footer-submit-btn {
-	font-size: 18px;
-	position: absolute;
-	top: 11px;
-	right: 24px;
-	color: #1e1f26;
-	background-color: white;
-	border: none;
-	height: 10px;
-  }
-  .footer-submit-btn1 {
-	font-size: 20px;
-	position: absolute;
-	top: 6px;
-	right: 7px;
-	color: #1e1f26;
-	background-color: white;
-	border: none;
-	height: 10px;
-  }
-  .footer-form {
-	margin-top: -5px !important;
-  }
-  .footer-form > form > input {
-	color: black;
-  }
-  .footer1 {
+-----------------------*/
+.mr-2 {
+	border: 1px solid #c7c7c7;
+	margin-bottom: 10px;
+}
+.footer {
 	background: #2a2a2c;
-	padding: 10px;
-  }
-  .list-group1 {
-	display: flex;
-	border-radius: .25rem;
-	padding-left: 0;
-	/* margin-bottom: 20px; */
-  }
-  .list-group-item1 {
+	padding-top: 70px;
+	padding-bottom: 0;
+}
+
+.footer__about {
+	margin-bottom: 30px;
+}
+
+.footer__about ul li {
+	font-size: 16px;
+	color: #cfe9e0;
+	line-height: 36px;
+	list-style: none;
+}
+
+.footer__about__logo {
+    margin-bottom: 15px;
+    width: 100px;
+}
+.footer__about__logo > img{
+	width: 100%;
+}
+
+.footer__about__logo a {
+	display: inline-block;
+}
+
+.footer__widget {
+	/* margin-bottom: 30px; */
+	overflow: hidden;
+}
+
+.footer__widget h5 {
+	color: #cfe9e0;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.footer__widget ul {
+	width: 50%;
+    float: left;
+    margin-top: 10%;
+}
+
+.footer__widget ul li {
+	list-style: none;
+}
+
+.footer__widget ul li a {
+	color: #cfe9e0;
+	font-size: 14px;
+	line-height: 35px;
+    white-space: nowrap;
+}
+
+.footer__widget p {
+	font-size: 14px;
+	color: #cfe9e0;
+	margin-bottom: 30px;
+}
+
+.footer__widget form {
 	position: relative;
-	display: block;
-	/* padding: 0px 10px; */
-  }
-  .list-group-item1:first-child {
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-  }
-  
-  .margin-top-10 {
-	margin-top: 10%;
-  }
-  
-  .bold {
-	font-weight: bold;
-  }
-  .blue {
-	color: #033168;
-  }
-  .center {
+	margin-bottom: 30px;
+}
+
+.footer__widget form input {
+	width: 100%;
+	font-size: 16px;
+	padding-left: 20px;
+	color: #cfe9e0;
+	height: 46px;
+	border: 1px solid #ededed;
+}
+
+.footer__widget form input::placeholder {
+	color: #cfe9e0;
+}
+
+.footer__widget form button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 26px;
+	height: 100%;
+}
+
+.footer__widget .footer__widget__social a {
+	display: inline-block;
+	height: 41px;
+	width: 41px;
+	font-size: 16px;
+	color: #cfe9e0;
+	border: 1px solid #ededed;
+	border-radius: 50%;
+	line-height: 38px;
 	text-align: center;
-  }
-  
-  /*--------------------------------- Responsive Media Quaries -----------------------------*/
-  
-  @media only screen and (min-width: 1441px) {
-	.last-will-section > .make-your-will {
-	   right: 37% !important;
-	}
-	.last-section > .make-will {
-		top: 78% !important;
-		right: 37% !important;
-	}
-	.c-details {
-		border: 1px solid #ffffff;
-		box-shadow: 0px 0px 10px #ececec;
-		margin: 15px;
-		width: 30% !important;
-		position: relative !important;
-	}
-	.faq-div {
-		width: 47% !important;
-	}
-  }
-  @media only screen and (min-width: 1200px) {
-  /* .container {
-	max-width: 1170px;
-	} */
-	.will-div {
-		box-shadow: 0px 0px 10px #ececec;
-		border-radius: 5px;
-		position: relative;
-		width: 22% !important;
-		margin: 15px;
-	}
-	.will-icon {
-		font-size: 20px !important;
-	}
-	.witnesa-page-form > span {
-		background: #00387b;
-		padding: 24px 5px 29px 0px !important;
-		font-size: 19px !important;
-		color: white;
-		margin-left: -5px;
-		font-weight: 500;
-	}
-	.self-affidevit-form > span {
-		background: #d81212;
-		padding: 25px 5px 30px 0px !important;
-		font-size: 19px !important;
-		color: white;
-		margin-left: -5px;
-		font-weight: 500;
-		width: 100%;
-	}
-	.login-form-div {
-	   padding-bottom: 8px;
-	}
-  }
-  
-  
-  /* Medium Device = 1200px */
-  
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.header-right-img {
-		position: absolute;
-		right: 2%;
-		top: 14%;
-		width: 100px;
-		z-index: 1;
-	}
-	.will-div {
-		box-shadow: 0px 0px 10px #ececec;
-		border-radius: 5px;
-		position: relative;
-		width: 20% !important;
-		margin: 15px;
-	}
-	.will-icon {
-		font-size: 20px !important;
-	}
-	.witnesa-page-form > span {
-		background: #00387b;
-		padding: 25px 5px 28px 0px !important;
-		font-size: 19px !important;
-		color: white;
-		margin-left: -5px;
-		font-weight: 500;
-	}
-	.self-affidevit-form > span {
-		background: #d81212;
-		padding: 25px 5px 29px 0px !important;
-		font-size: 19px !important;
-		color: white;
-		margin-left: -5px;
-		font-weight: 500;
-		width: 100%;
-	}
-	.last-will-section > .make-your-will {
-		position: absolute;
-		top: 95%;
-		right: 17% !important;
-	}
-	.last-section > .make-will {
-		position: absolute;
-		top: 95%;
-		right: 17% !important;
-	}
-  
-	.mg-top-top-extra {
-		margin-top: 69px !important;
-	}
-	.mg-top-bottom-extra {
-		margin-top: 111px !important;
-	}
-	.mg-top-top-extra-reset {
-		margin-top: 33px !important;
-	}
-	.mg-top-bottom-extra-reset {
-		margin-top: 31px !important;
-	}
-	.mg-top-top-extra-verify {
-		margin-top: 155px !important;
-	}
-	.mg-top-bottom-extra-verify {
-		margin-top: 158px !important;
-	}
-  }
-  
-  /* Tablet Device = 768px */
-  
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
-	.header-right-img {
-		position: absolute;
-		right: 4%;
-		top: 7%;
-		width: 84px;
-		z-index: 1;
-	}
-	
-	.logo-img {
-		width: 70% !important;
-		padding: 12px !important;
-	}
-	.will-div {
-		box-shadow: 0px 0px 10px #ececec;
-		border-radius: 5px;
-		position: relative;
-		width: 20% !important;
-		margin: 15px;
-	}
-	.witnesa-page-form > img {
-		width: 35%;
-	}
-	.witnesa-page-form > span {
-		padding: 14px 3px 16px 0px !important;
-		font-size: 16px !important;
-	}
-	.self-affidevit-form > img {
-		width: 35%;
-	}
-	.self-affidevit-form > span {
-		padding: 15px 3px 16px 0px !important;
-		font-size: 16px !important;
-	}
-	.last-will-img > img {
-	   width: 100%;
-	}
-	.last-section > .make-will > img {
-	   width: 100%;
-	}
-	.margin-top-10 {
-		margin-top: 0% !important;
-	}
-	.last-will-section > .make-your-will {
-		right: 4% !important;
-	}
-	.last-section > .make-will {
-		right: 4% !important;
-	}
-	.c-details {
-		margin: 5px !important;
-	}
-	.faq-div {
-		width: 100% !important;
-	}
-	.mg-top-top-extra {
-		margin-top: 25px !important;
-	}
-	.mg-top-bottom-extra {
-		margin-top: 63px !important;
-	}
-	.mg-top-top-extra-reset {
-		margin-top: 0px !important;
-	}
-	.mg-top-bottom-extra-reset {
-		margin-top: 12px !important;
-	}
-	.form-heading > h2 {
-		font-size: 30px !important;   
-	}
-	.form-heading > p {
-		font-size: 22px !important;   
-	}
-	.login-form > form > .input-group > .form-control {
-		font-size: 18px !important;
-		margin:0px !important;
-	}
-	.login-form > form > .input-group {
-	   margin-top: 10px;
-	}
-	.login-form > form > .input-group > span {
-		font-size: 20px !important;
-		padding: 10px 22px !important;
-	}
-	.mg-top-top-extra-verify {
-		margin-top: 100px !important;
-	}
-	.mg-top-bottom-extra-verify {
-		margin-top: 101px !important;
-	}
-	.profile-section-div > div > span {
-		font-size: 10px !important;
-	}
-	.profile-section-div > div > img {
-		width: 30px !important;
-	}
-	.profile-section-div {
-		margin-top: 0px !important;
-		margin-bottom: 0px !important;
-		height: 50px !important;
-	}
-  }
-  
-  /* Wide Mobile = 480px */
-  
-  @media only screen and (max-width: 767px) {
-	.header-right-img {
-		position: absolute;
-		right: 4%;
-		top: 7%;
-		width: 60px;
-		z-index: 1;
-	}
-	.logo-img {
-		width: 44% !important;
-		padding: 12px;
-	}
-	.list-group {
-		display: contents;
-		border-radius: .25rem;
-		margin-top: 35px !important;
-		margin-bottom: 35px !important;
-		padding-left: 0;
-	}
-	.will-div {
-	   width: 100% !important;
-		margin: 0px !important;
-	}
-	.self-affidevit-form {
-	   margin-top: 10% !important;
-	}
-	.last-will-section > .make-your-will {
-		position: absolute;
-		top: 98% !important;
-		right: 0% !important;
-	}
-	.last-section > .make-will > img {
-		width: 100%;
-	 }
-	.last-section > .make-will {
-		right: 0% !important;
-	}
-	.last-will-section > .make-your-will > img {
-	   width: 100%;
-	}
-	.footer-store-logo > img {
-		/* width: 10% !important; */
-	}
-	.footer__about > .list-group {
-		display: flex !important;
-	}
-	.c-details {
-		margin: 5px !important;
-	}
-	.faq-div {
-		width: 100% !important;
-	}
-	.search-menu {
-		font-size: 24px !important;
-	}
-	.mg-top-top-extra {
-		margin-top: 13px !important;
-	}
-	.mg-top-bottom-extra {
-		margin-top: 54px !important;
-	}
-	.mg-top-top-extra-reset {
-		margin-top: 0px !important;
-	}
-	.mg-top-bottom-extra-reset {
-		margin-top: 20px !important;
-	}
-	.mg-top-top-extra-verify {
-		margin-top: 100px !important;
-	}
-	.mg-top-bottom-extra-verify {
-		margin-top: 100px !important;
-	}
-	.footer-logo {
-		width: 90% !important;
-	}
-	
-	
-  }
-  
-  /* Small Device = 320px */
-  
-  @media only screen and (max-width: 479px) {
-	.c-details {
-		width: 100% !important;
-		margin-top: 10% !important;
-	}
-	.logo-img {
-		width: 50% !important;
-	}
-	.faq-div {
-		width: 100% !important;
-	}
-	.search-menu {
-		font-size: 14px !important;
-	}
-	.mg-top-top-extra {
-		margin-top: 0px !important;
-	}
-	.mg-top-bottom-extra {
-		margin-top: 28px;
-	}
-	.mg-top-top-extra-reset {
-		margin-top: 0px !important;
-	}
-	.mg-top-bottom-extra-reset {
-		margin-top: 20px !important;
-	}
-	.mg-top-top-extra-verify {
-		margin-top: 0px !important;
-	}
-	.mg-top-bottom-extra-verify {
-		margin-top: 15px !important;
-	}
-	.footer-logo {
-		width: 25% !important;
-	}
-  }
+	background: #ffffff;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	margin-right: 10px;
+}
+
+.footer__widget .footer__widget__social a:last-child {
+	margin-right: 0;
+}
+
+.footer__widget .footer__widget__social a:hover {
+	background: #7fad39;
+	color: #ffffff;
+	border-color: #ffffff;
+}
+
+.footer__copyright {
+	border-top: 2px solid #555;
+	padding: 15px 0;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.footer__copyright__text {
+	font-size: 14px;
+	color: #cfe9e0;
+	float: left;
+	line-height: 25px;
+}
+
+.footer__copyright__payment {
+	float: right;
+}
+
+
+.footer-store-logo {
+    background-color: #2a2a2c !important;
+}
+
+.footer-store-logo > img {
+    width: 100%;
+}
+.footer-store-logo1 {
+    background-color: #2a2a2c !important;
+}
+
+.footer-store-logo1 > img {
+    width: 50%;
+    border-radius: 5px;
+}
+.footer-list-div {
+    margin-top: 8%;
+}
+.pad-right-15 {
+    padding-right: 15px;
+}
+
+.footer-heading {
+    font-weight: 300;
+    /* display: inline-block; */
+    padding-bottom: 5px;
+    position: relative;
+}
+.footer-heading::before {
+    content: "";
+    position: absolute;
+    width: 15%;
+    height: 1px;
+    bottom: 0;
+    left: 0%;
+    /* border-bottom: 1px solid #cfe9e0; */
+}
+
+.copyrights {
+    margin-top: 15px;
+}
+.copyrights > p {
+    color: #c7e1d8;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footer-icon {
+    background-color: #1e1f26 !important;
+    color: #cfe9e0 !important;
+}
+.footer-icon > i {
+    font-size: 20px;
+}
+.footer-icon-signin {
+    background-color: #2a2a2c !important;
+    color: #fff !important;
+}
+.footer-icon-signin1 {
+    background-color: #2a2a2c !important;
+    color: #fff !important;
+    margin-top: 5px;
+}
+
+.footer-icon-signin > i {
+    font-size: 20px;
+}
+.footer-submit-btn {
+    font-size: 18px;
+    position: absolute;
+    top: 11px;
+    right: 24px;
+    color: #1e1f26;
+    background-color: white;
+    border: none;
+    height: 10px;
+}
+.footer-submit-btn1 {
+    font-size: 20px;
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    color: #1e1f26;
+    background-color: white;
+    border: none;
+    height: 10px;
+}
+.footer-form {
+    margin-top: -5px !important;
+}
+.footer-form > form > input {
+    color: black;
+}
+.footer1 {
+    background: #2a2a2c;
+    padding: 10px;
+}
+.list-group1 {
+    display: flex;
+    border-radius: .25rem;
+    padding-left: 0;
+    /* margin-bottom: 20px; */
+}
+.list-group-item1 {
+    position: relative;
+    display: block;
+    /* padding: 0px 10px; */
+}
+.list-group-item1:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.margin-top-10 {
+    margin-top: 10%;
+}
+
+.bold {
+    font-weight: bold;
+}
+.blue {
+    color: #033168;
+}
+.center {
+    text-align: center;
+}
+.footer-form form input {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.mg-top-25-reg {
+    margin-top: 25px;
+}    
+/*--------------------------------- Responsive Media Quaries -----------------------------*/
+
+@media only screen and (min-width: 1441px) {
+    .submit-btn {
+        margin-top: 30px !important;
+    }
+    .pd-left-0 {
+        padding-left: 0px !important;
+    }
+    .sidebar-countdown p {
+        margin: 20px 0px 0px 0px !important;
+    }
+    .form-btn-div {
+        margin-top: 6% !important;
+    }
+    .last-will-section > .make-your-will {
+       right: 37% !important;
+    }
+    .last-section > .make-will {
+        top: 78% !important;
+        right: 37% !important;
+    }
+    .c-details {
+        border: 1px solid #ffffff;
+        box-shadow: 0px 0px 10px #ececec;
+        margin: 15px;
+        width: 30% !important;
+        position: relative !important;
+    }
+    .faq-div {
+        width: 47% !important;
+    }
+}
+@media only screen and (min-width: 1200px)and (max-width: 1440px) {
+    .mg-top-15-si {
+        margin-top: 11px !important;
+    }
+	/* .container {
+		max-width: 1170px;
+    } */
+    .c-details {
+        width: 30.333333% !important;
+    }
+    .pd-left-0 {
+        padding-left: 0px !important;
+    }
+    .sidebar-countdown p {
+        margin: 23px 0px 0px 0px !important;
+    }
+    .form-btn-div {
+        margin-top: 10% !important;
+    }
+    .will-div {
+        box-shadow: 0px 0px 10px #ececec;
+        border-radius: 5px;
+        position: relative;
+        width: 22% !important;
+        margin: 15px;
+    }
+    .will-icon {
+        font-size: 20px !important;
+    }
+    .witnesa-page-form > span {
+        background: #00387b;
+        padding: 24px 5px 29px 0px !important;
+        font-size: 19px !important;
+        color: white;
+        margin-left: -5px;
+        font-weight: 500;
+    }
+    .self-affidevit-form > span {
+        background: #d81212;
+        padding: 25px 5px 30px 0px !important;
+        font-size: 19px !important;
+        color: white;
+        margin-left: -5px;
+        font-weight: 500;
+        width: 100%;
+    }
+    .login-form-div {
+       padding-bottom: 8px;
+    }
+}
+
+
+/* Medium Device = 1200px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .submit-btn > .submit {
+        font-size: 17px !important;
+        padding: 0px 14px !important;
+    }    
+    .mg-top-30-si {
+        margin-top: 9px !important;
+    }
+    .mg-top-15-si {
+        display: none;
+    }
+    .profile-section-div > div > span { 
+        font-size: 16px !important;
+    }
+    .footer__widget ul li input{
+        width: 100% !important;
+    }
+    
+    .c-details {
+        width: 29.333333% !important;
+    }
+    .pd-left-0 {
+        padding-left: 0px !important;
+    }
+    .left-outer-form-div h4 {
+        margin-top: 24px;
+        width: 100%;
+        font-size: 15px;
+    }
+    .form_top_controls ul li {
+        font-size: 16px !important;
+    }
+    .form-input-field {
+        padding: 5px !important;
+    }
+    #Basic {
+        padding: 23px 0px 0px 32px !important;
+    }
+    .sidebar-countdown p {
+        margin: 12px 0px 0px 0px !important;
+    }
+    .left-outer-form-div {
+        padding: 15px 40px 38px 24px !important;
+        width: 95% !important;
+    }
+    .header-right-img {
+        position: absolute;
+        right: 2%;
+        top: 14%;
+        width: 100px;
+        z-index: 1;
+    }
+    .will-div {
+        box-shadow: 0px 0px 10px #ececec;
+        border-radius: 5px;
+        position: relative;
+        width: 20% !important;
+        margin: 15px;
+    }
+    .will-icon {
+        font-size: 20px !important;
+    }
+    .witnesa-page-form > span {
+        background: #00387b;
+        padding: 25px 5px 28px 0px !important;
+        font-size: 19px !important;
+        color: white;
+        margin-left: -5px;
+        font-weight: 500;
+    }
+    .self-affidevit-form > span {
+        background: #d81212;
+        padding: 25px 5px 29px 0px !important;
+        font-size: 19px !important;
+        color: white;
+        margin-left: -5px;
+        font-weight: 500;
+        width: 100%;
+    }
+    .last-will-section > .make-your-will {
+        position: absolute;
+        top: 95%;
+        right: 17% !important;
+    }
+    .last-section > .make-will {
+        position: absolute;
+        top: 95%;
+        right: 17% !important;
+    }
+
+    .mg-top-top-extra {
+        margin-top: 69px !important;
+    }
+    .mg-top-bottom-extra {
+        margin-top: 111px !important;
+    }
+    .mg-top-top-extra-reset {
+        margin-top: 33px !important;
+    }
+    .mg-top-bottom-extra-reset {
+        margin-top: 31px !important;
+    }
+    .mg-top-top-extra-verify {
+        margin-top: 155px !important;
+    }
+    .mg-top-bottom-extra-verify {
+        margin-top: 158px !important;
+    }
+    .top-menu {
+        font-size: 14px !important;
+    }
+}
+
+/* Tablet Device = 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .mg-top-30-si-not {
+        display: none;
+    }
+    .login-form > form > .input-group {
+        margin-top: 8px !important;
+    }
+    .login-form > form > .input-group > .form-control {
+        padding: 8px !important;
+    }
+    .mg-top-30-si {
+        margin-top: 8px !important;
+    }
+    .mg-top-25-si {
+        display: none;
+    }
+    .or {
+        padding: 0px !important;
+        font-size: 14px !important;
+    }
+    .create-one-account {
+        font-size: 14px !important;
+    }
+    .search-menu {
+        font-size: 25px !important;
+    }
+    .form-control1 {
+        height: 30px !important;
+        padding: 8px 7px !important;
+        font-size: 10px !important;
+    }
+    .submit-btn > .submit {
+        font-size: 11px !important;
+        padding: 3px 33px 3px 33px !important;
+    }
+    .input-group1 {
+        margin: 1.2px 0px !important;
+    }
+    .mg-top-25-reg {
+        margin-top: 11px;
+    }    
+    .submit-btn {
+        margin-top: 30px !important;
+    }
+    .c-details {
+        width: 31.333333% !important;
+    }
+    .w-heading > h1 {
+        font-size: 30px !important;
+    }
+    .w-mini-heading > h1 {
+        font-size: 26px !important;
+    }
+    .w-mini-detail > p {
+        font-size: 18px !important;
+    }
+    .left-side-text {
+        font-size: 15px !important;
+        line-height: 25px !important;
+    }
+    .right-side-text {
+        font-size: 22px !important;
+        line-height: 28px !important;
+    }
+    .right-side-with-icon {
+        font-size: 16px !important;
+        line-height: 23px !important;
+    }
+
+    .top-menu {
+        font-size: 9px;
+    }
+    .header-lower-part {
+        height: 48px !important;
+    }
+    .lower-header .list-group {
+        margin-top: 0px !important;
+    }
+    .will-details > .detail-heading {
+        font-size: 13px !important;
+    }
+    .will-details > .detail-p {
+        font-size: 8px !important;
+        line-height: 14px !important;
+    }
+    .will-icon {
+        right: 4% !important;
+        top: 27% !important;
+        padding: 2% 4% 1% 4% !important;
+        font-size: 16px !important;
+    }
+    .will-details > .learn-more > a {
+        font-size: 10px !important;
+    }
+    .will-details > .learn-more {
+        padding: 3px 8px !important;
+    }
+    .will-details > .learn-more > i {
+        padding: 6px !important;
+        margin-top: -3px !important;
+        margin-right: -7px !important;
+    }
+    .last-will > .heading-border > .heading {
+        font-size: 17px !important;
+    }
+    .last-will > p {
+        font-size: 12px !important;
+    }
+    .mini-heading {
+        font-size: 16px !important;
+    }
+    .mini-para {
+        font-size: 11px !important;
+    }
+    .info-heading {
+        font-size: 11px !important;
+    }
+    .Nationwide {
+        font-size: 18px !important;
+    }
+    .info-detail {
+        font-size: 14px !important;
+    }
+    .info-mini-detail, .info-mini-detail-b {
+        font-size: 11px;
+    }
+    .left-outer-form-div h4 {
+        margin-top: 24px;
+        width: 100%;
+        font-size: 15px;
+    }
+    .form_top_controls ul li {
+        font-size: 15px !important;
+        margin-right: 3% !important; 
+    }
+    .form-input-field {
+        padding: 5px !important;
+    }
+    #Basic {
+        padding: 23px 0px 0px 32px !important;
+    }
+    .sidebar-countdown p {
+        margin: 12px 0px 0px 0px !important;
+    }
+    .left-outer-form-div {
+        padding: 1px 31px 24px 3px !important;
+        width: 88% !important;
+    }
+    .form-btn-div {
+        margin-top: 17% !important;
+    }
+    .right-outer-form-div {
+        width: 138% !important;
+        margin-left: -40% !important;
+    }
+    .header-right-img {
+        position: absolute;
+        right: 4%;
+        top: 7%;
+        width: 84px;
+        z-index: 1;
+    }
+    
+    .logo-img {
+        width: 70% !important;
+        padding: 12px !important;
+    }
+    .will-div {
+        box-shadow: 0px 0px 10px #ececec;
+        border-radius: 5px;
+        position: relative;
+        width: 20% !important;
+        margin: 15px;
+    }
+    .witnesa-page-form > img {
+        width: 35%;
+    }
+    .witnesa-page-form > span {
+        padding: 14px 3px 16px 0px !important;
+        font-size: 16px !important;
+    }
+    .self-affidevit-form > img {
+        width: 35%;
+    }
+    .self-affidevit-form > span {
+        padding: 15px 3px 16px 0px !important;
+        font-size: 16px !important;
+    }
+    .last-will-img > img {
+       width: 100%;
+    }
+    .last-section > .make-will > img {
+       width: 77%;
+    }
+    .margin-top-10 {
+        margin-top: 0% !important;
+    }
+    .last-will-section > .make-your-will {
+        right: -8% !important;
+    }
+    .last-will-section > .make-your-will > img {
+        width: 63% !important;
+    }
+    .last-will-section > .make-your-will > button {
+        right: 42.5% !important;
+        top: 32% !important;
+        padding: 5px 5px 5px 5px !important;
+        font-size: 13px !important;
+    }
+    .last-section > .make-will {
+        right: -8% !important;
+    }
+    .make-will > button {
+        right: 31% !important;
+        top: 35% !important;
+        padding: 5px 8px 5px 8px !important;
+        font-size: 13px !important;
+    }
+    .c-details {
+        margin: 5px !important;
+    }
+    .faq-div {
+        width: 100% !important;
+    }
+    .mg-top-top-extra {
+        margin-top: 25px !important;
+    }
+    .mg-top-bottom-extra {
+        margin-top: 63px !important;
+    }
+    .mg-top-top-extra-reset {
+        margin-top: 0px !important;
+    }
+    .mg-top-bottom-extra-reset {
+        margin-top: 45px !important;
+    }
+    .form-heading > h2 {
+        font-size: 30px !important;   
+    }
+    .form-heading > p {
+        font-size: 22px !important;   
+    }
+    .login-form > form > .input-group > .form-control {
+        font-size: 18px !important;
+        margin:0px !important;
+    }
+    .login-form > form > .input-group {
+       margin-top: 10px;
+    }
+    .login-form > form > .input-group > span {
+        font-size: 20px !important;
+        padding: 10px 22px !important;
+    }
+    .mg-top-top-extra-verify {
+        margin-top: 100px !important;
+    }
+    .mg-top-bottom-extra-verify {
+        margin-top: 101px !important;
+    }
+    .profile-section-div > div > span {
+        font-size: 10px !important;
+    }
+    .profile-section-div > div > img {
+        width: 30px !important;
+    }
+    .profile-section-div {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        height: 50px !important;
+    }
+    .footer__about__logo > img {
+        width: 55%;
+    }
+    .footer__widget p {
+        font-size: 10px !important;
+    }
+    .footer__widget h5 {
+        margin-bottom: 0px !important;
+    }
+    .footer__widget ul li a {
+        font-size: 10px !important;
+        line-height: 15px !important;
+    }
+    .footer-heading {
+     padding-bottom: 0px !important;
+    }
+}
+
+/* Wide Mobile = 480px */
+
+@media only screen and (max-width: 767px) {
+    
+    
+    .header-right-img {
+        position: absolute;
+        right: 4%;
+        top: 7%;
+        width: 60px;
+        z-index: 1;
+    }
+    .logo-img {
+        width: 44% !important;
+        padding: 12px;
+    }
+    .list-group {
+        display: contents;
+        border-radius: .25rem;
+        margin-top: 35px !important;
+        margin-bottom: 35px !important;
+        padding-left: 0;
+    }
+    .will-div {
+       width: 100% !important;
+        margin: 0px !important;
+    }
+    .self-affidevit-form {
+       margin-top: 10% !important;
+    }
+    .last-will-section > .make-your-will {
+        position: absolute;
+        top: 98% !important;
+        right: 0% !important;
+    }
+    .last-section > .make-will > img {
+        width: 100%;
+     }
+    .last-section > .make-will {
+        right: 0% !important;
+    }
+    .last-will-section > .make-your-will > img {
+       width: 100%;
+    }
+    .footer__about > .list-group {
+        display: flex !important;
+    }
+    .c-details {
+        margin: 5px !important;
+    }
+    .faq-div {
+        width: 100% !important;
+    }
+    .search-menu {
+        font-size: 24px !important;
+    }
+    .mg-top-top-extra {
+        margin-top: 13px !important;
+    }
+    .mg-top-bottom-extra {
+        margin-top: 54px !important;
+    }
+    .mg-top-top-extra-reset {
+        margin-top: 0px !important;
+    }
+    .mg-top-bottom-extra-reset {
+        margin-top: 20px !important;
+    }
+    .mg-top-top-extra-verify {
+        margin-top: 100px !important;
+    }
+    .mg-top-bottom-extra-verify {
+        margin-top: 100px !important;
+    }
+    .footer-logo {
+        width: 90% !important;
+    }
+    
+    
+}
+
+/* Small Device = 320px */
+
+@media only screen and (max-width: 479px) {
+    .login-form > form > .input-group1 > label {
+        font-size: 12px !important;
+    }
+    .login-form > form > .input-group1 > a {
+        font-size: 14px !important;
+    }
+    .create-one-account {
+        font-size: 14px !important;
+    }
+    .or {
+        padding: 0px 0px !important;
+        font-size: 14px !important;
+    }
+    .heading-section .link {
+        font-size: 15px !important;
+    }
+    .right-div .top-heading {
+        font-size: 17px !important;
+    }
+    .right-div .mini-heading {
+        font-size: 16px !important;
+    }
+    .number-right {
+        font-size: 17px !important;
+    }
+    .w-heading > h1 {
+        font-size: 18px !important;
+    }
+    .w-mini-heading > h1 {
+        font-size: 17px !important;
+    }
+    .w-mini-detail > p {
+        font-size: 14px !important;
+    }
+    .left-side-text {
+        font-size: 13px !important;
+        line-height: 18px !important;
+    }
+    .right-side-text {
+        font-size: 12px !important;
+        line-height: 16px !important;
+    }
+    .w-icon-div .w-icon {
+        right: 40% !important;
+        top: -55% !important;
+        font-size: 20px !important; 
+        padding: 4px 8px 4px 9px !important;
+    }
+    .left-side-with-icon {
+        font-size: 18px !important;
+    }
+    .right-side-with-icon {
+        font-size: 13px !important;
+        line-height: 12px !important;
+    }
+    .make-will > button {
+        right: 11% !important;
+        top: 39% !important;
+        padding: 0px 4px 2px 4px !important;
+        font-size: 10px !important;
+    }
+    .left-outer-form-div {
+        padding: 1px 1px 1px 6px !important;
+        width: 100% !important;
+    }
+    .left-outer-form-div h4 {
+        width: 100% !important;
+    }
+    .form_top_controls ul li {
+        font-size: 12px !important;
+        margin-right: 2px !important;
+    }
+    #Basic {
+        padding: 24px 0px 0px 38px !important;
+    }
+    .form-btn-div .exit-btn, .next-btn {
+        width: 32% !important;
+        font-size: 12px !important;
+    }
+    .form-btn-div {
+        margin-top: 24% !important;
+    }
+    .form-input-field {
+        margin-bottom: 10px !important;
+    }
+    .right-outer-form-div {
+        margin-left: 0% !important;
+        width: 100% !important;
+    }
+    .sidebar-countdown {
+        left: 1px !important;
+    }
+    .form_top_controls {
+        margin-left: 0px !important;
+    }
+    .c-details {
+        width: 100% !important;
+        margin-top: 10% !important;
+    }
+    .logo-img {
+        width: 50% !important;
+    }
+    .faq-div {
+        width: 100% !important;
+    }
+    .search-menu {
+        font-size: 14px !important;
+    }
+    .mg-top-top-extra {
+        margin-top: 0px !important;
+    }
+    .mg-top-bottom-extra {
+        margin-top: 28px;
+    }
+    .mg-top-top-extra-reset {
+        margin-top: 0px !important;
+    }
+    .mg-top-bottom-extra-reset {
+        margin-top: 20px !important;
+    }
+    .mg-top-top-extra-verify {
+        margin-top: 0px !important;
+    }
+    .mg-top-bottom-extra-verify {
+        margin-top: 15px !important;
+    }
+    .footer-logo {
+        width: 25% !important;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .login-form > form > .input-group1 > label {
+        font-size: 12px !important;
+    }
+    .login-form > form > .input-group1 > a {
+        font-size: 14px !important;
+    }
+    .create-one-account {
+        font-size: 14px !important;
+    }
+    .or {
+        padding: 0px 0px !important;
+        font-size: 14px !important;
+    }
+    .heading-section .link {
+        font-size: 15px !important;
+    }
+    .right-div .top-heading {
+        font-size: 17px !important;
+    }
+    .right-div .mini-heading {
+        font-size: 16px !important;
+    }
+    .number-right {
+        font-size: 17px !important;
+    }
+    .form_top_controls ul li {
+        font-size: 10px !important;
+        margin-right: 2px !important;
+    }
+    .w-heading > h1 {
+        font-size: 18px !important;
+    }
+    .w-mini-heading > h1 {
+        font-size: 17px !important;
+    }
+    .w-mini-detail > p {
+        font-size: 14px !important;
+    }
+    .left-side-text {
+        font-size: 13px !important;
+        line-height: 18px !important;
+    }
+    .right-side-text {
+        font-size: 12px !important;
+        line-height: 16px !important;
+    }
+    .w-icon-div .w-icon {
+        right: 40% !important;
+        top: -55% !important;
+        font-size: 20px !important; 
+        padding: 4px 8px 4px 9px !important;
+    }
+    .left-side-with-icon {
+        font-size: 18px !important;
+    }
+    .right-side-with-icon {
+        font-size: 13px !important;
+        line-height: 12px !important;
+    }
+    .make-will > button {
+        right: 11% !important;
+        top: 39% !important;
+        padding: 0px 4px 2px 4px !important;
+        font-size: 8px !important;
+    }
+
+}
+@media only screen and (max-width: 350px) {
+    .login-form > form > .input-group1 > label {
+        font-size: 12px !important;
+    }
+    .login-form > form > .input-group1 > a {
+        font-size: 14px !important;
+    }
+    .create-one-account {
+        font-size: 14px !important;
+    }
+    .or {
+        padding: 0px 0px !important;
+        font-size: 14px !important;
+    }
+    .heading-section .link {
+        font-size: 15px !important;
+    }
+    .search-menu {
+        font-size: 12px !important;
+    }
+    .right-div .top-heading {
+        font-size: 17px !important;
+    }
+    .right-div .mini-heading {
+        font-size: 16px !important;
+    }
+    .number-right {
+        font-size: 17px !important;
+    }
+    .profile-section-div > div > span { 
+        font-size: 18px !important;
+    }
+    .tell-us {
+        font-size: 21px !important;
+        margin-top: 21px !important;
+    }
+    .message-section > .container > .row > .details {
+        font-size: 12px !important;
+    }
+    .login-form > form > .input-group > .form-control {
+        font-size: 10px !important;
+    }
+    .submit-btn > .submit {
+        font-size: 16px !important;
+    }
+    
+    .footer-form form input {
+        font-size: 12px !important; 
+        padding: 5px !important;
+    }
+    .follow-us-on {
+        font-size: 7px !important;
+    }
+    .SUBSCRIBE-TO-OUR-NEWS-LETTER {
+        font-size: 12px !important;
+    }
+    .footer-submit-btn1 { 
+        font-size: 14px !important;
+    }    
+    .footer-icon-signin1 {
+        margin-top: 0px !important;
+    }
+    .w-heading > h1 {
+        font-size: 18px !important;
+    }
+    .w-mini-heading > h1 {
+        font-size: 17px !important;
+    }
+    .w-mini-detail > p {
+        font-size: 14px !important;
+    }
+    .left-side-text {
+        font-size: 13px !important;
+        line-height: 18px !important;
+    }
+    .right-side-text {
+        font-size: 12px !important;
+        line-height: 16px !important;
+    }
+    .w-icon-div .w-icon {
+        right: 40% !important;
+        top: -55% !important;
+        font-size: 20px !important; 
+        padding: 4px 8px 4px 9px !important;
+    }
+    .left-side-with-icon {
+        font-size: 18px !important;
+    }
+    .right-side-with-icon {
+        font-size: 13px !important;
+        line-height: 12px !important;
+    }
+    .make-will > button {
+        right: 11% !important;
+        top: 39% !important;
+        padding: 0px 4px 2px 4px !important;
+        font-size: 8px !important;
+    }
+    
+    .header-lower-part {
+        /* height: 27px !important; */
+        margin-top: 13px !important;
+        font-size: 15px !important;
+    }
+    .list-group-item { 
+        padding: 0px !important;
+        font-size: 13px !important;
+    }
+    .top-menu {
+        font-size: 12px !important;
+    }    
+    .witnesa-page-form img {
+        width: 30% !important;
+    }
+    .witnesa-page-form > span {
+        padding: 15px 11px 17px 11px !important;
+        font-size: 16px !important;
+    }
+    .self-affidevit-form img {
+        width: 30% !important;
+    }
+    .self-affidevit-form > span {
+        padding: 16px 11px 18px 11px !important;
+        font-size: 16px !important;
+    }
+    .last-will > .heading-border > .heading {
+        font-size: 14px !important;
+    }
+    .last-will > p {
+        font-size: 11px !important;
+    }   
+    .info-heading {
+        font-size: 14px !important;
+    }
+    .Nationwide {
+        font-size: 15px !important;
+    }
+    .info-detail {
+        font-size: 16px !important;
+    }
+    .info-mini-detail, .info-mini-detail-b {
+        font-size: 12px !important;
+    }    
+    .last-will-section > .make-your-will > img {
+        width: 90% !important;
+    }
+    .last-will-section > .make-your-will {
+        top: 99% !important;
+        right: 0% !important;
+        left: 8% !important;
+    }
+    .last-will-section > .make-your-will > button {
+        right: 18% !important;
+        top: 34% !important;
+        padding: 4px 5px 1px 5px !important;
+        font-size: 7px !important;
+    }
+    .form_top_controls ul li {
+        font-size: 9px !important;
+        margin-right: 2px !important;
+    }
+    .form-input-field {
+        padding: 7px !important;
+        font-size: 13px !important;
+    }
+    .sidebar-countdown p {
+        margin: 20px 0px 0px 0px !important;
+    }
+    .left-outer-form-div h4 {
+        margin-top: 15px !important;
+        width: 100% !important;
+        font-size: 15px !important;
+    }
+    .footer-store-logo > img {
+        width: 78% !important;
+    }
+    .footer__about__logo > img {
+        width: 40%;
+    }
+    .footer__widget h5 {
+        margin-bottom: 0px !important;
+    }
+    .footer-heading { 
+        padding-bottom: 0px !important;
+    }
+    .footer__widget ul li a {
+        line-height: 20px !important;
+        font-size: 12px;
+    }
+    .footer__widget p {
+        font-size: 9px !important;
+    }
+    .footer__about ul li {
+        font-size: 14px !important;
+        line-height: 3px !important;
+    }
+    .copyrights > p {
+        font-size: 6px !important;
+    }
+}

@@ -22,7 +22,12 @@ var StoreState = {
   },
   profile: {
     userDetail: {},
-    cityList:[]
+    cityList: [],
+  },
+  question: {
+    sectionList: [],
+    pageList: [],
+    questions: {},
   },
 };
 export default StoreState;
