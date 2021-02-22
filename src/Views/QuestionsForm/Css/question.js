@@ -188,5 +188,13 @@ export const Wrapper = styled.div`
 .disable-tab {
     display: none;
 }
+.add-another-one {
+    border: 1px dotted gray;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
 
 `

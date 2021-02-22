@@ -9,8 +9,8 @@ import moment from 'moment';
 
 function QuestionsContainer(props) {
     const [state, setState] = useState({
-        activeSectionId: 1,
-        activePageId: 1,
+        activeSectionId: 2,
+        activePageId: 4,
         questions: {},
         message: "",
         messageType: "",
@@ -87,27 +87,24 @@ function QuestionsContainer(props) {
     }
     const nextPage = () => {
         if (validatePage(state.activePageId)) {
-            let data = {
-                "answer":
-                {
-                    "Q001S001": { "first_name": "Amit", "middle_name": "Bisnu", "last_name": "Trivedi" },
-                    "Q001S002": { "gender": "male" },
-                    "Q001S003": { "birthdate": "1990-03-02" }
-                },
-                "isFinalSubmission": 0
+            let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
+            if (pageIndex !== -1) {
+                let pageCode = props.pageList[pageIndex].page_code;
+                let data = {}
+                let answer = {}
+                for (const question in state.questions[state.activePageId]) {
+                    answer[question] = {}
+                    for (const input in state.questions[state.activePageId][question]) {
+                        answer[question][input] = state.questions[state.activePageId][question][input].value
+                    }
+                }
+                data["answer"] = answer;
+                let lastPage = props.pageList.length - 1;
+                data["isFinalSubmission"] = props.pageList[lastPage].id === state.activePageId ? 1 : 0;
+                props.pageForAnswers(data, pageCode);
+            } else {
+                console.log("Page code not found")
             }
-            props.pageForAnswers(data, state.activePageId);
-            // let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
-            // if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
-            //     let nextPage = props.pageList[pageIndex + 1];
-            //     props.pageForAnswers({}, state.activePageId);
-            //     props.getQuestionList(nextPage.id);
-            //     setState({
-            //         ...state,
-            //         activeSectionId: nextPage.section_id,
-            //         activePageId: nextPage.id
-            //     })
-            // }
         }
     }
     const validatePage = (pageId) => {
@@ -180,17 +177,54 @@ function QuestionsContainer(props) {
                                             <p className="form-inner-heading">{item.question_text}</p>
                                             {inputs && inputs.map((inputKey, i) => {
                                                 let input = item.inputs[inputKey];
-                                                let value = state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code][inputKey].value : ""
-                                                return inputKey === "birthdate" ? <DateInput key={i} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
-                                                    {input.input === "text" ?
-                                                        <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> :
-                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : ""}
-                                                </div>
+                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code][inputKey].value : ""
+                                                let arrFields = input.input === "array" ? Object.keys(input.fields) : []
+                                                colLength = arrFields.length === 3 ? 3 : arrFields.length === 2 ? 5 : 12;
+                                                return input.input === "array" ? <React.Fragment>{arrFields.map((arrInputKey, j) => {
+                                                    let arrInput = input.fields[arrInputKey];
+                                                    value = state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code]["inputs"][arrInputKey].value : ""
+                                                    return <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
+                                                        <InputText type={arrInput.input} id={arrInput} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
+                                                        arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : ""}
+                                                    </div>
+                                                })}
+                                                    <div className="col-lg-1 col-lg-1 col-sm-1">
+                                                        <a onclick="javascript:delete_this(this)">delete</a>
+                                                    </div></React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
+                                                        {input.input === "text" ?
+                                                            <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
+                                                            input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : ""}
+                                                    </div>
                                             })}
                                         </div>
                                     </div> : ""
                                 }) : ""}
+                                <div className="row" id="deleting_id">
+                                    <div className="col-lg-12 col-lg-12 col-sm-12">
+                                        <p className="form-inner-heading">What are the full legal names of your children?</p>
+                                        <div className="col-lg-4 col-lg-4 col-sm-4 pd-left-0">
+                                            <input type="text" name="first-name" className="form-input-field" placeholder="First Name" />
+                                        </div>
+                                        <div className="col-lg-3 col-lg-3 col-sm-3">
+                                            <input type="text" name="middle-name" className="form-input-field" placeholder="Middle Name" />
+                                        </div>
+                                        <div className="col-lg-4 col-lg-4 col-sm-4">
+                                            <input type="text" name="last-name" className="form-input-field" placeholder="Last Name" />
+                                        </div>
+                                        <div className="col-lg-1 col-lg-1 col-sm-1">
+                                            <a onclick="javascript:delete_this(this)">delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="add_another_one_btn" className="col-lg-12 col-lg-12 col-sm-12 center">
+                                    <button className="add-another-one" id="a-a-o-top-1" onclick="javascript:add_another_one(this.id);">Add another one</button>
+                                </div>
                                 <div className="row">
+                                    {props.apiCallStatus.apiCallFor === "pageForAnswers" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                        <div className="loader-img text-center">
+                                            <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                                        </div>
+                                        : ""}
                                     {state.messageFor === "form" && state.message !== "" ?
                                         <div className={`alert alert-${state.messageType}`}>
                                             {state.message}
