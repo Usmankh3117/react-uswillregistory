@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
-import { getFormSection, getQuestionList } from "../ApiCalls/question";
+import { getFormSection, getQuestionList, getStateList } from "../ApiCalls/question";
 import DatePicker from 'react-date-picker';
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 
 function QuestionsContainer(props) {
     const [state, setState] = useState({
-        activeSectionId: 1,
-        activePageId: 1,
-        questions: {}
+        activeSectionId: 2,
+        activePageId: 4,
+        questions: {},
+        message: "",
+        messageType: "",
+        messageFor: "",
     })
     useEffect(() => {
         props.getFormSection();
         props.getQuestionList(state.activePageId);
+        props.getStateList();
     }, [])
     useEffect(() => {
         if (state.questions[state.activePageId] === undefined && props.questions[state.activePageId] !== undefined) {
@@ -25,10 +29,25 @@ function QuestionsContainer(props) {
             quest.forEach(element => {
                 for (const input in element.inputs) {
                     let value = "";
-                    if (input === "birthdate") {
-                        value = moment().format('YYYY-MM-DD');
+                    if (element.inputs[input].input === "array") {
+                        inputs[element.question_code] = {
+                            isArray: true,
+                            inputs: {},
+                            value: []
+                        }
+                        if (element.inputs[input] && element.inputs[input].fields) {
+                            for (const subInput in element.inputs[input].fields) {
+                                inputs[element.question_code]["inputs"][subInput] = { ...element.inputs[input].fields[subInput], value }
+                            }
+                        }
+                    } else {
+                        if (input === "birthdate") {
+                            value = moment().format('YYYY-MM-DD');
+                        }
+                        inputs[element.question_code] = {
+                            [input]: { ...element.inputs[input], value }
+                        }
                     }
-                    inputs[input] = { ...element.inputs[input], value }
                 }
             });
             questions[state.activePageId] = inputs;
@@ -39,30 +58,77 @@ function QuestionsContainer(props) {
             console.log(questions[state.activePageId])
         }
     })
-    const handlePageStateChange = (pageId, e) => {
-        debugger
+    const handlePageStateChange = (questionId, pageId, e) => {
         let id = e.target.id;
         let value = e.target.value;
         let questions = state.questions;
-        questions[pageId][id].value = value;
+        questions[pageId][questionId][id].value = value;
         setState({
             ...state,
-            questions
+            questions,
+            message: "",
+            messageType: "",
+            messageFor: "",
         })
         console.log(questions[pageId])
     }
     const nextPage = () => {
-        let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
-        if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
-            let nextPage = props.pageList[pageIndex + 1];
-            props.getQuestionList(nextPage.id);
-            setState({
-                ...state,
-                activeSectionId: nextPage.section_id,
-                activePageId: nextPage.id
-            })
+        if (validatePage(state.activePageId)) {
+            let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
+            if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
+                let nextPage = props.pageList[pageIndex + 1];
+                props.getQuestionList(nextPage.id);
+                setState({
+                    ...state,
+                    activeSectionId: nextPage.section_id,
+                    activePageId: nextPage.id
+                })
+            }
         }
-
+    }
+    const validatePage = (pageId) => {
+        let isValid = true;
+        let message = "";
+        let messageType = "";
+        let messageFor = "";
+        let questions = state.questions[pageId];
+        for (const input in questions) {
+            if (questions[input].value === "") {
+                isValid = false;
+                message = `${questions[input].placeholder ? questions[input].placeholder : input} is required`;
+                messageType = "danger";
+                messageFor = "form";
+                break;
+            }
+        }
+        setState({
+            ...state,
+            message,
+            messageType,
+            messageFor
+        })
+        return isValid;
+    }
+    const checkQuestionDependancy = (dependency) => {
+        let isAllow = false;
+        if (state.questions[state.activePageId]) {
+            for (let index = 0; index < dependency.length; index++) {
+                const element = dependency[index];
+                let questions = props.questions[state.activePageId];
+                let questionIndex = questions.findIndex(x => x.id === element.parent_id)
+                if (questionIndex !== -1) {
+                    let questionId = questions[questionIndex].question_code;
+                    let key = Object.keys(questions[questionIndex].inputs)[0];
+                    let value = state.questions[state.activePageId][questionId][key].value;
+                    if (value === element.answer) {
+                        isAllow = true;
+                    } else {
+                        isAllow = false;
+                    }
+                }
+            }
+        }
+        return isAllow;
     }
     return <Wrapper>
         <GetStarted />
@@ -77,27 +143,35 @@ function QuestionsContainer(props) {
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
                             <div id="Basic">
+                                {props.apiCallStatus.apiCallFor === "getQuestionList" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                    <div className="loader-img text-center">
+                                        <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                                    </div>
+                                    : ""}
                                 {props.questions[state.activePageId] ? props.questions[state.activePageId].map((item, index) => {
                                     let inputs = Object.keys(item.inputs);
                                     let colLength = inputs ? 12 / inputs.length : 12;
-                                    return <div className="row" key={index}>
-                                        {/* <div className="col-lg-12 col-lg-12 col-sm-12">
-                                        <h4 className="form-basic-details">Basic Details:</h4>
-                                    </div> */}
+                                    return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies)) ? <div className="row" key={index}>
                                         <div className="col-lg-12 col-lg-12 col-sm-12">
                                             <p className="form-inner-heading">{item.question_text}</p>
                                             {inputs && inputs.map((inputKey, i) => {
                                                 let input = item.inputs[inputKey];
-                                                return inputKey === "birthdate" ? <DateInput key={i} id={inputKey} pageId={state.activePageId} value={state.questions[state.activePageId] ? state.questions[state.activePageId][inputKey].value : ""} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
+                                                let value = state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code][inputKey].value : ""
+                                                return inputKey === "birthdate" ? <DateInput key={i} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                     {input.input === "text" ?
-                                                        <InputText type={input.input} id={inputKey} pageId={state.activePageId} value={state.questions[state.activePageId] ? state.questions[state.activePageId][inputKey].value : ""} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> :
-                                                        input.input === "radio" ? <DropDown options={input.options} id={inputKey} pageId={state.activePageId} value={state.questions[state.activePageId] ? state.questions[state.activePageId][inputKey].value : ""} name={inputKey} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : ""}
+                                                        <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> :
+                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(pageId, e) => handlePageStateChange(pageId, e)} /> : ""}
                                                 </div>
                                             })}
                                         </div>
-                                    </div>
+                                    </div> : ""
                                 }) : ""}
                                 <div className="row">
+                                    {state.messageFor === "form" && state.message !== "" ?
+                                        <div className={`alert alert-${state.messageType}`}>
+                                            {state.message}
+                                        </div>
+                                        : ""}
                                     <div className="col-lg-12 col-lg-12 col-sm-12 form-btn-div">
                                         <button className="next-btn" onClick={() => nextPage()}>
                                             NEXT
@@ -153,12 +227,12 @@ function PageDescription(props) {
 }
 
 function InputText(props) {
-    return <input  {...props} onChange={(e) => props.handleChange(props.pageId, e)} className="form-input-field" />
+    return <input  {...props} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" />
 }
 
 function DropDown(props) {
-    return <select name={props.name} id={props.id} onChange={(e) => props.handleChange(props.pageId, e)} className="form-input-field">
-        {/* <option value=""></option> */}
+    return <select name={props.name} id={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field">
+        <option value=""></option>
         {props.options.map((item, index) => {
             return <option key={index} value={item.value} selected={item.value === props.value}>{item.label}</option>
         })}
@@ -168,11 +242,12 @@ function DateInput(props) {
     return <React.Fragment>
         <div className="col-lg-12 col-lg-12 col-sm-12" style={{ paddingLeft: "0px" }}>
             <DatePicker
-                name={props.name} id={props.id} onChange={(e) => props.handleChange(props.pageId, { target: { id: props.id, value: moment(e).format('YYYY-MM-DD') } })}
+                name={props.name} id={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: moment(e).format('YYYY-MM-DD') } })}
                 className="form-input-field"
                 // format="YYYY-MM-DD"
                 format="y-MM-dd"
-                value={new Date()}
+                maxDate={new Date()}
+                value={props.value === "" ? new Date() : new Date(props.value)}
             />
         </div>
         {/* <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" }}>
@@ -210,10 +285,12 @@ const mapStateToProps = (state, ownProps) => ({
     user: { isLogin: state.authReducer.isLogin, },
     pageList: state.questionReducer.pageList,
     sectionList: state.questionReducer.sectionList,
-    questions: state.questionReducer.questions
+    questions: state.questionReducer.questions,
+    stateList: state.questionReducer.stateList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    getStateList: () => dispatch(getStateList()),
     getQuestionList: (pageId) => dispatch(getQuestionList(pageId)),
     getFormSection: () => dispatch(getFormSection()),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),

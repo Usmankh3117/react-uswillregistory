@@ -28,6 +28,7 @@ var StoreState = {
     sectionList: [],
     pageList: [],
     questions: {},
+    stateList: [],
   },
 };
 export default StoreState;
