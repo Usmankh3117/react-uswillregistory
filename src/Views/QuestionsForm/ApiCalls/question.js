@@ -93,3 +93,27 @@ export function getStateList() {
     }
   };
 }
+
+export function pageForAnswers(data, pageId) {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "pageForAnswers" }));
+    let url = Constant.apiURl + "/answers/" + pageId;
+    let myJson = await FETCH("POST", url, data);
+    if (myJson && myJson.status === "success") {
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "pageForAnswers",
+          message: myJson.message,
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "pageForAnswers",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}

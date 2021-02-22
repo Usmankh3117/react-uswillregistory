@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
-import { getFormSection, getQuestionList, getStateList } from "../ApiCalls/question";
+import { getFormSection, getQuestionList, getStateList, pageForAnswers } from "../ApiCalls/question";
 import DatePicker from 'react-date-picker';
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 
 function QuestionsContainer(props) {
     const [state, setState] = useState({
-        activeSectionId: 2,
-        activePageId: 4,
+        activeSectionId: 1,
+        activePageId: 1,
         questions: {},
         message: "",
         messageType: "",
@@ -45,6 +45,7 @@ function QuestionsContainer(props) {
                             value = moment().format('YYYY-MM-DD');
                         }
                         inputs[element.question_code] = {
+                            ...inputs[element.question_code],
                             [input]: { ...element.inputs[input], value }
                         }
                     }
@@ -56,6 +57,18 @@ function QuestionsContainer(props) {
                 questions
             })
             console.log(questions[state.activePageId])
+        }
+        if (props.apiCallStatus.apiCallFor === "pageForAnswers" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
+            let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
+            if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
+                let nextPage = props.pageList[pageIndex + 1];
+                props.getQuestionList(nextPage.id);
+                setState({
+                    ...state,
+                    activeSectionId: nextPage.section_id,
+                    activePageId: nextPage.id
+                })
+            }
         }
     })
     const handlePageStateChange = (questionId, pageId, e) => {
@@ -74,16 +87,27 @@ function QuestionsContainer(props) {
     }
     const nextPage = () => {
         if (validatePage(state.activePageId)) {
-            let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
-            if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
-                let nextPage = props.pageList[pageIndex + 1];
-                props.getQuestionList(nextPage.id);
-                setState({
-                    ...state,
-                    activeSectionId: nextPage.section_id,
-                    activePageId: nextPage.id
-                })
+            let data = {
+                "answer":
+                {
+                    "Q001S001": { "first_name": "Amit", "middle_name": "Bisnu", "last_name": "Trivedi" },
+                    "Q001S002": { "gender": "male" },
+                    "Q001S003": { "birthdate": "1990-03-02" }
+                },
+                "isFinalSubmission": 0
             }
+            props.pageForAnswers(data, state.activePageId);
+            // let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
+            // if (pageIndex !== -1 && props.pageList[pageIndex + 1]) {
+            //     let nextPage = props.pageList[pageIndex + 1];
+            //     props.pageForAnswers({}, state.activePageId);
+            //     props.getQuestionList(nextPage.id);
+            //     setState({
+            //         ...state,
+            //         activeSectionId: nextPage.section_id,
+            //         activePageId: nextPage.id
+            //     })
+            // }
         }
     }
     const validatePage = (pageId) => {
@@ -293,6 +317,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     getStateList: () => dispatch(getStateList()),
     getQuestionList: (pageId) => dispatch(getQuestionList(pageId)),
     getFormSection: () => dispatch(getFormSection()),
+    pageForAnswers: (data, pageId) => dispatch(pageForAnswers(data, pageId)),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })
 export default connect(
