@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
-import { getFormSection, getQuestionList, getStateList, pageForAnswers } from "../ApiCalls/question";
+import { updateAnswerAction } from "../Actions/action";
+import { getFormSection, getQuestionList, getStateList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
 import DatePicker from 'react-date-picker';
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 
 function QuestionsContainer(props) {
     const [state, setState] = useState({
-        activeSectionId: 2,
-        activePageId: 5,
+        activeSectionId: 1,
+        activePageId: 1,
         questions: {},
         message: "",
         messageType: "",
@@ -18,14 +19,23 @@ function QuestionsContainer(props) {
     })
     useEffect(() => {
         props.getFormSection();
+        props.getAllAnswer();
         props.getQuestionList(state.activePageId);
         props.getStateList();
     }, [])
     useEffect(() => {
-        if (state.questions[state.activePageId] === undefined && props.questions[state.activePageId] !== undefined) {
+        if ((props.apiCallStatus.apiCallFor === "getAllAnswer" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed && state.questions[state.activePageId] === undefined && props.questions[state.activePageId] !== undefined) ||
+            state.questions[state.activePageId] === undefined && props.questions[state.activePageId] !== undefined) {
             let questions = { ...state.questions };
             let inputs = {};
             let quest = props.questions[state.activePageId];
+            let answer = {};
+            if (props.answerList.length > 0) {
+                let index = props.answerList.findIndex(x => x.page_id === state.activePageId);
+                if (index !== -1) {
+                    answer = props.answerList[index]['answer']
+                }
+            }
             quest.forEach(element => {
                 for (const input in element.inputs) {
                     let value = "";
@@ -38,6 +48,17 @@ function QuestionsContainer(props) {
                         if (element.inputs[input] && element.inputs[input].fields) {
                             for (const subInput in element.inputs[input].fields) {
                                 inputs[element.question_code]["inputs"][subInput] = { ...element.inputs[input].fields[subInput], value }
+                            }
+                            if (answer[element.question_code] && answer[element.question_code].length > 0) {
+                                let item = []
+                                answer[element.question_code].forEach(ans => {
+                                    let obj = {}
+                                    for (const subInput in inputs[element.question_code]["inputs"]) {
+                                        obj[subInput] = { ...inputs[element.question_code]["inputs"], value: ans[subInput] }
+                                    }
+                                    item.push(obj);
+                                });
+                                inputs[element.question_code]['value'] = item;
                             }
                         }
                     } else if (input === "alternate" || element.inputs[input]["primary"]) {
@@ -57,14 +78,44 @@ function QuestionsContainer(props) {
                             for (const subInput in element.inputs[input].fields) {
                                 inputs[element.question_code][input]["inputs"][subInput] = { ...element.inputs[input].fields[subInput], value }
                             }
+                            if (answer[element.question_code] && answer[element.question_code][input].length > 0) {
+                                let item = []
+                                answer[element.question_code][input].forEach(ans => {
+                                    let obj = {}
+                                    for (const subInput in inputs[element.question_code][input]["inputs"]) {
+                                        obj[subInput] = { ...inputs[element.question_code][input]["inputs"], value: ans[subInput] }
+                                    }
+                                    item.push(obj);
+                                });
+                                inputs[element.question_code][input]['value'] = item;
+                            }
                         } else if (element.inputs[input] && element.inputs[input].primary) {
                             for (const subInput in element.inputs[input]["primary"].fields) {
                                 inputs[element.question_code]["primary"]["inputs"][subInput] = { ...element.inputs[input]["primary"].fields[subInput], value }
                             }
+                            if (answer[element.question_code] && answer[element.question_code]["primary"].length > 0) {
+                                let item = []
+                                answer[element.question_code]["primary"].forEach(ans => {
+                                    let obj = {}
+                                    for (const subInput in inputs[element.question_code]["primary"]["inputs"]) {
+                                        obj[subInput] = { ...inputs[element.question_code]["primary"]["inputs"][subInput], value: ans[subInput] }
+                                    }
+                                    item.push(obj);
+                                });
+                                inputs[element.question_code]["primary"]['value'] = item;
+                            }
                         }
+
                     } else {
+                        if (answer[element.question_code] && answer[element.question_code][input]) {
+                            value = answer[element.question_code][input]
+                        }
                         if (input === "birthdate") {
-                            value = moment().format('YYYY-MM-DD');
+                            if (value === "") {
+                                value = moment().format('YYYY-MM-DD');
+                            } else {
+                                value = moment(value).format('YYYY-MM-DD')
+                            }
                         }
                         inputs[element.question_code] = {
                             ...inputs[element.question_code],
@@ -91,6 +142,7 @@ function QuestionsContainer(props) {
                     activePageId: nextPage.id
                 })
             }
+            props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
         }
     })
     const handlePageStateChange = (questionId, pageId, e) => {
@@ -127,6 +179,21 @@ function QuestionsContainer(props) {
                             arr.push(obj)
                         });
                         answer[question] = arr;
+                    } else if (state.questions[state.activePageId][question].primary) {
+                        let typeList = ['primary', 'alternate'];
+                        let detail = {};
+                        typeList.forEach(item => {
+                            arr = [];
+                            state.questions[state.activePageId][question][item].value.forEach(element => {
+                                let obj = {}
+                                for (const key in element) {
+                                    obj[key] = element[key].value
+                                }
+                                arr.push(obj)
+                            });
+                            detail[item] = arr;
+                        })
+                        answer[question] = detail;
                     } else {
                         for (const input in state.questions[state.activePageId][question]) {
                             answer[question][input] = state.questions[state.activePageId][question][input].value
@@ -137,6 +204,7 @@ function QuestionsContainer(props) {
                 let lastPage = props.pageList.length - 1;
                 data["isFinalSubmission"] = props.pageList[lastPage].id === state.activePageId ? 1 : 0;
                 console.log(data)
+                props.updateAnswerAction(answer, state.activePageId)
                 props.pageForAnswers(data, pageCode);
             } else {
                 console.log("Page code not found")
@@ -165,6 +233,26 @@ function QuestionsContainer(props) {
                         }
                     }
                 });
+            } else if (questions[input].primary) {
+                let arr = ['primary', 'alternate'];
+                arr.forEach(item => {
+                    if (isValid) {
+                        questions[input][item].value.forEach(element => {
+                            if (isValid) {
+                                let obj = {}
+                                for (const key in element) {
+                                    if (element[key].value === "") {
+                                        isValid = false;
+                                        message = `${element[key].placeholder ? element[key].placeholder : key} is required`;
+                                        messageType = "danger";
+                                        messageFor = "form";
+                                        break;
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
             } else if (questions[input].value === "") {
                 isValid = false;
                 message = `${questions[input].placeholder ? questions[input].placeholder : input} is required`;
@@ -181,9 +269,9 @@ function QuestionsContainer(props) {
         })
         return isValid;
     }
-    const checkQuestionDependancy = (dependency) => {
+    const checkQuestionDependancy = (dependency, pageId) => {
         let isAllow = false;
-        if (state.questions[state.activePageId]) {
+        if (pageId === state.activePageId && state.questions[state.activePageId]) {
             for (let index = 0; index < dependency.length; index++) {
                 const element = dependency[index];
                 let questions = props.questions[state.activePageId];
@@ -199,20 +287,53 @@ function QuestionsContainer(props) {
                     }
                 }
             }
+        } else {
+            pageId = pageId.replace("P", "");
+            pageId = pageId.replace("0", "");
+            if (props.answerList[pageId]) {
+                for (let index = 0; index < dependency.length; index++) {
+                    const element = dependency[index];
+                    let question = props.answerList[pageId][element.question_code];
+                    let questionKey = Object.keys(props.answerList[pageId][element.question_code])[0];
+                    if (question[questionKey] === element.answer) {
+                        isAllow = true;
+                    } else {
+                        isAllow = false;
+                    }
+                }
+            }
         }
         return isAllow;
     }
-    const handleChangeOfArrayItem = (pageId, questionId, type, index, e) => {
+    const handleChangeOfArrayItem = (pageId, questionId, type, index, e, isPrimary, isAlternate) => {
         let questions = { ...state.questions }
         if (type === "add") {
-            questions[pageId][questionId]["value"].push(questions[pageId][questionId]["inputs"])
+            if (isPrimary) {
+                questions[pageId][questionId]["primary"]["value"].push(questions[pageId][questionId]["primary"]["inputs"])
+            } else if (isAlternate) {
+                questions[pageId][questionId]["alternate"]["value"].push(questions[pageId][questionId]["alternate"]["inputs"])
+            } else {
+                questions[pageId][questionId]["value"].push(questions[pageId][questionId]["inputs"])
+            }
         } else if (type === "remove") {
-            questions[pageId][questionId]["value"].splice(index, 1)
+            if (isPrimary) {
+                questions[pageId][questionId]["primary"]["value"].splice(index, 1)
+            } else if (isAlternate) {
+                questions[pageId][questionId]["alternate"]["value"].splice(index, 1)
+            } else {
+                questions[pageId][questionId]["value"].splice(index, 1)
+            }
         } else if (type === "change") {
             let id = e.target.id;
             id = id.replace("-" + index, "");
             let value = e.target.value;
-            questions[pageId][questionId]["value"][index][id].value = value;
+            if (isPrimary) {
+                questions[pageId][questionId]["primary"]["value"][index][id].value = value;
+            } else if (isAlternate) {
+                questions[pageId][questionId]["alternate"]["value"][index][id].value = value;
+            } else {
+                questions[pageId][questionId]["value"][index][id].value = value;
+            }
         }
         setState({
             ...state,
@@ -240,38 +361,63 @@ function QuestionsContainer(props) {
                                 {props.questions[state.activePageId] ? props.questions[state.activePageId].map((item, index) => {
                                     let inputs = Object.keys(item.inputs);
                                     let colLength = inputs ? 12 / inputs.length : 12;
-                                    return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies)) ? <div className="row" key={index}>
+                                    return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies, item.page_id)) ? <div className="row" key={index}>
                                         <div className="col-lg-12 col-lg-12 col-sm-12">
                                             <p className="form-inner-heading">{item.question_text}</p>
                                             {inputs && inputs.map((inputKey, i) => {
                                                 let input = item.inputs[inputKey];
+                                                let isPrimary = false;
+                                                let isAlternate = false;
                                                 if (item.inputs[inputKey]["primary"]) {
-                                                    item.inputs[inputKey] = item.inputs[inputKey]["primary"]
+                                                    input = item.inputs[inputKey]["primary"];
+                                                    isPrimary = true;
                                                 }
                                                 let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code][inputKey].value : ""
                                                 let arrFields = input.input === "array" ? Object.keys(input.fields) : []
-                                                colLength = arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12;
-                                                return input.input === "array" ? <React.Fragment>{
-                                                    state.questions[state.activePageId][item.question_code].value.map((ques, quesIndex) => {
-                                                        return <div className="row" key={quesIndex}>{arrFields.map((arrInputKey, j) => {
-                                                            let arrInput = input.fields[arrInputKey];
-                                                            value = state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code]["value"][quesIndex][arrInputKey].value : ""
-                                                            console.log(arrInputKey, value, quesIndex)
-                                                            return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
-                                                                <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} /> :
-                                                                arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} /> : ""}
-                                                            </div>
-                                                                {
-                                                                    (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
-                                                                        <a onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'remove', quesIndex)}>delete</a>
-                                                                    </div> : ""
-                                                                }</>
-                                                        })}
+                                                colLength = input.input === "array" ? arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12 : colLength;
+                                                let answerList = [];
+                                                if (input.input === "array" && state.questions[state.activePageId] && [item.question_code]) {
+                                                    if (isPrimary) {
+                                                        answerList = state.questions[state.activePageId][item.question_code]["primary"].value
+                                                    } else if (inputKey === "alternate") {
+                                                        isAlternate = true;
+                                                        answerList = state.questions[state.activePageId][item.question_code]["alternate"].value
+                                                    } else {
+                                                        answerList = state.questions[state.activePageId][item.question_code].value
+                                                    }
+                                                }
+                                                return input.input === "array" ? <React.Fragment>
+                                                    <p className="form-inner-heading">{isPrimary ? "Primary" : isAlternate ? "Alternate" : ""}</p>
+                                                    {answerList.map((ques, quesIndex) => {
+                                                        return <div className="row" key={quesIndex}>
+                                                            {arrFields.map((arrInputKey, j) => {
+                                                                let arrInput = input.fields[arrInputKey];
+                                                                if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code]) {
+                                                                    if (isPrimary) {
+                                                                        value = state.questions[state.activePageId][item.question_code]["primary"]["value"][quesIndex][arrInputKey].value
+                                                                    } else if (isAlternate) {
+                                                                        value = state.questions[state.activePageId][item.question_code]["alternate"]["value"][quesIndex][arrInputKey].value
+                                                                    } else {
+                                                                        value = state.questions[state.activePageId][item.question_code]["value"][quesIndex][arrInputKey].value
+                                                                    }
+                                                                } else {
+                                                                    value = "";
+                                                                }
+                                                                return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
+                                                                    <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
+                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} /> : ""}
+                                                                </div>
+                                                                    {
+                                                                        (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
+                                                                            <a onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'remove', quesIndex, 'evnet', isPrimary, isAlternate)}>delete</a>
+                                                                        </div> : ""
+                                                                    }</>
+                                                            })}
                                                         </div>
                                                     })}
 
                                                     <div className="col-lg-12 col-lg-12 col-sm-12 center">
-                                                        <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add')} >Add</button>
+                                                        <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
                                                     </div>
                                                 </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                     {input.input === "text" ?
@@ -371,33 +517,6 @@ function DateInput(props) {
                 value={props.value === "" ? new Date() : new Date(props.value)}
             />
         </div>
-        {/* <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" }}>
-            <select name="days" id="days" className="form-input-field">
-                <option value="0">Days</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" }}>
-            <select name="month" id="month" className="form-input-field">
-                <option value="0">Month</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div className="col-lg-4 col-lg-4 col-sm-4" style={{ paddingLeft: "0px" }}>
-            <select name="gender" id="gender" className="form-input-field">
-                <option value="0">Years</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-        </div> */}
     </React.Fragment>
 }
 
@@ -407,13 +526,16 @@ const mapStateToProps = (state, ownProps) => ({
     pageList: state.questionReducer.pageList,
     sectionList: state.questionReducer.sectionList,
     questions: state.questionReducer.questions,
-    stateList: state.questionReducer.stateList
+    stateList: state.questionReducer.stateList,
+    answerList: state.questionReducer.answerList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getStateList: () => dispatch(getStateList()),
     getQuestionList: (pageId) => dispatch(getQuestionList(pageId)),
     getFormSection: () => dispatch(getFormSection()),
+    getAllAnswer: () => dispatch(getAllAnswer()),
+    updateAnswerAction: (data, pageId) => dispatch(updateAnswerAction(data, pageId)),
     pageForAnswers: (data, pageId) => dispatch(pageForAnswers(data, pageId)),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })

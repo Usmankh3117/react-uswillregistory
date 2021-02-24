@@ -2,9 +2,12 @@ import {
   getFormSection,
   getQuestionList,
   getStatesList,
+  getAllAnswer,
+  updateAnswer,
 } from "./../Actions/action";
 import StoreState from "./../../../Constants/initialState";
 import cloneDeep from "lodash/cloneDeep";
+import { act } from "react-dom/test-utils";
 
 export default function questionReducer(state = StoreState.question, action) {
   switch (action.type) {
@@ -23,6 +26,17 @@ export default function questionReducer(state = StoreState.question, action) {
       let s2 = cloneDeep(state);
       s2.stateList = action.payload;
       return s2;
+
+    case getAllAnswer:
+      let s3 = cloneDeep(state);
+      s3.answerList = action.payload;
+      return s3;
+
+    case updateAnswer:
+      let s4 = cloneDeep(state);
+      s4.answerList[action.payload.pageId] = action.payload.data;
+      return s4;
+
     default:
       return state;
   }

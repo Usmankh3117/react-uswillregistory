@@ -3,6 +3,7 @@ import {
   getFormSectionAction,
   getQuestionListAction,
   getStatesListAction,
+  getAllAnswerAction,
 } from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
 import { FETCH } from "../../../Services/fetch";
@@ -111,6 +112,31 @@ export function pageForAnswers(data, pageId) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "pageForAnswers",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function getAllAnswer() {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "getAllAnswer" }));
+    let url = Constant.apiURl + "/answers";
+    let myJson = await FETCH("GET", url);
+    if (myJson && myJson.status === "success") {
+      dispatch(getAllAnswerAction(myJson.answers));
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "getAllAnswer",
+          message: myJson.message,
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "getAllAnswer",
           message: myJson.errors,
         })
       );

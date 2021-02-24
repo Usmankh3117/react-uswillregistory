@@ -29,6 +29,11 @@ var StoreState = {
     pageList: [],
     questions: {},
     stateList: [],
+    answerList: [],
   },
+  landing:{
+    slugList:[],
+    slugDetail:{}
+  }
 };
 export default StoreState;
