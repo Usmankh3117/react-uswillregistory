@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Wrapper } from '../Css/profile';
 
 function ProfileContainer(props) {
-    const redirectToEdit = () => {
-        props.history.push('/edit-profile');
+    const redirectToUrl = (url) => {
+        props.history.push(url);
     }
     return <Wrapper className="profile-section">
         <div className="container">
@@ -51,7 +51,7 @@ function ProfileContainer(props) {
                 <div className="col-lg-8 col-md-8 col-sm-8 center">
                     <h1 ><span className="bold blue">Complete</span> your will form</h1>
                     <div className="row mg-top-20"></div>
-                    <button className="click-here-btn" onClick={()=>redirectToEdit()}>Click Here</button>
+                    <button className="click-here-btn" onClick={() => redirectToUrl('/form')}>Click Here</button>
                 </div>
                 <div className="col-lg-2 col-md-2 col-sm-2"></div>
             </div>

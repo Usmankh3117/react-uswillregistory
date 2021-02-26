@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a9e7240f.chunk.css",
+    "main.js": "/static/js/main.383ec656.chunk.js",
+    "main.js.map": "/static/js/main.383ec656.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.466f4a21.js",
+    "runtime-main.js.map": "/static/js/runtime-main.466f4a21.js.map",
+    "static/css/2.ab33d419.chunk.css": "/static/css/2.ab33d419.chunk.css",
+    "static/js/2.c77b1f2d.chunk.js": "/static/js/2.c77b1f2d.chunk.js",
+    "static/js/2.c77b1f2d.chunk.js.map": "/static/js/2.c77b1f2d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.964e0995537d53776413653d6a701ce8.js": "/precache-manifest.964e0995537d53776413653d6a701ce8.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ab33d419.chunk.css.map": "/static/css/2.ab33d419.chunk.css.map",
+    "static/css/main.a9e7240f.chunk.css.map": "/static/css/main.a9e7240f.chunk.css.map",
+    "static/js/2.c77b1f2d.chunk.js.LICENSE.txt": "/static/js/2.c77b1f2d.chunk.js.LICENSE.txt",
+    "static/media/Spinner-1s-200px.gif": "/static/media/Spinner-1s-200px.17d05b4f.gif",
+    "static/media/TheUSWillRegistry.png": "/static/media/TheUSWillRegistry.9897a055.png",
+    "static/media/about-us-img.png": "/static/media/about-us-img.dd1d446d.png",
+    "static/media/contact-us-top-img.png": "/static/media/contact-us-top-img.18cfa373.png",
+    "static/media/faq-img.png": "/static/media/faq-img.6062e74a.png",
+    "static/media/footer-logo.png": "/static/media/footer-logo.23473546.png",
+    "static/media/footer-logo1.png": "/static/media/footer-logo1.5f774af4.png",
+    "static/media/header-logo-a.png": "/static/media/header-logo-a.48848f94.png",
+    "static/media/header-logo.png": "/static/media/header-logo.a9f2e833.png",
+    "static/media/index-page-img1.png": "/static/media/index-page-img1.ad8a7ff0.png",
+    "static/media/last-will.png": "/static/media/last-will.3080f574.png",
+    "static/media/last_will_and_testaments.png": "/static/media/last_will_and_testaments.08ea8722.png",
+    "static/media/make-will.png": "/static/media/make-will.1771cbc7.png",
+    "static/media/make-your-will.png": "/static/media/make-your-will.680c00a2.png",
+    "static/media/round-logo-2.png": "/static/media/round-logo-2.80c4af33.png",
+    "static/media/signin-image-large.png": "/static/media/signin-image-large.8d150919.png",
+    "static/media/signin-img.png": "/static/media/signin-img.b295763d.png",
+    "static/media/will-img.png": "/static/media/will-img.56bb6984.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.466f4a21.js",
+    "static/css/2.ab33d419.chunk.css",
+    "static/js/2.c77b1f2d.chunk.js",
+    "static/css/main.a9e7240f.chunk.css",
+    "static/js/main.383ec656.chunk.js"
+  ]
+}
