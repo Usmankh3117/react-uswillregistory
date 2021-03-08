@@ -115,18 +115,6 @@ function Footer(props) {
                                         </li>
                                     </ul>
 
-                            </div>
-                        </div>
-                    </div>
-                </React.Fragment> :
-                    <div className="row">
-                        <div className="col-lg-4 col-md-4 col-sm-4">
-                            <div className="footer__about">
-                                <div className="footer__about__logo">
-                                    <Image name="round-logo-2.png" alt="logo" />
-                                </div>
-                                <div className="footer__widget">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis.</p>
                                 </div>
                             </div>
                         </div>
