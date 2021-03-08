@@ -14,7 +14,15 @@ export default function AboutUs(props) {
 function GetStarted(props) {
     return <section className="get-started">
         <div className="started-img">
-            <Image name="about-us-img.png" alt="contact us img" />
+            <Image name="about-us-img.jpg" alt="contact us img" />
+               <div className="banner-text">
+                <div className="banner-heading">
+                    <h1>ABOUT US</h1>
+                </div>
+                <div className="banner-details">
+                    <p>Know about us, Please read briefly then</p>
+                </div>
+            </div>
         </div>
     </section>
 }

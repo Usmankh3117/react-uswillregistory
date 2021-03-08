@@ -69,7 +69,7 @@ export const Wrapper = styled.div`
 .search-detail-div {
     border: 1px solid #ffffff;
     box-shadow: 0px 0px 10px #ececec;
-    margin: 20px 15px;
+    margin: 20px 0px;
     width: 47%;
     border-radius: 25px;
     position: relative;
@@ -117,8 +117,8 @@ export const Wrapper = styled.div`
 .last-will-section > .make-your-will > img{
     border-radius: 15px;
 }
-.last-will-section > .make-your-will > button{
-    right: 10%;
+.last-will-section > .make-your-will > a{
+    right: 11%;
     top: 35%;
     padding: 8px 8px 5px 8px;
     position: absolute;

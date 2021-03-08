@@ -2,7 +2,21 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
 /* sign in style sheet */
-
+.mg-top-15-si {
+    margin-top: 15px;
+}
+.mg-top-30-si {
+    margin-top: 30px;
+}
+.mg-top-30-si-not {
+    margin-top: 30px;
+}
+.mg-top-25-si {
+    margin-top: 25px;
+}
+.mg-top-21-si {
+    margin-top: 21px;
+}
 .heading-section {
     text-align: center;
 }
@@ -21,7 +35,7 @@ export const Wrapper = styled.div`
 	color: #595959;
 }
 
-.login-img-div {
+.register-form-div {
     border-radius: 25px;
     background-color: #254b8c;
 }

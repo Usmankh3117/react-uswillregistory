@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { LogoutUser } from "../Auth/ApiCalls/auth";
 import { ClearApiByNameAction } from "../ApiCallStatus/Actions/action";
+import { getSlugPages } from "../LandingPages/Apicalls/landing";
+import { getCookie } from "../../Services/cookies";
 
 function Header(props) {
     useEffect(() => {
@@ -12,8 +14,16 @@ function Header(props) {
             props.history.push('/')
         }
     })
+    useEffect(() => {
+        props.getSlugPages()
+    }, [])
     const logoutUser = () => {
         props.LogoutUser();
+    }
+    const getUserName = (email) => {
+        var nameMatch = email.match(/^([^@]*)@/);
+        var name = nameMatch ? nameMatch[1] : null;
+        return name;
     }
     return <section className="header-section">
         <div className="icondiv">
@@ -40,13 +50,15 @@ function Header(props) {
                     <div className="lower-header">
                         <ul className={`list-group ${props.user.isLogin ? "right" : ""}`}>
                             {props.user.isLogin ? <React.Fragment>
+                                {/* <li className="list-group-item border-right">
+                                    <Image name="user_img.png" alt="img" className="top-name-img" />
+                                    <select name="profile"  value={getCookie("email")} class="profile-dropdown">
+                                        <option value={getCookie("email")}>Edit Profile</option>
+                                    </select>
+                                </li> */}
                                 <li className="list-group-item border-right">
                                     <Image name="user_img.png" alt="img" className="top-name-img" />
-                                    <select name="profile" id="profile" class="profile-dropdown">
-                                        <option value="Name">Name</option>
-                                        <option value="Name2">Name2</option>
-                                        <option value="Name3">Name3</option>
-                                    </select>
+                                    <Link to="/edit-profile" className="top-menu">{getUserName(getCookie("email"))}</Link>
                                 </li>
                                 <li className="list-group-item">
                                     <a onClick={() => logoutUser()} className="top-menu">Logout</a>
@@ -91,10 +103,14 @@ function Header(props) {
 
 const mapStateToProps = (state, ownProps) => ({
     apiCallStatus: state.apicallStatusReducer,
-    user: { isLogin: state.authReducer.isLogin, }
+    user: {
+        isLogin: state.authReducer.isLogin,
+        email: state.authReducer.email
+    }
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    getSlugPages: () => dispatch(getSlugPages()),
     LogoutUser: () => dispatch(LogoutUser()),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName))
 })

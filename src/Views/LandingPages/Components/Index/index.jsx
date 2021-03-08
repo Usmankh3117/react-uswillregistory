@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { Wrapper } from '../../Css/index';
 import Image from "../../../Common/Components/image";
 
@@ -15,6 +16,13 @@ function GetStarted(props) {
     return <section className="get-started">
         <div className="started-img">
             <Image name="index-page-img1.png" alt="" />
+            <div className="landing-page-top-text">
+                <p className="empty-line"></p>
+                <h2 className="where-there">WHERE THERE'S A WILL</h2>
+                <h1 className="there-a-will">THERE'S A WAY</h1>
+                <h3 className="for-those-left-behind">for Those Left Behind, to Find Peace of Mind.</h3>
+                <Link to="/login" className="get-started-link">Get Started</Link>
+            </div>
         </div>
     </section>
 }
@@ -213,7 +221,9 @@ function LastWill(props) {
 
         <div className="make-your-will">
             <Image name="make-will.png" alt="make your will" />
-            <button>GET STARTED</button>
+            <Link to="/login">GET STARTED</Link>
+
+            {/* <button>GET STARTED</button> */}
         </div>
     </section>
 }

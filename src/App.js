@@ -10,6 +10,7 @@ import Faq from "./Views/LandingPages/Components/Faq/faq";
 import LastWill from "./Views/LandingPages/Components/LastWill/lastWill";
 import Privacy from "./Views/LandingPages/Components/Privacy/privacy";
 import Search from "./Views/LandingPages/Components/Search/search";
+import ContentPage from "./Views/LandingPages/Components/ContentPage/contentpage";
 // Private Routes
 import Profile from "./Views/Profile/Components/profileContainer";
 import EditProfile from "./Views/Profile/Components/editProfile";
@@ -26,7 +27,7 @@ const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      <Header history={history}/>
+      <Header history={history} />
       <Switch>
         <Route exact path="/" name="Index" component={Index} />
         <Route exact path="/contact-us" name="ContactUs" component={ContactUs} />
@@ -37,12 +38,13 @@ function App() {
         <Route exact path="/search" name="Search" component={Search} />
         <Route exact path="/login" name="Login" component={Login} />
         <Route exact path="/signup" name="SignUp" component={SignUp} />
-        <Route path="/forgot-password"name="ForgotPassword" component={ForgotPassword}/>
-        <Route path="/reset-password"name="ResetPassword" component={ResetPassword}/>
-        <Route path="/verify/:id" name="VerifyAccount" component={VerifyAccount}/>
+        <Route path="/forgot-password" name="ForgotPassword" component={ForgotPassword} />
+        <Route path="/reset-password" name="ResetPassword" component={ResetPassword} />
+        <Route path="/verify/:id" name="VerifyAccount" component={VerifyAccount} />
         <Route exact path="/profile" name="Profile" component={Profile} />
         <Route exact path="/edit-profile" name="EditProfile" component={EditProfile} />
-        <Route exact path="/form" name="QuestionsForm" component={QuestionsForm}/>
+        <Route exact path="/form" name="QuestionsForm" component={QuestionsForm} />
+        <Route exact path="/:id" name="ContentPage" component={ContentPage} />
       </Switch>
       <Footer />
     </Router>

@@ -11,8 +11,8 @@ import Image from '../../Common/Components/image';
 import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
-	email: "sharoza51@gmail.com",
-	password: "User@123",
+	email: "",// "sharoza51@gmail.com",
+	password: "",//"User@123",
 	message: "",
 	messageType: "",
 	messageFor: "",
@@ -40,9 +40,9 @@ function Login(props) {
 		if (props.apiCallStatus.apiCallFor === "LoginUser" && props.apiCallStatus.isCompleted && props.apiCallStatus.isFailed) {
 			let msg = '';
 			if (typeof props.apiCallStatus.message === 'object') {
-				if(props.apiCallStatus.message[0]){
+				if (props.apiCallStatus.message[0]) {
 					msg = props.apiCallStatus.message[0];
-				}else{
+				} else {
 					for (const property in props.apiCallStatus.message) {
 						if (props.apiCallStatus.message[property][0] !== "") {
 							msg = props.apiCallStatus.message[property][0];
@@ -121,7 +121,7 @@ function Login(props) {
 	}
 	return (
 		<Wrapper>
-			<AuthWrapper parentclassName="login-img-div" formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
+			<AuthWrapper parentClass="login-img-div " formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
 				<div className="login-form">
 					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 						<div className="input-group">
@@ -139,13 +139,12 @@ function Login(props) {
 							: ""}
 						<div className="input-group1">
 							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
-							<label for="rememberme"> Remember Me?</label>
+							<label for="rememberme"> &nbsp;Remember Me?</label>
 							<a href="#">Forget Password?</a>
 						</div>
 						<div className="submit-btn">
-							<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign In" className="form-control" name="submit" />
+							<input id="submit" onClick={(e) => handleSubmit(e)}  type="submit" value="Sign In" className="submit" name="submit" />
 						</div>
-
 					</form>
 					<div className="row mg-top-15"></div>
 					<div className="create-one-account">

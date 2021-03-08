@@ -14,6 +14,14 @@ function GetStarted(props) {
     return <section className="get-started">
         <div className="started-img">
             <Image name="contact-us-top-img.png" alt="contact us img" />
+            <div class="banner-text">
+                <div class="banner-heading">
+                    <h1>CONTACT US</h1>
+                </div>
+                <div class="banner-details">
+                    <p>we'd love to talk about how we can help you</p>
+                </div>
+            </div>
         </div>
     </section>
 }
