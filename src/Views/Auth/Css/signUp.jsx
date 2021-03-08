@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import {createGlobalStyle } from "styled-components";
 
-export const Wrapper = styled.div`
+export const Style = createGlobalStyle`
 /* sign in style sheet */
 
 .heading-section {

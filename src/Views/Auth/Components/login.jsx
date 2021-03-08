@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { AuthWrapper } from "./authWrapper";
-import { Wrapper } from '../Css/login';
+import { Style } from '../Css/login';
 import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 import { Constant } from "../../../Constants/constant";
 import Image from '../../Common/Components/image';
+import RegisterBg from "../../../assets/img/updated-01.png";
 import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
@@ -120,59 +121,85 @@ function Login(props) {
 
 	}
 	return (
-		<Wrapper>
-			<AuthWrapper parentClass="login-img-div " formName="Login" name="Sign In" description="Please ! Login to this form or" linkUrl="" linkLabel="Create an account">
-				<div className="login-form">
-					<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-						<div className="input-group">
-							<span className="input-group-addon"><i className="fa fa-user"></i></span>
-							<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
-						</div>
-						<div className="input-group">
-							<span className="input-group-addon"><i className="fa fa-lock"></i></span>
-							<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
-						</div>
-						{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-							<div className="loader-img text-center">
-								<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
-							</div>
-							: ""}
-						<div className="input-group1">
-							<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
-							<label for="rememberme"> &nbsp;Remember Me?</label>
-							<a href="#">Forget Password?</a>
-						</div>
-						<div className="submit-btn">
-							<input id="submit" onClick={(e) => handleSubmit(e)}  type="submit" value="Sign In" className="submit" name="submit" />
-						</div>
-					</form>
-					<div className="row mg-top-15"></div>
-					<div className="create-one-account">
-						<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create One</Link></span>
-					</div>
-					<div className="row mg-top-15"></div>
+		<React.Fragment>
+			<Style />
+			<section className="sign-in-section">
+				<div className="container">
 					<div className="row">
-						<div className="col-lg-12 col-md-12 col-sm-12 or-outer-div">
-							<div className="or-div">
-								<span className="or">OR</span>
-							</div>
+						<div className="sign-in-heading-section text-center">
+							<h1 className="heading"><span className="bold">Sign In</span> form</h1>
 						</div>
 					</div>
+					<div className="row">
+						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1"
+							style={{ backgroundImage: `url(${RegisterBg})`, backgroundSize: "cover" }}>
+							<div className="login-left-inner-div1">
+								<p className="heading1"><span className="bold-text">Welcome</span> to the The Will Registry</p>
+								<p className="para1">Enter you personal details and start your journey</p>
+							</div>
+							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-					<div className="row">
-						<div className="row mg-top-30"></div>
-						<div className="row mg-top-30"></div>
-						<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
-							<i className="fa fa-facebook bottom-icons" style={{ padding: "10px 14px" }}></i>
-							<i className="fa fa-instagram bottom-icons"></i>
-							<i className="fa fa-google bottom-icons"></i>
+							</div>
+							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+								<div className="form-heading">
+									<h2 style={{ color: "#033168" }}>Login</h2>
+								</div>
+								<div className="login-form">
+									<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+										<div className="input-group">
+											<span className="input-group-addon"><i className="fa fa-user"></i></span>
+											<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
+										</div>
+										<div className="input-group">
+											<span className="input-group-addon"><i className="fa fa-lock"></i></span>
+											<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
+										</div>
+										{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+											<div className="loader-img text-center">
+												<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+											</div>
+											: ""}
+										<div className="input-group1">
+											<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
+											<label for="rememberme"> &nbsp;Remember Me?</label>
+											<a href="#">Forget Password?</a>
+										</div>
+										<div className="submit-btn">
+											<input id="submit" onClick={(e) => handleSubmit(e)} type="submit" value="Sign In" className="submit" name="submit" />
+										</div>
+									</form>
+									<div className="create-one-account">
+										<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create
+                                        One</Link></span>
+									</div>
+									<div className="row">
+										<div className="col-lg-12 col-md-12 col-sm-12 or-outer-div">
+											<div className="or-div">
+												<span className="or">OR</span>
+											</div>
+										</div>
+									</div>
+
+									<div className="row login-social-media-icons">
+										<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
+											<i className="fa fa-facebook bottom-icons" style={{ padding: "10px 14px" }}></i>
+											<i className="fa fa-instagram bottom-icons"></i>
+											<i className="fa fa-google bottom-icons"></i>
+										</div>
+									</div>
+
+									<div className="row mg-top-25-si"></div>
+									<div className="row mg-top-21-si"></div>
+
+								</div>
+
+							</div>
 						</div>
 					</div>
-					<div className="row mg-top-25"></div>
-					<div className="row mg-top-21"></div>
 				</div>
-			</AuthWrapper>
-		</Wrapper>
+			</section >
+		</React.Fragment >
 	);
 }
 

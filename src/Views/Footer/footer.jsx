@@ -1,13 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "../Common/Components/image";
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const ignoreLinks = ["/login", "/signup"]
 
 
 function Footer(props) {
-    let isIgnore = ignoreLinks.indexOf(window.location.pathname) !== -1;
+    const [isIgnore, setIsIgnore] = useState(ignoreLinks.indexOf(window.location.pathname) !== -1)
+    props.history.listen((location, action) => {
+        if ((ignoreLinks.indexOf(window.location.pathname) !== -1) !== isIgnore) {
+            setIsIgnore(ignoreLinks.indexOf(window.location.pathname) !== -1)
+        }
+    })
     return <Fragment>
         <footer className={`${isIgnore ? "footer1" : "footer"} spad`}>
             <div className="container">
@@ -41,7 +46,7 @@ function Footer(props) {
                                         </li>
                                         <li className="list-group-item1 footer-icon-signin1 footer-form">
                                             <form action="#">
-                                                <input type="text" placeholder="Enter your Email" style={{ fontSize: "18px", padding: "5px" }} />
+                                                <input type="text" placeholder="Enter your Email" style={{ fontSize: "16px", padding: "5px" }} />
                                                 <button type="submit" className="footer-submit-btn1"><i className="fa fa-arrow-right"></i></button>
                                             </form>
                                         </li>
@@ -200,7 +205,7 @@ function Footer(props) {
                         </div>}
             </div>
         </footer>
-        <footer style={{ backgroundColor: "#404044" }}>
+        <footer className="bottom-footer">
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 copyrights">

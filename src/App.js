@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/form" name="QuestionsForm" component={QuestionsForm} />
         <Route exact path="/:id" name="ContentPage" component={ContentPage} />
       </Switch>
-      <Footer />
+      <Footer history={history}/>
     </Router>
   );
 }
