@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { RegisterStyle } from '../Css/signUp';
 import { connect } from 'react-redux';
-import { AuthWrapper } from "./authWrapper";
+// import { AuthWrapper } from "./authWrapper";
 import { signUpUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
@@ -238,7 +238,7 @@ function SignUp(props) {
 									</select>
 								</div>
 							</div> */}
-												<div className="col-lg-6 col-md-6 col-sm-6">
+												<div className="col-lg-12 col-md-12 col-sm-12">
 													<div className="input-group1">
 														<select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 															<option value="">Select gender</option>
@@ -247,7 +247,9 @@ function SignUp(props) {
 														</select>
 													</div>
 												</div>
-												<div className="col-lg-6 col-md-6 col-sm-6">
+											</div>
+											<div className="row">
+												<div className="col-lg-12 col-md-12 col-sm-12">
 													<div className="input-group1">
 														<select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
 															<option value="">Select State</option>
@@ -305,6 +307,7 @@ function SignUp(props) {
 											<div className="submit-btn">
 												<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign Up" name="submit" />
 											</div>
+											<div class="row empty-space"></div>
 										</form>
 
 										<div className="row mg-top-25-reg"></div>
