@@ -1,6 +1,6 @@
 import {createGlobalStyle } from "styled-components";
 
-export const Style = createGlobalStyle`
+export const RegisterStyle = createGlobalStyle`
 /* sign in style sheet */
 
 .heading-section {
@@ -35,13 +35,25 @@ export const Style = createGlobalStyle`
 	border-top-right-radius: 25px;
 	border-bottom-right-radius: 25px;
 }
+.register-form .form-control1:focus {
+    box-shadow: unset !important;
+}
 .for-bg-shadow {
 	padding: 0px !important;
 	border-radius: 25px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.login-left-outer-div1 {
+    background-position: right;
+}
+.container {
+    width: 100% !important;
+    padding-left: 70px !important;
+    padding-right: 70px !important;
+}
 .register-form {
-    padding: 0% 10%;
+    padding: 0% 9%;
+    margin-top: 7%;
 }
 .register-form > form > .input-group {
 	border: 1px solid black !important; 
@@ -85,14 +97,19 @@ export const Style = createGlobalStyle`
 .submit-btn {
 	text-align: center;
 	margin-top: 30px;
+    margin-bottom: 14px;
 }
 .submit-btn > .submit {
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     background-color: #f85656;
     border-radius: 30px;
     border: 1px solid #f85656;
-    padding: 10px 40px 10px 40px;
+    padding: 4px 54px;
+}
+.submit:hover {
+    background-color: #fff;
+    color: #f85656;
 }
 .create-one-account {
 	text-align: center;
@@ -103,7 +120,25 @@ export const Style = createGlobalStyle`
 	text-decoration: none;
 }
 .logo-img {
-	width: 100%;
+	/* width: 100%; */
+}
+.login-left-outer-div1 {
+    position: relative;
+}
+.login-left-inner-div1 {
+    position: absolute;
+    left: 10%;
+    top: 45%;
+    color: #fff;
+    line-height: 16px;
+    text-align: center;
+}
+.login-left-inner-div1 > .heading1 {
+    font-size: 26px;
+}
+.login-left-inner-div1 > .para1 {
+    font-size: 14px;  
+    font-weight: 300;
 }
 .red {
     color: #f85656;
@@ -137,20 +172,27 @@ export const Style = createGlobalStyle`
 
 .input-group1 {
     width: 100%;
-    margin: 6.2px 0px;
+    margin: 1.5% 0%;
+}
+.sign-in-section {
+    margin: 5% 0%;
+}
+.form-heading {
+    text-align: center;
+    margin-top: 13%;
 }
 
 .form-control1 {
     display: block;
     width: 100%;
-    height: 48px;
+    height: 53px;
     padding: 8px 7px;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #acacac;
+    border: 1px solid #03336c;
     border-radius: 0px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -161,4 +203,31 @@ export const Style = createGlobalStyle`
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 }
+.form-control1:focus {
+    border: 1px solid #0d3460;
+    outline: unset !important;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
+}
+.empty-space {
+    margin-bottom: 20% ;
+}
+.fa-arrow-right {
+    color: #052d5e;
+}
+.padding-form{
+        padding-right: 1px;
+    }
+
+    @media (max-width: 992px){
+    .login-left-outer-div1 {
+        background: unset !important;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 2000px){
+    .padding-form{
+        padding-right: 0px !important;
+    }
+  }
+
+ 
 `

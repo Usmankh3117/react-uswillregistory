@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { Style } from '../Css/signUp';
+import { RegisterStyle } from '../Css/signUp';
 import { connect } from 'react-redux';
 import { AuthWrapper } from "./authWrapper";
 import { signUpUser } from "../ApiCalls/auth";
@@ -172,7 +172,7 @@ function SignUp(props) {
 	}
 	return (
 		<React.Fragment>
-			<Style />
+			<RegisterStyle />
 			<section className="sign-in-section">
 				<div className="container">
 					<div className="row">
@@ -199,11 +199,11 @@ function SignUp(props) {
 									<div className="register-form">
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 											<div className="row">
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4 padding-form">
 													<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4 padding-form">
 													<Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
