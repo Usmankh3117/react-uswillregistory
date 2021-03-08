@@ -13,16 +13,16 @@ import Image from '../../Common/Components/image';
 
 const defaultState = {
 	"form": {
-		"email": "tes@gmail.com",
-		"first_name": "User",
-		"middle_name": "USer",
-		"last_name": "User",
+		"email": "",
+		"first_name": "",
+		"middle_name": "",
+		"last_name": "",
 		// "birthdate": "",
 		"country": "",
 		"state": "",
-		"gender": "male",
-		"password": "User@123",
-		"repeatPassword": "User@123",
+		"gender": "",
+		"password": "",
+		"repeatPassword": "",
 		"day": "",
 		"month": "",
 		"year": "",

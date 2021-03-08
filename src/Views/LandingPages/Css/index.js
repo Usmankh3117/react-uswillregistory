@@ -81,13 +81,13 @@ export const Style = createGlobalStyle`
     height: 30px;
   }
 
-  .will-div > .top-image > img {
+.will-div > .top-image > img {
     width: 100%;
     margin-top: 6%;
     border-radius: 14px 14px 0px 0px;
-  }
+}
 
-  .will-details {
+.will-details {
     padding: 5%;
     margin-top: 20%;
   }
@@ -149,21 +149,21 @@ export const Style = createGlobalStyle`
   }
   .forms-section {
     margin-bottom: 5%;
-  }
-  .witnesa-page-form {
+}
+.witnesa-page-form {
     text-align: center;
-  }
-  .witnesa-page-form > span {
+}
+.witnesa-page-form > span{
     background: #00387b;
     font-size: 24px;
     color: white;
     margin-left: -5px;
     font-weight: 500;
-  }
-  .self-affidevit-form {
+}
+.self-affidevit-form {
     text-align: center;
-  }
-  .self-affidevit-form > span {
+}
+.self-affidevit-form > span{
     background: #d81212;
     padding: 21px 11px 27px 14px;
     font-size: 24px;
@@ -171,8 +171,8 @@ export const Style = createGlobalStyle`
     margin-left: -5px;
     font-weight: 500;
     width: 100%;
-  }
-  .last-will {
+}
+.last-will {
     margin-top: 5%;
   }
   .left-border {
@@ -227,8 +227,8 @@ export const Style = createGlobalStyle`
     box-shadow: 0 0 10px #d7d7d7;
     border-radius: 22px;
     width: 85%;
-  }
-  .count {
+}
+.count {
     background: #71c9ff;
     border-radius: 100%;
     box-shadow: inset 0px 0px 0px 3px white;
@@ -253,8 +253,8 @@ export const Style = createGlobalStyle`
     font-size: 13px;
     line-height: 23px;
     color: #6f6f6f;
-  }
-  .info-border {
+}
+.info-border {
     border-left: 3px solid #fff;
     margin-top: 10%;
     margin-bottom: 5%;
@@ -266,22 +266,22 @@ export const Style = createGlobalStyle`
     font-family: "trajanRegular";
     margin-left: 15px;
     color: #fff;
-  }
-  .Nationwide {
+}
+.Nationwide {
     color: #fff;
     text-align: center;
     font-size: 24px;
     line-height: 26px;
-  }
-  .info-detail {
+}
+.info-detail {
     color: #fff;
     text-align: center;
     font-size: 20px;
     line-height: 15px;
     font-style: italic;
     margin-bottom: 3.5%;
-  }
-  .info-mini-detail {
+}
+.info-mini-detail {
     color: #fff;
     margin-bottom: 5%;
     opacity: 0.8;
@@ -294,7 +294,7 @@ export const Style = createGlobalStyle`
     font-weight: 300;
   }
 
-  .last-will-section > .make-your-will {
+.last-will-section > .make-your-will {
     position: absolute;
     top: 95%;
     right: 10%;
