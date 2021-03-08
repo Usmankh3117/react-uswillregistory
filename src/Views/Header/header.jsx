@@ -30,7 +30,6 @@ function Header(props) {
                             </Link>
                             <div className="col-lg-8 col-md-8 col-sm-6">
                             </div>
-
                         </div>
                     </div>
                 </div>

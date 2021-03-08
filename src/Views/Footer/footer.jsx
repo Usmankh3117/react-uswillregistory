@@ -81,7 +81,7 @@ function Footer(props) {
                         <div className="col-lg-4 col-md-4 col-sm-4">
                             <div className="footer__about">
                                 <div className="footer__about__logo">
-                                    <Image name="footer-logo1.png" alt="logo" />
+                                    <Image name="round-logo-2.png" alt="logo" />
                                 </div>
                                 <div className="footer__widget">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis.</p>
@@ -158,10 +158,9 @@ function Footer(props) {
                     </div>}
             </div>
         </footer>
-        <footer style={{ backgroundColor: "#1a1919" }}>
+        <footer style={{ backgroundColor: "#404044" }}>
             <div className="container">
                 <div className="row">
-
                     <div className="col-md-12 copyrights">
                         <p>Copyright &copy;2019-2020 US Will Registry Co, a Delaware Public Benifits Corporation. All rights reserved </p>
                     </div>

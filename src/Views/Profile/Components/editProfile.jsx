@@ -7,7 +7,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { getUserDetail, updateUserDetail, getCityByState } from "../ApiCalls/profile";
 import { getYearList } from '../../../Services/common';
-import '../Css/editProfile.css';
+// import '../Css/editProfile.css';
 
 const defaultState = {
     "form": {

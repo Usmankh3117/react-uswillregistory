@@ -1,9 +1,55 @@
 
+body {
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #fefefe !important;
+}
 
+
+
+.header-section {
+    /* position:relative; */
+}
+.list-group-item img {
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 40px;
+}
+.footer-bottom {
+    background: #363739;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+button:focus {
+    border: none !important;
+}
 .icondiv {
     position:relative;
 }
- 
+.started-img {
+    position: relative;
+}
+.banner-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+.banner-text > .banner-heading > h1 {
+    font-size: 45px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.banner-text > .banner-details > p {
+    font-size: 30px;
+    font-weight: 300;
+}
 .header-top-part {
     background-color: #033168;
     padding: 3px;
@@ -37,6 +83,19 @@
 .logo-img {
     width: 100%;
     padding: 12px;
+}
+.submit-btn > .submit:focus {
+    border: none !important;
+    outline: unset;
+}
+
+.btn4:focus {
+    border: none !important;
+    outline: unset;
+}
+.btn5:focus {
+    border: none !important;
+    outline: unset;
 }
 .mg-top-10 {
     margin-top: 10px;
@@ -74,11 +133,13 @@
 .list-group {
     display: flex;
     border-radius: .25rem;
-    margin-top: 35px !important;
-    margin-bottom: 35px !important;
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
     padding-left: 0;
 }
-
+a:hover, a:active {
+    text-decoration: none !important;
+}
 .list-group-item {
     border: none !important;
 }
@@ -152,12 +213,12 @@
 }
 .footer {
 	background: #2a2a2c;
-	padding-top: 70px;
-	padding-bottom: 0;
+	padding-top: 30px;
+	padding-bottom: 15px;
 }
 
 .footer__about {
-	margin-bottom: 30px;
+	margin-bottom: 0px;
 }
 
 .footer__about ul li {
@@ -194,6 +255,7 @@
 	width: 50%;
     float: left;
     margin-top: 10%;
+    line-height: 38px;
 }
 
 .footer__widget ul li {
@@ -201,16 +263,21 @@
 }
 
 .footer__widget ul li a {
-	color: #cfe9e0;
-	font-size: 14px;
-	line-height: 35px;
+    color: #cfe9e0;
+    font-size: 14px;
+    line-height: 30px;
     white-space: nowrap;
+    font-weight: 300;
+    opacity: 0.8;
 }
 
 .footer__widget p {
 	font-size: 14px;
 	color: #cfe9e0;
-	margin-bottom: 30px;
+    margin-bottom: 30px;
+    line-height: 32px;
+        font-weight: 300;
+    opacity: 0.9;
 }
 
 .footer__widget form {
@@ -289,21 +356,22 @@
 
 .footer-store-logo {
     background-color: #2a2a2c !important;
+    padding: 0px 0px 0px 0px !important;
+}
+.footer-store-logo:hover {
+    transform: scale(1.1);
 }
 
-.footer-store-logo > img {
-    width: 100%;
-}
 .footer-store-logo1 {
     background-color: #2a2a2c !important;
 }
 
 .footer-store-logo1 > img {
-    width: 50%;
+    width: 70%;
     border-radius: 5px;
 }
 .footer-list-div {
-    margin-top: 8%;
+    margin-top: 5%;
 }
 .pad-right-15 {
     padding-right: 15px;
@@ -382,7 +450,15 @@
 }
 .footer1 {
     background: #2a2a2c;
-    padding: 10px;
+    padding: 25px 0 25px 0;
+    height: 100px;
+}
+.bottom-footer {
+    background: #363739;
+    padding: 10px 0 10px 0;
+}
+.footer-store-logo1:hover {
+    transform: scale(1.1);
 }
 .list-group1 {
     display: flex;
@@ -403,9 +479,12 @@
 .margin-top-10 {
     margin-top: 10%;
 }
+.margin-top-6 {
+    margin-top: 6%;
+}
 
 .bold {
-    font-weight: bold;
+    font-weight: 500;
 }
 .blue {
     color: #033168;
@@ -413,29 +492,10 @@
 .center {
     text-align: center;
 }
-.footer-form form input {
-    font-size: 18px;
-    padding: 5px;
-}
 
-.mg-top-25-reg {
-    margin-top: 25px;
-}    
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1441px) {
-    .submit-btn {
-        margin-top: 30px !important;
-    }
-    .pd-left-0 {
-        padding-left: 0px !important;
-    }
-    .sidebar-countdown p {
-        margin: 20px 0px 0px 0px !important;
-    }
-    .form-btn-div {
-        margin-top: 6% !important;
-    }
     .last-will-section > .make-your-will {
        right: 37% !important;
     }
@@ -454,25 +514,17 @@
         width: 47% !important;
     }
 }
-@media only screen and (min-width: 1200px)and (max-width: 1440px) {
-    .mg-top-15-si {
-        margin-top: 11px !important;
+@media only screen and (min-width: 1200px) {
+
+    .btn4 {
+        /* float: right; */
+    }   
+    .btn5{
+        padding: 0px 0px !important;
     }
 	/* .container {
 		max-width: 1170px;
     } */
-    .c-details {
-        width: 30.333333% !important;
-    }
-    .pd-left-0 {
-        padding-left: 0px !important;
-    }
-    .sidebar-countdown p {
-        margin: 23px 0px 0px 0px !important;
-    }
-    .form-btn-div {
-        margin-top: 10% !important;
-    }
     .will-div {
         box-shadow: 0px 0px 10px #ececec;
         border-radius: 5px;
@@ -509,56 +561,43 @@
 /* Medium Device = 1200px */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .submit-btn > .submit {
-        font-size: 17px !important;
-        padding: 0px 14px !important;
+    .form-heading {
+        margin-top: 15% !important;
+    }
+    .submit-btn {
+        margin-top: 15px !important;
+    }
+    .login-left-inner-div1 {
+        left: 5% !important;
+        top: 44% !important;
+    }
+    .btn4 {
+        float: right;
+    }   
+    .btn5{
+        padding: 0px 0px !important;
+    }
+    .top-menu {
+        font-size: 14px;
+    }
+    .info-heading {
+        font-size: 16px;
+    }
+    .Nationwide {
+        font-size: 18px;
+    }
+    .info-detail {
+        font-size: 16px;
     }    
-    .mg-top-30-si {
-        margin-top: 9px !important;
-    }
-    .mg-top-15-si {
-        display: none;
-    }
-    .profile-section-div > div > span { 
-        font-size: 16px !important;
-    }
-    .footer__widget ul li input{
-        width: 100% !important;
-    }
-    
-    .c-details {
-        width: 29.333333% !important;
-    }
-    .pd-left-0 {
-        padding-left: 0px !important;
-    }
-    .left-outer-form-div h4 {
-        margin-top: 24px;
-        width: 100%;
-        font-size: 15px;
-    }
-    .form_top_controls ul li {
-        font-size: 16px !important;
-    }
-    .form-input-field {
-        padding: 5px !important;
-    }
-    #Basic {
-        padding: 23px 0px 0px 32px !important;
-    }
-    .sidebar-countdown p {
-        margin: 12px 0px 0px 0px !important;
-    }
-    .left-outer-form-div {
-        padding: 15px 40px 38px 24px !important;
-        width: 95% !important;
-    }
     .header-right-img {
         position: absolute;
         right: 2%;
         top: 14%;
         width: 100px;
         z-index: 1;
+    }
+    .landing-page-top-text {
+        width: 50% !important;
     }
     .will-div {
         box-shadow: 0px 0px 10px #ececec;
@@ -590,7 +629,7 @@
     .last-will-section > .make-your-will {
         position: absolute;
         top: 95%;
-        right: 17% !important;
+        right: 8% !important;
     }
     .last-section > .make-will {
         position: absolute;
@@ -616,167 +655,76 @@
     .mg-top-bottom-extra-verify {
         margin-top: 158px !important;
     }
-    .top-menu {
-        font-size: 14px !important;
+    .will-icon1 {
+        right: 10% !important;
+        top: 26% !important;
+        padding: 0px 12px !important;
+    }
+    .will-icon1 > img {
+        width: 20px !important;
+        height: 20px !important;
     }
 }
 
 /* Tablet Device = 768px */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .mg-top-30-si-not {
-        display: none;
-    }
-    .login-form > form > .input-group {
-        margin-top: 8px !important;
-    }
-    .login-form > form > .input-group > .form-control {
-        padding: 8px !important;
-    }
-    .mg-top-30-si {
-        margin-top: 8px !important;
-    }
-    .mg-top-25-si {
-        display: none;
-    }
-    .or {
-        padding: 0px !important;
-        font-size: 14px !important;
-    }
-    .create-one-account {
-        font-size: 14px !important;
-    }
-    .search-menu {
-        font-size: 25px !important;
-    }
     .form-control1 {
         height: 30px !important;
-        padding: 8px 7px !important;
-        font-size: 10px !important;
+        padding: 3px 2px !important;
+        font-size: 11px !important;
     }
     .submit-btn > .submit {
-        font-size: 11px !important;
-        padding: 3px 33px 3px 33px !important;
-    }
-    .input-group1 {
-        margin: 1.2px 0px !important;
-    }
-    .mg-top-25-reg {
-        margin-top: 11px;
-    }    
-    .submit-btn {
-        margin-top: 30px !important;
-    }
-    .c-details {
-        width: 31.333333% !important;
-    }
-    .w-heading > h1 {
-        font-size: 30px !important;
-    }
-    .w-mini-heading > h1 {
-        font-size: 26px !important;
-    }
-    .w-mini-detail > p {
-        font-size: 18px !important;
-    }
-    .left-side-text {
-        font-size: 15px !important;
-        line-height: 25px !important;
-    }
-    .right-side-text {
-        font-size: 22px !important;
-        line-height: 28px !important;
-    }
-    .right-side-with-icon {
         font-size: 16px !important;
-        line-height: 23px !important;
     }
-
+    .will-icon1 {
+        right: 10% !important;
+        top: 22% !important;
+        padding: 0px 12px !important;
+    }
+    .will-icon1 > img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .btn5{
+        padding: 0px 0px !important;
+    }
     .top-menu {
         font-size: 9px;
     }
-    .header-lower-part {
-        height: 48px !important;
-    }
-    .lower-header .list-group {
+    .list-group {
         margin-top: 0px !important;
-    }
-    .will-details > .detail-heading {
-        font-size: 13px !important;
-    }
-    .will-details > .detail-p {
-        font-size: 8px !important;
-        line-height: 14px !important;
+        margin-bottom: 0px !important;
     }
     .will-icon {
-        right: 4% !important;
-        top: 27% !important;
-        padding: 2% 4% 1% 4% !important;
+        top: 26% !important;
         font-size: 16px !important;
+     }
+     .will-details > .detail-heading {
+        font-size: 12px !important;
+     }    
+     .will-details > .detail-p {
+        font-size: 9px !important;
+        line-height: 13px !important;
     }
     .will-details > .learn-more > a {
-        font-size: 10px !important;
-    }
-    .will-details > .learn-more {
-        padding: 3px 8px !important;
-    }
-    .will-details > .learn-more > i {
-        padding: 6px !important;
-        margin-top: -3px !important;
-        margin-right: -7px !important;
-    }
-    .last-will > .heading-border > .heading {
-        font-size: 17px !important;
-    }
-    .last-will > p {
-        font-size: 12px !important;
-    }
-    .mini-heading {
-        font-size: 16px !important;
-    }
-    .mini-para {
+        font-size: 9px !important;
+    } 
+    .btn4 {
+        float: right;
+    }   
+    .btn4, .btn5 {
         font-size: 11px !important;
     }
-    .info-heading {
-        font-size: 11px !important;
-    }
-    .Nationwide {
-        font-size: 18px !important;
-    }
-    .info-detail {
+    .button1 {
         font-size: 14px !important;
     }
-    .info-mini-detail, .info-mini-detail-b {
-        font-size: 11px;
+    .footer__widget ul li a {
+        line-height: 21px !important;  
     }
-    .left-outer-form-div h4 {
-        margin-top: 24px;
-        width: 100%;
-        font-size: 15px;
-    }
-    .form_top_controls ul li {
-        font-size: 15px !important;
-        margin-right: 3% !important; 
-    }
-    .form-input-field {
-        padding: 5px !important;
-    }
-    #Basic {
-        padding: 23px 0px 0px 32px !important;
-    }
-    .sidebar-countdown p {
-        margin: 12px 0px 0px 0px !important;
-    }
-    .left-outer-form-div {
-        padding: 1px 31px 24px 3px !important;
-        width: 88% !important;
-    }
-    .form-btn-div {
-        margin-top: 17% !important;
-    }
-    .right-outer-form-div {
-        width: 138% !important;
-        margin-left: -40% !important;
+    .landing-page-top-text {
+        width: 63% !important;
+        top: 10% !important;
     }
     .header-right-img {
         position: absolute;
@@ -815,31 +763,16 @@
        width: 100%;
     }
     .last-section > .make-will > img {
-       width: 77%;
+       width: 100%;
     }
     .margin-top-10 {
         margin-top: 0% !important;
     }
     .last-will-section > .make-your-will {
-        right: -8% !important;
-    }
-    .last-will-section > .make-your-will > img {
-        width: 63% !important;
-    }
-    .last-will-section > .make-your-will > button {
-        right: 42.5% !important;
-        top: 32% !important;
-        padding: 5px 5px 5px 5px !important;
-        font-size: 13px !important;
+        right: 4% !important;
     }
     .last-section > .make-will {
-        right: -8% !important;
-    }
-    .make-will > button {
-        right: 31% !important;
-        top: 35% !important;
-        padding: 5px 8px 5px 8px !important;
-        font-size: 13px !important;
+        right: 4% !important;
     }
     .c-details {
         margin: 5px !important;
@@ -857,24 +790,25 @@
         margin-top: 0px !important;
     }
     .mg-top-bottom-extra-reset {
-        margin-top: 45px !important;
-    }
-    .form-heading > h2 {
-        font-size: 30px !important;   
+        margin-top: 12px !important;
     }
     .form-heading > p {
         font-size: 22px !important;   
     }
-    .login-form > form > .input-group > .form-control {
-        font-size: 18px !important;
-        margin:0px !important;
-    }
     .login-form > form > .input-group {
        margin-top: 10px;
     }
-    .login-form > form > .input-group > span {
+    .submit-btn {
+        margin-top: 9px !important;
+    }
+    .login-left-inner-div1 {
+        left: 6% !important;
+    }
+    .login-left-inner-div1 > .heading1 {
         font-size: 20px !important;
-        padding: 10px 22px !important;
+    }
+    .login-left-inner-div1 > .para1 {
+        font-size: 12px !important;
     }
     .mg-top-top-extra-verify {
         margin-top: 100px !important;
@@ -893,29 +827,68 @@
         margin-bottom: 0px !important;
         height: 50px !important;
     }
-    .footer__about__logo > img {
-        width: 55%;
-    }
-    .footer__widget p {
-        font-size: 10px !important;
-    }
-    .footer__widget h5 {
-        margin-bottom: 0px !important;
-    }
-    .footer__widget ul li a {
-        font-size: 10px !important;
-        line-height: 15px !important;
-    }
-    .footer-heading {
-     padding-bottom: 0px !important;
-    }
 }
 
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
-    
-    
+    .form-control1 {
+        height: 24px !important;
+        padding: 3px 3px !important;
+        font-size: 12px !important;
+    }
+    .submit-btn > .submit {
+        font-size: 16px !important;
+        padding: 4px 44px !important;
+    }
+    .register-form {
+        padding: 0% 5% !important;
+        margin-top: 1% !important;
+    }    
+    .form-heading {
+        margin-top: 2% !important;
+    }
+    .submit-btn {
+        margin-top: 9px !important;
+    }
+    .login-left-inner-div1 {
+        left: 6% !important;
+    }
+    .login-left-inner-div1 > .heading1 {
+        font-size: 100% !important;
+    }
+    .login-left-inner-div1 > .para1 {
+        font-size: 100% !important;
+    }
+    .button1 {
+        font-size: 11px !important;
+    }
+    .will-icon {
+        right: 5% !important;
+        top: 53% !important;
+    }   
+    .btn4 {
+        margin-bottom: 15px !important;
+    } 
+    .btn5 {
+        padding: 0px 14px 0px 0px !important;
+    }
+    .footer__widget h5 {
+        margin-bottom: 0px !important;
+    }
+    .footer__widget ul {
+        margin-top: 0% !important;
+    }
+    .footer__about__logo {
+        margin-top: 15px !important;
+    }
+    .fa-scroll {
+        font-size: 20px !important;
+    }
+    .landing-page-top-text {
+        width: 63% !important;
+        top: 10% !important;
+    }
     .header-right-img {
         position: absolute;
         right: 4%;
@@ -945,6 +918,16 @@
         position: absolute;
         top: 98% !important;
         right: 0% !important;
+        width: 100% !important;
+    }
+    .last-will-section > .make-your-will > .left-div > .heading {
+        font-size: 18px !important;
+        margin-top: 7px !important;
+        margin-bottom: -10px;
+    }
+    .last-will-section > .make-your-will > .left-div > .para {
+        font-size: 16px !important;
+        margin-bottom: 4px !important;
     }
     .last-section > .make-will > img {
         width: 100%;
@@ -954,6 +937,9 @@
     }
     .last-will-section > .make-your-will > img {
        width: 100%;
+    }
+    .footer-store-logo > img {
+        /* width: 10% !important; */
     }
     .footer__about > .list-group {
         display: flex !important;
@@ -995,100 +981,93 @@
 /* Small Device = 320px */
 
 @media only screen and (max-width: 479px) {
-    .login-form > form > .input-group1 > label {
-        font-size: 12px !important;
+    .form-control1 {
+        /* height: 14px !important; */
+        padding: 3px 3px !important;
+        font-size: 6px !important;
     }
-    .login-form > form > .input-group1 > a {
-        font-size: 14px !important;
+    .register-form {
+        padding: 0% 0% !important;
+        margin-top: 0% !important;
     }
-    .create-one-account {
-        font-size: 14px !important;
+    .empty-space {
+        margin-bottom: 0% !important;
+    }    
+    .form-control {
+        height: 23px !important;
+    }
+    .login-form > form > .input-group {
+       margin-top: 10px;
+    }
+    .rememberme {
+        height: 9px !important;
+    }  
+    .mg-top-15-si {
+        margin-top:0px !important;
     }
     .or {
-        padding: 0px 0px !important;
-        font-size: 14px !important;
+        font-size: 9px !important;
     }
-    .heading-section .link {
-        font-size: 15px !important;
+    .bottom-icons {
+        margin-left: 3% !important;
+        font-size: 9px !important;
+        padding: 4px 5px !important;
     }
-    .right-div .top-heading {
-        font-size: 17px !important;
+    .footer-store-logo1 > img {
+        width: 42% !important;
     }
-    .right-div .mini-heading {
+    .footer-form {
+        margin-top: 8px !important;
+    }
+    .footer-form > form > input {
+        font-size: 12px !important;
+        padding: 8px !important;
+    }
+    .copyrights > p {
+        font-size: 5px !important;
+    }
+    .footer-icon-signin1 > span {
+        font-size: 12px !important;
+    }
+    .login-social-media-icons {
+        margin-top: 4% !important;
+    }
+    .login-left-inner-div1 {
+        left: 6% !important;
+        top: 40% !important;
+        line-height: 4px !important;
+    }
+    .heading-section > .heading {
         font-size: 16px !important;
     }
-    .number-right {
-        font-size: 17px !important;
+    .login-left-inner-div1 > .heading1 {
+        font-size: 9px !important;
     }
-    .w-heading > h1 {
-        font-size: 18px !important;
+    .login-left-inner-div1 > .para1 {
+        font-size: 7px !important;
     }
-    .w-mini-heading > h1 {
-        font-size: 17px !important;
+    .last-will-section > .make-your-will > a {
+        padding: 4px 8px 5px 8px !important;
+        font-size: 11px !important;
     }
-    .w-mini-detail > p {
-        font-size: 14px !important;
+    .landing-page-top-text {
+        width: 63% !important;
+        top: 10% !important;
     }
-    .left-side-text {
-        font-size: 13px !important;
-        line-height: 18px !important;
-    }
-    .right-side-text {
+    .landing-page-top-text > .where-there {
         font-size: 12px !important;
-        line-height: 16px !important;
     }
-    .w-icon-div .w-icon {
-        right: 40% !important;
-        top: -55% !important;
-        font-size: 20px !important; 
-        padding: 4px 8px 4px 9px !important;
-    }
-    .left-side-with-icon {
+    .landing-page-top-text > .there-a-will {
+        font-weight: 600;
         font-size: 18px !important;
     }
-    .right-side-with-icon {
-        font-size: 13px !important;
-        line-height: 12px !important;
-    }
-    .make-will > button {
-        right: 11% !important;
-        top: 39% !important;
-        padding: 0px 4px 2px 4px !important;
+    .landing-page-top-text > .for-those-left-behind {
+        margin-bottom: 12%;
         font-size: 10px !important;
     }
-    .left-outer-form-div {
-        padding: 1px 1px 1px 6px !important;
-        width: 100% !important;
-    }
-    .left-outer-form-div h4 {
-        width: 100% !important;
-    }
-    .form_top_controls ul li {
-        font-size: 12px !important;
-        margin-right: 2px !important;
-    }
-    #Basic {
-        padding: 24px 0px 0px 38px !important;
-    }
-    .form-btn-div .exit-btn, .next-btn {
-        width: 32% !important;
-        font-size: 12px !important;
-    }
-    .form-btn-div {
-        margin-top: 24% !important;
-    }
-    .form-input-field {
-        margin-bottom: 10px !important;
-    }
-    .right-outer-form-div {
-        margin-left: 0% !important;
-        width: 100% !important;
-    }
-    .sidebar-countdown {
-        left: 1px !important;
-    }
-    .form_top_controls {
-        margin-left: 0px !important;
+    .landing-page-top-text > .get-started-link {
+        padding: 6px 10px !important;
+        font-size: 12px !important; 
     }
     .c-details {
         width: 100% !important;
@@ -1125,271 +1104,60 @@
         width: 25% !important;
     }
 }
-@media only screen and (max-width: 375px) {
-    .login-form > form > .input-group1 > label {
-        font-size: 12px !important;
-    }
-    .login-form > form > .input-group1 > a {
-        font-size: 14px !important;
-    }
-    .create-one-account {
-        font-size: 14px !important;
-    }
-    .or {
-        padding: 0px 0px !important;
-        font-size: 14px !important;
-    }
-    .heading-section .link {
-        font-size: 15px !important;
-    }
-    .right-div .top-heading {
-        font-size: 17px !important;
-    }
-    .right-div .mini-heading {
-        font-size: 16px !important;
-    }
-    .number-right {
-        font-size: 17px !important;
-    }
-    .form_top_controls ul li {
-        font-size: 10px !important;
-        margin-right: 2px !important;
-    }
-    .w-heading > h1 {
-        font-size: 18px !important;
-    }
-    .w-mini-heading > h1 {
-        font-size: 17px !important;
-    }
-    .w-mini-detail > p {
-        font-size: 14px !important;
-    }
-    .left-side-text {
-        font-size: 13px !important;
-        line-height: 18px !important;
-    }
-    .right-side-text {
-        font-size: 12px !important;
-        line-height: 16px !important;
-    }
-    .w-icon-div .w-icon {
-        right: 40% !important;
-        top: -55% !important;
-        font-size: 20px !important; 
-        padding: 4px 8px 4px 9px !important;
-    }
-    .left-side-with-icon {
-        font-size: 18px !important;
-    }
-    .right-side-with-icon {
-        font-size: 13px !important;
-        line-height: 12px !important;
-    }
-    .make-will > button {
-        right: 11% !important;
-        top: 39% !important;
-        padding: 0px 4px 2px 4px !important;
-        font-size: 8px !important;
-    }
 
-}
-@media only screen and (max-width: 350px) {
-    .login-form > form > .input-group1 > label {
-        font-size: 12px !important;
+@media only screen and (max-width: 376px) {
+    .form-control {
+        height: 23px !important;
     }
-    .login-form > form > .input-group1 > a {
-        font-size: 14px !important;
+    .login-form > form > .input-group {
+       margin-top: 10px;
     }
-    .create-one-account {
-        font-size: 14px !important;
+    .rememberme {
+        height: 7px !important;
+    }  
+    .mg-top-15-si {
+        margin-top:0px !important;
     }
     .or {
-        padding: 0px 0px !important;
-        font-size: 14px !important;
-    }
-    .heading-section .link {
-        font-size: 15px !important;
-    }
-    .search-menu {
-        font-size: 12px !important;
-    }
-    .right-div .top-heading {
-        font-size: 17px !important;
-    }
-    .right-div .mini-heading {
-        font-size: 16px !important;
-    }
-    .number-right {
-        font-size: 17px !important;
-    }
-    .profile-section-div > div > span { 
-        font-size: 18px !important;
-    }
-    .tell-us {
-        font-size: 21px !important;
-        margin-top: 21px !important;
-    }
-    .message-section > .container > .row > .details {
-        font-size: 12px !important;
-    }
-    .login-form > form > .input-group > .form-control {
-        font-size: 10px !important;
-    }
-    .submit-btn > .submit {
-        font-size: 16px !important;
-    }
-    
-    .footer-form form input {
-        font-size: 12px !important; 
-        padding: 5px !important;
-    }
-    .follow-us-on {
-        font-size: 7px !important;
-    }
-    .SUBSCRIBE-TO-OUR-NEWS-LETTER {
-        font-size: 12px !important;
-    }
-    .footer-submit-btn1 { 
-        font-size: 14px !important;
-    }    
-    .footer-icon-signin1 {
-        margin-top: 0px !important;
-    }
-    .w-heading > h1 {
-        font-size: 18px !important;
-    }
-    .w-mini-heading > h1 {
-        font-size: 17px !important;
-    }
-    .w-mini-detail > p {
-        font-size: 14px !important;
-    }
-    .left-side-text {
-        font-size: 13px !important;
-        line-height: 18px !important;
-    }
-    .right-side-text {
-        font-size: 12px !important;
-        line-height: 16px !important;
-    }
-    .w-icon-div .w-icon {
-        right: 40% !important;
-        top: -55% !important;
-        font-size: 20px !important; 
-        padding: 4px 8px 4px 9px !important;
-    }
-    .left-side-with-icon {
-        font-size: 18px !important;
-    }
-    .right-side-with-icon {
-        font-size: 13px !important;
-        line-height: 12px !important;
-    }
-    .make-will > button {
-        right: 11% !important;
-        top: 39% !important;
-        padding: 0px 4px 2px 4px !important;
-        font-size: 8px !important;
-    }
-    
-    .header-lower-part {
-        /* height: 27px !important; */
-        margin-top: 13px !important;
-        font-size: 15px !important;
-    }
-    .list-group-item { 
-        padding: 0px !important;
-        font-size: 13px !important;
-    }
-    .top-menu {
-        font-size: 12px !important;
-    }    
-    .witnesa-page-form img {
-        width: 30% !important;
-    }
-    .witnesa-page-form > span {
-        padding: 15px 11px 17px 11px !important;
-        font-size: 16px !important;
-    }
-    .self-affidevit-form img {
-        width: 30% !important;
-    }
-    .self-affidevit-form > span {
-        padding: 16px 11px 18px 11px !important;
-        font-size: 16px !important;
-    }
-    .last-will > .heading-border > .heading {
-        font-size: 14px !important;
-    }
-    .last-will > p {
-        font-size: 11px !important;
-    }   
-    .info-heading {
-        font-size: 14px !important;
-    }
-    .Nationwide {
-        font-size: 15px !important;
-    }
-    .info-detail {
-        font-size: 16px !important;
-    }
-    .info-mini-detail, .info-mini-detail-b {
-        font-size: 12px !important;
-    }    
-    .last-will-section > .make-your-will > img {
-        width: 90% !important;
-    }
-    .last-will-section > .make-your-will {
-        top: 99% !important;
-        right: 0% !important;
-        left: 8% !important;
-    }
-    .last-will-section > .make-your-will > button {
-        right: 18% !important;
-        top: 34% !important;
-        padding: 4px 5px 1px 5px !important;
-        font-size: 7px !important;
-    }
-    .form_top_controls ul li {
-        font-size: 9px !important;
-        margin-right: 2px !important;
-    }
-    .form-input-field {
-        padding: 7px !important;
-        font-size: 13px !important;
-    }
-    .sidebar-countdown p {
-        margin: 20px 0px 0px 0px !important;
-    }
-    .left-outer-form-div h4 {
-        margin-top: 15px !important;
-        width: 100% !important;
-        font-size: 15px !important;
-    }
-    .footer-store-logo > img {
-        width: 78% !important;
-    }
-    .footer__about__logo > img {
-        width: 40%;
-    }
-    .footer__widget h5 {
-        margin-bottom: 0px !important;
-    }
-    .footer-heading { 
-        padding-bottom: 0px !important;
-    }
-    .footer__widget ul li a {
-        line-height: 20px !important;
-        font-size: 12px;
-    }
-    .footer__widget p {
         font-size: 9px !important;
     }
-    .footer__about ul li {
-        font-size: 14px !important;
-        line-height: 3px !important;
+    .bottom-icons {
+        margin-left: 3% !important;
+        font-size: 9px !important;
+        padding: 4px 6px !important;
+    }
+    .footer-store-logo1 > img {
+        width: 42% !important;
+    }
+    .footer-form {
+        margin-top: 8px !important;
+    }
+    .footer-form > form > input {
+        font-size: 12px !important;
+        padding: 8px !important;
     }
     .copyrights > p {
-        font-size: 6px !important;
+        font-size: 5px !important;
+    }
+    .footer-icon-signin1 > span {
+        font-size: 12px !important;
+    }
+    .last-will-section > .make-your-will > a {
+        padding: 4px 8px 5px 8px !important;
+        font-size: 11px !important;
+    }
+    .witnesa-page-form > img {
+        width: 34% !important;
+    }
+    .witnesa-page-form > span {
+        padding: 20px 11px 25px 14px !important;
+        font-size: 20px !important;
+    }
+    .self-affidevit-form > img {
+        width: 34% !important;
+    }
+    .self-affidevit-form > span {
+        padding: 21px 11px 26px 14px !important;
+        font-size: 20px !important;
     }
 }
