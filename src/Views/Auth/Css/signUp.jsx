@@ -266,6 +266,9 @@ export const RegisterStyle = createGlobalStyle`
 
 
 @media all and (max-width:992px){
+    .auth-right-form > .form-heading {
+    display: none;
+}
     .heading-section .heading {
     padding-bottom: 0;
 }

@@ -291,6 +291,9 @@ export const Style = createGlobalStyle`
 
 }
 @media all and (max-width:992px){
+    .auth-right-form > .form-heading {
+    display: none;
+}
         .auth-right-form {
     box-shadow: unset;
 }
