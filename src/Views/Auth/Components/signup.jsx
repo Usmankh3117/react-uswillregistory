@@ -10,7 +10,7 @@ import csc from 'country-state-city'
 import { getYearList } from '../../../Services/common';
 import moment from 'moment';
 import Image from '../../Common/Components/image';
-import RegisterBg from "../../../assets/img/Register-Form_background-img.png";
+import RegisterBg from "../../../assets/img/signup-back-image.png";
 
 const defaultState = {
 	"form": {
@@ -180,32 +180,32 @@ function SignUp(props) {
 							<h1 className="heading"><span className="bold">Registration</span> Form</h1>
 						</div>
 					</div>
-					<div className="row">
-
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1"
-							style={{ backgroundImage: `url(${RegisterBg})` }}>
-							<div className="caption-content">
-								{/* <div className="login-left-inner-div1">
-									<p className="heading1"> <span className="bold">Welcome</span> to the The U.S. Will Registry </p>
-									<p className="para1">Please register yourself and make an account</p>
-								</div> */}
+					<div className="row auth-custom-container">
+						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
+								<div className="auth-page-caption-text">
+									<h5> Welcome to the The U.S. Will Registry </h5>
+									<p> Enter your personal detail and start your journey  </p>
+								</div>
 							</div>
-							<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-
-							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<div  className="form-part">
+						</div>
+						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div className="auth-right-form">
+								<div className="form-heading">
+									<h2 style={{ color: "#033168" }}> Register</h2>
+								</div>
+								<div className="form-part">
 									<div className="form-heading">
 										<h2 style={{ color: "#033168" }}></h2>
 									</div>
 									<div className="register-form">
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="row">
-												<div className="col-lg-4 col-md-4 col-sm-4 padding-form">
+												<div className="col-lg-4 col-md-4 col-sm-4">
 													<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
-												<div className="col-lg-4 col-md-4 col-sm-4 padding-form">
+												<div className="col-lg-4 col-md-4 col-sm-4">
 													<Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
@@ -306,14 +306,10 @@ function SignUp(props) {
 												</div>
 												: ""}
 											<div className="submit-btn">
-												<button  className="submit" type="submit" >Sign Up</button>
+												<button className="submit" type="submit" >Sign Up</button>
 											</div>
 											<div class="row empty-space"></div>
 										</form>
-
-										<div className="row mg-top-25-reg"></div>
-										<div className="row mg-top-30"></div>
-
 									</div>
 								</div>
 							</div>
