@@ -297,6 +297,7 @@ export const Style = createGlobalStyle`
     .auth-right-form {
     padding-left: 10px;
     padding-right: 10px;
+     padding-top: 0;
 }
         .auth-page-caption-text {
     display: none;
