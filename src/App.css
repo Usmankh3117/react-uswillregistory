@@ -1139,10 +1139,7 @@ a:hover, a:active {
     }
     .login-form > form > .input-group {
        margin-top: 10px;
-    }
-    .rememberme {
-        height: 7px !important;
-    }  
+    } 
     .mg-top-15-si {
         margin-top:0px !important;
     }
