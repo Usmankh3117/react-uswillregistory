@@ -1,4 +1,4 @@
-import {createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const Style = createGlobalStyle`
 /* sign in style sheet */
@@ -33,6 +33,7 @@ export const Style = createGlobalStyle`
 .sign-in-heading-section .heading {
     color: #033168;
     font-size: 36px;
+    padding-bottom: 13px;
 }
 .link {
     font-size: 22px;
@@ -54,7 +55,6 @@ export const Style = createGlobalStyle`
 }
 .form-heading {
     text-align: center;
-    margin-top: 15%;
 }
 
 .login-form-div {
@@ -205,8 +205,12 @@ export const Style = createGlobalStyle`
     padding: 6px;
     font-size: 18px;
 }
+.auth-page-left-section img {
+    width: 100%;
+}
 .login-social-media-icons {
     margin-top: 12px;
+    padding-bottom: 30px;
 }
 .mg-bottom-30 {
     margin-bottom: 30px;
@@ -236,18 +240,67 @@ export const Style = createGlobalStyle`
     padding-bottom: 40px;
     margin-top: 0;
 }
+.auth-page-left-section {
+    height: 581px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    .auth-right-form {
+    box-shadow: 1px 1px 3px 0px #ccc;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 4px;
+    padding-top: 50px;
+    }
+.auth-page-caption-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    flex-direction: column;
+}
+.auth-page-caption-text h5 {
+    margin: 0;
+    font-size: 25px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+    .auth-page-caption-text p {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    }
+
 
 @media all and (min-width:769px){
-.container {
-    width: 100% !important;
-    padding-left: 70px !important;
-    padding-right: 70px !important;
+.auth-custom-container .col-lg-6 {
+    padding: 0;
 }
 }
 
+@media all and (max-width:1198px){
+    .auth-page-left-section {
+    height: 643px;
+}
+
+}
 @media all and (max-width:992px){
-    .form-heading {
-     margin-top: 5%;
+        .auth-page-caption-text {
+    display: none;
+}
+    .auth-custom-container {
+    box-shadow: unset;
+    border-radius: 0;
+}
+.auth-page-left-section {
+    background: unset !important;
+    height: 100%;
 }
 .login-form > form > .input-group > .form-control {
     height: 45px !important;
