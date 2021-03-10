@@ -2,7 +2,10 @@ import {createGlobalStyle } from "styled-components";
 
 export const RegisterStyle = createGlobalStyle`
 /* sign in style sheet */
-
+.login-left-outer-div1 {
+    background-size: cover;
+    background-position: revert;
+}
 .heading-section {
     text-align: center;
 }
@@ -28,32 +31,46 @@ export const RegisterStyle = createGlobalStyle`
 .form-heading {
 	text-align: center;
 }
-
+.heading-section .heading {
+    padding-bottom: 20px;
+}
 .register-form-div {
 	background-color: #fff;
 	border-right: 1px;
 	border-top-right-radius: 25px;
 	border-bottom-right-radius: 25px;
 }
+.heading-section .heading .bold {
+    font-weight: 600;
+}
 .register-form .form-control1:focus {
     box-shadow: unset !important;
+}
+.submit-btn > .submit:focus {
+    border: 1px solid #f85656 !important;
 }
 .for-bg-shadow {
 	padding: 0px !important;
 	border-radius: 25px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.login-left-outer-div1 {
-    background-position: right;
+.days-month-years-row {
+    margin-top: 5px;
+}
+.days-month-years-row .col-sm-4 {
+    padding-right: 0;
+}
+.days-month-years-row .col-sm-4:last-child {
+    padding-right: 14px;
+}
+.form-part {
+    padding-right: 60px;
+    padding-left: 40px;
 }
 .container {
     width: 100% !important;
     padding-left: 70px !important;
     padding-right: 70px !important;
-}
-.register-form {
-    padding: 0% 9%;
-    margin-top: 7%;
 }
 .register-form > form > .input-group {
 	border: 1px solid black !important; 
@@ -217,7 +234,11 @@ export const RegisterStyle = createGlobalStyle`
 .padding-form{
         padding-right: 1px;
     }
-
+ @media (min-width: 1400px){
+    .login-left-outer-div1 {
+    padding-bottom: 110px;
+}
+ }
     @media (max-width: 992px){
     .login-left-outer-div1 {
         background: unset !important;

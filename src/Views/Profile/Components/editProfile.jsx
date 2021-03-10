@@ -7,8 +7,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { getUserDetail, updateUserDetail, getCityByState } from "../ApiCalls/profile";
 import { getYearList } from '../../../Services/common';
-// import '../Css/editProfile.css';
-
+import { Style } from '../Css/editProfile';
 const defaultState = {
     "form": {
         "email": "",
@@ -110,7 +109,7 @@ function EditProfile(props) {
                     "year": parseInt(year),
                 },
             })
-            if(props.apiCallStatus.apiCallFor === "updateUserDetail"){
+            if (props.apiCallStatus.apiCallFor === "updateUserDetail") {
                 Swal.fire("Success!", props.apiCallStatus.message, "success");
             }
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
@@ -207,179 +206,182 @@ function EditProfile(props) {
         }
         return isValid;
     }
-    return <section className="profile-section">
-        <div className="container">
-            <div className="row mg-top-50"></div>
-            <div className="row">
-                <div className="col-lg-2 col-md-2 col-sm-2"></div>
-                <div className="col-lg-8 col-md-8 col-sm-8 center">
-                    <h1 ><span className="bold blue">Edit</span> your Profile</h1>
+    return <React.Fragment>
+        <Style />
+        <section className="profile-section">
+            <div className="container">
+                <div className="row mg-top-50"></div>
+                <div className="row">
+                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div className="col-lg-8 col-md-8 col-sm-8 center">
+                        <h1 ><span className="bold blue">Edit</span> your Profile</h1>
+                    </div>
+                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-2"></div>
-            </div>
-            <div className="row mg-top-50"></div>
+                <div className="row mg-top-50"></div>
 
 
-            <div className="row">
-                <div className="col-lg-4 col-md-4 col-sm-4">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
-                            <div className="active-profile-div">
-                                <Image name="living_with_forms.png" alt="profile-img" className="profile-section-img" />
-                                <span>Living Will forms</span>
+                <div className="row">
+                    <div className="col-lg-4 col-md-4 col-sm-4">
+                        <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
+                                <div className="active-profile-div">
+                                    <Image name="living_with_forms.png" alt="profile-img" className="profile-section-img" />
+                                    <span>Living Will forms</span>
+                                </div>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
+                                <div className="not-active-profile-div">
+                                    <Image name="self_proving_form.png" alt="profile-img" className="profile-section-img" />
+                                    <span>Self Proving affidavit form</span>
+                                </div>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
+                                <div className="not-active-profile-div">
+                                    <Image name="witness_form.png" alt="profile-img" className="profile-section-img" />
+                                    <span>Witness form</span>
+                                </div>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
+                                <div className="not-active-profile-div">
+                                    <Image name="download_form.png" alt="profile-img" className="profile-section-img" />
+                                    <span>Download Will documents</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
-                            <div className="not-active-profile-div">
-                                <Image name="self_proving_form.png" alt="profile-img" className="profile-section-img" />
-                                <span>Self Proving affidavit form</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
-                            <div className="not-active-profile-div">
-                                <Image name="witness_form.png" alt="profile-img" className="profile-section-img" />
-                                <span>Witness form</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
-                            <div className="not-active-profile-div">
-                                <Image name="download_form.png" alt="profile-img" className="profile-section-img" />
-                                <span>Download Will documents</span>
+                    </div>
+                    <div className="col-lg-8 col-md-8 col-sm-8">
+                        <div className="row">
+                            <div className="register-form">
+                                <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+                                    <div className="row">
+                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                            <Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+
+                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                            <Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+
+                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                            <Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <div className="input-group1">
+                                                <select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Select gender</option>
+                                                    <option value={'male'} selected={state.form.gender === 'male'}>Male</option>
+                                                    <option value={'female'} selected={state.form.gender === 'female'}>Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <div className="input-group1">
+                                                <select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Select State</option>
+                                                    {state.stateList.map((item, index) => {
+                                                        return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+
+
+                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                            <div className="input-group1">
+                                                <select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Month</option>
+                                                    {state.monthsList.map((item, index) => {
+                                                        return <option key={index} value={item} selected={state.form.month === item}>{item}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                            <div className="input-group1">
+                                                <select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Day</option>
+                                                    {state.daysList.map((item, index) => {
+                                                        return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-4">
+                                            <div className="input-group1">
+                                                <select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Year</option>
+                                                    {state.yearsList.map((item, index) => {
+                                                        return <option key={index} value={item} selected={state.form.year === item}>{item}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <div className="input-group1">
+                                                <textarea className="form-control1" rows="4" cols="50" id="address_1" value={state.form.address_1} placeholder="Address 1" onChange={(e) => handleStateChange(e)} required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <div className="input-group1">
+                                                <textarea className="form-control1" rows="4" cols="50" id="address_2" value={state.form.address_2} placeholder="Address 2" onChange={(e) => handleStateChange(e)} required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {props.apiCallStatus.apiCallFor === "updateUserDetail" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                        <div className="loader-img text-center">
+                                            <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                                        </div>
+                                        : ""}
+                                    {state.messageFor === "updateUserDetail" && state.message !== "" ?
+                                        <div className={`alert alert-${state.messageType}`}>
+                                            {state.message}
+                                        </div>
+                                        : ""}
+                                    <div className="submit-btn">
+                                        <input id="submit" onClick={(e) => handleSubmit(e)} className="click-here-btn" type="submit" value="Submit" name="submit" />
+                                    </div>
+                                </form>
+                                <div className="row mg-top-25"></div>
+                                <div className="row mg-top-30"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-8 col-md-8 col-sm-8">
-                    <div className="row">
-                        <div className="register-form">
-                            <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-4 col-sm-4">
-                                        <Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-
-                                    <div className="col-lg-4 col-md-4 col-sm-4">
-                                        <Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-
-                                    <div className="col-lg-4 col-md-4 col-sm-4">
-                                        <Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
-                                        <div className="input-group1">
-                                            <select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-                                                <option value="">Select gender</option>
-                                                <option value={'male'} selected={state.form.gender === 'male'}>Male</option>
-                                                <option value={'female'} selected={state.form.gender === 'female'}>Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <div className="input-group1">
-                                            <select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
-                                                <option value="">Select State</option>
-                                                {state.stateList.map((item, index) => {
-                                                    return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-4 col-sm-4">
-                                        <div className="input-group1">
-                                            <select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-                                                <option value="">Day</option>
-                                                {state.daysList.map((item, index) => {
-                                                    return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-lg-4 col-md-4 col-sm-4">
-                                        <div className="input-group1">
-                                            <select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-                                                <option value="">Month</option>
-                                                {state.monthsList.map((item, index) => {
-                                                    return <option key={index} value={item} selected={state.form.month === item}>{item}</option>
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-sm-4">
-                                        <div className="input-group1">
-                                            <select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-                                                <option value="">Year</option>
-                                                {state.yearsList.map((item, index) => {
-                                                    return <option key={index} value={item} selected={state.form.year === item}>{item}</option>
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
-                                        <div className="input-group1">
-                                            <textarea className="form-control1" rows="4" cols="50" id="address_1" value={state.form.address_1} placeholder="Address 1" onChange={(e) => handleStateChange(e)} required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
-                                        <div className="input-group1">
-                                            <textarea className="form-control1" rows="4" cols="50" id="address_2" value={state.form.address_2} placeholder="Address 2" onChange={(e) => handleStateChange(e)} required />
-                                        </div>
-                                    </div>
-                                </div>
-                                {props.apiCallStatus.apiCallFor === "updateUserDetail" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                                    <div className="loader-img text-center">
-                                        <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
-                                    </div>
-                                    : ""}
-                                {state.messageFor === "updateUserDetail" && state.message !== "" ?
-                                    <div className={`alert alert-${state.messageType}`}>
-                                        {state.message}
-                                    </div>
-                                    : ""}
-                                <div className="submit-btn">
-                                    <input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Update" name="submit" />
-                                </div>
-                            </form>
-                            <div className="row mg-top-25"></div>
-                            <div className="row mg-top-30"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>;
+        </section>
+    </React.Fragment>;
 }
 
 const Input = (props) => {

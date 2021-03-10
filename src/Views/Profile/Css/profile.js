@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import {createGlobalStyle } from "styled-components";
 
-export const Wrapper = styled.div`
+export const Style = createGlobalStyle`
 .top-name-img {
     width: 24px;
     height: 24px;
@@ -24,12 +24,12 @@ export const Wrapper = styled.div`
 }
 .right {
     float: right;
-    margin-right: 5%;
+    margin-right: 13%;
 }
 
 .profile-section-div {
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
     height: 50px !important;
 }
 .active-profile-div {
@@ -37,9 +37,13 @@ export const Wrapper = styled.div`
     color: white;
     border: 1px solid #033168;
     border-radius: 50px;
-    padding-left: 25px;
-    margin: 15px;
-    padding: 10px;
+    padding-left: 5px;
+    /* margin: 15px; */
+    /* padding: 10px; */
+    padding-top: 6px;
+    padding-bottom: 4px;
+    margin-left: 2px;
+    margin-right: 108px;
 }
 .not-active-profile-div {
     /* background-color: #033168;
@@ -47,7 +51,7 @@ export const Wrapper = styled.div`
     border: 1px solid #033168; */
     border-radius: 25px;
     padding-left: 25px;
-    margin: 15px;
+    /* margin: 15px; */
     padding: 10px;
 }
 
@@ -59,10 +63,13 @@ export const Wrapper = styled.div`
 
 .profile-section-div > div > span {
     font-size: 20px;
+    padding-left: 9px;
+    color: #515151;
 }
 .click-here-btn {
     font-size: 18px;
     color: white;
+    margin-bottom: 40px;
     background-color: #033168;
     border-radius: 30px;
     border: 1px solid #033168;

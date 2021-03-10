@@ -9,6 +9,11 @@ body {
 .header-section {
     /* position:relative; */
 }
+.submit-btn > .submit:hover {
+    border: 1px solid #f85656 !important;
+    background: transparent;
+    color: #f85656;
+}
 .list-group-item img {
     border-radius: 4px;
     margin-right: 10px;
@@ -60,7 +65,7 @@ button:focus {
 }
 .header-right-img {
     position: absolute;
-    right: 3%;
+    right: 8%;
     top: 12%;
     width: 150px;
     z-index: 1;
@@ -832,6 +837,29 @@ a:hover, a:active {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    .landing-page-top-text > .where-there {
+    margin-bottom: 0;
+    font-size: 21px !important;
+}
+    .landing-page-top-text > .for-those-left-behind {
+    font-size: 16px !important;
+}
+    .landing-page-top-text > .there-a-will {
+     font-size: 24px !important;
+ }
+    .last-will-img > img {
+    width: 100% !important;
+}
+    .will-details {
+     margin-top: 3% !important;
+}
+    .last-will-section > .make-your-will > a {
+    position: unset !important;
+    text-align: center !important;
+    margin-top: 11px !important;
+    display: block;
+}
+
     .form-control1 {
         height: 24px !important;
         padding: 3px 3px !important;
@@ -891,7 +919,7 @@ a:hover, a:active {
     }
     .header-right-img {
         position: absolute;
-        right: 4%;
+        right: 8%;
         top: 7%;
         width: 60px;
         z-index: 1;
@@ -918,8 +946,8 @@ a:hover, a:active {
         position: absolute;
         top: 98% !important;
         right: 0% !important;
-        width: 100% !important;
-    }
+       text-align: center;
+     }
     .last-will-section > .make-your-will > .left-div > .heading {
         font-size: 18px !important;
         margin-top: 7px !important;

@@ -127,16 +127,16 @@ function Login(props) {
 				<div className="container">
 					<div className="row">
 						<div className="sign-in-heading-section text-center">
-							<h1 className="heading"><span className="bold">Sign In</span> form</h1>
+							<h1 className="heading"><span className="bold">Login</span> Form</h1>
 						</div>
 					</div>
 					<div className="row">
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1"
-							style={{ backgroundImage: `url(${RegisterBg})`, backgroundSize: "cover" }}>
-							<div className="login-left-inner-div1">
-								<p className="heading1"><span className="bold-text">Welcome</span> to the The Will Registry</p>
+							style={{ backgroundImage: `url(${RegisterBg})` }}>
+							{/* <div className="login-left-inner-div1">
+								<p className="heading1"><span className="bold-text">Welcome</span> to the The US Will Registry</p>
 								<p className="para1">Enter you personal details and start your journey</p>
-							</div>
+							</div> */}
 							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
 							</div>
@@ -146,7 +146,7 @@ function Login(props) {
 									<h2 style={{ color: "#033168" }}>Login</h2>
 								</div>
 								<div className="login-form">
-									<form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+									<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 										<div className="input-group">
 											<span className="input-group-addon"><i className="fa fa-user"></i></span>
 											<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
@@ -165,10 +165,12 @@ function Login(props) {
 											<label for="rememberme"> &nbsp;Remember Me?</label>
 											<a href="#">Forget Password?</a>
 										</div>
+
 										<div className="submit-btn">
-											<input id="submit" onClick={(e) => handleSubmit(e)} type="submit" value="Sign In" className="submit" name="submit" />
+											<button type="submit" className="submit">Login</button>
 										</div>
 									</form>
+
 									<div className="create-one-account">
 										<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create
                                         One</Link></span>

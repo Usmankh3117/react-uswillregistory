@@ -58,7 +58,7 @@ function WillDetailBox(props) {
                 <p className="detail-p">{props.description}</p>
                 <div className="learn-more">
                     <a href="#" className="button2">Learn More</a>
-                    <i style={{ backgroundImage: `url(${curvebackimage})` }}
+                    <i style={{ cursor:'pointer', backgroundImage: `url(${curvebackimage})` }}
                         className="fa fa-arrow-right" aria-hidden="true"></i>
                 </div>
             </div>
@@ -75,13 +75,13 @@ function Forms(props) {
                     <div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingLeft: "0px" }}>
                         <a href="#" className="btn btn4 btn-primary btn-lg active homepage-form-tiles">
                             <Image name="homepage-1.png" alt="" />
-                            <span>Witnesa page form</span>
+                            <span>Witness Form</span>
                         </a>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-4 " style={{ paddingLeft: "20px" }}>
                         <a href="#" className="btn btn-primary btn5 btn-lg active homepage-form-tiles"><Image
                             name="homepage-form-tile-2.png" alt="" />
-                            <span> Self affidevit form </span>
+                            <span> Self Affidevit Form </span>
                         </a>
                     </div>
                     <div className="col-lg-2 col-md-2 col-sm-2"></div>

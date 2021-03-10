@@ -2,11 +2,21 @@ import {createGlobalStyle } from "styled-components";
 
 export const Style = createGlobalStyle`
 /* sign in style sheet */
+.login-left-outer-div1 {
+    background-size: cover;
+    background-position: revert;
+}
 .mg-top-15-si {
     margin-top: 15px;
 }
 .mg-top-30-si {
     margin-top: 30px;
+}
+.heading-section .heading {
+    padding-bottom: 20px;
+}
+.sign-in-heading-section .heading .bold {
+    font-weight: 600;
 }
 .mg-top-30-si-not {
     margin-top: 30px;
@@ -14,13 +24,15 @@ export const Style = createGlobalStyle`
 .mg-top-25-si {
     margin-top: 30%;
 }
-
+.submit-btn > .submit:focus {
+    border: 1px solid #f85656 !important;
+}
 .mg-top-21-si {
     margin-top: 21px;
 }
 .sign-in-heading-section .heading {
     color: #033168;
-    font-size: 60px;
+    font-size: 36px;
 }
 .link {
     font-size: 22px;

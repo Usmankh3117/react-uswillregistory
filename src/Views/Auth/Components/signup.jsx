@@ -177,27 +177,29 @@ function SignUp(props) {
 				<div className="container">
 					<div className="row">
 						<div className="heading-section">
-							<h1 className="heading"><span className="bold">Register</span> form</h1>
+							<h1 className="heading"><span className="bold">Registration</span> Form</h1>
 						</div>
 					</div>
 					<div className="row">
 
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1"
-							style={{ backgroundImage: `url(${RegisterBg})`, backgroundSize: "cover" }}>
-							<div className="login-left-inner-div1">
-								<p className="heading1"> <span className="bold">Welcome</span> to the The Will Registry </p>
-								<p className="para1">Please register yourself and make an account</p>
+							style={{ backgroundImage: `url(${RegisterBg})` }}>
+							<div className="caption-content">
+								{/* <div className="login-left-inner-div1">
+									<p className="heading1"> <span className="bold">Welcome</span> to the The U.S. Will Registry </p>
+									<p className="para1">Please register yourself and make an account</p>
+								</div> */}
 							</div>
 							<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
 							</div>
 							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<div style={{ marginLeft: "30px" }}>
+								<div  className="form-part">
 									<div className="form-heading">
-										<h2 style={{ color: "#033168" }}>Register</h2>
+										<h2 style={{ color: "#033168" }}></h2>
 									</div>
 									<div className="register-form">
-										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
+										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="row">
 												<div className="col-lg-4 col-md-4 col-sm-4 padding-form">
 													<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
@@ -244,6 +246,7 @@ function SignUp(props) {
 															<option value="">Select gender</option>
 															<option value={'male'} selected={state.form.gender === 'male'}>Male</option>
 															<option value={'female'} selected={state.form.gender === 'female'}>Female</option>
+															<option value={'other'} selected={state.form.gender === 'other'}>Other</option>
 														</select>
 													</div>
 												</div>
@@ -263,17 +266,6 @@ function SignUp(props) {
 											<div className="row">
 												<div className="col-lg-4 col-md-4 col-sm-4">
 													<div className="input-group1">
-														<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Day</option>
-															{state.daysList.map((item, index) => {
-																return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
-															})}
-														</select>
-													</div>
-												</div>
-
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<div className="input-group1">
 														<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 															<option value="">Month</option>
 															{state.monthsList.map((item, index) => {
@@ -282,7 +274,16 @@ function SignUp(props) {
 														</select>
 													</div>
 												</div>
-
+												<div className="col-lg-4 col-md-4 col-sm-4">
+													<div className="input-group1">
+														<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+															<option value="">Day</option>
+															{state.daysList.map((item, index) => {
+																return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
+															})}
+														</select>
+													</div>
+												</div>
 												<div className="col-sm-4">
 													<div className="input-group1">
 														<select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
@@ -305,7 +306,7 @@ function SignUp(props) {
 												</div>
 												: ""}
 											<div className="submit-btn">
-												<input id="submit" onClick={(e) => handleSubmit(e)} className="submit" type="submit" value="Sign Up" name="submit" />
+												<button  className="submit" type="submit" >Sign Up</button>
 											</div>
 											<div class="row empty-space"></div>
 										</form>
