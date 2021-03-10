@@ -8,7 +8,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 import { Constant } from "../../../Constants/constant";
 import Image from '../../Common/Components/image';
-import RegisterBg from "../../../assets/img/updated-01.png";
+import RegisterBg from "../../../assets/img/left-panel-signup.png";
 import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
@@ -130,18 +130,17 @@ function Login(props) {
 							<h1 className="heading"><span className="bold">Login</span> Form</h1>
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1"
-							style={{ backgroundImage: `url(${RegisterBg})` }}>
-							{/* <div className="login-left-inner-div1">
-								<p className="heading1"><span className="bold-text">Welcome</span> to the The US Will Registry</p>
-								<p className="para1">Enter you personal details and start your journey</p>
-							</div> */}
-							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
+					<div className="row auth-custom-container">
+						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
+								<div className="auth-page-caption-text">
+									<h5> Welcome to the The U.S. Will Registry </h5>
+									<p> Enter your personal detail and start your journey  </p>
+								</div>
 							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
+						</div>
+						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div className="auth-right-form">
 								<div className="form-heading">
 									<h2 style={{ color: "#033168" }}>Login</h2>
 								</div>
@@ -190,12 +189,7 @@ function Login(props) {
 											<i className="fa fa-google bottom-icons"></i>
 										</div>
 									</div>
-
-									<div className="row mg-top-25-si"></div>
-									<div className="row mg-top-21-si"></div>
-
 								</div>
-
 							</div>
 						</div>
 					</div>
