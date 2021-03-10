@@ -163,7 +163,7 @@ function Login(props) {
 										<div className="input-group1">
 											<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
 											<label for="rememberme"> &nbsp;Remember Me?</label>
-											<a href="#">Forget Password?</a>
+											<Link to="/forgot-password">Forget Password?</Link>
 										</div>
 
 										<div className="submit-btn">
