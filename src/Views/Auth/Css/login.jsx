@@ -291,6 +291,13 @@ export const Style = createGlobalStyle`
 
 }
 @media all and (max-width:992px){
+        .auth-right-form {
+    box-shadow: unset;
+}
+    .auth-right-form {
+    padding-left: 10px;
+    padding-right: 10px;
+}
         .auth-page-caption-text {
     display: none;
 }
