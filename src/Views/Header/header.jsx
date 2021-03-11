@@ -27,10 +27,6 @@ function Header(props) {
     }
     return <section className="header-section">
         <div className="icondiv">
-            <Link to="/" className="header-right-img">
-                <Image name="round-logo-2.png" alt="" />
-            </Link>
-
             <div className="header-top-part">
                 <div className="container">
                     <div className="upper-header">
@@ -39,6 +35,11 @@ function Header(props) {
                                 <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" />
                             </Link>
                             <div className="col-lg-8 col-md-8 col-sm-6">
+                                <div className="logo">
+                                    <Link to="/" className="header-right-img">
+                                        <Image name="round-logo-2.png" alt="" />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
