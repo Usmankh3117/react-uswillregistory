@@ -7,6 +7,7 @@ import { getFormSection, getQuestionList, getStateList, pageForAnswers, getAllAn
 import DatePicker from 'react-date-picker';
 import Image from '../../Common/Components/image';
 import moment from 'moment';
+import { getYearList } from "../../../Services/common";
 
 function QuestionsContainer(props) {
     const [state, setState] = useState({
@@ -506,8 +507,106 @@ function DropDown(props) {
     </select>
 }
 function DateInput(props) {
+    const [state, setState] = useState({
+        "daysList": ["01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"],
+        "monthsList": ["Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"],
+        "yearsList": getYearList(),
+        "day": "",
+        "month": "",
+        "year": "",
+    })
+    useEffect(() => {
+        if (props.value !== "" && state.day === "" && state.month === "" && state.year === "") {
+            let date = props.value.split("-");
+            var day = date[2];
+            var month = parseInt(date[1]);
+            var year = parseInt(date[0]);
+            let cloneState = { ...state };
+            cloneState["day"] = day;
+            cloneState["month"] = state.monthsList[month - 1];
+            cloneState["year"] = year;
+            setState(cloneState);
+        }
+    }, [props.value])
+    const handleStateChange = (e) => {
+        let id = e.target.id;
+        let val = e.target.value;
+        let cloneState = { ...state };
+        cloneState[id] = val;
+        setState(cloneState);
+        if (cloneState.day !== "" && cloneState.month !== "" && cloneState.year !== "") {
+            props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: `${cloneState.year}-${cloneState.month}-${cloneState.day}` } })
+        }
+    }
     return <React.Fragment>
-        <div className="col-lg-12 col-lg-12 col-sm-12" style={{ paddingLeft: "0px" }}>
+        <div className="row">
+            <div className="col-lg-4 col-md-4 col-sm-4">
+                <select name="month" id="month" className="form-input-field" onChange={(e) => handleStateChange(e)} required>
+                    <option value="">Month</option>
+                    {state.monthsList.map((item, index) => {
+                        return <option key={index} value={item} selected={state.month === item}>{item}</option>
+                    })}
+                </select>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4">
+                <select name="day" id="day" className="form-input-field" onChange={(e) => handleStateChange(e)} required>
+                    <option value="">Day</option>
+                    {state.daysList.map((item, index) => {
+                        return <option key={index} value={item} selected={state.day === item}>{item}</option>
+                    })}
+                </select>
+            </div>
+            <div className="col-sm-4">
+                <select name="year" id="year" className="form-input-field" onChange={(e) => handleStateChange(e)} required>
+                    <option value="">Year</option>
+                    {state.yearsList.map((item, index) => {
+                        return <option key={index} value={item} selected={state.year === item}>{item}</option>
+                    })}
+                </select>
+            </div>
+        </div>
+        {/* <div className="col-lg-12 col-lg-12 col-sm-12" style={{ paddingLeft: "0px" }}>
             <DatePicker
                 name={props.name} id={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: moment(e).format('YYYY-MM-DD') } })}
                 className="form-input-field"
@@ -516,7 +615,7 @@ function DateInput(props) {
                 maxDate={new Date()}
                 value={props.value === "" ? new Date() : new Date(props.value)}
             />
-        </div>
+        </div> */}
     </React.Fragment>
 }
 

@@ -54,7 +54,7 @@ export function capitalizeFirstLetter(string) {
 
 export function getYearList() {
   let arr = [];
-  for (let index = 1990; index <= 2021; index++) {
+  for (let index = 1921; index <= 2021; index++) {
     arr.push(index);
   }
   return arr;
