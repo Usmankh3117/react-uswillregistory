@@ -294,33 +294,37 @@ export const Style = createGlobalStyle`
     font-weight: 300;
   }
 
-.last-will-section > .make-your-will {
+  .last-will-section .container{
+    position: relative;
+  }
+
+  .last-will-section .make-your-will {
     position: absolute;
     top: 95%;
     right: 10%;
+    left: 10%;
     background-color: #f34531;
-    width: 80%;
     border: 1px solid #f34531;
     border-radius: 10px;
     padding: 15px;
   }
-  .last-will-section > .make-your-will > .left-div {
+  .last-will-section .make-your-will > .left-div {
     margin-left: 5%;
     color: #fff;
   }
-  .last-will-section > .make-your-will > .left-div > .heading {
+  .last-will-section .make-your-will > .left-div > .heading {
     font-size: 30px;
     margin-top: 17px;
     margin-bottom: -10px;
     font-weight: bold;
   }
 
-  .last-will-section > .make-your-will > .left-div > .para {
+  .last-will-section .make-your-will > .left-div > .para {
     font-size: 27px;
     margin-bottom: 26px;
   }
 
-  .last-will-section > .make-your-will > a {
+  .last-will-section .make-your-will > a {
     right: 10%;
     top: 36%;
     padding: 12px 26px 12px 26px;
@@ -333,7 +337,7 @@ export const Style = createGlobalStyle`
     box-shadow: inset 0px 0px 0px 2px #f34531;
     border: 1px solid #ffffff;
   }
-  .last-will-section > .make-your-will > a:hover {
+  .last-will-section .make-your-will > a:hover {
     transform: scale(1.1);
     text-decoration: none;
   }
@@ -393,6 +397,6 @@ export const Style = createGlobalStyle`
   }
 
   .btn5 > span {
-    padding: 0px 40px;
+    padding: 0px 7px;
   }
 `;

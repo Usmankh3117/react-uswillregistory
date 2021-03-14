@@ -26,12 +26,12 @@ function Header(props) {
         return name;
     }
     return <header>
-        <nav class="navbar navbar-default top visible-lg-block" style={{ backgroundColor: "#033168", marginBottom: "0", minHeight: "80px" }}>
+        <nav class="navbar navbar-default top visible-lg-block">
             <div class="container">
 
                 <div class="navbar-header col-md-4">
-                    <a class="navbar-brand" href="#" style={{ padding: "0" }}>
-                        <Image name="TheUSWillRegistry.png" alt="logo" style={{ maxWidth: "100%", padding: "0" }} className="logo-img" /></a>
+                    <a class="navbar-brand" href="#">
+                        <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
                 </div>
             </div>
         </nav>
@@ -44,7 +44,7 @@ function Header(props) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand visible-xs-block" href="#"> <Image name="TheUSWillRegistry.png" alt="logo" style={{ maxWidth: "159px", padding: "0" }} className="logo-img" /></a>
+                    <a class="navbar-brand visible-xs-block" href="#"> <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,7 +60,7 @@ function Header(props) {
                         <li><a href="#">FAQ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right visible-lg-block">
-                        <li><a class="navbar-brand" href="#"><Image style={{ maxWidth: "159px", position: "relative", top: '-100px' }} name="round-logo-2.png" alt="" /></a></li>
+                        <li><a class="navbar-brand" href="#"><Image name="round-logo-2.png" alt="" /></a></li>
                     </ul>
                 </div>
             </div>

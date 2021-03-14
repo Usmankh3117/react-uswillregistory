@@ -109,15 +109,15 @@ export const Wrapper = styled.div`
     padding-top: 5%;
     position: relative;
 }
-.last-will-section > .make-your-will {
+.last-will-section .make-your-will {
     position: absolute;
     top: 10%;
     right: 25%;
 }
-.last-will-section > .make-your-will > img{
+.last-will-section .make-your-will > img{
     border-radius: 15px;
 }
-.last-will-section > .make-your-will > a{
+.last-will-section .make-your-will > a{
     right: 11%;
     top: 35%;
     padding: 8px 8px 5px 8px;

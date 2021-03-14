@@ -502,9 +502,9 @@ a:hover, a:active {
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1441px) {
-    .last-will-section > .make-your-will {
+    /* .last-will-section .make-your-will {
        right: 37% !important;
-    }
+    } */
     .last-section > .make-will {
         top: 78% !important;
         right: 37% !important;
@@ -632,7 +632,7 @@ a:hover, a:active {
         font-weight: 500;
         width: 100%;
     }
-    .last-will-section > .make-your-will {
+    .last-will-section .make-your-will {
         position: absolute;
         top: 95%;
         right: 8% !important;
@@ -774,7 +774,7 @@ a:hover, a:active {
     .margin-top-10 {
         margin-top: 0% !important;
     }
-    .last-will-section > .make-your-will {
+    .last-will-section .make-your-will {
         right: 4% !important;
     }
     .last-section > .make-will {
@@ -882,7 +882,7 @@ a:hover, a:active {
     .will-details {
      margin-top: 3% !important;
 }
-    .last-will-section > .make-your-will > a {
+    .last-will-section .make-your-will > a {
     position: unset !important;
     text-align: center !important;
     margin-top: 11px !important;
@@ -971,18 +971,18 @@ a:hover, a:active {
     .self-affidevit-form {
        margin-top: 10% !important;
     }
-    .last-will-section > .make-your-will {
+    .last-will-section .make-your-will {
         position: absolute;
         top: 98% !important;
         right: 0% !important;
        text-align: center;
      }
-    .last-will-section > .make-your-will > .left-div > .heading {
+    .last-will-section .make-your-will > .left-div > .heading {
         font-size: 18px !important;
         margin-top: 7px !important;
         margin-bottom: -10px;
     }
-    .last-will-section > .make-your-will > .left-div > .para {
+    .last-will-section .make-your-will > .left-div > .para {
         font-size: 16px !important;
         margin-bottom: 4px !important;
     }
@@ -992,7 +992,7 @@ a:hover, a:active {
     .last-section > .make-will {
         right: 0% !important;
     }
-    .last-will-section > .make-your-will > img {
+    .last-will-section .make-your-will > img {
        width: 100%;
     }
     .footer-store-logo > img {
@@ -1089,7 +1089,7 @@ a:hover, a:active {
     .login-left-inner-div1 > .para1 {
         font-size: 7px !important;
     }
-    .last-will-section > .make-your-will > a {
+    .last-will-section .make-your-will > a {
         padding: 4px 8px 5px 8px !important;
         font-size: 11px !important;
     }
@@ -1165,7 +1165,7 @@ a:hover, a:active {
         font-size: 12px !important;
         padding: 8px !important;
     }
-    .last-will-section > .make-your-will > a {
+    .last-will-section .make-your-will > a {
         padding: 4px 8px 5px 8px !important;
         font-size: 11px !important;
     }
@@ -1182,5 +1182,55 @@ a:hover, a:active {
     .self-affidevit-form > span {
         padding: 21px 11px 26px 14px !important;
         font-size: 20px !important;
+    }
+}
+
+.navbar.top{
+    background-color: #033168;
+    margin-bottom: 0;
+    min-height: 80px;
+}
+.navbar.bottom{
+    background-color: #fff;
+    margin-bottom: 0;
+    min-height: 80px;
+}
+.navbar.top .navbar-brand{
+    padding: 0;
+}
+.navbar.top .navbar-brand img{
+    max-width: 100%;
+    padding: 10px 0 10px 15px;
+}
+.navbar.bottom .navbar-brand img{
+    max-width: 185px;
+    padding: 0 0 0 0;
+    position: relative;
+    top: -140px;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    background-color: transparent;
+    color:black
+}
+
+@media (min-width: 768px){
+    .navbar .navbar-nav{
+        padding: 45px 0;
+    }
+    .navbar.top .navbar-brand{
+        height: 88px;
+    }
+}
+@media (max-width: 768px){
+    .navbar.bottom{
+        min-height: auto;
+    }
+    .navbar.bottom .navbar-header{
+        background-color: #033168;
+    }
+    .navbar.bottom .navbar-brand img{
+        max-width: 100%;
+        top: 5px;
+        position: absolute;
     }
 }
