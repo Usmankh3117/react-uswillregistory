@@ -26,41 +26,50 @@ function Header(props) {
         return name;
     }
     return <header>
-        <nav class="navbar navbar-default top visible-lg-block">
-            <div class="container">
+        <nav className="navbar navbar-default top visible-lg-block">
+            <div className="container">
 
-                <div class="navbar-header col-md-4">
-                    <a class="navbar-brand" href="#">
+                <div className="navbar-header col-md-4">
+                    <a className="navbar-brand" href="#">
                         <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-default bottom">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+        <nav className="navbar navbar-default bottom">
+            <div className="container">
+                <div className="navbar-header">
+                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand visible-xs-block" href="#"> <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
+                    <a className="navbar-brand visible-xs-block" href="#"> <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Site Map</a></li>
-                        <li><a href="#">Dictionary</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Notice</a></li>
-                        <li><a href="#">For Non Profit</a></li>
-                        <li><a href="#">FAQ</a></li>
+                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul className="nav navbar-nav">
+                        {props.user.isLogin ? <React.Fragment>
+                            <li>
+                                {/* <Image name="user_img.png" alt="img" className="top-name-img" /> */}
+                                <Link to="/edit-profile" className="top-menu">{getUserName(getCookie("email"))}</Link>
+                            </li>
+                            <li>
+                                <a href="#" onClick={() => logoutUser()} className="top-menu">Logout</a>
+                            </li>
+                        </React.Fragment> : <React.Fragment>
+                            <li className="active"><a href="#">Home <span className="sr-only">(current)</span></a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Site Map</a></li>
+                            <li><a href="#">Dictionary</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Notice</a></li>
+                            <li><a href="#">For Non Profit</a></li>
+                            <li><a href="#">FAQ</a></li></React.Fragment>}
                     </ul>
-                    <ul class="nav navbar-nav navbar-right visible-lg-block">
-                        <li><a class="navbar-brand" href="#"><Image name="round-logo-2.png" alt="" /></a></li>
+                    <ul className="nav navbar-nav navbar-right visible-lg-block">
+                        <li><a className="navbar-brand" href="#"><Image name="round-logo-2.png" alt="" /></a></li>
                     </ul>
                 </div>
             </div>
@@ -117,7 +126,7 @@ export default connect(
                                         //                         {props.user.isLogin ? <React.Fragment>
                                             //                             {/* <li className="list-group-item border-right">
     //                                 <Image name="user_img.png" alt="img" className="top-name-img" />
-    //                                 <select name="profile"  value={getCookie("email")} class="profile-dropdown">
+    //                                 <select name="profile"  value={getCookie("email")} className="profile-dropdown">
     //                                     <option value={getCookie("email")}>Edit Profile</option>
     //                                 </select>
     //                             </li> */}
