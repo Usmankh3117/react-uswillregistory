@@ -3,8 +3,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
 import { updateAnswerAction } from "../Actions/action";
-import { getFormSection, getQuestionList, getStateList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
-import DatePicker from 'react-date-picker';
+import { getFormSection, getQuestionList, getStateList, getChartiyList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 import { getYearList } from "../../../Services/common";
@@ -21,6 +20,7 @@ function QuestionsContainer(props) {
     useEffect(() => {
         props.getFormSection();
         props.getStateList();
+        props.getChartiyList();
         props.getAllAnswer();
     }, [])
     useEffect(() => {
@@ -305,22 +305,42 @@ function QuestionsContainer(props) {
     }
     const checkQuestionDependancy = (dependency, pageId) => {
         let isAllow = false;
-        pageId = pageId.replace(/P/g, "");
-        pageId = pageId.replace(/0/g, "");
-        pageId = parseInt(pageId);
-        if (pageId === state.activePageId && state.questions[state.activePageId]) {
+        // if (pageId === state.activePageId && state.questions[state.activePageId]) {
+        //     for (let index = 0; index < dependency.length; index++) {
+        //         const element = dependency[index];
+        //         let questions = props.questions[state.activePageId];
+        //         let questionIndex = questions.findIndex(x => x.id === element.parent_id)
+        //         if (questionIndex !== -1) {
+        //             let questionId = questions[questionIndex].question_code;
+        //             let key = Object.keys(questions[questionIndex].inputs)[0];
+        //             let value = state.questions[state.activePageId][questionId][key].value;
+        //             if (value === element.answer) {
+        //                 isAllow = true;
+        //             } else {
+        //                 isAllow = false;
+        //             }
+        //         }
+        //     }
+        // } else
+        if (state.questions[state.activePageId]) {
             for (let index = 0; index < dependency.length; index++) {
                 const element = dependency[index];
-                let questions = props.questions[state.activePageId];
-                let questionIndex = questions.findIndex(x => x.id === element.parent_id)
-                if (questionIndex !== -1) {
-                    let questionId = questions[questionIndex].question_code;
-                    let key = Object.keys(questions[questionIndex].inputs)[0];
-                    let value = state.questions[state.activePageId][questionId][key].value;
-                    if (value === element.answer) {
-                        isAllow = true;
-                    } else {
-                        isAllow = false;
+                let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
+                let elemPageId = element.page_id.replace(/P/g, "");
+                elemPageId = elemPageId.replace(/0/g, "");
+                elemPageId = parseInt(elemPageId);
+                if (elemPageId === state.activePageId) {
+                    let questions = props.questions[state.activePageId];
+                    let questionIndex = questions.findIndex(x => x.id === element.parent_id)
+                    if (questionIndex !== -1) {
+                        let questionId = questions[questionIndex].question_code;
+                        let key = Object.keys(questions[questionIndex].inputs)[0];
+                        let value = state.questions[state.activePageId][questionId][key].value;
+                        if (value === element.answer) {
+                            isAllow = true;
+                        } else {
+                            isAllow = false;
+                        }
                     }
                 }
             }
@@ -389,7 +409,7 @@ function QuestionsContainer(props) {
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
                             <div id="Basic">
-                                {props.apiCallStatus.apiCallFor === "getQuestionList" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                     <div className="loader-img text-center">
                                         <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
                                     </div>
@@ -441,7 +461,7 @@ function QuestionsContainer(props) {
                                                                 }
                                                                 return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
                                                                     <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
-                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
+                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
                                                                 </div>
                                                                     {
                                                                         (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
@@ -458,7 +478,7 @@ function QuestionsContainer(props) {
                                                 </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                     {input.input === "text" ?
                                                         <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
-                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
+                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
                                                 </div>
                                             })}
                                         </div>
@@ -670,10 +690,12 @@ const mapStateToProps = (state, ownProps) => ({
     sectionList: state.questionReducer.sectionList,
     questions: state.questionReducer.questions,
     stateList: state.questionReducer.stateList,
-    answerList: state.questionReducer.answerList
+    answerList: state.questionReducer.answerList,
+    charityList: state.questionReducer.charityList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    getChartiyList: () => dispatch(getChartiyList()),
     getStateList: () => dispatch(getStateList()),
     getQuestionList: (pageId) => dispatch(getQuestionList(pageId)),
     getFormSection: () => dispatch(getFormSection()),

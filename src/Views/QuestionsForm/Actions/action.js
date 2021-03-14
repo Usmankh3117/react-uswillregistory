@@ -1,6 +1,7 @@
 export const getFormSection = "GET_FORM_SECTION";
 export const getQuestionList = "GET_QUESTION_LIST";
 export const getStatesList = "GET_STATE_LIST";
+export const getCharityList = "GET_CHARITY_LIST";
 export const getAllAnswer = "GET_ALL_ANSWER";
 export const updateAnswer = "UPDATE_ANSWER";
 
@@ -21,6 +22,13 @@ export function getQuestionListAction(data) {
 export function getStatesListAction(data) {
   return {
     type: getStatesList,
+    payload: data,
+  };
+}
+
+export function getCharityListAction(data) {
+  return {
+    type: getCharityList,
     payload: data,
   };
 }

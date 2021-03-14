@@ -27,10 +27,11 @@ var StoreState = {
     questions: {},
     stateList: [],
     answerList: [],
+    charityList: [],
   },
-  landing:{
-    slugList:[],
-    slugDetail:{}
-  }
+  landing: {
+    slugList: [],
+    slugDetail: {},
+  },
 };
 export default StoreState;

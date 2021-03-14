@@ -3,6 +3,7 @@ import {
   getFormSectionAction,
   getQuestionListAction,
   getStatesListAction,
+  getCharityListAction,
   getAllAnswerAction,
 } from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
@@ -14,9 +15,7 @@ export function getFormSection() {
     let url = Constant.apiURl + "/sections";
     let myJson = await FETCH("GET", url);
     if (myJson && myJson.status === "success") {
-      dispatch(
-        getFormSectionAction({ sections: myJson.sections, pages: myJson.pages })
-      );
+      dispatch(getFormSectionAction({ sections: myJson.sections, pages: myJson.pages }));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "getFormSection",
@@ -41,9 +40,7 @@ export function getQuestionList(pageId) {
     let url = Constant.apiURl + "/page-questions/" + pageId;
     let myJson = await FETCH("GET", url);
     if (myJson && myJson.status === "success") {
-      dispatch(
-        getQuestionListAction({ questions: myJson.questions, pageId: pageId })
-      );
+      dispatch(getQuestionListAction({ questions: myJson.questions, pageId: pageId }));
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "getQuestionList",
@@ -88,6 +85,39 @@ export function getStateList() {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "getStateList",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function getChartiyList() {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "getChartiyList" }));
+    let url = Constant.apiURl + "/charities";
+    let myJson = await FETCH("GET", url);
+    if (myJson && myJson.status === "success") {
+      let arr = [];
+      myJson.charities.forEach((element) => {
+        arr.push({
+          id: element.id,
+          value: element.slug,
+          label: element.name,
+        });
+      });
+      dispatch(getCharityListAction(arr));
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "getChartiyList",
+          message: myJson.message,
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "getChartiyList",
           message: myJson.errors,
         })
       );
