@@ -43,7 +43,7 @@ export const Style = createGlobalStyle`
     padding-top: 6px;
     padding-bottom: 4px;
     margin-left: 2px;
-    margin-right: 108px;
+    margin-right: 0;
 }
 .not-active-profile-div {
     /* background-color: #033168;
@@ -62,7 +62,7 @@ export const Style = createGlobalStyle`
 }
 
 .profile-section-div > div > span {
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 9px;
     color: #515151;
 }

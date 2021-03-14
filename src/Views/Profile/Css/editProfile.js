@@ -59,7 +59,7 @@ export const Style = createGlobalStyle`
 }
 
 .profile-section-div > div > span {
-    font-size: 20px;
+    font-size: 18px;
 }
 .click-here-btn {
     font-size: 18px;

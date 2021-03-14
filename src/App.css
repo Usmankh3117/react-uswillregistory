@@ -1234,3 +1234,30 @@ a:hover, a:active {
         position: absolute;
     }
 }
+.auth-custom-container{
+    position:relative;
+    border-radius: 20px;
+    box-shadow: 1px 0px 30px -11px rgba(0,0,0,0.64);
+    -webkit-box-shadow: 1px 0px 30px -11px rgba(0,0,0,0.64);
+    -moz-box-shadow: 1px 0px 30px -11px rgba(0,0,0,0.64);
+}
+/* .auth-custom-container .auth-page-left-section::after{
+    content: "";
+    width: 100%;
+    background:white url("assets/img/shadow-left.png") no-repeat -30px -50px fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+}
+.auth-custom-container .auth-right-form::after{
+    content: "";
+    width: 100%;
+    background:white url("assets/img/shadow-right.png") no-repeat -30px -50px fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    display: block;
+} */
