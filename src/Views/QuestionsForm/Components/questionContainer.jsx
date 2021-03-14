@@ -20,9 +20,8 @@ function QuestionsContainer(props) {
     })
     useEffect(() => {
         props.getFormSection();
-        props.getAllAnswer();
-        props.getQuestionList(state.activePageId);
         props.getStateList();
+        props.getAllAnswer();
     }, [])
     useEffect(() => {
         if ((props.apiCallStatus.apiCallFor === "getAllAnswer" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed && state.questions[state.activePageId] === undefined && props.questions[state.activePageId] !== undefined) ||
@@ -145,6 +144,25 @@ function QuestionsContainer(props) {
             }
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
         }
+        if ((props.apiCallStatus.apiCallFor === "getAllAnswer" || props.apiCallStatus.apiCallFor === "getFormSection") && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed && props.pageList.length > 0 && props.answerList.length > 0) {
+            let activePageId = 1;
+            let activeSectionId = 1;
+            for (let index = 0; index < props.pageList.length; index++) {
+                const pageCode = props.pageList[index].page_code;
+                activePageId = props.pageList[index].id;
+                activeSectionId = props.pageList[index].section_id;
+                let ansIndex = props.answerList.findIndex(x => x.page_code === pageCode);
+                if (ansIndex === -1) {
+                    break;
+                }
+            }
+            setState({
+                ...state,
+                activePageId,
+                activeSectionId
+            })
+            props.getQuestionList(activePageId);
+        }
     })
     const handlePageStateChange = (questionId, pageId, e) => {
         let id = e.target.id;
@@ -210,6 +228,21 @@ function QuestionsContainer(props) {
             } else {
                 console.log("Page code not found")
             }
+        }
+    }
+    const previousPage = () => {
+        let activePageIndex = props.pageList.findIndex(x => x.id == state.activePageId);
+        if (activePageIndex !== -1) {
+            let previousPage = props.pageList[activePageIndex - 1].id;
+            let previousSection = props.pageList[activePageIndex - 1].section_id;
+            if (state.questions[previousPage] === undefined) {
+                props.getQuestionList(previousPage);
+            }
+            setState({
+                ...state,
+                activePageId: previousPage,
+                activeSectionId: previousSection
+            })
         }
     }
     const validatePage = (pageId) => {
@@ -406,7 +439,7 @@ function QuestionsContainer(props) {
                                                                 }
                                                                 return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
                                                                     <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
-                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} /> : ""}
+                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
                                                                 </div>
                                                                     {
                                                                         (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
@@ -423,7 +456,7 @@ function QuestionsContainer(props) {
                                                 </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                     {input.input === "text" ?
                                                         <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
-                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : ""}
+                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
                                                 </div>
                                             })}
                                         </div>
@@ -440,16 +473,18 @@ function QuestionsContainer(props) {
                                             {state.message}
                                         </div>
                                         : ""}
-                                    <div className="col-lg-12 col-lg-12 col-sm-12 form-btn-div">
-                                        <button className="next-btn" onClick={() => nextPage()}>
-                                            NEXT
+                                    {props.questions[state.activePageId] ?
+                                        <div className="col-lg-12 col-lg-12 col-sm-12 form-btn-div">
+                                            <button className="next-btn" onClick={() => nextPage()}>
+                                                NEXT
                                     <i className="fa fa-arrow-right"></i>
-                                        </button>
-                                        <button className="exit-btn">
-                                            <i className="fa fa-arrow-left"></i>
-                                    EXIT
-                                </button>
-                                    </div>
+                                            </button>
+                                            {props.pageList.length > 0 && props.pageList[0].id !== state.activePageId ?
+                                                <button onClick={() => previousPage()} className="exit-btn">
+                                                    <i className="fa fa-arrow-left"></i>
+                                    PREVIOUS
+                                </button> : ""}
+                                        </div> : ""}
                                 </div>
                             </div>
                         </div>
@@ -499,8 +534,8 @@ function InputText(props) {
 }
 
 function DropDown(props) {
-    return <select name={props.name} id={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field">
-        <option value=""></option>
+    return <select name={props.name} id={props.id} placeholder={props.placeholder} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field">
+        <option value="">{props.placeholder}</option>
         {props.options.map((item, index) => {
             return <option key={index} value={item.value} selected={item.value === props.value}>{item.label}</option>
         })}
@@ -576,8 +611,15 @@ function DateInput(props) {
         cloneState[id] = val;
         setState(cloneState);
         if (cloneState.day !== "" && cloneState.month !== "" && cloneState.year !== "") {
-            props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: `${cloneState.year}-${cloneState.month}-${cloneState.day}` } })
+            props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: formatedDate(cloneState.year, cloneState.month, cloneState.day) } })
         }
+    }
+    const formatedDate = (year, month, day) => {
+        month = moment().month(month).format("M");
+        if (month < 10) {
+            month = "0" + month;
+        }
+        return `${year}-${month}-${day}`
     }
     return <React.Fragment>
         <div className="row">
