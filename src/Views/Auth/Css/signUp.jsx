@@ -109,7 +109,8 @@ export const RegisterStyle = createGlobalStyle`
 .submit-btn {
 	text-align: center;
 	margin-top: 30px;
-    margin-bottom: 14px;
+    margin-bottom: 0;
+    padding-bottom: 24px
 }
 .submit-btn > .submit {
     font-size: 20px;

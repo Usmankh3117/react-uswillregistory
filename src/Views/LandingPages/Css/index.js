@@ -188,9 +188,10 @@ export const Style = createGlobalStyle`
   .upper-section {
     background-image: url(${ChangeBg});
     background-color: #f7f7f7;
-    border-radius: 0% 0% 0% 25%;
+    border-radius: 0% 0% 0% 23%;
     background-position: top;
     background-size: cover;
+    overflow: hidden;
   }
   .lower-section {
     line-height: 35px;

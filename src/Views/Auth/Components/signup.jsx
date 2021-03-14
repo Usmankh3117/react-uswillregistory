@@ -229,28 +229,7 @@ function SignUp(props) {
 													<Input value={state.form.repeatPassword} type="password" className="form-control1" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
 												</div>
 											</div>
-											<div className="row">
-												{/* <div className="col-lg-6 col-md-6 col-sm-6">
-								<div className="input-group1">
-									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)} required>
-										<option value="">Select Country</option>
-										{state.countryList.map((item, index) => {
-											return <option key={index} value={item.isoCode} selected={state.form.country === item.isoCode}>{item.name}</option>
-										})}
-									</select>
-								</div>
-							</div> */}
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<div className="input-group1">
-														<select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Select gender</option>
-															<option value={'male'} selected={state.form.gender === 'male'}>Male</option>
-															<option value={'female'} selected={state.form.gender === 'female'}>Female</option>
-															<option value={'other'} selected={state.form.gender === 'other'}>Other</option>
-														</select>
-													</div>
-												</div>
-											</div>
+											
 											<div className="row">
 												<div className="col-lg-12 col-md-12 col-sm-12">
 													<div className="input-group1">
@@ -263,7 +242,11 @@ function SignUp(props) {
 													</div>
 												</div>
 											</div>
+											
 											<div className="row">
+												<div className="col-lg-12">
+													<label>Date Of Birth</label>
+												</div>
 												<div className="col-lg-4 col-md-4 col-sm-4">
 													<div className="input-group1">
 														<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
@@ -295,6 +278,38 @@ function SignUp(props) {
 													</div>
 												</div>
 											</div>
+											<div className="row">
+												{/* <div className="col-lg-6 col-md-6 col-sm-6">
+								<div className="input-group1">
+									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)} required>
+										<option value="">Select Country</option>
+										{state.countryList.map((item, index) => {
+											return <option key={index} value={item.isoCode} selected={state.form.country === item.isoCode}>{item.name}</option>
+										})}
+									</select>
+								</div>
+							</div> */}
+												<div className="col-lg-12 col-md-12 col-sm-12">
+													<div className="input-group1">
+														<label style={{paddingRight:"20px"}}>Select Gender</label>
+														<label class="radio-inline">
+															<input type="radio" name="optradio" checked />Option 1
+														</label>
+														<label class="radio-inline">
+															<input type="radio" name="optradio" />Option 2
+														</label>
+														<label class="radio-inline">
+															<input type="radio" name="optradio" />Option 3
+														</label>
+														{/* <select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
+															<option value="">Select gender</option>
+															<option value={'male'} selected={state.form.gender === 'male'}>Male</option>
+															<option value={'female'} selected={state.form.gender === 'female'}>Female</option>
+															<option value={'other'} selected={state.form.gender === 'other'}>Other</option>
+														</select> */}
+													</div>
+												</div>
+											</div>
 											{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 												<div className="loader-img text-center">
 													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
@@ -308,7 +323,6 @@ function SignUp(props) {
 											<div className="submit-btn">
 												<button className="submit" type="submit" >Sign Up</button>
 											</div>
-											<div class="row empty-space"></div>
 										</form>
 									</div>
 								</div>
