@@ -305,6 +305,9 @@ function QuestionsContainer(props) {
     }
     const checkQuestionDependancy = (dependency, pageId) => {
         let isAllow = false;
+        pageId = pageId.replace(/P/g, "");
+        pageId = pageId.replace(/0/g, "");
+        pageId = parseInt(pageId);
         if (pageId === state.activePageId && state.questions[state.activePageId]) {
             for (let index = 0; index < dependency.length; index++) {
                 const element = dependency[index];
@@ -321,14 +324,13 @@ function QuestionsContainer(props) {
                     }
                 }
             }
-        } else {
-            pageId = pageId.replace("P", "");
-            pageId = pageId.replace("0", "");
-            if (props.answerList[pageId]) {
-                for (let index = 0; index < dependency.length; index++) {
-                    const element = dependency[index];
-                    let question = props.answerList[pageId][element.question_code];
-                    let questionKey = Object.keys(props.answerList[pageId][element.question_code])[0];
+        } else if (state.questions[state.activePageId]) {
+            for (let index = 0; index < dependency.length; index++) {
+                const element = dependency[index];
+                let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
+                if (pageIndex !== -1 && props.answerList[pageIndex]) {
+                    let question = props.answerList[pageIndex]["answer"][element.parent_question_code];
+                    let questionKey = Object.keys(props.answerList[pageIndex]["answer"][element.parent_question_code])[0];
                     if (question[questionKey] === element.answer) {
                         isAllow = true;
                     } else {
