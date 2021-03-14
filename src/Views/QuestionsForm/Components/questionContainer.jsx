@@ -308,27 +308,41 @@ function QuestionsContainer(props) {
         pageId = pageId.replace(/P/g, "");
         pageId = pageId.replace(/0/g, "");
         pageId = parseInt(pageId);
-        if (pageId === state.activePageId && state.questions[state.activePageId]) {
-            for (let index = 0; index < dependency.length; index++) {
-                const element = dependency[index];
-                let questions = props.questions[state.activePageId];
-                let questionIndex = questions.findIndex(x => x.id === element.parent_id)
-                if (questionIndex !== -1) {
-                    let questionId = questions[questionIndex].question_code;
-                    let key = Object.keys(questions[questionIndex].inputs)[0];
-                    let value = state.questions[state.activePageId][questionId][key].value;
-                    if (value === element.answer) {
-                        isAllow = true;
-                    } else {
-                        isAllow = false;
-                    }
-                }
-            }
-        } else if (state.questions[state.activePageId]) {
+        // if (pageId === state.activePageId && state.questions[state.activePageId]) {
+        //     for (let index = 0; index < dependency.length; index++) {
+        //         const element = dependency[index];
+        //         let questions = props.questions[state.activePageId];
+        //         let questionIndex = questions.findIndex(x => x.id === element.parent_id)
+        //         if (questionIndex !== -1) {
+        //             let questionId = questions[questionIndex].question_code;
+        //             let key = Object.keys(questions[questionIndex].inputs)[0];
+        //             let value = state.questions[state.activePageId][questionId][key].value;
+        //             if (value === element.answer) {
+        //                 isAllow = true;
+        //             } else {
+        //                 isAllow = false;
+        //             }
+        //         }
+        //     }
+        // } else
+         if (state.questions[state.activePageId]) {
             for (let index = 0; index < dependency.length; index++) {
                 const element = dependency[index];
                 let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
-                if (pageIndex !== -1 && props.answerList[pageIndex]) {
+                if (element.page_id === state.activePageId) {
+                    let questions = props.questions[state.activePageId];
+                    let questionIndex = questions.findIndex(x => x.id === element.parent_id)
+                    if (questionIndex !== -1) {
+                        let questionId = questions[questionIndex].question_code;
+                        let key = Object.keys(questions[questionIndex].inputs)[0];
+                        let value = state.questions[state.activePageId][questionId][key].value;
+                        if (value === element.answer) {
+                            isAllow = true;
+                        } else {
+                            isAllow = false;
+                        }
+                    }
+                } else if (pageIndex !== -1 && props.answerList[pageIndex]) {
                     let question = props.answerList[pageIndex]["answer"][element.parent_question_code];
                     let questionKey = Object.keys(props.answerList[pageIndex]["answer"][element.parent_question_code])[0];
                     if (question[questionKey] === element.answer) {
