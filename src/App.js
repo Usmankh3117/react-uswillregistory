@@ -29,7 +29,7 @@ function App() {
     <Router history={history}>
       <Header history={history} />
       <Switch>
-        <Route exact path="/" name="Index" component={Index} />
+        <Route exact path="/" name="Index" component={Index}  />
         <Route exact path="/contact-us" name="ContactUs" component={ContactUs} />
         <Route exact path="/about-us" name="AboutUs" component={AboutUs} />
         <Route exact path="/faq" name="Faq" component={Faq} />
