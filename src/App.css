@@ -1241,12 +1241,13 @@ a:hover, a:active {
     -webkit-box-shadow: 1px 0px 30px -11px rgba(0,0,0,0.64);
     -moz-box-shadow: 1px 0px 30px -11px rgba(0,0,0,0.64);
 }
-/* .auth-custom-container .auth-page-left-section::after{
+.auth-custom-container .auth-page-left-section::after{
     content: "";
     width: 100%;
-    background:white url("assets/img/shadow-left.png") no-repeat -30px -50px fixed;
-    top: 0;
-    bottom: 0;
+    background-image: url("assets/img/shadow-left.png");
+    background-repeat: no-repeat;
+    top: 100%;
+    bottom: -77px;
     left: 0;
     position: absolute;
     display: block;
@@ -1254,10 +1255,11 @@ a:hover, a:active {
 .auth-custom-container .auth-right-form::after{
     content: "";
     width: 100%;
-    background:white url("assets/img/shadow-right.png") no-repeat -30px -50px fixed;
-    top: 0;
-    bottom: 0;
+    background-image: url("assets/img/shadow-right.png");
+    background-repeat: no-repeat;
+    top: 100%;
+    bottom: -77px;
     right: 0;
     position: absolute;
     display: block;
-} */
+}
