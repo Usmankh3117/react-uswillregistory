@@ -359,7 +359,7 @@ function QuestionsContainer(props) {
                 }
             }
         }
-        return isAllow;
+        return true;
     }
     const handleChangeOfArrayItem = (pageId, questionId, type, index, e, isPrimary, isAlternate) => {
         let questions = { ...state.questions }
@@ -409,7 +409,7 @@ function QuestionsContainer(props) {
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
                             <div id="Basic">
-                                {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection" || props.apiCallStatus.apiCallFor === "getAllAnswer") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                     <div className="loader-img text-center">
                                         <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
                                     </div>
@@ -442,7 +442,15 @@ function QuestionsContainer(props) {
                                                         answerList = state.questions[state.activePageId][item.question_code].value
                                                     }
                                                 }
-                                                return input.input === "array" ? <React.Fragment>
+                                                return inputKey === "charityPortion" ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
+                                                    let childElem = item.inputs[inputKey][childKey];
+                                                    let childLength = Object.keys(item.inputs[inputKey]).length;
+                                                    colLength = childLength === 3 ? 4 : childLength === 2 ? 6 : 12;
+                                                    return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={""} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /></div> :
+                                                        childElem.input === "radio" || childElem.input === "select"
+                                                            ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
+                                                                id={childKey} questionId={item.question_code} pageId={state.activePageId} value={""} name={childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={childElem.placeholder ? childElem.placeholder : childKey} /></div> : ""
+                                                }) : input.input === "array" ? <React.Fragment>
                                                     <p className="form-inner-heading">{isPrimary ? "Primary" : isAlternate ? "Alternate" : ""}</p>
                                                     {answerList.map((ques, quesIndex) => {
                                                         return <div className="row" key={quesIndex}>
@@ -471,7 +479,6 @@ function QuestionsContainer(props) {
                                                             })}
                                                         </div>
                                                     })}
-
                                                     <div className="col-lg-12 col-lg-12 col-sm-12 center">
                                                         <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
                                                     </div>
