@@ -326,7 +326,6 @@ function SignUp(props) {
 											<div className="create-one-account">
 												<span className="text">Do you have any account? <Link className="create-one" to="/login">Login</Link></span>
 											</div>
-											<div class="row empty-space"></div>
 
 										</form>
 									</div>

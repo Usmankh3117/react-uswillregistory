@@ -47,7 +47,7 @@ export const Style = createGlobalStyle`
 	color: #595959;
 }
 .sign-in-section {
-    margin: 5% 0%;
+    margin: 5% 0% 10%;
 }
 .login-img-div {
     border-radius: 25px;
@@ -210,7 +210,7 @@ export const Style = createGlobalStyle`
 }
 .login-social-media-icons {
     margin-top: 12px;
-    padding-bottom: 30px;
+    padding-bottom: 31px;
 }
 .mg-bottom-30 {
     margin-bottom: 30px;

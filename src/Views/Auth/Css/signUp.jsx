@@ -108,7 +108,7 @@ export const RegisterStyle = createGlobalStyle`
 }
 .submit-btn {
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 7px;
     margin-bottom: 0;
     padding-bottom: 24px
 }
@@ -188,7 +188,7 @@ export const RegisterStyle = createGlobalStyle`
     margin: 1.5% 0%;
 }
 .sign-in-section {
-    margin: 5% 0%;
+    margin: 5% 0% 10%;
 }
 .form-control1 {
     display: block;
