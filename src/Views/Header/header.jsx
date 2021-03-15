@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "../Common/Components/image";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -8,6 +8,9 @@ import { getSlugPages } from "../LandingPages/Apicalls/landing";
 import { getCookie } from "../../Services/cookies";
 
 function Header(props) {
+    const [state, setState] = useState({
+        activeTab: "/"
+    })
     useEffect(() => {
         if (props.apiCallStatus.apiCallFor === "LogoutUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
@@ -24,6 +27,11 @@ function Header(props) {
         var nameMatch = email.match(/^([^@]*)@/);
         var name = nameMatch ? nameMatch[1] : null;
         return name;
+    }
+    const handleChangeTab = (tabName) => {
+        setState({
+            activeTab: tabName
+        })
     }
     return <header>
         <nav className="navbar navbar-default top visible-lg-block">
@@ -58,18 +66,18 @@ function Header(props) {
                                 <a href="#" onClick={() => logoutUser()} className="top-menu">Logout</a>
                             </li>
                         </React.Fragment> : <React.Fragment>
-                            <li className="active"><a href="#">Home <span className="sr-only">(current)</span></a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Site Map</a></li>
-                            <li><a href="#">Dictionary</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Privacy Notice</a></li>
-                            <li><a href="#">For Non Profit</a></li>
-                            <li><a href="#">FAQ</a></li></React.Fragment>}
+                            <li className={state.activeTab === "/" ? "active" : ""}><Link to="/" onClick={() => handleChangeTab("/")}>Home <span className="sr-only">(current)</span></Link></li>
+                            <li className={state.activeTab === "/contact-us" ? "active" : ""}><Link to="/contact-us" onClick={() => handleChangeTab("/contact-us")}>Contact Us</Link></li>
+                            <li className={state.activeTab === "/about-us" ? "active" : ""}><Link to="/about-us" onClick={() => handleChangeTab("/about-us")}>About Us</Link></li>
+                            <li><Link to="#">Site Map</Link></li>
+                            <li><Link to="#">Dictionary</Link></li>
+                            <li><Link to="#">Terms of Service</Link></li>
+                            <li className={state.activeTab === "/privacy" ? "active" : ""}><Link to="/privacy" onClick={() => handleChangeTab("/privacy")}>Privacy Notice</Link></li>
+                            <li className={state.activeTab === "/last-will" ? "active" : ""}><Link to="/last-will" onClick={() => handleChangeTab("/last-will")}>For Non Profit</Link></li>
+                            <li className={state.activeTab === "/faq" ? "active" : ""}><Link to="/faq" onClick={() => handleChangeTab("/faq")}>FAQ</Link></li></React.Fragment>}
                     </ul>
                     <ul className="nav navbar-nav navbar-right visible-lg-block">
-                        <li><a className="navbar-brand" href="#"><Image name="round-logo-2.png" alt="" /></a></li>
+                        <li><Link className="navbar-brand" to="/" onClick={() => handleChangeTab("/")}><Image name="round-logo-2.png" alt="" /></Link></li>
                     </ul>
                 </div>
             </div>
