@@ -132,7 +132,7 @@ function Login(props) {
 					</div>
 					<div className="row auth-custom-container">
 						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
+							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})`,borderRadius:"22px 0 0 22px" }}>
 								<div className="auth-page-caption-text">
 									<h5> Welcome to the The U.S. Will Registry </h5>
 									<p> Enter your personal detail and start your journey  </p>
