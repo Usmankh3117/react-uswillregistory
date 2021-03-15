@@ -38,8 +38,8 @@ function Header(props) {
             <div className="container">
 
                 <div className="navbar-header col-md-4">
-                    <a className="navbar-brand" href="#">
-                        <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></a>
+                    <Link className="navbar-brand" to="/">
+                        <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></Link>
                 </div>
             </div>
         </nav>
