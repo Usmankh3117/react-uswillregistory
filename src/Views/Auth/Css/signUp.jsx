@@ -194,7 +194,7 @@ export const RegisterStyle = createGlobalStyle`
     display: block;
     width: 100%;
     height: 53px;
-    padding: 8px 7px;
+    padding: 8px 10px;
     font-size: 15px;
     line-height: 1.42857143;
     color: #555;
@@ -216,6 +216,9 @@ export const RegisterStyle = createGlobalStyle`
     outline: unset !important;
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
 }
+.form-control1 .radio-inline+.radio-inline{
+    margin-left: 20px !important; 
+}
 .empty-space {
     margin-bottom: 20% ;
 }
@@ -226,7 +229,7 @@ export const RegisterStyle = createGlobalStyle`
         padding-right: 1px;
     }
 .auth-page-left-section {
-    height: 648px;
+    min-height: 607px;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -234,12 +237,13 @@ export const RegisterStyle = createGlobalStyle`
     padding-top: 11px;
     margin-top: 0 !important;
 }
-    .auth-right-form {
+.auth-right-form {
+    min-height: 606px;
     box-shadow: 1px 1px 3px 0px #ccc;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     margin-top: 1px;
-    }
+}
 .auth-page-caption-text {
     position: absolute;
     left: 0;

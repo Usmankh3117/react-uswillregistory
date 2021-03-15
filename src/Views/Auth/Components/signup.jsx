@@ -182,7 +182,7 @@ function SignUp(props) {
 					</div>
 					<div className="row auth-custom-container">
 						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
+							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})`, borderRadius:"22px 0 0 22px" }}>
 								<div className="auth-page-caption-text">
 									<h5> Welcome to the The U.S. Will Registry </h5>
 									<p> Enter your personal detail and start your journey  </p>
@@ -191,9 +191,9 @@ function SignUp(props) {
 						</div>
 						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 							<div className="auth-right-form">
-								<div className="form-heading">
+								{/* <div className="form-heading">
 									<h2 style={{ color: "#033168" }}> Register</h2>
-								</div>
+								</div> */}
 								<div className="form-part">
 									<div className="form-heading">
 										<h2 style={{ color: "#033168" }}></h2>
@@ -201,11 +201,11 @@ function SignUp(props) {
 									<div className="register-form">
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="row">
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingRight:0 }}>
 													<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingRight:0 }}>
 													<Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
@@ -247,7 +247,7 @@ function SignUp(props) {
 												<div className="col-lg-12">
 													<label>Date Of Birth</label>
 												</div>
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingRight:0 }}>
 													<div className="input-group1">
 														<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 															<option value="">Month</option>
@@ -257,7 +257,7 @@ function SignUp(props) {
 														</select>
 													</div>
 												</div>
-												<div className="col-lg-4 col-md-4 col-sm-4">
+												<div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingRight:0 }}>
 													<div className="input-group1">
 														<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
 															<option value="">Day</option>
