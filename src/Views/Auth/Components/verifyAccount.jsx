@@ -8,7 +8,6 @@ import { verifyUser } from "../ApiCalls/auth";
 
 function VerifyAccount(props) {
     useEffect(() => {
-        debugger
         props.verifyUser(props.match.params.id)
     }, []);
     // http://localhost:3001/verify/4b2f7e13a63ef2c4f2e33fc5dfa90271e4beeeff
