@@ -3,8 +3,7 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
 import { updateAnswerAction } from "../Actions/action";
-import { getFormSection, getQuestionList, getStateList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
-import DatePicker from 'react-date-picker';
+import { getFormSection, getQuestionList, getStateList, getChartiyList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 import { getYearList } from "../../../Services/common";
@@ -21,6 +20,7 @@ function QuestionsContainer(props) {
     useEffect(() => {
         props.getFormSection();
         props.getStateList();
+        props.getChartiyList();
         props.getAllAnswer();
     }, [])
     useEffect(() => {
@@ -36,6 +36,7 @@ function QuestionsContainer(props) {
                     answer = props.answerList[index]['answer']
                 }
             }
+
             quest.forEach(element => {
                 for (const input in element.inputs) {
                     let value = "";
@@ -106,6 +107,20 @@ function QuestionsContainer(props) {
                             }
                         }
 
+                    } else if (input === "charityPortion") {
+                        let obj = { ...element.inputs[input] }
+                        for (const childElem in element.inputs[input]) {
+                            value = "";
+                            if (answer[element.question_code] && answer[element.question_code][input] && answer[element.question_code][input][childElem]) {
+                                value = answer[element.question_code][input][childElem]
+                            }
+                            obj[childElem] = { ...obj.[childElem], value }
+                        }
+
+                        inputs[element.question_code] = {
+                            ...inputs[element.question_code],
+                            [input]: { ...obj }
+                        }
                     } else {
                         if (answer[element.question_code] && answer[element.question_code][input]) {
                             value = answer[element.question_code][input]
@@ -164,11 +179,16 @@ function QuestionsContainer(props) {
             props.getQuestionList(activePageId);
         }
     })
-    const handlePageStateChange = (questionId, pageId, e) => {
+    const handlePageStateChange = (questionId, pageId, e, childKey) => {
         let id = e.target.id;
         let value = e.target.value;
         let questions = state.questions;
-        questions[pageId][questionId][id].value = value;
+        debugger
+        if (childKey) {
+            questions[pageId][questionId][childKey][id].value = value;
+        } else {
+            questions[pageId][questionId][id].value = value;
+        }
         setState({
             ...state,
             questions,
@@ -213,6 +233,13 @@ function QuestionsContainer(props) {
                             detail[item] = arr;
                         })
                         answer[question] = detail;
+                    } else if (state.questions[state.activePageId][question]["charityPortion"]) {
+                        for (const input in state.questions[state.activePageId][question]["charityPortion"]) {
+                            answer[question]["charityPortion"] = {
+                                ...answer[question]["charityPortion"],
+                                [input]: state.questions[state.activePageId][question]["charityPortion"][input].value
+                            }
+                        }
                     } else {
                         for (const input in state.questions[state.activePageId][question]) {
                             answer[question][input] = state.questions[state.activePageId][question][input].value
@@ -305,9 +332,6 @@ function QuestionsContainer(props) {
     }
     const checkQuestionDependancy = (dependency, pageId) => {
         let isAllow = false;
-        pageId = pageId.replace(/P/g, "");
-        pageId = pageId.replace(/0/g, "");
-        pageId = parseInt(pageId);
         // if (pageId === state.activePageId && state.questions[state.activePageId]) {
         //     for (let index = 0; index < dependency.length; index++) {
         //         const element = dependency[index];
@@ -325,11 +349,14 @@ function QuestionsContainer(props) {
         //         }
         //     }
         // } else
-         if (state.questions[state.activePageId]) {
+        if (state.questions[state.activePageId]) {
             for (let index = 0; index < dependency.length; index++) {
                 const element = dependency[index];
                 let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
-                if (element.page_id === state.activePageId) {
+                let elemPageId = element.page_id.replace(/P/g, "");
+                elemPageId = elemPageId.replace(/0/g, "");
+                elemPageId = parseInt(elemPageId);
+                if (elemPageId === state.activePageId) {
                     let questions = props.questions[state.activePageId];
                     let questionIndex = questions.findIndex(x => x.id === element.parent_id)
                     if (questionIndex !== -1) {
@@ -342,7 +369,13 @@ function QuestionsContainer(props) {
                             isAllow = false;
                         }
                     }
-                } else if (pageIndex !== -1 && props.answerList[pageIndex]) {
+                }
+            }
+        } else if (state.questions[state.activePageId]) {
+            for (let index = 0; index < dependency.length; index++) {
+                const element = dependency[index];
+                let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
+                if (pageIndex !== -1 && props.answerList[pageIndex]) {
                     let question = props.answerList[pageIndex]["answer"][element.parent_question_code];
                     let questionKey = Object.keys(props.answerList[pageIndex]["answer"][element.parent_question_code])[0];
                     if (question[questionKey] === element.answer) {
@@ -403,7 +436,7 @@ function QuestionsContainer(props) {
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
                             <div id="Basic">
-                                {props.apiCallStatus.apiCallFor === "getQuestionList" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection" || props.apiCallStatus.apiCallFor === "getAllAnswer") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                     <div className="loader-img text-center">
                                         <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
                                     </div>
@@ -422,7 +455,12 @@ function QuestionsContainer(props) {
                                                     input = item.inputs[inputKey]["primary"];
                                                     isPrimary = true;
                                                 }
-                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ? state.questions[state.activePageId][item.question_code][inputKey].value : ""
+                                                // if (inputKey = "petCareTaker") {
+                                                //     debugger
+                                                // }
+                                                // console.log(state.questions[state.activePageId] ? state.questions[state.activePageId][item.question_code] : {})
+                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ?
+                                                    state.questions[state.activePageId][item.question_code][inputKey].value : "";
                                                 let arrFields = input.input === "array" ? Object.keys(input.fields) : []
                                                 colLength = input.input === "array" ? arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12 : colLength;
                                                 let answerList = [];
@@ -436,7 +474,19 @@ function QuestionsContainer(props) {
                                                         answerList = state.questions[state.activePageId][item.question_code].value
                                                     }
                                                 }
-                                                return input.input === "array" ? <React.Fragment>
+                                                return inputKey === "charityPortion" ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
+                                                    let childElem = item.inputs[inputKey][childKey];
+                                                    let childLength = Object.keys(item.inputs[inputKey]).length;
+                                                    colLength = childLength === 3 ? 4 : childLength === 2 ? 6 : 12;
+                                                    value = "";
+                                                    if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey]) {
+                                                        value = state.questions[state.activePageId][item.question_code][inputKey][childKey].value;
+                                                    }
+                                                    return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} /></div> :
+                                                        childElem.input === "radio" || childElem.input === "select"
+                                                            ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
+                                                                id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} placeholder={childElem.placeholder ? childElem.placeholder : childKey} /></div> : ""
+                                                }) : input.input === "array" ? <React.Fragment>
                                                     <p className="form-inner-heading">{isPrimary ? "Primary" : isAlternate ? "Alternate" : ""}</p>
                                                     {answerList.map((ques, quesIndex) => {
                                                         return <div className="row" key={quesIndex}>
@@ -455,7 +505,7 @@ function QuestionsContainer(props) {
                                                                 }
                                                                 return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
                                                                     <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
-                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
+                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
                                                                 </div>
                                                                     {
                                                                         (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
@@ -465,14 +515,13 @@ function QuestionsContainer(props) {
                                                             })}
                                                         </div>
                                                     })}
-
                                                     <div className="col-lg-12 col-lg-12 col-sm-12 center">
                                                         <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
                                                     </div>
                                                 </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                     {input.input === "text" ?
                                                         <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
-                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
+                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
                                                 </div>
                                             })}
                                         </div>
@@ -684,10 +733,12 @@ const mapStateToProps = (state, ownProps) => ({
     sectionList: state.questionReducer.sectionList,
     questions: state.questionReducer.questions,
     stateList: state.questionReducer.stateList,
-    answerList: state.questionReducer.answerList
+    answerList: state.questionReducer.answerList,
+    charityList: state.questionReducer.charityList
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    getChartiyList: () => dispatch(getChartiyList()),
     getStateList: () => dispatch(getStateList()),
     getQuestionList: (pageId) => dispatch(getQuestionList(pageId)),
     getFormSection: () => dispatch(getFormSection()),

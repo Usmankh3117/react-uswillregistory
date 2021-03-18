@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { AuthWrapper } from "./authWrapper";
+// import { AuthWrapper } from "./authWrapper";
 import { Style } from '../Css/login';
 import { connect } from 'react-redux';
 import { LoginUser } from "../ApiCalls/auth";
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { Constant } from "../../../Constants/constant";
 import Image from '../../Common/Components/image';
 import RegisterBg from "../../../assets/img/left-panel-signup.png";
+import BgImage from '../../../assets/img/updated-01.png';
 import { getCookie, setCookie } from '../../../Services/cookies';
 
 const defaultState = {
@@ -125,22 +126,16 @@ function Login(props) {
 			<Style />
 			<section className="sign-in-section">
 				<div className="container">
-					<div className="row">
-						<div className="sign-in-heading-section text-center">
-							<h1 className="heading"><span className="bold">Login</span> Form</h1>
+					<div class="row">
+						<div class="sign-in-heading-section text-center">
+							<h1 class="heading"><span class="bold">Login </span> Form</h1>
 						</div>
 					</div>
-					<div className="row auth-custom-container">
-						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
-								<div className="auth-page-caption-text">
-									<h5> Welcome to the The U.S. Will Registry </h5>
-									<p> Enter your personal detail and start your journey  </p>
-								</div>
+					<div className="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1" style={{ backgroundImage: `url(${BgImage})` }}>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 							</div>
-						</div>
-						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-right-form">
+							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<div className="form-heading">
 									<h2 style={{ color: "#033168" }}>Login</h2>
 								</div>
@@ -192,6 +187,7 @@ function Login(props) {
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</section >

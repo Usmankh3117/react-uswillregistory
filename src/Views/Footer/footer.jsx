@@ -19,35 +19,38 @@ function Footer(props) {
                 {isIgnore ?
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12">
-                            <div className="">
-                                <div className="footer__copyright__text">
-                                    <ul className="list-group1 list-group-horizontal">
-                                        <li className="list-group-item1 footer-icon-signin1 pad-right-15">
-                                            <span className="follow-us-on">FOLLOW US ON</span>
+                            <div class="footer-wrapper">
+                                <div class="footer__copyright__text">
+
+                                    <ul class="list-group1 list-group-horizontal">
+                                        <li class="list-group-item1 footer-icon-signin1 pad-right-15">
+                                            <span class="follow-us-on">FOLLOW US ON</span>
                                         </li>
-                                        <li className="list-group-item1 footer-store-logo1">
-                                            <Image name="twitter.png" alt="img1" />
+                                        <li class="list-group-item1 footer-store-logo1">
+                                            <a href="#"><Image name="twitter.png" alt="img1" /></a>
                                         </li>
-                                        <li className="list-group-item1 footer-store-logo1">
-                                            <Image name="fb.png" alt="img1" />
+                                        <li class="list-group-item1 footer-store-logo1">
+                                            <a href="#"><Image name="fb.png" alt="img1" /></a>
                                         </li>
-                                        <li className="list-group-item1 footer-store-logo1">
-                                            <Image name="google.png" alt="img1" />
+                                        <li class="list-group-item1 footer-store-logo1">
+                                            <a href="#"><Image name="google.png" alt="img1" /></a>
                                         </li>
-                                        <li className="list-group-item1 footer-store-logo1">
-                                            <Image name="insta.png" alt="img1" />
+                                        <li class="list-group-item1 footer-store-logo1">
+                                            <a href="#"> <Image name="insta.png" alt="img1" /></a>
                                         </li>
+
                                     </ul>
                                 </div>
-                                <div className="footer__copyright__payment">
-                                    <ul className="list-group1 list-group-horizontal">
-                                        <li className="list-group-item1 footer-icon-signin1 pad-right-15">
+                                <div class="footer__copyright__payment">
+                                    <ul class="list-group1 list-group-horizontal">
+                                        <li class="list-group-item1 footer-icon-signin1 pad-right-15">
                                             <span>SUBSCRIBE TO OUR NEWSLETTER</span>
                                         </li>
-                                        <li className="list-group-item1 footer-icon-signin1 footer-form">
+                                        <li class="list-group-item1 footer-icon-signin1 footer-form">
                                             <form action="#">
-                                                <input type="text" placeholder="Enter your Email" style={{ fontSize: "16px", padding: "5px" }} />
-                                                <button type="submit" className="footer-submit-btn1"><i className="fa fa-arrow-right"></i></button>
+                                                <input type="text" placeholder="Enter your Email" />
+                                                <button type="submit" class="footer-submit-btn1"><i
+                                                    class="fa fa-arrow-right"></i></button>
                                             </form>
                                         </li>
                                     </ul>
@@ -136,18 +139,19 @@ function Footer(props) {
                     </div>}
             </div>
         </footer>
-        <footer className="bottom-footer">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12 copyrights">
-                        <p>Copyright &copy;2019-2020 US Will Registry Co, a Delaware Public Benifits Corporation. All rights reserved </p>
+        <footer class="bottom-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12 copyrights">
+                        <p>Copyright &copy;2019-2020 US Will Registry Co, a Delaware Public Benifits Corporation. All rights
+                        reserved </p>
                     </div>
                 </div>
             </div>
         </footer>
     </Fragment>
 }
-
 const mapStateToProps = (state, ownProps) => ({
     apiCallStatus: state.apicallStatusReducer,
     user: { isLogin: state.authReducer.isLogin, }

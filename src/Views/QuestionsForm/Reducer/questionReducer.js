@@ -3,6 +3,7 @@ import {
   getQuestionList,
   getStatesList,
   getAllAnswer,
+  getCharityList,
   updateAnswer,
 } from "./../Actions/action";
 import StoreState from "./../../../Constants/initialState";
@@ -36,6 +37,11 @@ export default function questionReducer(state = StoreState.question, action) {
       let s4 = cloneDeep(state);
       s4.answerList[action.payload.pageId] = action.payload.data;
       return s4;
+
+    case getCharityList:
+      let s5 = cloneDeep(state);
+      s5.charityList = action.payload;
+      return s5;
 
     default:
       return state;

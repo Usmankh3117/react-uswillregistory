@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import Image from "../Common/Components/image";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -8,6 +8,9 @@ import { getSlugPages } from "../LandingPages/Apicalls/landing";
 import { getCookie } from "../../Services/cookies";
 
 function Header(props) {
+    const [state, setState] = useState({
+        activeTab: "/"
+    })
     useEffect(() => {
         if (props.apiCallStatus.apiCallFor === "LogoutUser" && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor);
@@ -25,75 +28,68 @@ function Header(props) {
         var name = nameMatch ? nameMatch[1] : null;
         return name;
     }
+    const handleChangeTab = (tabName) => {
+        setState({
+            activeTab: tabName
+        })
+    }
     return <section className="header-section">
         <div className="icondiv">
             <div className="header-top-part">
                 <div className="container">
-                    <div className="upper-header">
-                        <div className="row">
-                            <Link to="/" className="col-lg-4 col-md-4 col-sm-6">
-                                <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" />
-                            </Link>
-                            <div className="col-lg-8 col-md-8 col-sm-6">
-                                <div className="logo">
-                                    <Link to="/" className="header-right-img">
-                                        <Image name="round-logo-2.png" alt="" />
-                                    </Link>
+                    <div className="header-wrapper">
+                        <div className="upper-header">
+                            <div className="row">
+                                <div className="col-lg-12 col-md-12 col-sm-12">
+                                    <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" />
                                 </div>
                             </div>
                         </div>
+                        <div className="header-right">
+                            <div className="header-right-img">
+                                <Image name="round-logo-2.png" alt="" />
+                            </div>
+                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div className="header-lower-part">
                 <div className="container">
                     <div className="lower-header">
-                        <ul className={`list-group ${props.user.isLogin ? "right" : ""}`}>
-                            {props.user.isLogin ? <React.Fragment>
-                                {/* <li className="list-group-item border-right">
-                                    <Image name="user_img.png" alt="img" className="top-name-img" />
-                                    <select name="profile"  value={getCookie("email")} class="profile-dropdown">
-                                        <option value={getCookie("email")}>Edit Profile</option>
-                                    </select>
-                                </li> */}
-                                <li className="list-group-item border-right">
-                                    <Image name="user_img.png" alt="img" className="top-name-img" />
-                                    <Link to="/edit-profile" className="top-menu">{getUserName(getCookie("email"))}</Link>
-                                </li>
-                                <li className="list-group-item">
-                                    <a onClick={() => logoutUser()} className="top-menu">Logout</a>
-                                </li>
-                            </React.Fragment> :
-                                <React.Fragment>
-                                    <li className="list-group-item">
-                                        <Link to="/" className="top-menu active-menu">Home</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/contact-us" className="top-menu">Contact us Pages</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/about-us" className="top-menu">About Us</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/" className="top-menu">Site Map</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/" className="top-menu">Dictionary</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/privacy" className="top-menu">Terms of Service</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/privacy" className="top-menu">Privacy Notice</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/faq" className="top-menu">For Non Profit</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to="/faq" className="top-menu">FAQ</Link>
-                                    </li>
-                                </React.Fragment>}
-                        </ul>
+                        <nav className="navbar navbar-default navbar-expand-lg">
+                            {/* Collect the nav links, forms, and other content for toggling  */}
+                            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul className="nav navbar-nav">
+                                    {props.user.isLogin ? <React.Fragment>
+                                        <li>
+                                            {/* <Image name="user_img.png" alt="img" className="top-name-img" /> */}
+                                            <Link to="/edit-profile" className="top-menu">{getUserName(getCookie("email"))}</Link>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick={() => logoutUser()} className="top-menu">Logout</a>
+                                        </li>
+                                    </React.Fragment> : <React.Fragment>
+                                        <li className={state.activeTab === "/" ? "active" : ""}><Link to="/" onClick={() => handleChangeTab("/")}>Home </Link></li>
+                                        <li className={state.activeTab === "/contact-us" ? "active" : ""}><Link to="/contact-us" onClick={() => handleChangeTab("/contact-us")}>Contact Us</Link></li>
+                                        <li className={state.activeTab === "/about-us" ? "active" : ""}><Link to="/about-us" onClick={() => handleChangeTab("/about-us")}>About Us</Link></li>
+                                        <li><Link to="#">Site Map</Link></li>
+                                        <li><Link to="#">Dictionary</Link></li>
+                                        <li><Link to="#">Terms of Service</Link></li>
+                                        <li className={state.activeTab === "/privacy" ? "active" : ""}><Link to="/privacy" onClick={() => handleChangeTab("/privacy")}>Privacy Notice</Link></li>
+                                        <li className={state.activeTab === "/last-will" ? "active" : ""}><Link to="/last-will" onClick={() => handleChangeTab("/last-will")}>For Non Profit</Link></li>
+                                        <li className={state.activeTab === "/faq" ? "active" : ""}><Link to="/faq" onClick={() => handleChangeTab("/faq")}>FAQ</Link></li></React.Fragment>}
+                                </ul>
+                            </div>
+                            {/* <!-- /.navbar-collapse --> */}
+                        </nav>
                     </div>
                 </div>
             </div>
