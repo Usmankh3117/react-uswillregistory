@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-
+import BGImage from "../../../assets/img/Sign-In_background-img.png";
+import BottomShadow from "../../../assets/img/bottom-shadow.png";
+import LoginSplash from "../../../assets/img/login-splash.png"
 export const Style = createGlobalStyle`
 /* sign in style sheet */
 .login-left-outer-div1 {
@@ -41,7 +43,10 @@ export const Style = createGlobalStyle`
 
 .sign-in-heading-section .heading {
     color: #033168;
-    font-size: 36px;
+    font-size: 43px;
+    margin: 0px;
+    font-weight: 400;
+    text-transform: capitalize;
 }
 
 .link {
@@ -59,7 +64,7 @@ export const Style = createGlobalStyle`
 }
 
 .sign-in-section {
-    margin: 5% 0%;
+    margin: 160px 0px;
 }
 
 .login-img-div {
@@ -70,6 +75,22 @@ export const Style = createGlobalStyle`
 .form-heading {
     text-align: center;
     margin-top: 15%;
+}
+
+.login-form {
+    /* padding: 0% 10%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 43px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 0px;
 }
 
 .login-form-div {
@@ -88,33 +109,43 @@ export const Style = createGlobalStyle`
 }
 
 .abcd {
-    background-image: url("dist/assets/img/Sign-In_background-img.png");
+    background-image: url(${BGImage});
     background-size: 100%;
 }
 
 .login-form {
-    padding: 0% 10%;
+    /* padding: 0% 10%; */
 }
 
-.login-form>form>.input-group {
+.login-form form>.input-group {
     border: 1px solid #03336c !important;
     margin-top: 20px;
+    display: flex;
 }
 
-.login-form>form>.input-group>span {
-    background-color: #033672;
+.login-form form>.input-group>span {
+    background: rgb(4, 58, 122);
+    background: -moz-linear-gradient(180deg, rgba(4, 58, 122, 1) 0%, rgba(1, 41, 89, 1) 66%);
+    background: -webkit-linear-gradient(180deg, rgba(4, 58, 122, 1) 0%, rgba(1, 41, 89, 1) 66%);
+    background: linear-gradient(180deg, rgba(4, 58, 122, 1) 0%, rgba(1, 41, 89, 1) 66%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#043a7a", endColorstr="#012959", GradientType=1);
     border: none !important;
     font-size: 20px;
     color: white;
-    padding: 10px 24px;
+    padding: 10px 15px;
     border-radius: 0px;
+    width: 92px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.login-form>form>.input-group>.form-control {
+
+.login-form form>.input-group>.form-control {
     border: none !important;
     box-shadow: none !important;
     font-size: 17px;
-    padding: 0px 0 0 20px;
+    padding: 0px 20px 0px 20px;
     margin: 0px 0px 0px 0px;
     height: 54px;
     font-family: 'Poppins', sans-serif;
@@ -127,19 +158,19 @@ export const Style = createGlobalStyle`
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
-.login-form>form>.input-group1 {
+.login-form form>.input-group1 {
     font-size: 16px;
     margin-top: 15px;
 }
 
-.login-form>form>.input-group1>a {
+.login-form form>.input-group1>a {
     float: right;
     font-size: 15px;
     text-decoration: none;
     color: #989cab;
 }
 
-.login-form>form>.input-group1>label {
+.login-form form>.input-group1>label {
     font-weight: normal;
     color: #9999af;
     font-size: 15px;
@@ -155,6 +186,7 @@ export const Style = createGlobalStyle`
 
 .login-left-outer-div1 {
     position: relative;
+    margin-top: 30px;
 }
 
 .login-left-inner-div1 {
@@ -188,13 +220,21 @@ export const Style = createGlobalStyle`
 }
 
 .submit-btn>.submit {
-    font-size: 17px;
+    font-size: 19px;
     color: white;
     background-color: #f85656;
     border-radius: 30px;
     border: 1px solid #f85656;
-    padding: 6px 51px;
+    padding: 0px 20px;
     text-transform: uppercase;
+    height: 49px;
+    line-height: 49px;
+    min-width: 220px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
 }
 
 .rememberme {
@@ -208,7 +248,7 @@ export const Style = createGlobalStyle`
 
 .create-one-account {
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 26px;
 }
 
@@ -218,8 +258,19 @@ export const Style = createGlobalStyle`
 
 .create-one-account>span>a {
     color: #ff0000;
-    text-decoration: underline !important;
+    text-decoration: none !important;
     font-weight: 600;
+    position: relative;
+}
+
+.create-one-account>span>a::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #ff0000;
+    position: absolute;
+    right: 0px;
+    bottom: -1px;
 }
 
 .create-one-account>span>a:hover {
@@ -252,7 +303,7 @@ export const Style = createGlobalStyle`
 }
 
 .login-social-media-icons {
-    margin-top: 12px;
+    margin-top: 15px;
 }
 
 .mg-bottom-30 {
@@ -260,16 +311,41 @@ export const Style = createGlobalStyle`
 }
 
 .bottom-icons {
-    margin-left: 6%;
+    margin: 0px 20px;
     color: #052f61;
     font-size: 15px;
     border: 1px solid #c3c3c3;
-    border-radius: 25px;
-    padding: 10px 11px;
+    border-radius: 100px;
+    padding: 0px;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
 }
 
-.bottom-icons:hover {
-    transform: scale(1.1);
+.bottom-icons:hover {}
+
+a.facebookIcon:hover i {
+    background: #3b5998;
+    color: #fff;
+    border: 1px solid #3b5998;
+}
+
+a.instIcon:hover i {
+    background: #7232bd;
+    color: #fff;
+    border: 1px solid #7232bd;
+}
+
+a.googleIcon:hover i {
+    background: #ea4335;
+    color: #fff;
+    border: 1px solid #ea4335;
 }
 
 .sign-in-outer-div {
@@ -288,14 +364,74 @@ export const Style = createGlobalStyle`
     margin-top: 0;
 }
 
+.login-wrapper {
+    display: flex;
+    border-radius: 20px;
+    margin-top: 50px;
+    position: relative;
+    margin-bottom: 117px;
+    flex-direction: column;
+}
 
+.login-wrapper:after {
+    content: '';
+    display: block;
+    height: 112px;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: -112px;
+    background: url(${BottomShadow});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top center;
+}
 
-@media all and (min-width:769px) {
-    .container {
-        /* width: 100% !important;
-    padding-left: 70px !important;
-    padding-right: 70px !important; */
-    }
+.login-holder {
+    box-shadow: 10px 0px 40px #ebecee;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.login-block {
+    flex: 1 0 50%;
+}
+
+.login-block.login-block-left {
+    justify-content: center;
+    align-items: center;
+    background: url(${LoginSplash});
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-left-content {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 595px;
+}
+
+.login-left-content h2 {
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.login-left-content p {
+    font-size: 17px;
+    font-weight: 200;
+}
+
+/* zee */
+.login-block-holder {
+    padding: 50px;
 }
 
 @media all and (max-width:992px) {
@@ -303,7 +439,7 @@ export const Style = createGlobalStyle`
         margin-top: 5%;
     }
 
-    .login-form>form>.input-group>.form-control {
+    .login-form form>.input-group>.form-control {
         height: 45px !important;
     }
 
@@ -315,21 +451,47 @@ export const Style = createGlobalStyle`
         font-size: 40px;
     }
 
+    .login-wrapper:after {
+        height: 70px;
+        bottom: 0px;
+        position: relative;
+    }
+
+    .login-wrapper {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .sign-in-section {
+        margin: 0px;
+    }
+
+    .login-left-content {
+
+        padding: 0px 20px;
+    }
+
 }
 
 @media all and (max-width:768px) {
     .login-form {
-        padding: 0% 0 !important;
+        /* padding: 0% 0 !important; */
     }
 
     .sign-in-heading-section .heading {
-        font-size: 25px;
+        /* font-size: 25px; */
     }
 
     .form-heading h2 {
         font-size: 20px;
         padding-bottom: 10px;
     }
+
+    .login-block.login-block-left {
+        display: none;
+    }
+
+
 }
 
 @media all and (max-width:500px) {
@@ -337,13 +499,41 @@ export const Style = createGlobalStyle`
         font-size: 13px;
     }
 
-    .login-form>form>.input-group1>label {
+    .login-form form>.input-group1>label {
         font-size: 12px;
     }
 
-    .login-form>form>.input-group1>a {
+    .login-form form>.input-group1>a {
         font-size: 12px;
     }
+}
+
+@media screen and (max-width: 991px) and (min-width: 769px) {
+
+    .login-block-holder {
+        padding: 50px 40px;
+    }
+
+    .login-form form>.input-group1>label {
+        font-size: 12px;
+    }
+
+    .login-form form>.input-group1>a {
+        font-size: 12px;
+    }
+
+    .create-one-account {
+        font-size: 13px;
+    }
+
+    .login-left-content h2 {
+        font-size: 16px;
+    }
+
+    .login-left-content p {
+        font-size: 14px;
+    }
+
 }
 
 `

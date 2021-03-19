@@ -14,11 +14,11 @@ function GetStarted(props) {
     return <section className="get-started">
         <div className="started-img">
             <Image name="contact-us-top-img.png" alt="contact us img" />
-            <div class="banner-text">
-                <div class="banner-heading">
+            <div className="banner-text">
+                <div className="banner-heading">
                     <h1>CONTACT US</h1>
                 </div>
-                <div class="banner-details">
+                <div className="banner-details">
                     <p>we'd love to talk about how we can help you</p>
                 </div>
             </div>
@@ -29,39 +29,37 @@ function GetStarted(props) {
 function ContactDetail(props) {
     return <section className="contact-section">
         <div className="container">
-            <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-
-                    <div className="col-lg-4 col-md-4 col-sm-4 c-details">
-                        <div className="c-detail-icon">
-                            <i className="fa fa-globe" aria-hidden="true"></i>
+            <div class="row">
+                <div class="">
+                    <div class="col-md-4 c-details">
+                        <div class="c-detail-icon">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
                         </div>
-                        <div className="mini-details">
-                            <h3 className="address">Address</h3>
-                            <p className="mini-details-p">3509 Connecticut Ave.</p>
-                            <p className="mini-details-p">NW Washington DC - 2008</p>
+                        <div class="mini-details">
+                            <h3 class="address">Address</h3>
+                            <p class="mini-details-p">3509 Connecticut Ave.</p>
+                            <p class="mini-details-p">NW Washington DC - 2008</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 c-details">
+                        <div class="c-detail-icon">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="mini-details">
+                            <h3 class="address">Email</h3>
+                            <p class="mini-details-p">support@theuswillresitry.org</p>
+                            <p class="mini-details-p">.</p>
                         </div>
 
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 c-details">
-                        <div className="c-detail-icon">
-                            <i className="fa fa-envelope" aria-hidden="true"></i>
+                    <div class="col-md-4 c-details">
+                        <div class="c-detail-icon">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
-                        <div className="mini-details">
-                            <h3 className="address">Email</h3>
-                            <p className="mini-details-p">support@theuswillresitry.org</p>
-                            <p className="mini-details-p">.</p>
-                        </div>
-
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 c-details">
-                        <div className="c-detail-icon">
-                            <i className="fa fa-phone" aria-hidden="true"></i>
-                        </div>
-                        <div className="mini-details">
-                            <h3 className="address">Phone number</h3>
-                            <p className="mini-details-p">+1(062)109-9222</p>
-                            <p className="mini-details-p">.</p>
+                        <div class="mini-details">
+                            <h3 class="address">Phone number</h3>
+                            <p class="mini-details-p">+1(062)109-9222</p>
+                            <p class="mini-details-p">.</p>
                         </div>
 
                     </div>

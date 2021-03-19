@@ -36,7 +36,6 @@ function QuestionsContainer(props) {
                     answer = props.answerList[index]['answer']
                 }
             }
-
             quest.forEach(element => {
                 for (const input in element.inputs) {
                     let value = "";
@@ -62,7 +61,7 @@ function QuestionsContainer(props) {
                                 inputs[element.question_code]['value'] = item;
                             }
                         }
-                    } else if (input === "alternate" || element.inputs[input]["primary"]) {
+                    } else if (input !== "one" && (input === "alternate" || element.inputs[input]["primary"])) {
                         inputs[element.question_code] = {
                             "primary": inputs[element.question_code] && inputs[element.question_code]["primary"] ? inputs[element.question_code]["primary"] : {
                                 isArray: true,
@@ -114,9 +113,24 @@ function QuestionsContainer(props) {
                             if (answer[element.question_code] && answer[element.question_code][input] && answer[element.question_code][input][childElem]) {
                                 value = answer[element.question_code][input][childElem]
                             }
-                            obj[childElem] = { ...obj.[childElem], value }
+                            obj[childElem] = { ...obj[childElem], value }
                         }
 
+                        inputs[element.question_code] = {
+                            ...inputs[element.question_code],
+                            [input]: { ...obj }
+                        }
+                    } else if (input === "one") {
+                        let obj = { ...element.inputs[input] }
+                        for (const childElem in element.inputs[input]) {
+                            for (const nestedChildElem in element.inputs[input][childElem]) {
+                                value = "";
+                                if (answer[element.question_code] && answer[element.question_code][input] && answer[element.question_code][input][childElem] && answer[element.question_code][input][childElem][nestedChildElem]) {
+                                    value = answer[element.question_code][input][childElem][nestedChildElem]
+                                }
+                                obj[childElem][nestedChildElem] = { ...obj[childElem][nestedChildElem], value }
+                            }
+                        }
                         inputs[element.question_code] = {
                             ...inputs[element.question_code],
                             [input]: { ...obj }
@@ -179,13 +193,16 @@ function QuestionsContainer(props) {
             props.getQuestionList(activePageId);
         }
     })
-    const handlePageStateChange = (questionId, pageId, e, childKey) => {
+    const handlePageStateChange = (questionId, pageId, e, childKey, nestedChildKey) => {
         let id = e.target.id;
         let value = e.target.value;
         let questions = state.questions;
-        debugger
         if (childKey) {
-            questions[pageId][questionId][childKey][id].value = value;
+            if(nestedChildKey){
+                questions[pageId][questionId][childKey][nestedChildKey][id].value = value;
+            }else{
+                questions[pageId][questionId][childKey][id].value = value;
+            }
         } else {
             questions[pageId][questionId][id].value = value;
         }
@@ -448,6 +465,7 @@ function QuestionsContainer(props) {
                                         <div className="col-lg-12 col-lg-12 col-sm-12">
                                             <p className="form-inner-heading">{item.question_text}</p>
                                             {inputs && inputs.map((inputKey, i) => {
+                                                console.log(inputKey)
                                                 let input = item.inputs[inputKey];
                                                 let isPrimary = false;
                                                 let isAlternate = false;
@@ -455,11 +473,7 @@ function QuestionsContainer(props) {
                                                     input = item.inputs[inputKey]["primary"];
                                                     isPrimary = true;
                                                 }
-                                                // if (inputKey = "petCareTaker") {
-                                                //     debugger
-                                                // }
-                                                // console.log(state.questions[state.activePageId] ? state.questions[state.activePageId][item.question_code] : {})
-                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] ?
+                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey] ?
                                                     state.questions[state.activePageId][item.question_code][inputKey].value : "";
                                                 let arrFields = input.input === "array" ? Object.keys(input.fields) : []
                                                 colLength = input.input === "array" ? arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12 : colLength;

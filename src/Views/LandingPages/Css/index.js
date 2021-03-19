@@ -3,56 +3,62 @@ import LastWillBg from "../../../assets/img/last-will-background-img.png";
 import ChangeBg from "../../../assets/img/Changes.png";
 import Font from "../../../assets/fonts/Trajan-Pro-Regular.ttf";
 export const Style = createGlobalStyle`
-  /* index page style sheet */
-  @font-face {
-    font-family: trajanRegular;
-    src: url(${Font});
-  }
-  .body {
+/* index page style sheet */
+
+/* .started-img {
+    
+} */
+
+@font-face {
+  font-family: trajanRegular;
+  src: url(${Font});
+}
+
+.body{
     /* font-family: 'Quicksand', sans-serif!important; */
-  }
-  .started-img > img {
+}
+.started-img > img {
     width: 100%;
-  }
-  .will-section {
+}
+.will-section {
     margin-top: 3%;
     margin-bottom: 3%;
-  }
-  .will-div {
+}
+.will-div {
     box-shadow: 0px 0px 10px #ececec;
     border-radius: 5px;
     position: relative;
     width: 22%;
     margin: 15px;
-  }
-  .started-img {
+}
+.started-img {
     position: relative;
-  }
-  .landing-page-top-text {
+}
+.landing-page-top-text {
     position: absolute;
     top: 30%;
     left: 10%;
     color: #fff;
     width: 27%;
-  }
-  .landing-page-top-text > .empty-line {
+}
+.landing-page-top-text > .empty-line {
     border-bottom: 2px solid lime;
     width: 35%;
-  }
-  .landing-page-top-text > .where-there {
+}
+.landing-page-top-text > .where-there {
     margin-bottom: 0;
-  }
-  .landing-page-top-text > .there-a-will {
+}
+.landing-page-top-text > .there-a-will {
     font-weight: 600;
     font-size: 45px;
     margin-top: 0;
-  }
-  .landing-page-top-text > .for-those-left-behind {
+}
+.landing-page-top-text > .for-those-left-behind {
     margin-bottom: 17px;
     margin-top: 0;
     padding-left: 10px;
-  }
-  .landing-page-top-text > .get-started-link {
+}
+.landing-page-top-text > .get-started-link {
     color: #fff;
     background-color: red;
     padding: 20px 30px;
@@ -60,8 +66,9 @@ export const Style = createGlobalStyle`
     font-weight: 600;
     border: 1px solid red;
     border-radius: 50px;
-  }
-  .will-icon1 {
+    
+}
+.will-icon1 {
     position: absolute;
     right: 10%;
     top: 36%;
@@ -72,14 +79,14 @@ export const Style = createGlobalStyle`
     border-radius: 50%;
     color: #033168;
     box-shadow: 0 0 10px #d7d7d7;
-  }
-  .will-icon1:hover {
+}
+.will-icon1:hover {
     transform: scale(1.1);
-  }
-  .will-icon1 > img {
+}
+.will-icon1 > img {
     width: 30px;
     height: 30px;
-  }
+}
 
 .will-div > .top-image > img {
     width: 100%;
@@ -90,49 +97,52 @@ export const Style = createGlobalStyle`
 .will-details {
     padding: 5%;
     margin-top: 20%;
-  }
-  .will-details > .detail-heading {
+      
+}
+.will-details > .detail-heading {
     font-size: 22px;
     color: #003069;
     transition: all 0.2s;
     font-weight: 700;
-    font-family: "Poppins", sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 500;
-  }
-  .will-details > .detail-p {
+}
+.will-details > .detail-p {
     font-size: 12px;
     line-height: 30px;
     color: #5f5c5c;
     font-weight: 400;
     margin-top: 1rem;
-  }
-  .will-details > .learn-more {
+}
+.will-details > .learn-more {
     background-color: #ececec;
     padding: 8px;
-    margin-top: 2rem;
-  }
-  .will-details > .learn-more:hover {
-    transform: scale(1.01);
+    margin-top:2rem;
+}
+.will-details > .learn-more:hover {
+    
+    transform: scale(1.01); 
     text-rendering: geometricPrecision;
-  }
-  .fa-file-signature {
+}
+.fa-file-signature {
     width: 15px;
-  }
-  .fa-scroll {
+}
+.fa-scroll {
     font-size: 15px;
-  }
-  .will-details > .learn-more > a {
+}
+.will-details > .learn-more > a{
     font-size: 12px;
     color: #033168;
     font-weight: 500;
-  }
-  .will-details > .learn-more > a:hover {
+}
+.will-details > .learn-more > a:hover {
     color: #033168;
-  }
-  .homepage-form-tiles img {
+}
+.homepage-form-tiles img {
     width: 115px;
-  }
-  .will-details > .learn-more > i {
+    float: left;
+}
+.will-details > .learn-more > i {
     color: #fff;
     float: right;
     padding: 0px 9px 0px 0;
@@ -146,8 +156,8 @@ export const Style = createGlobalStyle`
     font-size: 16px;
     height: 34px;
     line-height: 33px;
-  }
-  .forms-section {
+}
+.forms-section {
     margin-bottom: 5%;
 }
 .witnesa-page-form {
@@ -174,54 +184,61 @@ export const Style = createGlobalStyle`
 }
 .last-will {
     margin-top: 5%;
-  }
-  .left-border {
+
+}
+.left-border {
+    
     border-left: 1px solid red;
-  }
-  .last-will-section {
+}
+.last-will-section:not(.np-sec) {
     background-image: url(${LastWillBg});
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-repeat: no-repeat;background-attachment: fixed;
     background-position: center;
     position: relative;
-  }
-  .upper-section {
-    background-image: url(${ChangeBg});
+}
+.upper-section {
+    background-image: url(${ChangeBg}");
     background-color: #f7f7f7;
     border-radius: 0% 0% 0% 25%;
     background-position: top;
     background-size: cover;
-  }
-  .lower-section {
+}
+.lower-section {
     line-height: 35px;
-  }
-  .last-will > .heading-border {
+}
+.last-will > .heading-border {
     border-left: 3px solid #033168;
     margin-top: 10px;
-  }
-  .last-will > .heading-border > .heading {
+}
+.last-will > .heading-border > .heading {
     font-size: 19px;
     font-family: trajanRegular;
     margin-left: 15px;
     color: #033168;
     font-weight: 600;
-  }
-  .last-will > p {
+}
+.last-will > p {
     font-size: 16px;
     margin: 5%;
-    font-weight: 500 !important;
+    font-weight: 300 !important;
     line-height: 30px;
     color: gray;
-  }
-  .last-will-img {
+}
+.homepage-form-tiles {
+    width: 100%;
+       display: flex !important;
+    align-items: center;
+}
+.last-will-img {
+    
     margin-top: 10%;
     margin-bottom: 4.5%;
-  }
-  .last-will-img img:hover {
-    box-shadow: 3px 3px 3px 3px #ccc;
-  }
+}
+.last-will-img img:hover {
+    box-shadow:         3px 3px 3px 3px #ccc;
+}
 
-  .last-will-img > img {
+.last-will-img > img {
     border: 0px solid #e2e2e2;
     padding: 26px;
     box-shadow: 0 0 10px #d7d7d7;
@@ -236,20 +253,20 @@ export const Style = createGlobalStyle`
     font-size: 22px;
     color: #fff;
     padding: 15px 25px 15px 25px;
-  }
-  .vertical-line {
+}
+.vertical-line {
     width: 2px;
     height: 120px;
     background: #71c8fc;
     margin: 0px 0px -40px 31px;
-  }
-  .mini-heading {
+}
+.mini-heading {
     font-size: 24px;
     color: #033168;
     margin-top: 5%;
     font-weight: 500;
-  }
-  .mini-para {
+}
+.mini-para {
     font-size: 13px;
     line-height: 23px;
     color: #6f6f6f;
@@ -260,10 +277,10 @@ export const Style = createGlobalStyle`
     margin-bottom: 5%;
     color: #fff;
     text-align: center;
-  }
-  .info-heading {
+}
+.info-heading {
     font-size: 18px;
-    font-family: "trajanRegular";
+    font-family: 'trajanRegular';
     margin-left: 15px;
     color: #fff;
 }
@@ -286,41 +303,42 @@ export const Style = createGlobalStyle`
     margin-bottom: 5%;
     opacity: 0.8;
     font-weight: 300;
-  }
-  .info-mini-detail-b {
+}
+.info-mini-detail-b {
     color: #fff;
     margin-bottom: 15%;
-    opacity: 0.8;
+        opacity: 0.8;
     font-weight: 300;
-  }
+}
 
 .last-will-section > .make-your-will {
     position: absolute;
     top: 95%;
-    right: 10%;
+    right: 10% !important;
     background-color: #f34531;
     width: 80%;
     border: 1px solid #f34531;
     border-radius: 10px;
     padding: 15px;
-  }
-  .last-will-section > .make-your-will > .left-div {
+}
+.last-will-section > .make-your-will > .left-div {
     margin-left: 5%;
     color: #fff;
-  }
-  .last-will-section > .make-your-will > .left-div > .heading {
+}
+.last-will-section > .make-your-will > .left-div > .heading{
     font-size: 30px;
     margin-top: 17px;
     margin-bottom: -10px;
     font-weight: bold;
-  }
+}
 
-  .last-will-section > .make-your-will > .left-div > .para {
+.last-will-section > .make-your-will > .left-div > .para{
     font-size: 27px;
     margin-bottom: 26px;
-  }
+}
 
-  .last-will-section > .make-your-will > a {
+
+.last-will-section > .make-your-will > a{
     right: 10%;
     top: 36%;
     padding: 12px 26px 12px 26px;
@@ -332,16 +350,16 @@ export const Style = createGlobalStyle`
     font-size: 17px;
     box-shadow: inset 0px 0px 0px 2px #f34531;
     border: 1px solid #ffffff;
-  }
-  .last-will-section > .make-your-will > a:hover {
+}
+.last-will-section > .make-your-will > a:hover{
     transform: scale(1.1);
     text-decoration: none;
-  }
-  .footer {
-    padding-top: 8% !important;
-  }
-  /* buttons */
-  .button1 {
+}
+.footer {
+    padding-top: 8%;
+}
+ /* buttons */
+.button1 {
     display: inline-block;
     padding: 0.5em 1.5em;
     border: 0.16em solid #ff473a;
@@ -350,49 +368,51 @@ export const Style = createGlobalStyle`
     text-decoration: none;
     text-transform: capitalize;
     font-weight: 400;
-    color: #ffffff;
+    color: #FFFFFF;
     text-align: center;
     transition: all 0.15s;
     background-color: #ff473a;
     font-size: 20px;
     border-radius: 50px;
-  }
-  .button1:hover {
-    color: #ff0000;
-    background-color: #ffffff;
-    border: 0.16em solid #ffffff;
-  }
-  .box:hover {
-    box-shadow: 3px 3px 3px 3px #ccc;
-  }
+}
+ .button1:hover{
+    color:#ff0000;
+    background-color:#FFFFFF;
+    border:0.16em solid #FFFFFF ;
+}
+.box:hover{
+    box-shadow:         3px 3px 3px 3px #ccc;  
+}
 
-  .btn4 {
-    padding: 0px 0px !important;
-    background-color: #012c5f !important;
-    border-radius: 1px !important;
-  }
-  .btn4:hover {
+
+
+.btn4{
+    padding: 0px 0px!important;
+    background-color:#012c5f!important;
+    border-radius: 1px!important;
+}
+.btn4:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 6px rgb(35 173 255) !important;
+    box-shadow: 0 0 6px rgb(35 173 255)!important;
     border: none !important;
-  }
-  .btn4 > span {
+}
+.btn4 > span {
     padding: 0px 35px;
-  }
+}
 
-  .btn5 {
+.btn5{
     padding: 0px 0px;
-    background-color: #d81212 !important;
-    border: none !important;
-    border-radius: 1px !important;
-  }
-  .btn5:hover {
+    background-color:#d81212!important;
+    border: none!important;
+    border-radius: 1px!important;
+}
+.btn5:hover{
     border: none !important;
     transform: scale(1.1);
-    box-shadow: 0 0 6px rgb(35 173 255) !important;
-  }
+    box-shadow: 0 0 6px rgb(35 173 255)!important;
+}
 
-  .btn5 > span {
+.btn5 > span {
     padding: 0px 40px;
-  }
+}
 `;

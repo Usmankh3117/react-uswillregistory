@@ -1,3 +1,7 @@
+import { createGlobalStyle } from "styled-components";
+import BottomShadow from './assets/img/bottom-shadow.png';
+
+export const Style = createGlobalStyle`
 body {
     font-family: 'Poppins', sans-serif !important;
     background-color: #fefefe !important;
@@ -1698,7 +1702,7 @@ nav.navbar-default .navbar-form {
     left: 0px;
     right: 0px;
     bottom: -112px;
-    background: url(./assets/img/bottom-shadow.png);
+    background: url(${BottomShadow});
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: top center;
@@ -1831,7 +1835,7 @@ nav.navbar-default .navbar-form {
     margin-left: 10px;
     font-family: 'poppins';
     font-size: 20px;
-    margin: auto 0px;
+    margin: auto 20px;
 
 }
 .active-item-cc{
@@ -1851,91 +1855,4 @@ nav.navbar-default .navbar-form {
     max-width: 85%;
     margin: 0 auto !important;
     
-}
-
-.bg-image-cc{
-    background-image: url('./assets/img/reg-bg.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-    height: 120vh;
-}
-
-.form-section{
-    margin-top: 50px;
-    
-}
-.create-one :hover{
-    color:#033168 !important
-}
-.input-group-cc .form-control-cc{
-    width: 100%;
-    border-radius: 5px;
-    height: 50px;
-    font-family: 'poppins';
-    padding-left: 10px;
-    border: 2px solid #569fcf;
-}
-.input-group-cc .form-control-cc:focus{
-    outline: unset;
-}
-.cc-row-reg{
-    margin-top: 30px;
-}
-.input-group-cc2 .form-control-cc2{
-    margin: auto 10px;
-    
-}
-.input-group-cc2  label{
-    margin-top: 12px;
-    font-family: 'poppins';
-    font-weight: 400;
-}
-.input-group-cc2{
-    display: flex;
-    justify-content: space-between;
-    border-radius: 5px;
-    height: 50px;
-    padding-left: 10px;
-    border: 2px solid #569fcf;
-}
-.cc-width{
-    width: 80%;
-    margin: 0 auto !important;
-    border-radius: 15px;    
-    box-shadow: 12px 12px 42px rgba(0, 0, 0, 0.425);
-}
-.cc-padding{
-    padding: 50px 50px 40px 50px !important;
-}
-.submit-btn{
-    margin-top: 50px !important;
-}
-.bg-image-cc .kuttapana {
-    position: absolute;
-    top: 45%;
-    color: white;
-    padding: 0px 12px;
-    text-align: center;
-}
-.txt-white-p {
-    color: white;
-    font-weight: 300;
-    font-size: 22px;
-}
-
-.cc-reset-shadow1:after{
-    content: '';
-    display: block;
-    height: 112px;
-    margin-top: -10px !important;
-    width: 90%;
-    margin: 0 auto;
-    background: url(./assets/img/bottom-shadow.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: top center;
-    z-index: -999;
-}
+}`

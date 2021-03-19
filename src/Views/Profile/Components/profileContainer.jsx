@@ -16,38 +16,39 @@ function ProfileContainer(props) {
         <section className="profile-section">
             <div className="container">
                 <div className="row mg-top-50"></div>
-
-                <div className="row">
-                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
-                    <div className="col-lg-8 col-md-8 col-sm-8">
-                        <div className="row">
-                            <div className="col-lg-6 col-md-6 col-sm-6 profile-section-div">
-                                <div className="active-profile-div">
-                                    <Image name="living_with_forms.png" alt="profile-img" className="profile-section-img" />
-                                    <span style={{ color: "white" }}>Living Will forms</span>
+                <div className="row cc-width-row">
+                    <div className="col-md-12">
+                        <div className="conatiner">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="cc-col-profile active-item-cc">
+                                        <Image name="living_with_forms.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <div className="main-text-cc">Living Will Forms</div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="cc-col-profile ">
+                                        <Image name="self_proving_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <div className="main-text-cc">Self Proving Affidavit Form</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-lg-6 col-md-6 col-sm-6 profile-section-div">
-                                <div className="not-active-profile-div">
-                                    <Image name="self_proving_form.png" alt="profile-img" className="profile-section-img" />
-                                    <span >Self Proving affidavit form</span>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="cc-col-profile">
+                                        <Image name="witness_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <div className="main-text-cc">Witness Form</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-6 profile-section-div">
-                                <div className="not-active-profile-div">
-                                    <Image name="witness_form.png" alt="profile-img" className="profile-section-img" />
-                                    <span >Witness form</span>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-6 profile-section-div">
-                                <div className="not-active-profile-div">
-                                    <Image name="download_form.png" alt="profile-img" className="profile-section-img" />
-                                    <span >Download Will documents</span>
+                                <div className="col-md-6">
+                                    <div className="cc-col-profile ">
+                                        <Image name="download_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <div className="main-text-cc">Download Will documents</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
 
                 <div className="row mg-top-100"></div>

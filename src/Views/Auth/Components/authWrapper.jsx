@@ -6,8 +6,8 @@ export const AuthWrapper = (props) => (
         <section className="sign-in-section">
             <div className="container">
                 <div className="row">
-                    <div class="sign-in-heading-section text-center">
-                        <h1 class="heading"><span class="bold">{props.name}</span> form</h1>
+                    <div className="sign-in-heading-section text-center">
+                        <h1 className="heading"><span className="bold">{props.name}</span> form</h1>
                         {props.description ?
                             <span className="link">{props.description} <a href={props.linkUrl}>{props.linkLabel}</a></span> : ""}
                     </div>

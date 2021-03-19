@@ -21,12 +21,15 @@ import SignUp from "./Views/Auth/Components/signup";
 import ForgotPassword from "./Views/Auth/Components/forgotPassword";
 import ResetPassword from "./Views/Auth/Components/resetPassword";
 import VerifyAccount from "./Views/Auth/Components/verifyAccount";
-import "./App.css";
+// import { Style } from "./global-style";
+import './app.css';
+import './responsive.css';
 const createBrowserHistory = require("history").createBrowserHistory;
 const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
+      {/* <Style /> */}
       <Header history={history} />
       <Switch>
         <Route exact path="/" name="Index" component={Index} />
@@ -46,7 +49,7 @@ function App() {
         <Route exact path="/form" name="QuestionsForm" component={QuestionsForm} />
         <Route exact path="/:id" name="ContentPage" component={ContentPage} />
       </Switch>
-      <Footer history={history}/>
+      <Footer history={history} />
     </Router>
   );
 }

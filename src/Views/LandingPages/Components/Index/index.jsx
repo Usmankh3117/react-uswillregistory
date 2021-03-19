@@ -58,7 +58,7 @@ function WillDetailBox(props) {
                 <p className="detail-p">{props.description}</p>
                 <div className="learn-more">
                     <a href="#" className="button2">Learn More</a>
-                    <i style={{ cursor:'pointer', backgroundImage: `url(${curvebackimage})` }}
+                    <i style={{ cursor: 'pointer', backgroundImage: `url(${curvebackimage})` }}
                         className="fa fa-arrow-right" aria-hidden="true"></i>
                 </div>
             </div>
@@ -103,10 +103,10 @@ function LastWill(props) {
                             </div>
                             <p className="last-will-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
                                 enim sequi voluptate distinctio laboriosam vero iste debitis quidem architecto.</p>
-                            <LastWillPointDetail heading="FILL OUT FORM" description="It only takes 20 minutes to fill out the information needed to create your last will and testament." count="1" countStyle={{ padding: "15px 27px 15px 27px" }} />
-                            <LastWillPointDetail heading="PRINT OUT FORM" description="The information you provide is combined with the precise language of our legal forms, and provided back to you as a printable will." count="2" />
-                            <LastWillPointDetail heading="SIGN & KEEP SAFE" description="To make your will official, sign and initial the document in-person with your witnesses. Keep your new will somewhere safe but accessible." count="3" />
-                            <LastWillPointDetail heading="PAIR FREEWILL WITH AN ATTORNEY" description="If you have a larger estate, children with special needs, or complicated family dynamics, you may want to pair FreeWill with an experienced attorney's help. We provide all our will-makers with free forms to bring to an attorney (saving time and money)." count="4" />
+                            <LastWillPointDetail islast={false} heading="FILL OUT FORM" description="It only takes 20 minutes to fill out the information needed to create your last will and testament." count="1" countStyle={{ padding: "15px 27px 15px 27px" }} />
+                            <LastWillPointDetail islast={false} heading="PRINT OUT FORM" description="The information you provide is combined with the precise language of our legal forms, and provided back to you as a printable will." count="2" />
+                            <LastWillPointDetail islast={false} heading="SIGN & KEEP SAFE" description="To make your will official, sign and initial the document in-person with your witnesses. Keep your new will somewhere safe but accessible." count="3" />
+                            <LastWillPointDetail islast={true} heading="PAIR FREEWILL WITH AN ATTORNEY" description="If you have a larger estate, children with special needs, or complicated family dynamics, you may want to pair FreeWill with an experienced attorney's help. We provide all our will-makers with free forms to bring to an attorney (saving time and money)." count="4" />
                         </div>
                         <div className="col-lg-7 col-md-7 col-sm-6 last-will-img">
                             <Image name="last-will.png" alt="last will" />
@@ -174,7 +174,8 @@ function LastWillPointDetail(props) {
         <div className="col-sm-12 col-xs-12">
             <div className="col-sm-3 col-xs-3">
                 <span className="count" style={props.countStyle}>{props.count}</span>
-                <div className="vertical-line"></div>
+                {!props.islast ? <div className="vertical-line"></div> : ""}
+
             </div>
             <div className="col-sm-9 col-xs-9">
                 <span className="mini-heading">{props.heading} </span>

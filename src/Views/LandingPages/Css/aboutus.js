@@ -13,9 +13,10 @@ export const Wrapper = styled.section`
   text-align: center;
   margin-bottom: 2%;
 }
-.w-heading > h1{
+.w-heading > h1 {
   font-size: 41px;
   color: #033168;
+  font-weight: 300;
 }
 .w-detail {
   text-align: center;
@@ -25,8 +26,8 @@ export const Wrapper = styled.section`
 
 .w-detail > span {
   background-color: #ccffcc;
-  padding: 12px 60px 12px 56px;
-  color: green;
+  padding: 7px 60px 7px 56px;
+  color: #78d7c1;
   border-radius: 25px;
 }
 .w-mini-heading {
@@ -35,6 +36,7 @@ export const Wrapper = styled.section`
 }
 .w-mini-heading > h1 {
   color: #033168;
+  font-weight: 300;
 }
 .w-mini-detail {
   text-align: center;
@@ -71,14 +73,15 @@ export const Wrapper = styled.section`
 }
 .left-side-text {
   text-align: center;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 44px;
   color: #033168;
 }
 .right-side-text {
-  font-size: 30px;
-  color: #bbbbbb;
+  font-size: 25px;
+  color: #515151;
   line-height: 47px;
+  font-weight: 300;
 }
 
 .with-icon-section {
@@ -98,8 +101,8 @@ export const Wrapper = styled.section`
   color: #033168;
 }
 .right-side-with-icon {
-  font-size: 18px;
-  color: #bbbbbb;
+  font-size: 14px;
+  color: #515151;
   line-height: 35px;
 }
 .w-icon-div {
@@ -115,6 +118,11 @@ export const Wrapper = styled.section`
   padding: 3px 14px 3px 14px;
   color: #033168;
   border-radius: 72px;
+  width: 75px;
+  text-align: center;
+  padding-top: 5px;
+  height: 75px;
+  
   border: 1px solid #ffffff;
   box-shadow: 0px 0px 10px #ececec;
 }

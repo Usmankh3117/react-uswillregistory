@@ -135,7 +135,7 @@ function EditProfile(props) {
         }
     });
     useEffect(() => {
-        props.getUserDetail()
+        // props.getUserDetail()
     }, [])
     const handleStateChange = (e) => {
         let id = e.target.id;
@@ -219,15 +219,13 @@ function EditProfile(props) {
                     <div className="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
                 <div className="row mg-top-50"></div>
-
-
                 <div className="row">
                     <div className="col-lg-4 col-md-4 col-sm-4">
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
                                 <div className="active-profile-div">
                                     <Image name="living_with_forms.png" alt="profile-img" className="profile-section-img" />
-                                    <span>Living Will forms</span>
+                                    <span>Living Will Forms</span>
                                 </div>
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12 profile-section-div">
@@ -255,26 +253,46 @@ function EditProfile(props) {
                             <div className="register-form">
                                 <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
                                     <div className="row">
-                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                        <div className="col-lg-4 col-md-4 cc-input-ep col-sm-4">
                                             <Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
                                         </div>
 
-                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                        <div className="col-lg-4 col-md-4 cc-input-ep cc-input-ep1 col-sm-4">
                                             <Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
                                         </div>
 
-                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                        <div className="col-lg-4 col-md-4 cc-input-ep1 col-sm-4">
                                             <Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
 
                                     <div className="row">
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
                                             <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
                                         </div>
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
                                             <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
                                         </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <div className="input-group1">
+                                                <select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
+                                                    <option value="">Select State</option>
+                                                    {state.stateList.map((item, index) => {
+                                                        return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
+                                        </div>
+
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
@@ -288,33 +306,20 @@ function EditProfile(props) {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
-                                            <div className="input-group1">
-                                                <select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
-                                                    <option value="">Select State</option>
-                                                    {state.stateList.map((item, index) => {
-                                                        return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
-                                                    })}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
-                                            <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
+                                            <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
-                                            <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
-                                        </div>
-
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                        <div className="col-lg-12 col-md-12 col-sm-12">
                                             <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
                                     <div className="row">
-
-
-                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                        <div style={{ margin: "7px 20px", display: "flex" }}> <div style={{ fontSize: "16px" }}>
+                                            Date of birth <span class="badge badge-dark">?</span></div>
+                                        </div>
+                                        <div className="col-lg-4 col-md-4 col-sm-4 cc-input-ep">
                                             <div className="input-group1">
                                                 <select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
                                                     <option value="">Month</option>
@@ -324,7 +329,7 @@ function EditProfile(props) {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="col-lg-4 col-md-4 col-sm-4">
+                                        <div className="col-lg-4 col-md-4 col-sm-4 cc-input-ep cc-input-ep1">
                                             <div className="input-group1">
                                                 <select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
                                                     <option value="">Day</option>
@@ -334,7 +339,7 @@ function EditProfile(props) {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="col-sm-4">
+                                        <div className="col-sm-4 cc-input-ep1">
                                             <div className="input-group1">
                                                 <select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
                                                     <option value="">Year</option>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 // import { AuthWrapper } from "./authWrapper";
 import { Style } from '../Css/login';
 import { connect } from 'react-redux';
+import { logInAction } from "../Actions/action";
 import { LoginUser } from "../ApiCalls/auth";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
@@ -11,6 +12,7 @@ import Image from '../../Common/Components/image';
 import RegisterBg from "../../../assets/img/left-panel-signup.png";
 import BgImage from '../../../assets/img/updated-01.png';
 import { getCookie, setCookie } from '../../../Services/cookies';
+import { UpdateAuthCookiesState } from '../../../Services/common';
 
 const defaultState = {
 	email: "",// "sharoza51@gmail.com",
@@ -67,6 +69,7 @@ function Login(props) {
 				password: getCookie("pass")
 			})
 		}
+		window.scroll(0, 0)
 	}, [])
 	const handleStateChange = (e) => {
 		let id = e.target.id;
@@ -79,6 +82,16 @@ function Login(props) {
 		e.preventDefault();
 		let isValid = validateForm();
 		if (isValid) {
+			// let data= UpdateAuthCookiesState({
+			// 	access_token: "test", user: {
+			// 		email: "sharoza51@gmail.com",
+			// 		id: 1,
+			// 		type: "user"
+			// 	}
+			// });
+			// props.logInAction(data)
+			// let redirectUrl = '/profile';
+			// props.history.push(redirectUrl)
 			if (state.rememberMe === "true") {
 				setCookie("rememberMe", "true", Constant.cookieExpireDays);
 				setCookie("uemail", state.email, Constant.cookieExpireDays);
@@ -126,69 +139,71 @@ function Login(props) {
 			<Style />
 			<section className="sign-in-section">
 				<div className="container">
-					<div class="row">
-						<div class="sign-in-heading-section text-center">
-							<h1 class="heading"><span class="bold">Login </span> Form</h1>
-						</div>
-					</div>
 					<div className="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-left-outer-div1" style={{ backgroundImage: `url(${BgImage})` }}>
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div className="sign-in-heading-section text-center">
+							<h1 className="heading"><span className="bold">Login </span> Form</h1>
+						</div>
+					</div>
+					<div className="login-wrapper">
+						<div className="login-holder">
+							<div className="login-block login-block-left">
+								<div className="login-left-content">
+									<h2><strong>Welcome</strong> to the The U.S. Will Registry</h2>
+									<p>Enter your personal detail and start your journey </p>
+								</div>
 							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<div className="form-heading">
-									<h2 style={{ color: "#033168" }}>Login</h2>
-								</div>
+							<div className="login-block login-block-right">
 								<div className="login-form">
-									<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
-										<div className="input-group">
-											<span className="input-group-addon"><i className="fa fa-user"></i></span>
-											<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
-										</div>
-										<div className="input-group">
-											<span className="input-group-addon"><i className="fa fa-lock"></i></span>
-											<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
-										</div>
-										{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-											<div className="loader-img text-center">
-												<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+									<div className="login-block-holder">
+										<h2>Login</h2>
+										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
+											<div className="input-group">
+												<span className="input-group-addon"><i className="fa fa-user"></i></span>
+												<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 											</div>
-											: ""}
-										<div className="input-group1">
-											<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
-											<label for="rememberme"> &nbsp;Remember Me?</label>
-											<Link to="/forgot-password">Forget Password?</Link>
-										</div>
+											<div className="input-group">
+												<span className="input-group-addon"><i className="fa fa-lock"></i></span>
+												<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
+											</div>
+											{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+												<div className="loader-img text-center">
+													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+												</div>
+												: ""}
+											<div className="input-group1">
+												<input type="checkbox" className="rememberme" id="rememberme" name="rememberme" onChange={() => handleRememberMe()} checked={state.rememberMe === "true" ? true : false} />
+												<label for="rememberme"> &nbsp;Remember Me?</label>
+												<Link to="/forgot-password" className="forgot">Forget Password?</Link>
+											</div>
 
-										<div className="submit-btn">
-											<button type="submit" className="submit">Login</button>
-										</div>
-									</form>
-
-									<div className="create-one-account">
-										<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create
+											<div className="submit-btn">
+												<button type="submit" className="submit">Login</button>
+											</div>
+										</form>
+										<div className="create-one-account">
+											<span className="text">Don't have any account? <Link className="create-one" to="/signup">Create
                                         One</Link></span>
-									</div>
-									<div className="row">
-										<div className="col-lg-12 col-md-12 col-sm-12 or-outer-div">
-											<div className="or-div">
-												<span className="or">OR</span>
+										</div>
+										<div className="row">
+											<div className="col-lg-12 col-md-12 col-sm-12 or-outer-div">
+												<div className="or-div">
+													<span className="or">OR</span>
+												</div>
 											</div>
 										</div>
-									</div>
 
-									<div className="row login-social-media-icons">
-										<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
-											<i className="fa fa-facebook bottom-icons" style={{ padding: "10px 14px" }}></i>
-											<i className="fa fa-instagram bottom-icons"></i>
-											<i className="fa fa-google bottom-icons"></i>
+										<div className="row login-social-media-icons">
+											<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
+												<a className="facebookIcon" href="#"><i className="fa fa-facebook bottom-icons" ></i></a>
+												<a className="instIcon" href="#"><i className="fa fa-instagram bottom-icons"></i></a>
+												<a className="googleIcon" href="#"><i className="fa fa-google bottom-icons"></i></a>
+											</div>
 										</div>
-									</div>
-								</div>
+									</div></div>
 							</div>
 						</div>
-
 					</div>
+
 				</div>
 			</section >
 		</React.Fragment >
@@ -202,6 +217,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	login: (data) => dispatch(LoginUser(data)),
+	logInAction: (data) => dispatch(logInAction(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
 })
 export default connect(

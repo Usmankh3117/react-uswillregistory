@@ -89,12 +89,13 @@ export const Wrapper = styled.div`
 	margin-top: 30px;
 }
 .submit-btn > .submit {
-    font-size: 25px;
+    font-size: 17px;
     color: white;
     background-color: #f85656;
     border-radius: 30px;
     border: 1px solid #f85656;
-    padding: 10px 40px 10px 40px;
+    padding: 6px 51px;
+    text-transform: uppercase;
 }
 .create-one-account {
 	text-align: center;
@@ -142,5 +143,11 @@ export const Wrapper = styled.div`
 }
 .mg-top-bottom-extra-verify {
     margin-top: 215px;
+}
+
+@media (max-width: 992px){
+    .login-left-outer-div1 {
+        background: unset !important;
+    }
 }
 `

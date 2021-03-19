@@ -4,13 +4,15 @@ import { RegisterStyle } from '../Css/signUp';
 import { connect } from 'react-redux';
 // import { AuthWrapper } from "./authWrapper";
 import { signUpUser } from "../ApiCalls/auth";
+import { logInAction } from "../Actions/action";
 import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import Swal from 'sweetalert2';
 import csc from 'country-state-city'
-import { getYearList } from '../../../Services/common';
+import { getYearList, UpdateAuthCookiesState } from '../../../Services/common';
 import moment from 'moment';
 import Image from '../../Common/Components/image';
 import RegisterBg from "../../../assets/img/signup-back-image.png";
+import RegisterFormBG from "../../../assets/img/Register-Form_background-img.png"
 
 const defaultState = {
 	"form": {
@@ -104,7 +106,7 @@ function SignUp(props) {
 		}
 	});
 	const handleStateChange = (e) => {
-		let id = e.target.id;
+		let id = e.target.type === "radio" ? e.target.name : e.target.id;
 		let val = e.target.value;
 		let cloneState = { ...state };
 		if (id === "country") {
@@ -121,18 +123,27 @@ function SignUp(props) {
 		e.preventDefault();
 		let isValid = validateForm();
 		if (isValid) {
-			let birthDate = `${state.form.day}-${state.form.month}-${state.form.year}`;
-			birthDate = moment(birthDate).format('YYYY-MM-DD');
-			props.signUp({
-				"email": state.form.email,
-				"password": state.form.password,
-				"first_name": state.form.first_name,
-				"middle_name": state.form.middle_name,
-				"last_name": state.form.last_name,
-				"birthdate": birthDate,
-				"state": state.form.state,
-				"gender": state.form.gender
-			})
+			props.logInAction(UpdateAuthCookiesState({
+				access_token: "test", user: {
+					email: "sharoza51@gmail.com",
+					id: 1,
+					type: "user"
+				}
+			}))
+			let redirectUrl = '/profile';
+			props.history.push(redirectUrl)
+			// let birthDate = `${state.form.day}-${state.form.month}-${state.form.year}`;
+			// birthDate = moment(birthDate).format('YYYY-MM-DD');
+			// props.signUp({
+			// 	"email": state.form.email,
+			// 	"password": state.form.password,
+			// 	"first_name": state.form.first_name,
+			// 	"middle_name": state.form.middle_name,
+			// 	"last_name": state.form.last_name,
+			// 	"birthdate": birthDate,
+			// 	"state": state.form.state,
+			// 	"gender": state.form.gender
+			// })
 		}
 	}
 	const validateForm = () => {
@@ -173,157 +184,155 @@ function SignUp(props) {
 	return (
 		<React.Fragment>
 			<RegisterStyle />
-			<section className="sign-in-section">
-				<div className="container">
-					<div className="row">
-						<div className="heading-section">
-							<h1 className="heading"><span className="bold">Registration</span> Form</h1>
-						</div>
-					</div>
-					<div className="row auth-custom-container">
-						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-page-left-section" style={{ backgroundImage: `url(${RegisterBg})` }}>
-								<div className="auth-page-caption-text">
-									<h5> Welcome to the The U.S. Will Registry </h5>
-									<p> Enter your personal detail and start your journey  </p>
-								</div>
+			<section className="form-section">
+				<div className="container cc-reset-shadow1 bg-height">
+					<div className="row cc-width">
+						<div className="col-md-6 bg-image-cc">
+
+							<div className="kuttapana">
+								<h1><strong>Welcome</strong> to the The U.S. Will Registry</h1>
+								<p className="txt-white-p">please register yourself and make an account</p>
 							</div>
 						</div>
-						<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div className="auth-right-form">
-								<div className="form-heading">
-									<h2 style={{ color: "#033168" }}> Register</h2>
-								</div>
-								<div className="form-part">
-									<div className="form-heading">
-										<h2 style={{ color: "#033168" }}></h2>
-									</div>
-									<div className="register-form">
-										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
-											<div className="row">
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
-												</div>
-
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<Input value={state.form.middle_name} type="text" className="form-control1" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
-												</div>
-
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
-												</div>
-											</div>
-
-											<div className="row">
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
-												</div>
-											</div>
-											<div className="row">
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<Input value={state.form.password} type="password" className="form-control1" id="password" placeholder="Your Password" onChange={(e) => handleStateChange(e)} />
-												</div>
-											</div>
-											<div className="row">
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<Input value={state.form.repeatPassword} type="password" className="form-control1" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
-												</div>
-											</div>
-											<div className="row">
-												{/* <div className="col-lg-6 col-md-6 col-sm-6">
-								<div className="input-group1">
-									<select name="country" id="country" className="form-control1" value={state.country} onChange={(e) => handleStateChange(e)} required>
-										<option value="">Select Country</option>
-										{state.countryList.map((item, index) => {
-											return <option key={index} value={item.isoCode} selected={state.form.country === item.isoCode}>{item.name}</option>
-										})}
-									</select>
-								</div>
-							</div> */}
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<div className="input-group1">
-														<select name="gender" id="gender" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Select gender</option>
-															<option value={'male'} selected={state.form.gender === 'male'}>Male</option>
-															<option value={'female'} selected={state.form.gender === 'female'}>Female</option>
-															<option value={'other'} selected={state.form.gender === 'other'}>Other</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div className="row">
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<div className="input-group1">
-														<select name="state" id="state" className="form-control1" value={state.state} onChange={(e) => handleStateChange(e)} required>
-															<option value="">Select State</option>
-															{state.stateList.map((item, index) => {
-																return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
-															})}
-														</select>
-													</div>
-												</div>
-											</div>
-											<div className="row">
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<div className="input-group1">
-														<select name="month" id="month" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Month</option>
-															{state.monthsList.map((item, index) => {
-																return <option key={index} value={item} selected={state.form.month === item}>{item}</option>
-															})}
-														</select>
-													</div>
-												</div>
-												<div className="col-lg-4 col-md-4 col-sm-4">
-													<div className="input-group1">
-														<select name="day" id="day" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Day</option>
-															{state.daysList.map((item, index) => {
-																return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
-															})}
-														</select>
-													</div>
-												</div>
-												<div className="col-sm-4">
-													<div className="input-group1">
-														<select name="year" id="year" className="form-control1" onChange={(e) => handleStateChange(e)} required>
-															<option value="">Year</option>
-															{state.yearsList.map((item, index) => {
-																return <option key={index} value={item} selected={state.form.year === item}>{item}</option>
-															})}
-														</select>
-													</div>
-												</div>
-											</div>
-											{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-												<div className="loader-img text-center">
-													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
-												</div>
-												: ""}
-											{state.messageFor === "signUp" && state.message !== "" ?
-												<div className={`alert alert-${state.messageType}`}>
-													{state.message}
-												</div>
-												: ""}
-											<div className="submit-btn">
-												<button className="submit" type="submit" >Sign Up</button>
-											</div>
-											<div class="row empty-space"></div>
-										</form>
+						<div className="col-lg-6 col-md-12 col-sm-12 cc-padding">
+							<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
+								<div className="row">
+									<div className="heading-section">
+										<h1 className="heading"><span className="bold">Register</span> Form</h1>
 									</div>
 								</div>
+								<div className="row">
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<Input value={state.form.first_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
+									</div>
+
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<Input value={state.form.middle_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
+									</div>
+
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<Input value={state.form.last_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
+									</div>
+								</div>
+
+								<div className="row cc-row-reg">
+									<div className="col-lg-12 col-md-12 col-sm-12">
+										<Input value={state.form.email} type="email" className="form-control-cc" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
+									</div>
+								</div>
+								<div className="row cc-row-reg">
+									<div className="col-lg-12 col-md-12 col-sm-12">
+										<Input value={state.form.password} type="password" className="form-control-cc" id="password" placeholder="Your Password" onChange={(e) => handleStateChange(e)} />
+									</div>
+								</div>
+								<div className="row cc-row-reg">
+									<div className="col-lg-12 col-md-12 col-sm-12">
+										<Input value={state.form.repeatPassword} type="password" className="form-control-cc" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
+									</div>
+								</div>
+								<div className="row cc-row-reg">
+									<div className="col-lg-12 col-md-12 col-sm-12">
+										<div className="input-group-cc">
+											<select name="state" id="state" className="form-control-cc" value={state.state} onChange={(e) => handleStateChange(e)} required>
+												<option value="">Select State</option>
+												{state.stateList.map((item, index) => {
+													return <option key={index} value={item.isoCode} selected={state.form.state === item.isoCode}>{item.name}</option>
+												})}
+											</select>
+										</div>
+									</div>
+								</div>
+								<div className="row" style={{ paddingLeft: "15px", marginBottom: "-20px" }}><label style={{ marginTop: "20px", fontFamily: 'poppins', fontSize: "16px", fontWeight: "500", color: "inherit" }}>Gender <span className="badge badge-dark">?</span></label></div>
+								<div className="row">
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<div className="input-group-cc2 cc-row-reg">
+											<label className="label-gender">Female</label>
+											<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'female'} value="female" name="gender" />
+										</div>
+									</div>
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<div className="input-group-cc2 cc-row-reg">
+											<label className="label-gender">Male</label>
+											<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'male'} value="male" name="gender" />
+										</div>
+									</div>
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<div className="input-group-cc2 cc-row-reg">
+											<label className="label-gender">Non-binary</label>
+											<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'nonbinary'} value="nonbinary" name="gender" />
+										</div>
+									</div>
+								</div>
+								<div className="row" style={{ paddingLeft: "15px", marginBottom: "-20px" }}><label style={{ marginTop: "20px", fontFamily: 'poppins', fontSize: "16px", fontWeight: "500", color: "inherit" }}>Date of Birth <span className="badge badge-dark">?</span></label></div>
+								<div className="row ">
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<div className="input-group-cc cc-row-reg">
+											<select name="month" id="month" className="form-control-cc" onChange={(e) => handleStateChange(e)} required>
+												<option value="">Month</option>
+												{state.monthsList.map((item, index) => {
+													return <option key={index} value={item} selected={state.form.month === item}>{item}</option>
+												})}
+											</select>
+										</div>
+									</div>
+									<div className="col-lg-4 col-md-4 col-sm-4">
+										<div className="input-group-cc cc-row-reg">
+											<select name="day" id="day" className="form-control-cc" onChange={(e) => handleStateChange(e)} required>
+												<option value="">Day</option>
+												{state.daysList.map((item, index) => {
+													return <option key={index} value={item} selected={state.form.day === item}>{item}</option>
+												})}
+											</select>
+										</div>
+									</div>
+									<div className="col-sm-4">
+										<div className="input-group-cc cc-row-reg">
+											<select name="year" id="year" className="form-control-cc" onChange={(e) => handleStateChange(e)} required>
+												<option value="">Year</option>
+												{state.yearsList.map((item, index) => {
+													return <option key={index} value={item} selected={state.form.year === item}>{item}</option>
+												})}
+											</select>
+										</div>
+									</div>
+								</div>
+								{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+									<div className="loader-img text-center">
+										<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+									</div>
+									: ""}
+								{state.messageFor === "signUp" && state.message !== "" ?
+									<div className={`alert alert-${state.messageType}`}>
+										{state.message}
+									</div>
+									: ""}
+								{/* <div class="submit-btn">
+
+									<input id="submit" class="submit" type="submit" value="SIGN UP" name="submit" />
+								</div> */}
+								<div className="submit-btn">
+									<button className="submit" type="submit" >Sign Up</button>
+								</div>
+							</form>
+							<div className="create-one-account">
+								<span style={{ display: "flex", justifyContent: "center" }} className="text">Already have any account? <Link className="create-one" to="/login" style={{ marginLeft: "5px", fontWeight: "600", fontSize: "18px" }}>Login Here</Link></span>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</div >
+			</section >
 		</React.Fragment >
 	);
 }
 
 const Input = (props) => {
-	return <div className="input-group1">
-		<input {...props} required />
+	let data = { ...props };
+	let parentClass = data["parentclassName"]
+	if (data["parentclassName"]) {
+		delete data["parentclassName"]
+	}
+	return <div className={`input-group-cc ${parentClass ? parentClass : ""}`}>
+		<input {...data} required />
 	</div>
 }
 
@@ -334,6 +343,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	signUp: (data) => dispatch(signUpUser(data)),
+	logInAction: (data) => dispatch(logInAction(data)),
 	ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName))
 })
 export default connect(

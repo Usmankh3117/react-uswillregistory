@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "../Common/Components/image";
 import { connect } from 'react-redux';
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ignoreLinks = ["/login", "/signup"]
 
@@ -19,38 +19,38 @@ function Footer(props) {
                 {isIgnore ?
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12">
-                            <div class="footer-wrapper">
-                                <div class="footer__copyright__text">
+                            <div className="footer-wrapper">
+                                <div className="footer__copyright__text">
 
-                                    <ul class="list-group1 list-group-horizontal">
-                                        <li class="list-group-item1 footer-icon-signin1 pad-right-15">
-                                            <span class="follow-us-on">FOLLOW US ON</span>
+                                    <ul className="list-group1 list-group-horizontal">
+                                        <li className="list-group-item1 footer-icon-signin1 pad-right-15">
+                                            <span className="follow-us-on">FOLLOW US ON</span>
                                         </li>
-                                        <li class="list-group-item1 footer-store-logo1">
+                                        <li className="list-group-item1 footer-store-logo1">
                                             <a href="#"><Image name="twitter.png" alt="img1" /></a>
                                         </li>
-                                        <li class="list-group-item1 footer-store-logo1">
+                                        <li className="list-group-item1 footer-store-logo1">
                                             <a href="#"><Image name="fb.png" alt="img1" /></a>
                                         </li>
-                                        <li class="list-group-item1 footer-store-logo1">
+                                        <li className="list-group-item1 footer-store-logo1">
                                             <a href="#"><Image name="google.png" alt="img1" /></a>
                                         </li>
-                                        <li class="list-group-item1 footer-store-logo1">
+                                        <li className="list-group-item1 footer-store-logo1">
                                             <a href="#"> <Image name="insta.png" alt="img1" /></a>
                                         </li>
 
                                     </ul>
                                 </div>
-                                <div class="footer__copyright__payment">
-                                    <ul class="list-group1 list-group-horizontal">
-                                        <li class="list-group-item1 footer-icon-signin1 pad-right-15">
+                                <div className="footer__copyright__payment">
+                                    <ul className="list-group1 list-group-horizontal">
+                                        <li className="list-group-item1 footer-icon-signin1 pad-right-15">
                                             <span>SUBSCRIBE TO OUR NEWSLETTER</span>
                                         </li>
-                                        <li class="list-group-item1 footer-icon-signin1 footer-form">
+                                        <li className="list-group-item1 footer-icon-signin1 footer-form">
                                             <form action="#">
                                                 <input type="text" placeholder="Enter your Email" />
-                                                <button type="submit" class="footer-submit-btn1"><i
-                                                    class="fa fa-arrow-right"></i></button>
+                                                <button type="submit" className="footer-submit-btn1"><i
+                                                    className="fa fa-arrow-right"></i></button>
                                             </form>
                                         </li>
                                     </ul>
@@ -62,10 +62,13 @@ function Footer(props) {
                         <div className="col-lg-4 col-md-4 col-sm-4">
                             <div className="footer__about">
                                 <div className="footer__about__logo">
-                                    <Image name="footer-logo1.png" alt="logo" />
+                                    <Image name="round-logo-2.png" alt="logo" />
                                 </div>
                                 <div className="footer__widget">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis.</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum
+                                    delectus, deserunt, commodi dignissimos molestiae itaque magni voluptate officiis. Lorem
+                                    ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum
+                                delectus, deserunt, commodi dignissimos.</p>
                                 </div>
                                 <ul className="list-group list-group-horizontal">
                                     <li className="list-group-item footer-store-logo">
@@ -139,11 +142,10 @@ function Footer(props) {
                     </div>}
             </div>
         </footer>
-        <footer class="bottom-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 copyrights">
+        <footer style={{ backgroundColor: "#404044" }}>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12 copyrights">
                         <p>Copyright &copy;2019-2020 US Will Registry Co, a Delaware Public Benifits Corporation. All rights
                         reserved </p>
                     </div>

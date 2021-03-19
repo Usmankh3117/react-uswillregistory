@@ -67,6 +67,11 @@ export const RegisterStyle = createGlobalStyle`
     padding-right: 60px;
     padding-left: 40px;
 }
+.container {
+    width: 100% !important;
+    padding-left: 70px !important;
+    padding-right: 70px !important;
+}
 .register-form > form > .input-group {
 	border: 1px solid black !important; 
 	margin-top: 20px;
@@ -189,6 +194,11 @@ export const RegisterStyle = createGlobalStyle`
 .sign-in-section {
     margin: 5% 0%;
 }
+.form-heading {
+    text-align: center;
+    margin-top: 13%;
+}
+
 .form-control1 {
     display: block;
     width: 100%;
@@ -224,96 +234,22 @@ export const RegisterStyle = createGlobalStyle`
 .padding-form{
         padding-right: 1px;
     }
-.auth-page-left-section {
-    height: 648px;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.auth-right-form .form-heading {
-    padding-top: 11px;
-    margin-top: 0 !important;
-}
-    .auth-right-form {
-    box-shadow: 1px 1px 3px 0px #ccc;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-top: 1px;
-    }
-.auth-page-caption-text {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    flex-direction: column;
-}
-.auth-page-caption-text h5 {
-    margin: 0;
-    font-size: 25px;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-}
-    .auth-page-caption-text p {
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    }
-
-
-@media all and (max-width:992px){
-    .auth-right-form > .form-heading {
-    display: none;
-}
-    .heading-section .heading {
-    padding-bottom: 0;
-}
-    .auth-right-form .form-part {
-    padding-right: 0;
-    padding-left: 0;
-}
-    .auth-right-form {
-    box-shadow: unset;
-}
-   .auth-page-caption-text {
-    display: none;
-}
-    .auth-custom-container {
-    box-shadow: unset !important;
-    border-radius: 0;
-}
-.auth-page-left-section {
-    background: unset !important;
-    height: 100% !important;
-}
-}
-
  @media (min-width: 1400px){
     .login-left-outer-div1 {
     padding-bottom: 110px;
 }
  }
-     @media all and (min-width:769px){
-.auth-custom-container .col-lg-6 {
-    padding: 0;
-}
-}
     @media (max-width: 992px){
     .login-left-outer-div1 {
         background: unset !important;
     }
 }
-
-@media all and (max-width:1198px){
-    .auth-page-left-section {
-    height: 619px;
-}
-}
+@media only screen and (min-width: 768px) and (max-width: 2000px){
+    .padding-form{
+        padding-right: 0px !important;
+    }
   }
 
+ 
  
 `

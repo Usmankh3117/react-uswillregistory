@@ -11,8 +11,8 @@ export const Wrapper = styled.section`
 .c-details {
     border: 1px solid #ffffff;
     box-shadow: 0px 0px 10px #ececec;
-    margin: 15px;
-    width: 30%;
+    /* margin: 15px; */
+    // width: 30%;
     position: relative !important;
 }
 .c-details > .c-detail-icon{
@@ -44,9 +44,7 @@ export const Wrapper = styled.section`
 }
 
 /* contact form */
-.message-section {
 
-}
 .leave-message {
     text-align: center;
     margin-bottom: 2%;
@@ -85,7 +83,7 @@ export const Wrapper = styled.section`
     font-size: 16px;
     padding: 4%;
     margin: 2%;
-    border: 1px solid #dadada;
+    border: 1px solid #0d3460;
     color: #dadada;
 }
 .c-input-field-textarea {
@@ -93,7 +91,7 @@ export const Wrapper = styled.section`
     font-size: 16px;
     padding: 2%;
     margin: 1%;
-    border: 1px solid #dadada;
+    border: 1px solid #0d3460;
     color: #dadada;
 }
 .c-submit {
@@ -101,14 +99,16 @@ export const Wrapper = styled.section`
 }
 
 .c-submit > button{
-    color: #fff;
-    background: #f3452f;
-    border: 1px solid;
-    padding: 2% 6% 2% 6%;
-    font-size: 20px;
-    border-radius: 40px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+    background-color: #f85656;
+    border-radius: 30px;
+    border: 1px solid #f85656;
+    padding: 6px 51px;
+    text-transform: uppercase;
 }
+
 
 
 `;

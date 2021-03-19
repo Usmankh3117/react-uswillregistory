@@ -1,11 +1,12 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "../Common/Components/image";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { LogoutUser } from "../Auth/ApiCalls/auth";
 import { ClearApiByNameAction } from "../ApiCallStatus/Actions/action";
 import { getSlugPages } from "../LandingPages/Apicalls/landing";
-import { getCookie } from "../../Services/cookies";
+import { getCookie, setCookie } from "../../Services/cookies";
+import { logOutAction } from "../Auth/Actions/action";
 
 function Header(props) {
     const [state, setState] = useState({
@@ -18,10 +19,16 @@ function Header(props) {
         }
     })
     useEffect(() => {
-        props.getSlugPages()
+        // props.getSlugPages()
     }, [])
     const logoutUser = () => {
-        props.LogoutUser();
+        setCookie("token", "");
+        setCookie("userType", "");
+        setCookie("userId", "");
+        setCookie("email", "");
+        logOutAction();
+        props.history.push('/')
+        // props.LogoutUser();
     }
     const getUserName = (email) => {
         var nameMatch = email.match(/^([^@]*)@/);
@@ -41,7 +48,7 @@ function Header(props) {
                         <div className="upper-header">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
-                                    <Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" />
+                                    <Link to="/"><Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></Link>
                                 </div>
                             </div>
                         </div>
@@ -108,6 +115,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getSlugPages: () => dispatch(getSlugPages()),
     LogoutUser: () => dispatch(LogoutUser()),
+    logOutAction: () => dispatch(logOutAction()),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName))
 })
 export default connect(
