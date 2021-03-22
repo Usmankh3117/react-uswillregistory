@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Wrapper } from "../../Css/privacy";
 export default function Privacy(props) {
     return <Wrapper className="pp-section">
-        <div className="container">
+        <div className="container" style ={{marginBottom:'30px'}}>
             <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="col-lg-3 col-md-3 col-sm-6 left-div">
