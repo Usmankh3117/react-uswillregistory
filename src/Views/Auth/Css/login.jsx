@@ -374,7 +374,6 @@ a.googleIcon:hover i {
     border-radius: 20px;
     margin-top: 50px;
     position: relative;
-    margin-bottom: 117px;
     flex-direction: column;
 }
 
@@ -520,6 +519,7 @@ a.googleIcon:hover i {
 
     .login-form form>.input-group1>a {
         font-size: 12px;
+        margin-top:3px;
     }
 }
 
@@ -535,6 +535,7 @@ a.googleIcon:hover i {
 
     .login-form form>.input-group1>a {
         font-size: 12px;
+        
     }
 
     .create-one-account {

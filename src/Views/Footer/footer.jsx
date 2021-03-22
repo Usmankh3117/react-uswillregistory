@@ -14,7 +14,7 @@ function Footer(props) {
         }
     })
     return <Fragment>
-        <footer className={`${isIgnore ? "footer1" : "footer"} spad`} style={isIgnore ? { marginTop: "130px" } : {}}>
+        <footer className={`${isIgnore ? "footer1" : "footer"} spad`} style={isIgnore ? {} : {}}>
             <div className={`container ${isIgnore ? "" : "for-search"}`}>
                 {isIgnore ?
                     <div className="row">

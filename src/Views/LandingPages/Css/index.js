@@ -259,6 +259,18 @@ export const Style = createGlobalStyle`
     border-radius: 22px;
     width: 85%;
 }
+
+.countOne{
+    background: #71c9ff;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 0px 3px white;
+    border: 1px solid #71c9ff;
+    font-size: 22px;
+    margin-top: 10px;
+    color: #fff;
+    padding: 15px 36px 15px 25px;
+}
+
 .count {
     background: #71c9ff;
     border-radius: 100%;

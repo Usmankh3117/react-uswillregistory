@@ -177,6 +177,7 @@ function LastWillPointDetail(props) {
     return <div className="row margin-top-6">
         <div className="col-sm-12 col-xs-12">
             <div className="col-sm-3 col-xs-3">
+            
                 <p className="count" style={props.countStyle}>{props.count}</p>
                 {!props.islast ? <div className="vertical-line"></div> : ""}
 
