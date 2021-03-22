@@ -260,7 +260,7 @@ export const Style = createGlobalStyle`
     font-size: 22px;
     margin-top: 10px;
     color: #fff;
-    padding: 15px 35px 15px 25px;
+    padding: 15px 36px 15px 25px;
 }
 @media only screen and (min-width: 1440px){
     .count {
