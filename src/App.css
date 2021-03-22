@@ -555,7 +555,7 @@ a:active {
 .list-group1 {
   display: flex;
   border-radius: 0.25rem;
-  padding-left: 0;
+  padding-left: 10px;
   /* margin-bottom: 20px; */
   align-items: center;
   margin: 0px;
@@ -1298,7 +1298,7 @@ a:active {
   }
 
   .copyrights > p {
-    font-size: 5px !important;
+    font-size: 10px !important;
   }
 
   .footer-icon-signin1 > span {
@@ -1443,7 +1443,7 @@ a:active {
   }
 
   .copyrights > p {
-    font-size: 5px !important;
+    font-size: 10px !important;
   }
 
   .footer-icon-signin1 > span {

@@ -564,7 +564,7 @@ a:active {
 .list-group1 {
     display: flex;
     border-radius: .25rem;
-    padding-left: 0;
+    padding-left: 10px;
     /* margin-bottom: 20px; */
     align-items: center;
     margin: 0px;

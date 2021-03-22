@@ -271,6 +271,22 @@ export const Style = createGlobalStyle`
     padding: 15px 36px 15px 25px;
 }
 
+.count-1{
+    background: #71c9ff;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 0px 3px white;
+    border: 1px solid #71c9ff;
+    font-size: 22px;
+    margin-top: 10px;
+    color: #fff;
+    padding: 15px 36px 15px 25px;
+}
+@media only screen and (min-width: 1300px){
+    .count-1 {
+        padding: 22px 36px 20px 35px
+    }
+}
+
 .count {
     background: #71c9ff;
     border-radius: 100%;
@@ -283,7 +299,7 @@ export const Style = createGlobalStyle`
 }
 @media only screen and (min-width: 1300px){
     .count {
-        padding:20px 32px
+        padding:22px 32px
     }
 }
 .vertical-line {
