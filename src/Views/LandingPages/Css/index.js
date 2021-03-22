@@ -207,7 +207,7 @@ export const Style = createGlobalStyle`
     background-image: url(${ChangeBg});
     background-color: #f7f7f7;
     border-radius: 0% 0% 0% 25%;
-    background-position: top;
+    background-position: left;
     background-size: cover;
 }
 .lower-section {
@@ -240,6 +240,13 @@ export const Style = createGlobalStyle`
     
     margin-top: 10%;
     margin-bottom: 39.5%;
+
+}
+
+@media only screen and (min-width: 1300px){
+    .last-will-img {
+        margin-bottom: 4.5%;
+    }
 }
 .last-will-img img:hover {
     box-shadow:         3px 3px 3px 3px #ccc;
@@ -262,7 +269,7 @@ export const Style = createGlobalStyle`
     color: #fff;
     padding: 15px 36px 15px 25px;
 }
-@media only screen and (min-width: 1440px){
+@media only screen and (min-width: 1300px){
     .count {
         padding:20px 32px
     }
