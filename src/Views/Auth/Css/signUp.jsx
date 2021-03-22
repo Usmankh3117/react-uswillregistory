@@ -2,6 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 export const RegisterStyle = createGlobalStyle`
 /* sign in style sheet */
+.form-section {
+    margin: 160px 0px;
+    margin-bottom: 117px
+}
+
 .login-left-outer-div1 {
     background-size: cover;
     background-position: revert;
@@ -68,9 +73,9 @@ export const RegisterStyle = createGlobalStyle`
     padding-left: 40px;
 }
 .container {
-    width: 100% !important;
-    padding-left: 70px !important;
-    padding-right: 70px !important;
+    // width: 100%;
+    // padding-left: 70px;
+    // padding-right: 70px;
 }
 .register-form > form > .input-group {
 	border: 1px solid black !important; 

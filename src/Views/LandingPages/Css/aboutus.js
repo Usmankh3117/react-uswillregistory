@@ -126,4 +126,5 @@ export const Wrapper = styled.section`
   border: 1px solid #ffffff;
   box-shadow: 0px 0px 10px #ececec;
 }
+
 `;

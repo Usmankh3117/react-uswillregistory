@@ -88,8 +88,13 @@ export const Wrapper = styled.div`
 	text-align: center;
 	margin-top: 30px;
 }
+@media screen and (min-width: 200px) and (max-width:'400px'){
+    .submit {
+        font-size: 13px;
+    }
+}
 .submit-btn > .submit {
-    font-size: 17px;
+    font-size: 14px;
     color: white;
     background-color: #f85656;
     border-radius: 30px;

@@ -8,7 +8,6 @@ export const Style = createGlobalStyle`
     background-size: cover;
     background-position: revert;
 }
-
 .mg-top-15-si {
     margin-top: 15px;
 }
@@ -19,6 +18,10 @@ export const Style = createGlobalStyle`
 
 .heading-section .heading {
     padding-bottom: 20px;
+}
+
+.create-one :hover{
+    color:#033168 !important
 }
 
 .sign-in-heading-section .heading .bold {
@@ -267,15 +270,13 @@ export const Style = createGlobalStyle`
     content: '';
     width: 100%;
     height: 1px;
-    background: #ff0000;
+
     position: absolute;
     right: 0px;
     bottom: -1px;
 }
 
-.create-one-account>span>a:hover {
-    transform: scale(1.1);
-}
+
 
 .logo-img {
     /* width: 100%; */
@@ -309,7 +310,11 @@ export const Style = createGlobalStyle`
 .mg-bottom-30 {
     margin-bottom: 30px;
 }
-
+@media only screen and (min-width: 200px) and (max-width:600px) {
+    .bottom-icons {
+        line-height: 27px !important;
+    }
+}
 .bottom-icons {
     margin: 0px 20px;
     color: #052f61;
@@ -320,7 +325,7 @@ export const Style = createGlobalStyle`
     width: 34px;
     height: 34px;
     text-align: center;
-    line-height: 34px;
+    line-height: 30px;
     -webkit-transition: all, 0.3s;
     -moz-transition: all, 0.3s;
     -ms-transition: all, 0.3s;
@@ -430,10 +435,16 @@ a.googleIcon:hover i {
 }
 
 /* zee */
-.login-block-holder {
-    padding: 50px;
+@media screen and (min-width: 400px){
+    .login-block-holder {
+        padding: 50px;
+    }
 }
-
+@media screen and (max-width: 300px){
+    .login-block-holder {
+        padding: 25px;
+    }
+}
 @media all and (max-width:992px) {
     .form-heading {
         margin-top: 5%;
@@ -472,7 +483,11 @@ a.googleIcon:hover i {
     }
 
 }
-
+@media screen and (max-width: 300px){
+    .login-block-holder{
+        padding: 20px !important;
+    }
+}
 @media all and (max-width:768px) {
     .login-form {
         /* padding: 0% 0 !important; */

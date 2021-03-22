@@ -88,10 +88,9 @@ function SignUp(props) {
 			// props.history.push("/create-vessel")
 			// 
 			Swal.fire({
-				text: "Your registration has been successful. Please verify your email.",
-				confirmButtonText: `OK`,
-				icon: 'success',
-				title: 'Success',
+				title: "Your registration has been successful. Please verify your email.",
+				confirmButtonText: `Okay`,
+				icon: 'success'
 			}).then((result) => {
 				/* Read more about isConfirmed, isDenied below */
 				if (result.isConfirmed) {
@@ -193,7 +192,6 @@ function SignUp(props) {
 				"messageType": "danger",
 				"messageFor": "signUp"
 			})
-			Swal.fire('Error!', msg, 'error')
 		}
 		return isValid;
 	}
@@ -225,10 +223,7 @@ function SignUp(props) {
 												</div>
 
 												<div className="col-md-4 input-2">
-													<div className={`input-group-cc cc-row-reg`}>
-														<input value={state.form.middle_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
-													</div>
-													{/* <Input value={state.form.middle_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} /> */}
+													<Input value={state.form.middle_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="middle_name" placeholder="Middle Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 
 												<div className="col-md-4 input-3">
@@ -306,8 +301,8 @@ function SignUp(props) {
 														</select>
 													</div>
 												</div>
-												<div className="col-sm-4 input-3">
-													<div className="input-group-cc cc-row-reg  ">
+												<div className="col-sm-4">
+													<div className="input-group-cc cc-row-reg  input-3">
 														<select name="year" id="year" className="form-control-cc" onChange={(e) => handleStateChange(e)} required>
 															<option value="" hidden>Year</option>
 															{state.yearsList.map((item, index) => {
@@ -322,11 +317,11 @@ function SignUp(props) {
 													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
 												</div>
 												: ""}
-											{/* {state.messageFor === "signUp" && state.message !== "" ?
+											{state.messageFor === "signUp" && state.message !== "" ?
 												<div className={`alert alert-${state.messageType}`}>
 													{state.message}
 												</div>
-												: ""} */}
+												: ""}
 											{/* <div className="submit-btn">
 
 									<input id="submit" className="submit" type="submit" value="SIGN UP" name="submit" />
@@ -371,7 +366,7 @@ const Input = (props) => {
 		delete data["parentclassName"]
 	}
 	return <div className={`input-group-cc ${parentClass ? parentClass : ""}`}>
-		<input {...data} required/>
+		<input {...data} required />
 	</div>
 }
 

@@ -1,12 +1,15 @@
 import React from 'react';
 import { Wrapper } from "../../Css/contactus";
+import { Style } from "../../Css/index";
 import Image from "../../../Common/Components/image";
-
+import GetStartedBanner from "../../../Common/Components/getStartedBanner";
 export default function ContactUs(props) {
     return <Wrapper>
+        <Style/>
         <GetStarted />
         <ContactDetail />
         <Messages />
+        <GetStartedBanner />
     </Wrapper>
 }
 
@@ -29,37 +32,37 @@ function GetStarted(props) {
 function ContactDetail(props) {
     return <section className="contact-section">
         <div className="container">
-            <div class="row">
-                <div class="">
-                    <div class="col-md-4 c-details">
-                        <div class="c-detail-icon">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
+            <div className="row">
+                <div className="">
+                    <div className="col-md-4 c-details">
+                        <div className="c-detail-icon">
+                            <i className="fa fa-globe" aria-hidden="true"></i>
                         </div>
-                        <div class="mini-details">
-                            <h3 class="address">Address</h3>
-                            <p class="mini-details-p">3509 Connecticut Ave.</p>
-                            <p class="mini-details-p">NW Washington DC - 2008</p>
+                        <div className="mini-details">
+                            <h3 className="address">Address</h3>
+                            <p className="mini-details-p">3509 Connecticut Ave.</p>
+                            <p className="mini-details-p">NW Washington DC - 2008</p>
                         </div>
                     </div>
-                    <div class="col-md-4 c-details">
-                        <div class="c-detail-icon">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <div className="col-md-4 c-details">
+                        <div className="c-detail-icon">
+                            <i className="fa fa-envelope" aria-hidden="true"></i>
                         </div>
-                        <div class="mini-details">
-                            <h3 class="address">Email</h3>
-                            <p class="mini-details-p">support@theuswillresitry.org</p>
-                            <p class="mini-details-p">.</p>
+                        <div className="mini-details">
+                            <h3 className="address">Email</h3>
+                            <p className="mini-details-p">support@theuswillresitry.org</p>
+                            <p className="mini-details-p">.</p>
                         </div>
 
                     </div>
-                    <div class="col-md-4 c-details">
-                        <div class="c-detail-icon">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
+                    <div className="col-md-4 c-details">
+                        <div className="c-detail-icon">
+                            <i className="fa fa-phone" aria-hidden="true"></i>
                         </div>
-                        <div class="mini-details">
-                            <h3 class="address">Phone number</h3>
-                            <p class="mini-details-p">+1(062)109-9222</p>
-                            <p class="mini-details-p">.</p>
+                        <div className="mini-details">
+                            <h3 className="address">Phone number</h3>
+                            <p className="mini-details-p">+1(062)109-9222</p>
+                            <p className="mini-details-p">.</p>
                         </div>
 
                     </div>
@@ -104,7 +107,7 @@ function Messages(props) {
                             <textarea name="message" id="" cols="30" rows="10" placeholder="Message" className="c-input-field-textarea"></textarea>
                         </div>
                         <div className="col-lg-12 col-md-12 col-sm-12 c-submit">
-                            <button>Submit</button>
+                            <button className="submit">Submit</button>
                         </div>
                     </div>
                     <div className="col-lg-1 col-md-1 col-sm-1"></div>

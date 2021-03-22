@@ -146,7 +146,7 @@ export function verifyUser(userId) {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "verifyUser",
-          message: myJson.message,
+          message: myJson.errors,
         })
       );
     }

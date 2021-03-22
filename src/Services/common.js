@@ -57,7 +57,7 @@ export function getYearList() {
   for (let index = 1921; index <= 2021; index++) {
     arr.push(index);
   }
-  return arr;
+  return arr.reverse();
 }
 
 export function UpdateAuthCookiesState(myJson) {

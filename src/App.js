@@ -17,12 +17,14 @@ import EditProfile from "./Views/Profile/Components/editProfile";
 import QuestionsForm from "./Views/QuestionsForm/Components/questionContainer";
 // Auth Routes
 import Login from "./Views/Auth/Components/login";
+// import Test from "./Views/Auth/Components/test";
 import SignUp from "./Views/Auth/Components/signup";
 import ForgotPassword from "./Views/Auth/Components/forgotPassword";
 import ResetPassword from "./Views/Auth/Components/resetPassword";
 import VerifyAccount from "./Views/Auth/Components/verifyAccount";
 // import { Style } from "./global-style";
 import './app.css';
+import './customStyle.css';
 import './responsive.css';
 const createBrowserHistory = require("history").createBrowserHistory;
 const history = createBrowserHistory();
@@ -40,6 +42,7 @@ function App() {
         <Route exact path="/privacy" name="Privacy" component={Privacy} />
         <Route exact path="/search" name="Search" component={Search} />
         <Route exact path="/login" name="Login" component={Login} />
+        {/* <Route exact path="/test" name="Test" component={Test} /> */}
         <Route exact path="/signup" name="SignUp" component={SignUp} />
         <Route path="/forgot-password" name="ForgotPassword" component={ForgotPassword} />
         <Route path="/reset-password" name="ResetPassword" component={ResetPassword} />

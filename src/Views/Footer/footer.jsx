@@ -3,7 +3,7 @@ import Image from "../Common/Components/image";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
-const ignoreLinks = ["/login", "/signup"]
+const ignoreLinks = ["/login", "/signup", "/reset-password", "/forgot-password"]
 
 
 function Footer(props) {
@@ -14,8 +14,8 @@ function Footer(props) {
         }
     })
     return <Fragment>
-        <footer className={`${isIgnore ? "footer1" : "footer"} spad`}>
-            <div className="container">
+        <footer className={`${isIgnore ? "footer1" : "footer"} spad`} style={isIgnore ? { marginTop: "130px" } : {}}>
+            <div className={`container ${isIgnore ? "" : "for-search"}`}>
                 {isIgnore ?
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12">
@@ -70,7 +70,7 @@ function Footer(props) {
                                     ipsum dolor sit amet consectetur adipisicing elit. Incidunt cupiditate soluta illum
                                 delectus, deserunt, commodi dignissimos.</p>
                                 </div>
-                                <ul className="list-group list-group-horizontal">
+                                <ul className="list-group list-group-horizontal" style={{ flexDirection: "inherit !important" }}>
                                     <li className="list-group-item footer-store-logo">
                                         <Image name="twitter.png" alt="img1" />
                                     </li>

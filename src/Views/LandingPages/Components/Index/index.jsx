@@ -1,6 +1,7 @@
 import React from "react";
 import { Style } from '../../Css/index';
 import Image, { Icon } from "../../../Common/Components/image";
+import GetStartedBanner from "../../../Common/Components/getStartedBanner";
 import curvebackimage from "../../../../assets/img/curve-back.png";
 import { Link } from 'react-router-dom';
 // import "../../Css/index.css";
@@ -11,13 +12,14 @@ export default function Index(props) {
         <WillSection />
         <Forms />
         <LastWill />
+        <GetStartedBanner />
     </>
 }
 
 function GetStarted(props) {
     return <section className="get-started">
         <div className="started-img">
-            <Image name="index-page-img1.png" alt="" />
+            <Image name="index-page-banner.png" alt="" />
             <div className="landing-page-top-text">
                 <p className="empty-line"></p>
                 <h2 className="where-there">WHERE THERE'S A WILL</h2>
@@ -71,20 +73,22 @@ function Forms(props) {
         <div className="container">
             <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
-                    <div className="col-lg-4 col-md-4 col-sm-4" style={{ paddingLeft: "0px" }}>
-                        <a href="#" className="btn btn4 btn-primary btn-lg active homepage-form-tiles">
-                            <Image name="homepage-1.png" alt="" />
-                            <span>Witness Form</span>
-                        </a>
+                    <div className="col-lg-6 col-md-6 col-sm-6" style={{ marginTop: "10px" }}>
+                        <div className="cc-width">
+                            <a href="#" className="btn btn4 btn-primary btn-lg active homepage-form-tiles">
+                                <Image name="homepage-1.png" alt="" />
+                                <span>Witness Form</span>
+                            </a>
+                        </div>
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 " style={{ paddingLeft: "20px" }}>
-                        <a href="#" className="btn btn-primary btn5 btn-lg active homepage-form-tiles"><Image
-                            name="homepage-form-tile-2.png" alt="" />
-                            <span> Self Affidevit Form </span>
-                        </a>
+                    <div className="col-lg-6 col-md-6 col-sm-6 " style={{ marginTop: "10px" }}>
+                        <div className="cc-width">
+                            <a href="#" className="btn btn-primary btn5 btn-lg active homepage-form-tiles"><Image
+                                name="homepage-form-tile-2.png" alt="" />
+                                <span> Self Affidevit Form </span>
+                            </a>
+                        </div>
                     </div>
-                    <div className="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
             </div>
         </div>
@@ -159,13 +163,13 @@ function LastWill(props) {
             </div>
         </div>
 
-        <div className="make-your-will">
+        {/* <div className="make-your-will">
             <div className="left-div">
                 <p className="heading">MAKE YOUR WILL</p>
                 <p className="para">with us will registry today</p>
             </div>
             <Link to="/login">GET STARTED</Link>
-        </div>
+        </div> */}
     </section>
 }
 

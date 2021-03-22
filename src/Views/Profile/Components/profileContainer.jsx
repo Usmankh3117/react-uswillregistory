@@ -21,7 +21,7 @@ function ProfileContainer(props) {
                         <div className="conatiner">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="cc-col-profile active-item-cc">
+                                    <div className="cc-col-profile active-item-cc" onClick={() => redirectToUrl('/form')}>
                                         <Image name="living_with_forms.png" alt="profile-img" style={{ width: "40px" }} />
                                         <div className="main-text-cc">Living Will Forms</div>
                                     </div>

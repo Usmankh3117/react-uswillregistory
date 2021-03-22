@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
     overflow: hidden;
     margin-top: 20px;
 }
+make-your-will{
+    top : 10% !important;
+}
 .search__form {
     width: 100%;
     border-radius: 25px;
@@ -21,10 +24,20 @@ export const Wrapper = styled.div`
     color: #b2b2b2;
     margin-left: 20px;
 }
+@media only screen and (min-width: 300px) and (max-width: 1200px) {
+    .for-search{
+  margin-top: 80px !important;
+    }
+}
+@media only screen and (max-width: 767px){
+    .last-will-section>.make-your-will {
+        top: 10% !important;
+    }
+}
 .search__form form button {
     position: absolute;
-    right: 0;
-    top: 0px;
+    right: -4px;
+    top: -4px;
     height: 47px;
     border: 1px solid #033168;
     background-color: #033168;
@@ -64,13 +77,17 @@ export const Wrapper = styled.div`
 .site-btn > i {
     font-size: 25px;
 }
-
-
+.search-detail-icon:hover{
+    background-color: #bfabab2e;
+  }
+.search-details-section{
+    margin-bottom: 5% 
+}
 .search-detail-div {
     border: 1px solid #ffffff;
     box-shadow: 0px 0px 10px #ececec;
     margin: 20px 0px;
-    width: 47%;
+    // width: 47%;
     border-radius: 25px;
     position: relative;
     padding: 1%;
@@ -106,7 +123,7 @@ export const Wrapper = styled.div`
 
 .last-will-section {
     /* margin-bottom: 5%; */
-    padding-top: 5%;
+    // padding-top: 5%;
     position: relative;
 }
 .last-will-section > .make-your-will {
@@ -118,9 +135,9 @@ export const Wrapper = styled.div`
     border-radius: 15px;
 }
 .last-will-section > .make-your-will > a{
-    right: 11%;
-    top: 35%;
-    padding: 8px 8px 5px 8px;
+    right: 10%;
+    top: 36%;
+    padding: 12px 26px 12px 26px;
     position: absolute;
     border-radius: 25px;
     color: #f34531;

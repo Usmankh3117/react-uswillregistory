@@ -145,9 +145,9 @@ function Login(props) {
 						</div>
 					</div>
 					<div className="login-wrapper">
-						<div className="login-holder">
+						<div className="login-holder" >
 							<div className="login-block login-block-left">
-								<div className="login-left-content">
+								< div className="login-left-content">
 									<h2><strong>Welcome</strong> to the The U.S. Will Registry</h2>
 									<p>Enter your personal detail and start your journey </p>
 								</div>
@@ -159,7 +159,7 @@ function Login(props) {
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-user"></i></span>
-												<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
+												<input type="email"  className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 											</div>
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-lock"></i></span>
@@ -194,9 +194,9 @@ function Login(props) {
 
 										<div className="row login-social-media-icons">
 											<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
-												<a className="facebookIcon" href="#"><i className="fa fa-facebook bottom-icons" ></i></a>
-												<a className="instIcon" href="#"><i className="fa fa-instagram bottom-icons"></i></a>
-												<a className="googleIcon" href="#"><i className="fa fa-google bottom-icons"></i></a>
+												<a className="facebookIcon" href="https://facebook.com/" target="_blank"><i className="fa fa-facebook bottom-icons" ></i></a>
+												<a className="instIcon" href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram bottom-icons"></i></a>
+												<a className="googleIcon" href="https://plus.google.com/" target="_blank"><i className="fa fa-google bottom-icons"></i></a>
 											</div>
 										</div>
 									</div></div>

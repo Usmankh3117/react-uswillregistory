@@ -45,6 +45,29 @@ export const Wrapper = styled.div`
 .login-form {
     padding: 0% 10%;
 }
+
+@media screen and (min-width: 300px) and (max-width: 500px){
+    .img{
+    display: none;
+    }
+    
+}
+
+@media screen and (min-width: 700px) and (max-width: 800px){
+    .img{
+        height: 75vh;
+    }
+    
+}
+@media screen and (min-width: 1000px) and (max-width: 1300px){
+    .img{
+        height: 85vh;
+    }
+    
+}
+
+
+
 .login-form > form > .input-group {
 	border: 1px solid black !important; 
 	margin-top: 20px;

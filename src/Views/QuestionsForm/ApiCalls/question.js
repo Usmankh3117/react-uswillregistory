@@ -5,6 +5,7 @@ import {
   getStatesListAction,
   getCharityListAction,
   getAllAnswerAction,
+  updateAnswerAction
 } from "../Actions/action";
 import { Constant } from "./../../../Constants/constant";
 import { FETCH } from "../../../Services/fetch";
@@ -131,6 +132,7 @@ export function pageForAnswers(data, pageId) {
     let url = Constant.apiURl + "/answers/" + pageId;
     let myJson = await FETCH("POST", url, data);
     if (myJson && myJson.status === "success") {
+      dispatch(updateAnswerAction(myJson.page_answers))
       dispatch(
         Actions.ApiFulfilledAction({
           apiCallFor: "pageForAnswers",
@@ -155,6 +157,7 @@ export function getAllAnswer() {
     let url = Constant.apiURl + "/answers";
     let myJson = await FETCH("GET", url);
     if (myJson && myJson.status === "success") {
+      // myJson.answers
       dispatch(getAllAnswerAction(myJson.answers));
       dispatch(
         Actions.ApiFulfilledAction({
@@ -167,6 +170,54 @@ export function getAllAnswer() {
         Actions.ApiRejectedAction({
           statusCode: myJson.statusCode,
           apiCallFor: "getAllAnswer",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function sendEmail() {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "sendEmail" }));
+    let url = Constant.apiURl + "/email-and-download-document";
+    let myJson = await FETCH("POST", url);
+    if (myJson && myJson.status === "success") {
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "sendEmail",
+          message: myJson.message ? myJson.message : "Link has been sent to your email address",
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "sendEmail",
+          message: myJson.errors,
+        })
+      );
+    }
+  };
+}
+
+export function downloadWill() {
+  return async (dispatch) => {
+    dispatch(Actions.ApiRequestedAction({ apiCallFor: "downloadWill" }));
+    let url = Constant.apiURl + "/download-doc";
+    let myJson = await FETCH("POST", url);
+    if (myJson && myJson.status === "success") {
+      dispatch(
+        Actions.ApiFulfilledAction({
+          apiCallFor: "downloadWill",
+          message: myJson.message ? myJson.message : "",
+        })
+      );
+    } else {
+      dispatch(
+        Actions.ApiRejectedAction({
+          statusCode: myJson.statusCode,
+          apiCallFor: "downloadWill",
           message: myJson.errors,
         })
       );

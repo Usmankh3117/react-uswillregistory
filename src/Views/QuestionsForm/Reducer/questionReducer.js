@@ -35,7 +35,13 @@ export default function questionReducer(state = StoreState.question, action) {
 
     case updateAnswer:
       let s4 = cloneDeep(state);
-      s4.answerList[action.payload.pageId] = action.payload.data;
+      let index = s4.answerList.findIndex((x) => x.page_id === action.payload.data.page_id);
+      if (index !== -1) {
+        s4.answerList[index] = action.payload.data;
+      } else {
+        s4.answerList.push(action.payload.data);
+      }
+      // s4.answerList[action.payload.pageId] = action.payload.data;
       return s4;
 
     case getCharityList:

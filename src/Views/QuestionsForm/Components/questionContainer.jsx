@@ -3,7 +3,8 @@ import { ClearApiByNameAction } from "../../ApiCallStatus/Actions/action";
 import { connect } from 'react-redux';
 import { Wrapper } from '../Css/question';
 import { updateAnswerAction } from "../Actions/action";
-import { getFormSection, getQuestionList, getStateList, getChartiyList, pageForAnswers, getAllAnswer } from "../ApiCalls/question";
+import { getFormSection, getQuestionList, getStateList, getChartiyList, pageForAnswers, getAllAnswer, sendEmail, downloadWill } from "../ApiCalls/question";
+import Swal from 'sweetalert2';
 import Image from '../../Common/Components/image';
 import moment from 'moment';
 import { getYearList } from "../../../Services/common";
@@ -16,6 +17,7 @@ function QuestionsContainer(props) {
         message: "",
         messageType: "",
         messageFor: "",
+        isFormCompleted: false
     })
     useEffect(() => {
         props.getFormSection();
@@ -30,10 +32,14 @@ function QuestionsContainer(props) {
             let inputs = {};
             let quest = props.questions[state.activePageId];
             let answer = {};
+            let isFormCompleted = false
             if (props.answerList.length > 0) {
                 let index = props.answerList.findIndex(x => x.page_id === state.activePageId);
                 if (index !== -1) {
                     answer = props.answerList[index]['answer']
+                }
+                if (props.answerList.findIndex(x => x.page_id === props.pageList[props.pageList.length - 1].id) !== -1) {
+                    // isFormCompleted = true;
                 }
             }
             quest.forEach(element => {
@@ -141,7 +147,8 @@ function QuestionsContainer(props) {
                         }
                         if (input === "birthdate") {
                             if (value === "") {
-                                value = moment().format('YYYY-MM-DD');
+                                value = "";
+                                // value = moment().format('YYYY-MM-DD');
                             } else {
                                 value = moment(value).format('YYYY-MM-DD')
                             }
@@ -156,7 +163,8 @@ function QuestionsContainer(props) {
             questions[state.activePageId] = inputs;
             setState({
                 ...state,
-                questions
+                questions,
+                isFormCompleted
             })
             console.log(questions[state.activePageId])
         }
@@ -170,37 +178,57 @@ function QuestionsContainer(props) {
                     activeSectionId: nextPage.section_id,
                     activePageId: nextPage.id
                 })
+            } else if (pageIndex === (props.pageList.length - 1)) {
+                setState({
+                    ...state,
+                    isFormCompleted: true
+                })
+
             }
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
         }
-        if ((props.apiCallStatus.apiCallFor === "getAllAnswer" || props.apiCallStatus.apiCallFor === "getFormSection") && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed && props.pageList.length > 0 && props.answerList.length > 0) {
+        if ((props.apiCallStatus.apiCallFor === "getAllAnswer" || props.apiCallStatus.apiCallFor === "getFormSection") && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
             let activePageId = 1;
             let activeSectionId = 1;
-            for (let index = 0; index < props.pageList.length; index++) {
-                const pageCode = props.pageList[index].page_code;
-                activePageId = props.pageList[index].id;
-                activeSectionId = props.pageList[index].section_id;
-                let ansIndex = props.answerList.findIndex(x => x.page_code === pageCode);
-                if (ansIndex === -1) {
-                    break;
+            if (props.pageList.length > 0 && props.answerList.length > 0) {
+                for (let index = 0; index < props.pageList.length; index++) {
+                    const pageCode = props.pageList[index].page_code;
+                    activePageId = props.pageList[index].id;
+                    activeSectionId = props.pageList[index].section_id;
+                    let ansIndex = props.answerList.findIndex(x => x.page_code === pageCode);
+                    if (ansIndex === -1) {
+                        break;
+                    }
                 }
+                setState({
+                    ...state,
+                    activePageId,
+                    activeSectionId
+                })
+                props.getQuestionList(activePageId);
+            } else if (props.pageList.length > 0 && props.answerList.length === 0) {
+                setState({
+                    ...state,
+                    activePageId: 2,
+                    activeSectionId
+                })
+                props.getQuestionList(2);
             }
-            setState({
-                ...state,
-                activePageId,
-                activeSectionId
-            })
-            props.getQuestionList(activePageId);
+            props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
+        }
+        if ((props.apiCallStatus.apiCallFor === "sendEmail" || props.apiCallStatus.apiCallFor === "downloadWill") && props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed) {
+            Swal.fire("Success!", props.apiCallStatus.message, "success");
+            props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
         }
     })
     const handlePageStateChange = (questionId, pageId, e, childKey, nestedChildKey) => {
-        let id = e.target.id;
+        let id = e.target.type === "radio" ? e.target.name : e.target.id;
         let value = e.target.value;
         let questions = state.questions;
         if (childKey) {
-            if(nestedChildKey){
+            if (nestedChildKey) {
                 questions[pageId][questionId][childKey][nestedChildKey][id].value = value;
-            }else{
+            } else {
                 questions[pageId][questionId][childKey][id].value = value;
             }
         } else {
@@ -215,64 +243,95 @@ function QuestionsContainer(props) {
         })
         // console.log(questions[pageId])
     }
-    const nextPage = () => {
-        if (validatePage(state.activePageId)) {
-            let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
-            if (pageIndex !== -1) {
-                let pageCode = props.pageList[pageIndex].page_code;
-                let data = {}
-                let answer = {}
-                let arr = [];
-                for (const question in state.questions[state.activePageId]) {
-                    answer[question] = {}
-                    arr = [];
-                    if (state.questions[state.activePageId][question].isArray) {
-                        state.questions[state.activePageId][question].value.forEach(element => {
-                            let obj = {}
-                            for (const key in element) {
-                                obj[key] = element[key].value
-                            }
-                            arr.push(obj)
-                        });
-                        answer[question] = arr;
-                    } else if (state.questions[state.activePageId][question].primary) {
-                        let typeList = ['primary', 'alternate'];
-                        let detail = {};
-                        typeList.forEach(item => {
-                            arr = [];
-                            state.questions[state.activePageId][question][item].value.forEach(element => {
+    const nextPage = (e) => {
+        e.preventDefault();
+        let isValid = validateForm();
+        if (isValid) {
+            if (validatePage(state.activePageId)) {
+                let pageIndex = props.pageList.findIndex(x => x.id === state.activePageId);
+                if (pageIndex !== -1) {
+                    let pageCode = props.pageList[pageIndex].page_code;
+                    let data = {}
+                    let answer = {}
+                    let arr = [];
+                    for (const question in state.questions[state.activePageId]) {
+                        answer[question] = {}
+                        arr = [];
+                        if (state.questions[state.activePageId][question].isArray) {
+                            state.questions[state.activePageId][question].value.forEach(element => {
                                 let obj = {}
                                 for (const key in element) {
                                     obj[key] = element[key].value
                                 }
                                 arr.push(obj)
                             });
-                            detail[item] = arr;
-                        })
-                        answer[question] = detail;
-                    } else if (state.questions[state.activePageId][question]["charityPortion"]) {
-                        for (const input in state.questions[state.activePageId][question]["charityPortion"]) {
-                            answer[question]["charityPortion"] = {
-                                ...answer[question]["charityPortion"],
-                                [input]: state.questions[state.activePageId][question]["charityPortion"][input].value
+                            answer[question] = arr;
+                        } else if (state.questions[state.activePageId][question].primary) {
+                            let typeList = ['primary', 'alternate'];
+                            let detail = {};
+                            typeList.forEach(item => {
+                                arr = [];
+                                state.questions[state.activePageId][question][item].value.forEach(element => {
+                                    let obj = {}
+                                    for (const key in element) {
+                                        obj[key] = element[key].value
+                                    }
+                                    arr.push(obj)
+                                });
+                                detail[item] = arr;
+                            })
+                            answer[question] = detail;
+                        } else if (state.questions[state.activePageId][question]["charityPortion"]) {
+                            for (const input in state.questions[state.activePageId][question]["charityPortion"]) {
+                                answer[question]["charityPortion"] = {
+                                    ...answer[question]["charityPortion"],
+                                    [input]: state.questions[state.activePageId][question]["charityPortion"][input].value
+                                }
+                            }
+                        } else if (state.questions[state.activePageId][question]["one"]) {
+                            for (const input in state.questions[state.activePageId][question]["one"]) {
+                                let obj = {}
+                                for (const nestedChildElem in state.questions[state.activePageId][question]["one"][input]) {
+                                    let value = "";
+                                    if (state.questions[state.activePageId][question]["one"][input][nestedChildElem].value) {
+                                        value = state.questions[state.activePageId][question]["one"][input][nestedChildElem].value
+                                    }
+                                    obj = {
+                                        ...obj,
+                                        [nestedChildElem]: value
+                                    }
+                                }
+                                answer[question]["one"] = {
+                                    ...answer[question]["one"],
+                                    [input]: { ...obj }
+                                }
+                            }
+                        } else {
+                            for (const input in state.questions[state.activePageId][question]) {
+                                answer[question][input] = state.questions[state.activePageId][question][input].value
                             }
                         }
-                    } else {
-                        for (const input in state.questions[state.activePageId][question]) {
-                            answer[question][input] = state.questions[state.activePageId][question][input].value
-                        }
                     }
+                    data["answer"] = answer;
+                    let lastPage = props.pageList.length - 1;
+                    data["isFinalSubmission"] = props.pageList[lastPage].id === state.activePageId ? 1 : 0;
+                    console.log(data)
+                    // props.updateAnswerAction(answer, state.activePageId)
+                    props.pageForAnswers(data, pageCode);
+                } else {
+                    console.log("Page code not found")
                 }
-                data["answer"] = answer;
-                let lastPage = props.pageList.length - 1;
-                data["isFinalSubmission"] = props.pageList[lastPage].id === state.activePageId ? 1 : 0;
-                console.log(data)
-                props.updateAnswerAction(answer, state.activePageId)
-                props.pageForAnswers(data, pageCode);
-            } else {
-                console.log("Page code not found")
             }
         }
+    }
+    const validateForm = () => {
+        var form = document.getElementsByClassName('needs-validation')[0];
+        let isValid = true;
+        if (form.checkValidity() === false) {
+            isValid = false;
+            form.classList.add('was-validated');
+        }
+        return isValid;
     }
     const previousPage = () => {
         let activePageIndex = props.pageList.findIndex(x => x.id == state.activePageId);
@@ -386,13 +445,7 @@ function QuestionsContainer(props) {
                             isAllow = false;
                         }
                     }
-                }
-            }
-        } else if (state.questions[state.activePageId]) {
-            for (let index = 0; index < dependency.length; index++) {
-                const element = dependency[index];
-                let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
-                if (pageIndex !== -1 && props.answerList[pageIndex]) {
+                } else if (pageIndex !== -1 && props.answerList[pageIndex]) {
                     let question = props.answerList[pageIndex]["answer"][element.parent_question_code];
                     let questionKey = Object.keys(props.answerList[pageIndex]["answer"][element.parent_question_code])[0];
                     if (question[questionKey] === element.answer) {
@@ -403,6 +456,21 @@ function QuestionsContainer(props) {
                 }
             }
         }
+        // else if (state.questions[state.activePageId]) {
+        //     for (let index = 0; index < dependency.length; index++) {
+        //         const element = dependency[index];
+        //         let pageIndex = props.answerList.findIndex(x => x.page_code === element.page_id);
+        //         if (pageIndex !== -1 && props.answerList[pageIndex]) {
+        //             let question = props.answerList[pageIndex]["answer"][element.parent_question_code];
+        //             let questionKey = Object.keys(props.answerList[pageIndex]["answer"][element.parent_question_code])[0];
+        //             if (question[questionKey] === element.answer) {
+        //                 isAllow = true;
+        //             } else {
+        //                 isAllow = false;
+        //             }
+        //         }
+        //     }
+        // }
         return isAllow;
     }
     const handleChangeOfArrayItem = (pageId, questionId, type, index, e, isPrimary, isAlternate) => {
@@ -445,127 +513,150 @@ function QuestionsContainer(props) {
         <div className="form-section">
             <div className="row" style={{ maxWidth: "100%" }}>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                        <PageDescription pageList={props.pageList} />
+                    <div className="col-lg-4 col-xl-3 col-md-4 col-sm-4 col-xs-12 page-description">
+                        <PageDescription pageList={props.pageList} activePageId={state.activePageId} />
                     </div>
-                    <div className="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                    <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 page-form">
                         <div className="right-outer-form-div">
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
-                            <div id="Basic">
-                                {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection" || props.apiCallStatus.apiCallFor === "getAllAnswer") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                                    <div className="loader-img text-center">
-                                        <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
-                                    </div>
-                                    : ""}
-                                {props.questions[state.activePageId] ? props.questions[state.activePageId].map((item, index) => {
-                                    let inputs = Object.keys(item.inputs);
-                                    let colLength = inputs ? 12 / inputs.length : 12;
-                                    return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies, item.page_id)) ? <div className="row" key={index}>
-                                        <div className="col-lg-12 col-lg-12 col-sm-12">
-                                            <p className="form-inner-heading">{item.question_text}</p>
-                                            {inputs && inputs.map((inputKey, i) => {
-                                                console.log(inputKey)
-                                                let input = item.inputs[inputKey];
-                                                let isPrimary = false;
-                                                let isAlternate = false;
-                                                if (item.inputs[inputKey]["primary"]) {
-                                                    input = item.inputs[inputKey]["primary"];
-                                                    isPrimary = true;
-                                                }
-                                                let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey] ?
-                                                    state.questions[state.activePageId][item.question_code][inputKey].value : "";
-                                                let arrFields = input.input === "array" ? Object.keys(input.fields) : []
-                                                colLength = input.input === "array" ? arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12 : colLength;
-                                                let answerList = [];
-                                                if (input.input === "array" && state.questions[state.activePageId] && [item.question_code]) {
-                                                    if (isPrimary) {
-                                                        answerList = state.questions[state.activePageId][item.question_code]["primary"].value
-                                                    } else if (inputKey === "alternate") {
-                                                        isAlternate = true;
-                                                        answerList = state.questions[state.activePageId][item.question_code]["alternate"].value
-                                                    } else {
-                                                        answerList = state.questions[state.activePageId][item.question_code].value
-                                                    }
-                                                }
-                                                return inputKey === "charityPortion" ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
-                                                    let childElem = item.inputs[inputKey][childKey];
-                                                    let childLength = Object.keys(item.inputs[inputKey]).length;
-                                                    colLength = childLength === 3 ? 4 : childLength === 2 ? 6 : 12;
-                                                    value = "";
-                                                    if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey]) {
-                                                        value = state.questions[state.activePageId][item.question_code][inputKey][childKey].value;
-                                                    }
-                                                    return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} /></div> :
-                                                        childElem.input === "radio" || childElem.input === "select"
-                                                            ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
-                                                                id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} placeholder={childElem.placeholder ? childElem.placeholder : childKey} /></div> : ""
-                                                }) : input.input === "array" ? <React.Fragment>
-                                                    <p className="form-inner-heading">{isPrimary ? "Primary" : isAlternate ? "Alternate" : ""}</p>
-                                                    {answerList.map((ques, quesIndex) => {
-                                                        return <div className="row" key={quesIndex}>
-                                                            {arrFields.map((arrInputKey, j) => {
-                                                                let arrInput = input.fields[arrInputKey];
-                                                                if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code]) {
-                                                                    if (isPrimary) {
-                                                                        value = state.questions[state.activePageId][item.question_code]["primary"]["value"][quesIndex][arrInputKey].value
-                                                                    } else if (isAlternate) {
-                                                                        value = state.questions[state.activePageId][item.question_code]["alternate"]["value"][quesIndex][arrInputKey].value
-                                                                    } else {
-                                                                        value = state.questions[state.activePageId][item.question_code]["value"][quesIndex][arrInputKey].value
-                                                                    }
-                                                                } else {
-                                                                    value = "";
+                            {state.isFormCompleted ? <SuccessMessage apiCallStatus={props.apiCallStatus} sendEmail={props.sendEmail} downloadWill={props.downloadWill} /> :
+                                <React.Fragment>
+                                    <form id="Basic" className="needs-validation" onSubmit={(e) => nextPage(e)}>
+                                        {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection" || props.apiCallStatus.apiCallFor === "getAllAnswer") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                            <div className="loader-img text-center">
+                                                <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                                            </div>
+                                            : ""}
+                                        {props.questions[state.activePageId] ? props.questions[state.activePageId].map((item, index) => {
+                                            let inputs = Object.keys(item.inputs);
+                                            let colLength = inputs ? 12 / inputs.length : 12;
+                                            return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies, item.page_id)) ? <div className="row" key={index}>
+                                                <div className="col-lg-12 col-lg-12 col-sm-12">
+                                                    <p className="form-inner-heading">{item.question_text}</p>
+                                                    {inputs && inputs.map((inputKey, i) => {
+                                                        let input = item.inputs[inputKey];
+                                                        let isPrimary = false;
+                                                        let isAlternate = false;
+                                                        if (item.inputs[inputKey]["primary"]) {
+                                                            input = item.inputs[inputKey]["primary"];
+                                                            isPrimary = true;
+                                                        }
+                                                        let value = input.input !== "array" && state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey] ?
+                                                            state.questions[state.activePageId][item.question_code][inputKey].value : "";
+                                                        let arrFields = input.input === "array" ? Object.keys(input.fields) : []
+                                                        colLength = input.input === "array" ? arrFields.length === 3 ? 4 : arrFields.length === 2 ? 6 : 12 : colLength;
+                                                        let answerList = [];
+                                                        if (input.input === "array" && state.questions[state.activePageId] && [item.question_code]) {
+                                                            if (isPrimary) {
+                                                                answerList = state.questions[state.activePageId][item.question_code]["primary"].value
+                                                            } else if (inputKey === "alternate") {
+                                                                isAlternate = true;
+                                                                answerList = state.questions[state.activePageId][item.question_code]["alternate"].value
+                                                            } else {
+                                                                answerList = state.questions[state.activePageId][item.question_code].value
+                                                            }
+                                                        }
+                                                        return inputKey === "charityPortion" ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
+                                                            let childElem = item.inputs[inputKey][childKey];
+                                                            let childLength = Object.keys(item.inputs[inputKey]).length;
+                                                            colLength = childLength === 3 ? 4 : childLength === 2 ? 6 : 12;
+                                                            value = "";
+                                                            if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey]) {
+                                                                value = state.questions[state.activePageId][item.question_code][inputKey][childKey].value;
+                                                            }
+                                                            return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} /></div> :
+                                                                childElem.input === "radio" || childElem.input === "select"
+                                                                    ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown type={childElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
+                                                                        id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} placeholder={childElem.placeholder ? childElem.placeholder : childKey} /></div> : ""
+                                                        }) : inputKey === "one" && item.inputs[inputKey]["primary"] && item.inputs[inputKey]["alternate"] ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
+                                                            return Object.keys(item.inputs[inputKey][childKey]).map((nestedChildKey, nestedChildIndex) => {
+                                                                let nestedChildElem = item.inputs[inputKey][childKey][nestedChildKey];
+                                                                let nestedChildLength = Object.keys(item.inputs[inputKey][childKey]).length;
+                                                                colLength = nestedChildLength === 3 ? 4 : nestedChildLength === 2 ? 6 : 12;
+                                                                value = "";
+                                                                if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey] && state.questions[state.activePageId][item.question_code][inputKey][childKey][nestedChildKey]) {
+                                                                    value = state.questions[state.activePageId][item.question_code][inputKey][childKey][[nestedChildKey]].value;
                                                                 }
-                                                                return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}> {arrInput.input === "text" ?
-                                                                    <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
-                                                                    arrInput.input === "radio" || arrInput.input === "select" ? <DropDown key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
+                                                                return nestedChildElem.input === "text" || nestedChildElem.input === "number" ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={nestedChildElem.input} id={nestedChildKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={nestedChildKey} placeholder={nestedChildElem.placeholder ? nestedChildElem.placeholder : nestedChildKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey, childKey)} /></div> :
+                                                                    nestedChildElem.input === "radio" || nestedChildElem.input === "select"
+                                                                        ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown type={nestedChildElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : nestedChildElem.options}
+                                                                            id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={nestedChildKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey, childKey)} placeholder={nestedChildElem.placeholder ? nestedChildElem.placeholder : nestedChildKey} /></div> : ""
+                                                            })
+                                                        })
+                                                            : input.input === "array" ? <React.Fragment>
+                                                                <p className="form-inner-heading">{isPrimary ? "Primary" : isAlternate ? "Alternate" : ""}</p>
+                                                                {answerList.map((ques, quesIndex) => {
+                                                                    return <div className="row" key={quesIndex}>
+                                                                        {arrFields.map((arrInputKey, j) => {
+                                                                            let arrInput = input.fields[arrInputKey];
+                                                                            if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code]) {
+                                                                                if (isPrimary) {
+                                                                                    value = state.questions[state.activePageId][item.question_code]["primary"]["value"][quesIndex][arrInputKey].value
+                                                                                } else if (isAlternate) {
+                                                                                    value = state.questions[state.activePageId][item.question_code]["alternate"]["value"][quesIndex][arrInputKey].value
+                                                                                } else {
+                                                                                    value = state.questions[state.activePageId][item.question_code]["value"][quesIndex][arrInputKey].value
+                                                                                }
+                                                                            } else {
+                                                                                value = "";
+                                                                            }
+                                                                            return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} `}> {arrInput.input === "text" ?
+                                                                                <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
+                                                                                arrInput.input === "radio" || arrInput.input === "select" ? <DropDown type={arrInput.input} key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
+                                                                            </div>
+                                                                                {
+                                                                                    (arrFields.length - 1) === j ? < div className="col-lg-12 col-lg-12 col-sm-12" >
+                                                                                        <a className=" text-light btn-block mt-3 btn btn-danger" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'remove', quesIndex, 'evnet', isPrimary, isAlternate)}>delete</a>
+                                                                                    </div> : ""
+                                                                                }</>
+                                                                        })}
+                                                                    </div>
+                                                                })}
+                                                                <div className="col-lg-12 col-lg-12 col-sm-12 center">
+                                                                    <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
                                                                 </div>
-                                                                    {
-                                                                        (arrFields.length - 1) === j ? < div className="col-lg-1 col-lg-1 col-sm-1" >
-                                                                            <a onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'remove', quesIndex, 'evnet', isPrimary, isAlternate)}>delete</a>
-                                                                        </div> : ""
-                                                                    }</>
-                                                            })}
-                                                        </div>
+                                                            </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
+                                                                {input.input === "text" ?
+                                                                    <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
+                                                                    input.input === "radio" || input.input === "select" ? <DropDown type={input.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
+                                                            </div>
                                                     })}
-                                                    <div className="col-lg-12 col-lg-12 col-sm-12 center">
-                                                        <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
-                                                    </div>
-                                                </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
-                                                    {input.input === "text" ?
-                                                        <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
-                                                        input.input === "radio" || input.input === "select" ? <DropDown options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
                                                 </div>
-                                            })}
+                                            </div> : ""
+                                        }) : ""}
+
+                                    </form>
+                                    <div id="form-footer">
+                                        <div className="row">
+                                            {props.apiCallStatus.apiCallFor === "pageForAnswers" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                                                <div className="loader-img text-center">
+                                                    <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                                                </div>
+                                                : ""}
+                                            {state.messageFor === "form" && state.message !== "" ?
+                                                <div className={`alert alert-${state.messageType}`}>
+                                                    {state.message}
+                                                </div>
+                                                : ""}
+                                            {props.questions[state.activePageId] ?
+                                                <div className="col-lg-12 col-lg-12 col-sm-12 form-btn-div">
+                                                    <button className="next-btn" onClick={(e) => nextPage(e)} >
+                                                        NEXT
+                            <i className="fa fa-arrow-right"></i>
+                                                    </button>
+                                                    <div className="pd-25"></div>
+                                                    {props.pageList.length > 0 && props.pageList[0].id !== state.activePageId ?
+                                                        <button onClick={() => previousPage()} className="exit-btn">
+                                                            <i className="fa fa-arrow-left"></i>
+                            PREVIOUS
+                        </button> : ""}
+                                                </div> : ""}
                                         </div>
-                                    </div> : ""
-                                }) : ""}
-                                <div className="row">
-                                    {props.apiCallStatus.apiCallFor === "pageForAnswers" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
-                                        <div className="loader-img text-center">
-                                            <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
-                                        </div>
-                                        : ""}
-                                    {state.messageFor === "form" && state.message !== "" ?
-                                        <div className={`alert alert-${state.messageType}`}>
-                                            {state.message}
-                                        </div>
-                                        : ""}
-                                    {props.questions[state.activePageId] ?
-                                        <div className="col-lg-12 col-lg-12 col-sm-12 form-btn-div">
-                                            <button className="next-btn" onClick={() => nextPage()}>
-                                                NEXT
-                                    <i className="fa fa-arrow-right"></i>
-                                            </button>
-                                            {props.pageList.length > 0 && props.pageList[0].id !== state.activePageId ?
-                                                <button onClick={() => previousPage()} className="exit-btn">
-                                                    <i className="fa fa-arrow-left"></i>
-                                    PREVIOUS
-                                </button> : ""}
-                                        </div> : ""}
-                                </div>
-                            </div>
+                                    </div>
+
+                                </React.Fragment>
+                            }
                         </div>
                     </div>
                 </div>
@@ -586,7 +677,7 @@ function Sections(props) {
     return <div className="form_top_controls">
         <ul >
             {props.sectionList.map((item, index) => {
-                return <li key={index} className={props.activeSectionId === item.id ? "active" : ""} data-filter="*">{item.section_name}</li>
+                return <li key={index} style={props.activeSectionId === item.id ? { color: "#002a5d", margin: "10px 5px" } : { margin: "10px 5px" }} className={props.activeSectionId === item.id ? "active" : ""} data-filter="*">{item.section_name}</li>
             })}
         </ul>
     </div>
@@ -603,22 +694,32 @@ function PagesListing(props) {
 function PageDescription(props) {
     return <div className="left-outer-form-div">
         {props.pageList.map((item, index) => {
-            return <h4 key={index}><a href="#">{item.page_title}</a></h4>
+            return <h4 key={index}><a href="#" style={props.activePageId === item.id ? { color: "white", fontWeight: "300" } : { fontWeight: "300" }}>{item.page_title}</a></h4>
         })}
     </div>
 }
 
 function InputText(props) {
-    return <input  {...props} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" />
+    return <input  {...props} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required />
 }
 
 function DropDown(props) {
-    return <select name={props.name} id={props.id} placeholder={props.placeholder} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field">
+    return props.type === "select" ? <select name={props.name} id={props.id} placeholder={props.placeholder} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required>
         <option value="">{props.placeholder}</option>
         {props.options.map((item, index) => {
             return <option key={index} value={item.value} selected={item.value === props.value}>{item.label}</option>
         })}
-    </select>
+    </select> : props.type === "radio" ? <div className="row">
+        {props.options.map((item, index) => {
+            let col = props.options.length < 4 ? parseInt(12 / props.options.length) : 4
+            return <div className={`col-lg-${col} col-md-${col} col-sm-${col}  input-1`}>
+                <div className="input-group-cc2 cc-row-reg">
+                    <label className="label-gender">{item.label}</label>
+                    <input type="radio" className="form-control-cc2" name={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} checked={item.value === props.value} value={item.value} />
+                </div>
+            </div>
+        })}
+    </div > : ""
 }
 function DateInput(props) {
     const [state, setState] = useState({
@@ -739,6 +840,40 @@ function DateInput(props) {
         </div> */}
     </React.Fragment>
 }
+function SuccessMessage(props) {
+    return <section>
+        <div className="form-card h-100">
+            <div className="form-thanks-you-wrap d-flex flex-column align-items-center justify-content-center flex-fill h-100">
+                <h2>Thank You</h2>
+                <div className="thank-you-icon-wrap">
+                    <h3>
+                        {/* <i className="far fa-thumbs-up"></i> */}
+                        <i class="fa fa-thumbs-up"></i></h3>
+                </div>
+                <p className="success-message">The Will form has been updated successfully.</p>
+                <div className="row">
+                    {(props.apiCallStatus.apiCallFor === "downloadWill" || props.apiCallStatus.apiCallFor === "sendEmail") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
+                        <div className="loader-img text-center">
+                            <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
+                        </div>
+                        : ""}
+
+                    <div className="col-lg-6 col-md-12 col-sm-6 ">
+                        <button className="btn btn-success" onClick={() => props.downloadWill()}>
+                            Download Will
+                        </button>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-sm-6 ">
+                        <button className="btn btn-success" onClick={() => props.sendEmail()}>
+                            Send Email
+                                </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+}
 
 const mapStateToProps = (state, ownProps) => ({
     apiCallStatus: state.apicallStatusReducer,
@@ -760,6 +895,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     updateAnswerAction: (data, pageId) => dispatch(updateAnswerAction(data, pageId)),
     pageForAnswers: (data, pageId) => dispatch(pageForAnswers(data, pageId)),
     ClearApiByNameAction: (apiName) => dispatch(ClearApiByNameAction(apiName)),
+    sendEmail: () => dispatch(sendEmail()),
+    downloadWill: () => dispatch(downloadWill())
 })
 export default connect(
     mapStateToProps,

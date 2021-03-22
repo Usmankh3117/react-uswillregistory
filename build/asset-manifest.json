@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.5adfe0ea.chunk.css",
-    "main.js": "/static/js/main.d256e433.chunk.js",
-    "main.js.map": "/static/js/main.d256e433.chunk.js.map",
+    "main.css": "/static/css/main.d9547248.chunk.css",
+    "main.js": "/static/js/main.0950fe7f.chunk.js",
+    "main.js.map": "/static/js/main.0950fe7f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.466f4a21.js",
     "runtime-main.js.map": "/static/js/runtime-main.466f4a21.js.map",
-    "static/js/2.03c068bb.chunk.js": "/static/js/2.03c068bb.chunk.js",
-    "static/js/2.03c068bb.chunk.js.map": "/static/js/2.03c068bb.chunk.js.map",
+    "static/js/2.72027472.chunk.js": "/static/js/2.72027472.chunk.js",
+    "static/js/2.72027472.chunk.js.map": "/static/js/2.72027472.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.8ca2fbd6a9f0b46c27aa936448526771.js": "/precache-manifest.8ca2fbd6a9f0b46c27aa936448526771.js",
+    "precache-manifest.f371b68aa3092e23ad8bc8f166220436.js": "/precache-manifest.f371b68aa3092e23ad8bc8f166220436.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.5adfe0ea.chunk.css.map": "/static/css/main.5adfe0ea.chunk.css.map",
-    "static/js/2.03c068bb.chunk.js.LICENSE.txt": "/static/js/2.03c068bb.chunk.js.LICENSE.txt",
+    "static/css/main.d9547248.chunk.css.map": "/static/css/main.d9547248.chunk.css.map",
+    "static/js/2.72027472.chunk.js.LICENSE.txt": "/static/js/2.72027472.chunk.js.LICENSE.txt",
     "static/media/Changes-backup_0001_Group-1.png": "/static/media/Changes-backup_0001_Group-1.c1c73165.png",
     "static/media/Changes.png": "/static/media/Changes.116c2697.png",
     "static/media/Register-Form_background-img-old.png": "/static/media/Register-Form_background-img-old.19a0cff7.png",
@@ -22,13 +22,14 @@
     "static/media/Trajan-Pro-Regular.ttf": "/static/media/Trajan-Pro-Regular.b11f35f7.ttf",
     "static/media/about-us-img.jpg": "/static/media/about-us-img.3e81eb2a.jpg",
     "static/media/about-us-img.png": "/static/media/about-us-img.dd1d446d.png",
-    "static/media/app.css": "/static/media/bottom-shadow.a986bb4e.png",
+    "static/media/app.css": "/static/media/reg-bg.c9c47c43.png",
     "static/media/contact-us-top-img.png": "/static/media/contact-us-top-img.0b5e5f0d.png",
     "static/media/faq-img.png": "/static/media/faq-img.da6a2bb0.png",
     "static/media/footer-logo.png": "/static/media/footer-logo.23473546.png",
     "static/media/footer-logo1.png": "/static/media/footer-logo1.5f774af4.png",
     "static/media/header-logo-a.png": "/static/media/header-logo-a.48848f94.png",
     "static/media/header-logo.png": "/static/media/header-logo.a9f2e833.png",
+    "static/media/index-page-banner.png": "/static/media/index-page-banner.6f71673c.png",
     "static/media/index-page-img1.png": "/static/media/index-page-img1.18bbc2c2.png",
     "static/media/last-will-background-img.png": "/static/media/last-will-background-img.0995f6fd.png",
     "static/media/last-will-new.png": "/static/media/last-will-new.ace7b8c0.png",
@@ -54,8 +55,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.466f4a21.js",
-    "static/js/2.03c068bb.chunk.js",
-    "static/css/main.5adfe0ea.chunk.css",
-    "static/js/main.d256e433.chunk.js"
+    "static/js/2.72027472.chunk.js",
+    "static/css/main.d9547248.chunk.css",
+    "static/js/main.0950fe7f.chunk.js"
   ]
 }

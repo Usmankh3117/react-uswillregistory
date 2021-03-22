@@ -41,6 +41,7 @@ export const Style = createGlobalStyle`
     padding-left: 25px;
     margin: 15px;
     padding: 10px;
+    cursor : pointer;
 }
 .not-active-profile-div {
     /* background-color: #033168;
@@ -50,6 +51,7 @@ export const Style = createGlobalStyle`
     padding-left: 25px;
     margin-top: 15px;
     padding: 10px;
+    cursor : pointer;
 }
 
 .profile-section-div > div > img {
@@ -209,25 +211,33 @@ export const Style = createGlobalStyle`
 }
 
 .form-control1 {
-    display: block;
     width: 100%;
-    height: 48px;
-    padding: 8px 7px;
-    font-size: 18px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #acacac;
     border-radius: 0px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    height: 50px;
+    font-family: "poppins";
+    padding-left: 10px;
+    /* border: 2px solid #569fcf; */
+    border: 1px solid #03336c !important;
+    
+    // display: block;
+    // width: 100%;
+    // height: 48px;
+    // padding: 8px 7px;
+    // font-size: 18px;
+    // line-height: 1.42857143;
+    // color: #555;
+    // background-color: #fff;
+    // background-image: none;
+    // border: 1px solid #acacac;
+    // border-radius: 0px;
+    // -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    // box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    // -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    // transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    // transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 }
 
 

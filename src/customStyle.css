@@ -1,0 +1,13 @@
+button:focus {
+  outline: none;
+}
+.right-navbar-list {
+  float: right;
+  margin-right: 13% !important;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  /* color: #555; 
+  background-color: #e7e7e7; */
+  color: #333;
+    background-color: transparent;
+}

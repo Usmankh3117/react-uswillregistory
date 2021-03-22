@@ -40,9 +40,9 @@ export function getAllAnswerAction(data) {
   };
 }
 
-export function updateAnswerAction(data, pageId) {
+export function updateAnswerAction(data) {
   return {
     type: updateAnswer,
-    payload: { data, pageId },
+    payload: { data },
   };
 }

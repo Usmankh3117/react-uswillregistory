@@ -13,6 +13,11 @@ export const Style = createGlobalStyle`
   font-family: trajanRegular;
   src: url(${Font});
 }
+/* index page style sheet */
+
+/* .started-img {
+    
+} */
 
 .body{
     /* font-family: 'Quicksand', sans-serif!important; */
@@ -30,6 +35,11 @@ export const Style = createGlobalStyle`
     position: relative;
     width: 22%;
     margin: 15px;
+}
+@media only screen and (min-width: 1300px) {
+    .started-img {
+       margin-top: 25px !important;
+    }
 }
 .started-img {
     position: relative;
@@ -138,10 +148,7 @@ export const Style = createGlobalStyle`
 .will-details > .learn-more > a:hover {
     color: #033168;
 }
-.homepage-form-tiles img {
-    width: 115px;
-    float: left;
-}
+
 .will-details > .learn-more > i {
     color: #fff;
     float: right;
@@ -197,7 +204,7 @@ export const Style = createGlobalStyle`
     position: relative;
 }
 .upper-section {
-    background-image: url(${ChangeBg}");
+    background-image: url(${ChangeBg});
     background-color: #f7f7f7;
     border-radius: 0% 0% 0% 25%;
     background-position: top;
@@ -270,6 +277,7 @@ export const Style = createGlobalStyle`
     font-size: 13px;
     line-height: 23px;
     color: #6f6f6f;
+    margin-bottom: 30px
 }
 .info-border {
     border-left: 3px solid #fff;
@@ -313,7 +321,8 @@ export const Style = createGlobalStyle`
 
 .last-will-section > .make-your-will {
     position: absolute;
-    top: 95%;
+    // top: 97%;
+    // margin-top:2%;
     right: 10% !important;
     background-color: #f34531;
     width: 80%;
@@ -335,6 +344,13 @@ export const Style = createGlobalStyle`
 .last-will-section > .make-your-will > .left-div > .para{
     font-size: 27px;
     margin-bottom: 26px;
+    margin: 10px 0;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 1200px) {
+    .for-search{
+  margin-top: 80px !important;
+    }
 }
 
 
@@ -412,7 +428,29 @@ export const Style = createGlobalStyle`
     box-shadow: 0 0 6px rgb(35 173 255)!important;
 }
 
-.btn5 > span {
-    padding: 0px 40px;
+@media screen and (min-width: 600px){
+    .btn5 > span {
+        padding: 0px 40px;
+    } 
+}
+
+  
+
+  
+@media screen and (min-width: 600px){
+    
+.homepage-form-tiles img {
+    width: 115px;
+    float: left;
+}
+}
+
+
+@media screen and (max-width: 500px){
+    
+    .homepage-form-tiles img {
+        width: 70px !important;
+        
+    }
 }
 `;

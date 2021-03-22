@@ -19,16 +19,16 @@ function Header(props) {
         }
     })
     useEffect(() => {
-        // props.getSlugPages()
+        props.getSlugPages()
     }, [])
     const logoutUser = () => {
-        setCookie("token", "");
-        setCookie("userType", "");
-        setCookie("userId", "");
-        setCookie("email", "");
-        logOutAction();
-        props.history.push('/')
-        // props.LogoutUser();
+        // setCookie("token", "");
+        // setCookie("userType", "");
+        // setCookie("userId", "");
+        // setCookie("email", "");
+        // logOutAction();
+        // props.history.push('/')
+        props.LogoutUser();
     }
     const getUserName = (email) => {
         var nameMatch = email.match(/^([^@]*)@/);
@@ -36,6 +36,7 @@ function Header(props) {
         return name;
     }
     const handleChangeTab = (tabName) => {
+        props.history.push(tabName)
         setState({
             activeTab: tabName
         })
@@ -48,7 +49,7 @@ function Header(props) {
                         <div className="upper-header">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
-                                    <Link to="/"><Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></Link>
+                                    <Link to={"/"}><Image name="TheUSWillRegistry.png" alt="logo" className="logo-img" /></Link>
                                 </div>
                             </div>
                         </div>
@@ -74,26 +75,33 @@ function Header(props) {
                         <nav className="navbar navbar-default navbar-expand-lg">
                             {/* Collect the nav links, forms, and other content for toggling  */}
                             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul className="nav navbar-nav">
-                                    {props.user.isLogin ? <React.Fragment>
-                                        <li>
-                                            {/* <Image name="user_img.png" alt="img" className="top-name-img" /> */}
-                                            <Link to="/edit-profile" className="top-menu">{getUserName(getCookie("email"))}</Link>
+                                <ul className={`nav navbar-nav`}>
+                                    {props.user.isLogin ?
+                                        <li className={state.activeTab === "/profile" ? "active" : ""}>
+                                            <Link to="/profile" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/profile")} className="top-menu" > Dashboard</Link>
                                         </li>
-                                        <li>
-                                            <a href="#" onClick={() => logoutUser()} className="top-menu">Logout</a>
-                                        </li>
-                                    </React.Fragment> : <React.Fragment>
-                                        <li className={state.activeTab === "/" ? "active" : ""}><Link to="/" onClick={() => handleChangeTab("/")}>Home </Link></li>
-                                        <li className={state.activeTab === "/contact-us" ? "active" : ""}><Link to="/contact-us" onClick={() => handleChangeTab("/contact-us")}>Contact Us</Link></li>
-                                        <li className={state.activeTab === "/about-us" ? "active" : ""}><Link to="/about-us" onClick={() => handleChangeTab("/about-us")}>About Us</Link></li>
-                                        <li><Link to="#">Site Map</Link></li>
-                                        <li><Link to="#">Dictionary</Link></li>
-                                        <li><Link to="#">Terms of Service</Link></li>
-                                        <li className={state.activeTab === "/privacy" ? "active" : ""}><Link to="/privacy" onClick={() => handleChangeTab("/privacy")}>Privacy Notice</Link></li>
-                                        <li className={state.activeTab === "/last-will" ? "active" : ""}><Link to="/last-will" onClick={() => handleChangeTab("/last-will")}>For Non Profit</Link></li>
-                                        <li className={state.activeTab === "/faq" ? "active" : ""}><Link to="/faq" onClick={() => handleChangeTab("/faq")}>FAQ</Link></li></React.Fragment>}
+                                        :
+                                        <li className={state.activeTab === "/" ? "active" : ""}><Link to="/" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/")}>Home </Link></li>
+                                    }
+                                    <li className={state.activeTab === "/contact-us" ? "active" : ""}><Link data-toggle="collapse" data-target=".navbar-collapse.show" to="/contact-us" onClick={() => handleChangeTab("/contact-us")}>Contact Us</Link></li>
+                                    <li className={state.activeTab === "/about-us" ? "active" : ""}><Link to="/about-us" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/about-us")}>About Us</Link></li>
+                                    <li><Link to="#">Site Map</Link></li>
+                                    <li className={state.activeTab === "/search" ? "active" : ""}><Link to="/search" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/search")}>Dictionary</Link></li>
+                                    {/* <li><Link to="#">Terms of Service</Link></li> */}
+                                    <li className={state.activeTab === "/privacy" ? "active" : ""}><Link to="/privacy" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/privacy")}>Privacy Notice</Link></li>
+                                    {/* <li className={state.activeTab === "/last-will" ? "active" : ""}><Link to="/last-will" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/last-will")}>For Non Profit</Link></li> */}
+                                    <li className={state.activeTab === "/faq" ? "active" : ""}><Link to="/faq" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/faq")}>FAQ</Link></li>
                                 </ul>
+                                {props.user.isLogin ?
+                                    <ul class="nav navbar-nav right-navbar-list">
+                                        <li class="dropdown ">
+                                            <a href="#" class="dropdown-toggle top-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span> {getUserName(getCookie("email"))} <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li className={state.activeTab === "/edit-profile" ? "active" : ""}><Link to="/edit-profile" className="top-menu" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/edit-profile")}>Edit Profile</Link></li>
+                                                <li><a href="#" className="top-menu" onClick={() => logoutUser()} data-toggle="collapse" data-target=".navbar-collapse.show"> Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul> : ""}
                             </div>
                             {/* <!-- /.navbar-collapse --> */}
                         </nav>

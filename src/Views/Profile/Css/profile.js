@@ -44,6 +44,7 @@ export const Style = createGlobalStyle`
     padding-bottom: 4px;
     margin-left: 2px;
     margin-right: 108px;
+    cursor : pointer;
 }
 .not-active-profile-div {
     /* background-color: #033168;
@@ -53,6 +54,7 @@ export const Style = createGlobalStyle`
     padding-left: 25px;
     /* margin: 15px; */
     padding: 10px;
+    cursor : pointer;
 }
 
 .profile-section-div > div > img {
