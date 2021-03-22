@@ -23,7 +23,7 @@ import ForgotPassword from "./Views/Auth/Components/forgotPassword";
 import ResetPassword from "./Views/Auth/Components/resetPassword";
 import VerifyAccount from "./Views/Auth/Components/verifyAccount";
 // import { Style } from "./global-style";
-import './app.css';
+import './App.css';
 import './customStyle.css';
 import './responsive.css';
 const createBrowserHistory = require("history").createBrowserHistory;

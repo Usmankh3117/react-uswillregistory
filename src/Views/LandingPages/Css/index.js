@@ -239,7 +239,7 @@ export const Style = createGlobalStyle`
 .last-will-img {
     
     margin-top: 10%;
-    margin-bottom: 4.5%;
+    margin-bottom: 39.5%;
 }
 .last-will-img img:hover {
     box-shadow:         3px 3px 3px 3px #ccc;
@@ -258,8 +258,14 @@ export const Style = createGlobalStyle`
     box-shadow: inset 0px 0px 0px 3px white;
     border: 1px solid #71c9ff;
     font-size: 22px;
+    margin-top: 10px;
     color: #fff;
-    padding: 15px 25px 15px 25px;
+    padding: 15px 35px 15px 25px;
+}
+@media only screen and (min-width: 1440px){
+    .count {
+        padding:20px 32px
+    }
 }
 .vertical-line {
     width: 2px;
@@ -270,7 +276,8 @@ export const Style = createGlobalStyle`
 .mini-heading {
     font-size: 24px;
     color: #033168;
-    margin-top: 5%;
+    margin:auto;
+     margin-top: 5%;
     font-weight: 500;
 }
 .mini-para {
