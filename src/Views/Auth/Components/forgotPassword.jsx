@@ -73,8 +73,8 @@ function ForgotPassword(props) {
 							</div>
 							<div className="login-block login-block-right">
 								<div className="login-form">
-									<div className="login-block-holder">
-										<h2>Forget Password</h2>
+									<div className="login-block-holder" style ={{padding:'20px'}}>
+										
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-user"></i></span>
@@ -92,7 +92,7 @@ function ForgotPassword(props) {
 												: ""}
 
 											<div className="submit-btn">
-												<button type="submit" style={{fontSize: "12px"}}  className="submit">Send Email</button>
+												<button type="submit"  className="submit">Send Email</button>
 											</div>
 										</form>
 									</div>
