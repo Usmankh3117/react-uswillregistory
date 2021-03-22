@@ -95,7 +95,7 @@ function Header(props) {
                                 {props.user.isLogin ?
                                     <ul class="nav navbar-nav right-navbar-list">
                                         <li class="dropdown ">
-                                            <a href="#" class="dropdown-toggle top-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span> {getUserName(getCookie("email"))} <span class="caret"></span></a>
+                                            <a href="#" class="dropdown-toggle top-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Profile <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li className={state.activeTab === "/edit-profile" ? "active" : ""}><Link to="/edit-profile" className="top-menu" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/edit-profile")}>Edit Profile</Link></li>
                                                 <li><a href="#" className="top-menu" onClick={() => logoutUser()} data-toggle="collapse" data-target=".navbar-collapse.show"> Logout</a></li>
