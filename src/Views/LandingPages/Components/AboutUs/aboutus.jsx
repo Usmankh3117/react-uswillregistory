@@ -70,7 +70,7 @@ function WithIcon(props) {
         <div className="container" style={{ marginBottom: "75px" }}>
             <div className="container ">
                 <div className="container container-bg-cc">
-                    <div className="row">
+                    <div className="row" style = {{background:'white', padding:'10px'}}>
                         <div className="col-md-12 text-center">
                             <div className="cc-container-prime ">
                                 <div className="icon-shell">
@@ -92,7 +92,7 @@ function WithIcon(props) {
 
             <div className="container ">
                 <div className="container container-bg-cc">
-                    <div className="row">
+                    <div className="row" style = {{background:'white', padding:'10px'}}>
                         <div className="col-md-12 text-center">
                             <div className="cc-container-prime">
                                 <div className="icon-shell">

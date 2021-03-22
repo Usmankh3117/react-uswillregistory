@@ -8,6 +8,25 @@ export const Wrapper = styled.section`
     margin-top: 2.3%;
     font-size: 17px;
   }
+
+  @media only screen and (max-width: 767px){
+    .left-div {
+     display:none;
+    }
+  }
+  .left-div-2 {
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 10px #ececec;
+    padding: 2% 3% 0% 2% !important;
+    margin-top: 2.3%;
+    font-size: 17px;
+  }
+
+  @media only screen and (min-width: 768px){
+    .left-div-2 {
+     display:none;
+    }
+  }
   .number-left {
     color: #033168;
   }
