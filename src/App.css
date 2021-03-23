@@ -1538,7 +1538,7 @@ a:active {
 
   .navbar-collapse.collapse {
     display: none !important;
-    height: 370px !important;
+    height: auto !important;
     transition: height 1.5s ease;
   }
 

@@ -130,6 +130,11 @@ export const Style = createGlobalStyle`
     margin-top: 20%;
       
 }
+@media screen and (max-width: 768px){
+    .will-details > .detail-heading {
+        font-weight: 400 !important;
+    }
+}
 .will-details > .detail-heading {
     font-size: 22px;
     color: #003069;

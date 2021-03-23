@@ -92,6 +92,15 @@ make-your-will{
     position: relative;
     padding: 1%;
 }
+@media screen and (max-width: 768px){
+    .abc-container{
+        
+    }
+    
+}
+.abc-container{
+   
+}
 .search-detail-icon {
     position: absolute;
     right: 2%;
