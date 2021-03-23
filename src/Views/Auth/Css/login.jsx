@@ -223,6 +223,27 @@ export const Style = createGlobalStyle`
     margin-top: 30px;
 }
 
+@media only screen and (max-width: 767px){
+    .submit-btn>.submit {
+        font-size: 14px !important ;
+        color: white !important;
+        width:fit-content !important;
+        height:fit-content !important;
+        line-height:unset !important;
+        min-width: unset !important;
+        background-color: #f85656 !important;
+        border-radius: 30px !important;
+        border: 1px solid #f85656 !important;
+        padding: 10px 50px !important;
+        text-transform: uppercase !important;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+    }
+}
+
 .submit-btn>.submit {
     font-size: 19px;
     color: white;
@@ -311,7 +332,12 @@ export const Style = createGlobalStyle`
 .mg-bottom-30 {
     margin-bottom: 30px;
 }
-@media only screen and (min-width: 200px) and (max-width:600px) {
+@media only screen and (min-width: 200px) and (max-width:350px) {
+    .bottom-icons {
+        line-height: 33px !important;
+    }
+}
+@media only screen and (min-width: 375px) and (max-width:600px) {
     .bottom-icons {
         line-height: 27px !important;
     }
@@ -460,6 +486,7 @@ a.googleIcon:hover i {
 
     .sign-in-heading-section .heading {
         font-size: 40px;
+        padding:20px;
     }
 
     .login-wrapper:after {

@@ -225,7 +225,7 @@ export const Style = createGlobalStyle`
 
 @media only screen and (max-width: 767px){
     .submit-btn>.submit {
-        font-size: 12px !important ;
+        font-size: 14px !important ;
         color: white !important;
         width:fit-content !important;
         height:fit-content !important;
@@ -482,6 +482,7 @@ a.googleIcon:hover i {
 
     .sign-in-heading-section .heading {
         font-size: 40px;
+        padding:20px;
     }
 
     .login-wrapper:after {
