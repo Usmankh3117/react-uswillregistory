@@ -13,7 +13,7 @@ export default function Privacy(props) {
                         <p className="number-left">3. Your content in our services</p>
                     </div>
                     <div className="col-lg-9 col-md-9 col-sm-6 right-div">
-                        <h1 className="top-heading"><span className="bold">US Will Registry</span> Terms & Conditions</h1>
+                        <h1 className="top-heading"><span className="bold">U.S. Will Registry</span> Terms & Conditions</h1>
                         <p className="date">Effective date: 1 january 2019</p>
                         <div className="col-lg-3 col-md-3 col-sm-6 left-div-2">
                         <p className="number-left">1. Using Our Services</p>
@@ -22,7 +22,7 @@ export default function Privacy(props) {
                         <p className="number-left">2. Privacy and copyright protection</p>
                         <p className="number-left">3. Your content in our services</p>
                     </div>
-                        <h2 className="mini-heading">Wellcome To US will Registray</h2>
+                        <h2 className="mini-heading">Wellcome To U.S. will Registray</h2>
                         <p className="text-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id libero quod maiores deserunt nesciunt ipsa sint saepe magni atque deleniti nostrum laboriosam repudiandae perspiciatis nam ducimus nihil, nulla accusamus. Libero! Lorem ipsum dolor sit amet consectetur adipisicing elit. Id libero quod maiores deserunt nesciunt ipsa sint saepe magni atque deleniti nostrum laboriosam repudiandae perspiciatis nam ducimus nihil, nulla accusamus. Libero </p>
                         <p className="number-right">1. Using Our Services</p>
                         <p className="text-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id libero quod maiores deserunt nesciunt ipsa sint saepe magni atque deleniti nostrum laboriosam repudiandae perspiciatis nam ducimus nihil, nulla accusamus. Libero! Lorem ipsum dolor sit amet consectetur adipisicing elit. Id libero quod maiores deserunt nesciunt ipsa sint saepe magni atque deleniti nostrum laboriosam repudiandae perspiciatis nam ducimus nihil, nulla accusamus. Libero </p>

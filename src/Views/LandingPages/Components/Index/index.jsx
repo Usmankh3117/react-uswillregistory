@@ -103,7 +103,7 @@ function LastWill(props) {
                     <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="col-lg-5 col-md-5 col-sm-6 last-will">
                             <div className="heading-border">
-                                <p className="heading"> HOW US WILL REGISTRY WORKS</p>
+                                <p className="heading"> HOW U.S. WILL REGISTRY WORKS</p>
                             </div>
                             <p className="last-will-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
                                 enim sequi voluptate distinctio laboriosam vero iste debitis quidem architecto.</p>

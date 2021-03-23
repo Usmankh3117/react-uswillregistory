@@ -223,6 +223,27 @@ export const Style = createGlobalStyle`
     margin-top: 30px;
 }
 
+@media only screen and (max-width: 767px){
+    .submit-btn>.submit {
+        font-size: 14px !important ;
+        color: white !important;
+        width:fit-content !important;
+        height:fit-content !important;
+        line-height:unset !important;
+        min-width: unset !important;
+        background-color: #f85656 !important;
+        border-radius: 30px !important;
+        border: 1px solid #f85656 !important;
+        padding: 10px 50px !important;
+        text-transform: uppercase !important;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+    }
+}
+
 .submit-btn>.submit {
     font-size: 19px;
     color: white;
@@ -460,6 +481,7 @@ a.googleIcon:hover i {
 
     .sign-in-heading-section .heading {
         font-size: 40px;
+        padding:20px;
     }
 
     .login-wrapper:after {
