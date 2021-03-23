@@ -52,14 +52,18 @@ make-your-will{
     margin: 5% 0%;
 }
 .search-list-group {
+    width: 100% !important;
     display: flex;
-    margin-bottom: 0px !important;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #ececec;
 }
 .search-list-group-item {
     position: relative;
     display: block;
     padding: 0.6% 0.6%;
-    background-color: #ececec;
     border: none !important;
 }
 .search-active-menu {
@@ -70,7 +74,7 @@ make-your-will{
    color: #fff !important;
 }
 .search-menu {
-    font-size: 36px;
+    font-size: 28px;
     color: #3c3c3c;
     text-decoration: none !important;
 }

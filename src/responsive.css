@@ -116,18 +116,7 @@
   .text-cc-span {
     font-size: 24px !important;
   }
-  .search-list-group {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    margin-bottom: 0px !important;
-    justify-content: center;
-    width: 80%;
-    margin: 0px auto;
-    text-align: center;
-    left: 0;
-    right: 0;
-    position: absolute;
-  }
+
   .right-outer-form-div {
     width: 100% !important;
   }
@@ -211,7 +200,7 @@
   }
 }
 /* Mobile and tablets*/
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 350px) {
   .w-icon {
     top: -80px !important;
   }
@@ -225,5 +214,8 @@
   .bottom-icons {
     font-size: 18px !important;
     padding: 0px !important;
+  }
+  .search-menu {
+    font-size: 12px !important;
   }
 }
