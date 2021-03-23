@@ -332,7 +332,7 @@ export const Style = createGlobalStyle`
     width: 2px;
     height: 120px;
     background: #71c8fc;
-    margin: 0px 0px -40px 31px;
+    margin: auto;
 }
 .mini-heading {
     font-size: 24px;
