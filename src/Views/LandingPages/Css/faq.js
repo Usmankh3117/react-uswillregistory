@@ -12,7 +12,7 @@ export const Wrapper = styled.section`
     border: 1px solid #ffffff;
     box-shadow: 0px 0px 10px #ececec;
     margin: 20px 15px;
-    width: 47%;
+    width: 100% !important;
     border-radius: 25px;
     position: relative;
     padding: 1%;
@@ -34,7 +34,7 @@ export const Wrapper = styled.section`
     background-color: #bfabab2e;
   }
   .faq-details {
-    padding: 0%;
+    padding: 5px 0px;
     width: 92%;
   }
   .faq-details > .faq-que {

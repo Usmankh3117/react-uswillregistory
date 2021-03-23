@@ -89,72 +89,39 @@ function FaqDetail(props) {
             </div>
             <div className="row">
 
-                <div className="col-md-12">
-                    <div className="col-md-5 faq-div">
-                        <div style={{ top: "5%" }} id="btn-collapse" className="faq-icon">
-                            <i className="fa fa-arrow-up" id="up" aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down" style={{ display: "none" }} aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                How long does it take to register? How does it take to search?
-                           </h4>
-                            <p style={{ marginBottom: "13px" }} className="faq-ans" id="ans">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
-                                nostrum, quasi asperiores inventore velit.
-                           </p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 faq-div">
-                        <div style={{ top: "5%" }} id="btn-collapse1" className="faq-icon">
-                            <i className="fa fa-arrow-up" id="up1" aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down1" style={{ display: "none" }} aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                Do I need to register my will if my children know where it is?
-                           </h4>
-                            <p className="faq-ans" id="ans1">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
-                                nostrum, quasi asperiores inventore velit.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
-                                nostrum, quasi asperiores inventore velit.
-                           </p>
-                        </div>
-                    </div>
+                <div className="col-md-6">
+
+                <div className="faq-div">
+                <div style={{ top: "5%" }} id="btn-collapse" className="faq-icon">
+                    <i className="fa fa-arrow-up" id="up" aria-hidden="true"></i>
+                    <i className="fa fa-arrow-down" id="down" style={{ display: "none" }} aria-hidden="true"></i>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="col-md-5 faq-div">
-                        <div className="faq-icon " id="btn-collapse2">
-                            <i className="fa fa-arrow-up" id="up2" style={{ display: "none" }} aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down2" aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                What happens if I Don't Register and my child will is lost?
-                           </h4>
-                            <p className="faq-ans" id="ans2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, veniam? Doloribus atque eum quo, provident nisi error ipsam reiciendis eos eaque nemo soluta ipsum, placeat pariatur asperiores? Quam, minima consequuntur.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 faq-div">
-                        <div className="faq-icon" id="btn-collapse3">
-                            <i className="fa fa-arrow-up" id="up3" style={{ display: "none" }} aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down3" aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 style={{ paddingTop: "10px", paddingBottom: "8px" }} className="faq-que">
-                                I don't have Will
-                           </h4>
-                            <p className="faq-ans" id="ans3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia incidunt, aspernatur et totam illum asperiores nobis laboriosam, excepturi atque necessitatibus fugiat fuga nulla? Modi quaerat ullam ipsum cumque magni amet.</p>
-                        </div>
-                    </div>
+                <div className="faq-details">
+                    <h4 className="faq-que">
+                        How long does it take to register? How does it take to search?
+                   </h4>
+                    <p style={{ marginBottom: "13px" }} className="faq-ans" id="ans">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
+                        nostrum, quasi asperiores inventore velit.
+                   </p>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="col-md-5 faq-div" >
+                </div>
+
+                <div className="faq-div">
+                <div className="faq-icon " id="btn-collapse2">
+                    <i className="fa fa-arrow-up" id="up2" style={{ display: "none" }} aria-hidden="true"></i>
+                    <i className="fa fa-arrow-down" id="down2" aria-hidden="true"></i>
+                </div>
+                <div className="faq-details">
+                    <h4 className="faq-que">
+                        What happens if I Don't Register and my child will is lost?
+                   </h4>
+                    <p className="faq-ans" id="ans2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, veniam? Doloribus atque eum quo, provident nisi error ipsam reiciendis eos eaque nemo soluta ipsum, placeat pariatur asperiores? Quam, minima consequuntur.</p>
+                </div>
+                </div>
+
+
+                <div className="faq-div" >
                         <div className="faq-icon" id="btn-collapse4">
 
                             <i className="fa fa-arrow-up" id="up4" style={{ display: "none" }} aria-hidden="true"></i>
@@ -167,48 +134,91 @@ function FaqDetail(props) {
                             <p className="faq-ans" id="ans4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque deleniti voluptates fugiat perferendis voluptate, dicta unde a blanditiis quas iusto facilis, voluptatibus illo illum repudiandae alias molestiae maiores corrupti doloremque!</p>
                         </div>
                     </div>
-                    <div className="col-md-6 faq-div">
-                        <div className="faq-icon" id="btn-collapse5">
-                            <i className="fa fa-arrow-up" id="up5" style={{ display: "none" }} aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down5" aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                How much it take cost to write a will?
-                           </h4>
-                            <p className="faq-ans" id="ans5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quisquam voluptatum, ducimus, eos nisi a architecto ut optio odio culpa velit saepe mollitia voluptatibus ea perspiciatis. Ratione sapiente corporis rem.</p>
-                        </div>
+
+                    <div className="faq-div">
+                    <div className="faq-icon" id="btn-collapse6">
+                        <i className="fa fa-arrow-up" id="up6" style={{ display: "none" }} aria-hidden="true"></i>
+                        <i className="fa fa-arrow-down" id="down6" aria-hidden="true"></i>
+                    </div>
+                    <div className="faq-details">
+                        <h4 className="faq-que">
+                            Do I need an Anttorney to write a will?
+                       </h4>
+                        <p className="faq-ans" id="ans6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe libero aliquam rerum ea possimus soluta, maiores, architecto ipsum doloribus, esse optio nostrum dolore inventore illo! Culpa dignissimos aut laboriosam reprehenderit?</p>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="col-md-5 faq-div">
-                        <div className="faq-icon" id="btn-collapse6">
-                            <i className="fa fa-arrow-up" id="up6" style={{ display: "none" }} aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down6" aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                Do I need an Anttorney to write a will?
-                           </h4>
-                            <p className="faq-ans" id="ans6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe libero aliquam rerum ea possimus soluta, maiores, architecto ipsum doloribus, esse optio nostrum dolore inventore illo! Culpa dignissimos aut laboriosam reprehenderit?</p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 faq-div">
-                        <div className="faq-icon" id="btn-collapse7">
-                            <i className="fa fa-arrow-up" id="up7" style={{ display: "none" }} aria-hidden="true"></i>
-                            <i className="fa fa-arrow-down" id="down7" aria-hidden="true"></i>
-                        </div>
-                        <div className="faq-details">
-                            <h4 className="faq-que">
-                                How much do you hold my details for?
-                           </h4>
-                            <p className="faq-ans" id="ans7">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusamus iusto deleniti ratione ab neque saepe illum, qui minima, quam iste eum autem, optio accusantium aperiam! Voluptas id sequi fugiat.</p>
-                        </div>
-                    </div>
+
+
+
+                </div>
+
+
+
+                <div className="col-md-6">
+                <div className="faq-div">
+                <div style={{ top: "5%" }} id="btn-collapse1" className="faq-icon">
+                    <i className="fa fa-arrow-up" id="up1" aria-hidden="true"></i>
+                    <i className="fa fa-arrow-down" id="down1" style={{ display: "none" }} aria-hidden="true"></i>
+                </div>
+                <div className="faq-details">
+                    <h4 className="faq-que">
+                        Do I need to register my will if my children know where it is?
+                   </h4>
+                    <p className="faq-ans" id="ans1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
+                        nostrum, quasi asperiores inventore velit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus delectus vero error et
+                        nostrum, quasi asperiores inventore velit.
+                   </p>
+                </div>
+                </div>
+
+
+
+                <div className="faq-div">
+                <div className="faq-icon" id="btn-collapse3">
+                    <i className="fa fa-arrow-up" id="up3" style={{ display: "none" }} aria-hidden="true"></i>
+                    <i className="fa fa-arrow-down" id="down3" aria-hidden="true"></i>
+                </div>
+                <div className="faq-details">
+                    <h4  className="faq-que">
+                        I don't have Will
+                   </h4>
+                    <p className="faq-ans" id="ans3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia incidunt, aspernatur et totam illum asperiores nobis laboriosam, excepturi atque necessitatibus fugiat fuga nulla? Modi quaerat ullam ipsum cumque magni amet.</p>
                 </div>
             </div>
+
+
+            <div className="faq-div">
+            <div className="faq-icon" id="btn-collapse5">
+                <i className="fa fa-arrow-up" id="up5" style={{ display: "none" }} aria-hidden="true"></i>
+                <i className="fa fa-arrow-down" id="down5" aria-hidden="true"></i>
+            </div>
+            <div className="faq-details">
+                <h4 className="faq-que">
+                    How much it take cost to write a will?
+               </h4>
+                <p className="faq-ans" id="ans5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quisquam voluptatum, ducimus, eos nisi a architecto ut optio odio culpa velit saepe mollitia voluptatibus ea perspiciatis. Ratione sapiente corporis rem.</p>
+            </div>
+        </div>
+
+        <div className="faq-div">
+        <div className="faq-icon" id="btn-collapse7">
+            <i className="fa fa-arrow-up" id="up7" style={{ display: "none" }} aria-hidden="true"></i>
+            <i className="fa fa-arrow-down" id="down7" aria-hidden="true"></i>
+        </div>
+        <div className="faq-details">
+            <h4 className="faq-que">
+                How much do you hold my details for?
+           </h4>
+            <p className="faq-ans" id="ans7">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusamus iusto deleniti ratione ab neque saepe illum, qui minima, quam iste eum autem, optio accusantium aperiam! Voluptas id sequi fugiat.</p>
+        </div>
+    </div>
+
+
+                </div>
+            </div>
+            
         </div>
     </section >
 }
