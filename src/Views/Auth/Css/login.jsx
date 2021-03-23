@@ -67,7 +67,8 @@ export const Style = createGlobalStyle`
 }
 
 .sign-in-section {
-    margin: 160px 0px;
+    margin-top:40px;
+    margin-bottom: 150px;
 }
 
 .login-img-div {
