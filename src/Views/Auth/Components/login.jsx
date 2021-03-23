@@ -134,6 +134,7 @@ function Login(props) {
 		}
 
 	}
+
 	return (
 		<React.Fragment>
 			<Style />
@@ -154,17 +155,19 @@ function Login(props) {
 							</div>
 							<div className="login-block login-block-right">
 								<div className="login-form">
-									<div className="login-block-holder" style = {{padding:'20px'}}>
+									<div className="login-block-holder" style={{ padding: '20px' }}>
 										<h2>Login</h2>
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-user"></i></span>
-												<input type="email"  className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
+												<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 											</div>
+											<span style={{ color: "red" }}>Please enter the email address</span>
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-lock"></i></span>
 												<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
 											</div>
+											<span style={{ color: "red" }}>Please enter the Password</span>
 											{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 												<div className="loader-img text-center">
 													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
@@ -193,7 +196,7 @@ function Login(props) {
 										</div>
 
 										<div className="row login-social-media-icons">
-											<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center"}}>
+											<div className="col-lg-12 col-md-12 col-sm-12" style={{ textAlign: "center" }}>
 												<a className="facebookIcon" href="https://facebook.com/" target="_blank"><i className="fa fa-facebook bottom-icons" ></i></a>
 												<a className="instIcon" href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram bottom-icons"></i></a>
 												<a className="googleIcon" href="https://plus.google.com/" target="_blank"><i className="fa fa-google bottom-icons"></i></a>
