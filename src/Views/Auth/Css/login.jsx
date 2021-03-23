@@ -332,7 +332,12 @@ export const Style = createGlobalStyle`
 .mg-bottom-30 {
     margin-bottom: 30px;
 }
-@media only screen and (min-width: 200px) and (max-width:600px) {
+@media only screen and (min-width: 200px) and (max-width:350px) {
+    .bottom-icons {
+        line-height: 33px !important;
+    }
+}
+@media only screen and (min-width: 375px) and (max-width:600px) {
     .bottom-icons {
         line-height: 27px !important;
     }
