@@ -13,7 +13,7 @@ export default function Privacy(props) {
                         <p className="number-left">3. Your content in our services</p>
                     </div>
                     <div className="col-lg-9 col-md-9 col-sm-6 right-div">
-                        <h1 className="top-heading"><span className="bold">US will Registry</span> Terms & Conditions</h1>
+                        <h1 className="top-heading"><span className="bold">US Will Registry</span> Terms & Conditions</h1>
                         <p className="date">Effective date: 1 january 2019</p>
                         <div className="col-lg-3 col-md-3 col-sm-6 left-div-2">
                         <p className="number-left">1. Using Our Services</p>
