@@ -31,7 +31,7 @@ function GetStarted(props) {
 
 function ContactDetail(props) {
     return <section className="contact-section">
-        <div className="container">
+        <div className="container" style ={{width:'100%', padding:'0px 10px',margin:'auto'}}>
             <div className="row">
                 <div className="">
                     <div className="col-md-4 c-details">
@@ -76,7 +76,7 @@ function ContactDetail(props) {
 function Messages(props) {
     return <section className="message-section">
         <div className="container">
-            <div className="row">
+            <div className="row" style ={{padding:'0px 10px'}}>
                 <div className="leave-message">
                     <span>Leave a message</span>
                 </div>

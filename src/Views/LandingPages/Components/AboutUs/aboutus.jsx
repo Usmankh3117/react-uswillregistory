@@ -67,8 +67,8 @@ function Welcome(props) {
 
 function WithIcon(props) {
     return <section className="with-icon-section">
-        <div className="container" style={{ marginBottom: "75px" }}>
-            <div className="container ">
+        <div className="" style={{ marginBottom: "75px" }}>
+            <div className="container " style ={{width:'100%'}}>
                 <div className="container container-bg-cc">
                     <div className="row" style = {{background:'white', padding:'10px'}}>
                         <div className="col-md-12 text-center">
@@ -90,7 +90,7 @@ function WithIcon(props) {
             </div>
             <div className="row" style={{ marginTop: "5%" }}></div>
 
-            <div className="container ">
+            <div className="container " style ={{width:'100%'}}>
                 <div className="container container-bg-cc">
                     <div className="row" style = {{background:'white', padding:'10px'}}>
                         <div className="col-md-12 text-center">
