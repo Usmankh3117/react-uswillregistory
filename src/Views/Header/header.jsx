@@ -97,6 +97,7 @@ function Header(props) {
                                         <li class="dropdown ">
                                             <a href="#" class="dropdown-toggle top-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Profile <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
+                                                <li className={state.activeTab === "/profile" ? "active" : ""}><Link to="/profile" className="top-menu" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/profile")}>Profile</Link></li>
                                                 <li className={state.activeTab === "/edit-profile" ? "active" : ""}><Link to="/edit-profile" className="top-menu" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={() => handleChangeTab("/edit-profile")}>Edit Profile</Link></li>
                                                 <li><a href="#" className="top-menu" onClick={() => logoutUser()} data-toggle="collapse" data-target=".navbar-collapse.show"> Logout</a></li>
                                             </ul>

@@ -21,14 +21,16 @@ function ProfileContainer(props) {
                         <div className="conatiner">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="cc-col-profile active-item-cc" onClick={() => redirectToUrl('/form')}>
-                                        <Image name="living_with_forms.png" alt="profile-img" style={{ width: "40px" }} />
+                                    <div className="cc-col-profile " onClick={() => redirectToUrl('/form')}>
+                                        <Image name="living_with_forms-1.png" className="image-main" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="living_with_forms.png" className="image-hover" alt="profile-img" style={{ width: "40px" }} />
                                         <div className="main-text-cc">Living Will Forms</div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="cc-col-profile ">
-                                        <Image name="self_proving_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="self_proving_form.png" className="image-main" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="self_proving_form-1.png" className="image-hover" alt="profile-img" style={{ width: "40px" }} />
                                         <div className="main-text-cc">Self Proving Affidavit Form</div>
                                     </div>
                                 </div>
@@ -36,13 +38,15 @@ function ProfileContainer(props) {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="cc-col-profile">
-                                        <Image name="witness_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="witness_form.png" className="image-main" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="witness_form-1.png" className="image-hover" alt="profile-img" style={{ width: "40px" }} />
                                         <div className="main-text-cc">Witness Form</div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="cc-col-profile ">
-                                        <Image name="download_form.png" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="download_form.png" className="image-main" alt="profile-img" style={{ width: "40px" }} />
+                                        <Image name="download_form-1.png" className="image-hover" alt="profile-img" style={{ width: "40px" }} />
                                         <div className="main-text-cc">Download Will documents</div>
                                     </div>
                                 </div>

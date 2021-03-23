@@ -1,4 +1,4 @@
-import {createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const Style = createGlobalStyle`
 .top-name-img {
@@ -56,7 +56,24 @@ export const Style = createGlobalStyle`
     padding: 10px;
     cursor : pointer;
 }
-
+.cc-col-profile img.image-hover {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .cc-col-profile:hover img.image-main {
+    opacity: 0;
+    display: none;
+  }
+  .cc-col-profile:hover img.image-hover {
+    opacity: 1;
+    display: block;
+  }
 .profile-section-div > div > img {
     margin-left: 5%;
     width: 40px;
@@ -110,4 +127,4 @@ export const Style = createGlobalStyle`
     width: 70% !important;
     border-radius: 5px;
 }
-`
+`;
