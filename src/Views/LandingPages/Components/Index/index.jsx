@@ -105,7 +105,7 @@ function LastWill(props) {
                             <div className="heading-border">
                                 <p className="heading"> HOW U.S. WILL REGISTRY WORKS</p>
                             </div>
-                            <p className="last-will-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+                            <p className="last-will-p" style ={{marginBottom:'50px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
                                 enim sequi voluptate distinctio laboriosam vero iste debitis quidem architecto.</p>
                             <LastWillPointDetail islast={false} heading="FILL OUT FORM" description="It only takes 20 minutes to fill out the information needed to create your last will and testament." count="1" />
                             <LastWillPointDetail islast={false} heading="PRINT OUT FORM" description="The information you provide is combined with the precise language of our legal forms, and provided back to you as a printable will." count="2" />
@@ -175,7 +175,7 @@ function LastWill(props) {
 
 function LastWillPointDetail(props) {
     return <div className="row margin-top-6">
-        <div className="col-sm-12 col-xs-12">
+        <div className="col-sm-12 col-xs-12" style ={{marginTop:'-33px'}}>
             <div className="col-sm-3 col-xs-3">
                 <p className={`${props.count === "1" ? "count-1" : "count"}`} style={props.countStyle}>{props.count}</p>
                 {!props.islast ? <div className="vertical-line"></div> : ""}

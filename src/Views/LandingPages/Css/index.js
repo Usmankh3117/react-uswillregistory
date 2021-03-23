@@ -174,7 +174,11 @@ export const Style = createGlobalStyle`
 .will-details > .learn-more > a:hover {
     color: #033168;
 }
-
+@media screen and (min-width: 700px) and (max-width: 768px){
+    .will-details > .learn-more > i {
+        margin-top: -27px !important;
+    }
+}
 .will-details > .learn-more > i {
     color: #fff;
     float: right;
@@ -328,11 +332,22 @@ export const Style = createGlobalStyle`
         padding:22px 32px
     }
 }
+@media only screen and (min-width: 300px) and (max-width: 786px){
+    .vertical-line{
+        margin-left:29px !important;
+    }
+}
+@media only screen and (min-width: 200px) and (max-width: 350px){
+    .vertical-line{
+        height:170px !important;
+    }
+}
 .vertical-line {
     width: 2px;
     height: 120px;
     background: #71c8fc;
     margin: auto;
+    margin-top: -12px;
 }
 .mini-heading {
     font-size: 24px;
