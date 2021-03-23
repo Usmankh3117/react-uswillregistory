@@ -36,6 +36,27 @@ export const Style = createGlobalStyle`
     width: 22%;
     margin: 15px;
 }
+.button1 {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    border: 0.16em solid #ff473a;
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.15s;
+    background-color: #ff473a;
+    font-size: 20px;
+    border-radius: 50px;
+}
+ .button1:hover{
+    color:#ff0000;
+    background-color:#FFFFFF;
+    border:0.16em solid #FFFFFF ;
+}
 @media only screen and (min-width: 1300px) {
     .started-img {
        margin-top: 25px !important;

@@ -141,9 +141,10 @@ make-your-will{
     position: absolute;
     border-radius: 25px;
     color: #f34531;
-    border: none;
     background-color: #fff;
     font-weight: bold;
     font-size: 17px;
+    box-shadow: inset 0px 0px 0px 2px #f34531;
+    border: 1px solid #ffffff;
 }
 `;

@@ -195,7 +195,7 @@ function LastWill(props) {
                 <p className="heading">MAKE YOUR WILL</p>
                 <p className="para">with us will registry today</p>
             </div>
-            <Link to="/login">GET STARTED</Link>
+            <Link to="/login" >GET STARTED</Link>
         </div>
     </section>
 }
