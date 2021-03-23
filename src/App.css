@@ -186,7 +186,7 @@ a:active {
 }
 
 .top-menu {
-  font-size: 15px;
+  font-size: 15px !important;
   color: #3c3c3c;
   line-height: 5px;
   /* display: block; */
@@ -555,7 +555,7 @@ a:active {
 .list-group1 {
   display: flex;
   border-radius: 0.25rem;
-  padding-left: 0;
+  padding-left: 10px;
   /* margin-bottom: 20px; */
   align-items: center;
   margin: 0px;
@@ -1267,7 +1267,7 @@ a:active {
   }
 
   .rememberme {
-    height: 9px !important;
+    height: 13px !important;
   }
 
   .mg-top-15-si {
@@ -1298,7 +1298,7 @@ a:active {
   }
 
   .copyrights > p {
-    font-size: 5px !important;
+    font-size: 10px !important;
   }
 
   .footer-icon-signin1 > span {
@@ -1412,7 +1412,7 @@ a:active {
   }
 
   .rememberme {
-    height: 7px !important;
+    height: 11px !important;
   }
 
   .mg-top-15-si {
@@ -1443,7 +1443,7 @@ a:active {
   }
 
   .copyrights > p {
-    font-size: 5px !important;
+    font-size: 10px !important;
   }
 
   .footer-icon-signin1 > span {
@@ -1538,7 +1538,7 @@ a:active {
 
   .navbar-collapse.collapse {
     display: none !important;
-    height: 370px !important;
+    height: auto !important;
     transition: height 1.5s ease;
   }
 
@@ -1566,7 +1566,7 @@ a:active {
 }
 @media (max-width: 600px) {
   .navbar-collapse.collapse {
-    height: 424px !important;
+    height: 300px !important;
   }
 }
 .header-right {
@@ -1815,12 +1815,11 @@ nav.navbar-default .navbar-form {
     padding: 40px 50px;
   }
 }
-@media screen and (min-width: 700px) and (max-width: 800px) {
+@media screen and (min-width: 700px) and (max-width: 1024px) {
   .container-bg-cc {
     background-color: white;
     padding: 40px 50px;
-    width: 90%;
-    margin-left: -10px;
+    width: 100%;
     margin-right: 0px !important;
   }
 }
@@ -1854,6 +1853,13 @@ nav.navbar-default .navbar-form {
   margin: auto 10px;
 }
 .active-item-cc {
+  border-radius: 50px;
+  background-color: #00387b;
+  color: white;
+  padding-left: 20px !important;
+}
+
+.cc-col-profile:hover {
   border-radius: 50px;
   background-color: #00387b;
   color: white;

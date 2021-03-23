@@ -13,6 +13,12 @@ export const Wrapper = styled.section`
   text-align: center;
   margin-bottom: 2%;
 }
+
+
+  .container-bg-cc{
+    width: 100% !important;
+  }
+
 .w-heading > h1 {
   font-size: 41px;
   color: #033168;

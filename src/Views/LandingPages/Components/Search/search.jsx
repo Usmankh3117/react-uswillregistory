@@ -48,7 +48,7 @@ function Search(props) {
             </div>
         </section>
         <section className="search-alpha-section">
-            <div className="container">
+            <div className="container" style ={{width:'100%'}}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12"></div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -142,7 +142,7 @@ function Search(props) {
 
 function SearchDetail(props) {
     return <section className="search-details-section">
-        <div className="container">
+        <div className="container" style ={{padding:'20px 30px'}}>
             {props.sections.map((item, index) => {
                 return <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-detail-div">
@@ -195,7 +195,7 @@ function LastWill(props) {
                 <p className="heading">MAKE YOUR WILL</p>
                 <p className="para">with us will registry today</p>
             </div>
-            <Link to="/login">GET STARTED</Link>
+            <Link to="/login" >GET STARTED</Link>
         </div>
     </section>
 }

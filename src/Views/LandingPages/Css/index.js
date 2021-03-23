@@ -36,6 +36,27 @@ export const Style = createGlobalStyle`
     width: 22%;
     margin: 15px;
 }
+.button1 {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    border: 0.16em solid #ff473a;
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.15s;
+    background-color: #ff473a;
+    font-size: 20px;
+    border-radius: 50px;
+}
+ .button1:hover{
+    color:#ff0000;
+    background-color:#FFFFFF;
+    border:0.16em solid #FFFFFF ;
+}
 @media only screen and (min-width: 1300px) {
     .started-img {
        margin-top: 25px !important;
@@ -108,6 +129,11 @@ export const Style = createGlobalStyle`
     padding: 5%;
     margin-top: 20%;
       
+}
+@media screen and (max-width: 768px){
+    .will-details > .detail-heading {
+        font-weight: 400 !important;
+    }
 }
 .will-details > .detail-heading {
     font-size: 22px;
@@ -207,7 +233,7 @@ export const Style = createGlobalStyle`
     background-image: url(${ChangeBg});
     background-color: #f7f7f7;
     border-radius: 0% 0% 0% 25%;
-    background-position: top;
+    background-position: left;
     background-size: cover;
 }
 .lower-section {
@@ -239,7 +265,14 @@ export const Style = createGlobalStyle`
 .last-will-img {
     
     margin-top: 10%;
-    margin-bottom: 4.5%;
+    margin-bottom: 39.5%;
+
+}
+
+@media only screen and (min-width: 1300px){
+    .last-will-img {
+        margin-bottom: 4.5%;
+    }
 }
 .last-will-img img:hover {
     box-shadow:         3px 3px 3px 3px #ccc;
@@ -252,14 +285,48 @@ export const Style = createGlobalStyle`
     border-radius: 22px;
     width: 85%;
 }
+
+.countOne{
+    background: #71c9ff;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 0px 3px white;
+    border: 1px solid #71c9ff;
+    font-size: 22px;
+    margin-top: 10px;
+    color: #fff;
+    padding: 15px 36px 15px 25px;
+}
+
+.count-1{
+    background: #71c9ff;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 0px 3px white;
+    border: 1px solid #71c9ff;
+    font-size: 22px;
+    margin-top: 10px;
+    color: #fff;
+    padding: 15px 36px 15px 25px;
+}
+@media only screen and (min-width: 1300px){
+    .count-1 {
+        padding: 22px 36px 20px 35px
+    }
+}
+
 .count {
     background: #71c9ff;
     border-radius: 100%;
     box-shadow: inset 0px 0px 0px 3px white;
     border: 1px solid #71c9ff;
     font-size: 22px;
+    margin-top: 10px;
     color: #fff;
-    padding: 15px 25px 15px 25px;
+    padding: 15px 36px 15px 25px;
+}
+@media only screen and (min-width: 1300px){
+    .count {
+        padding:22px 32px
+    }
 }
 .vertical-line {
     width: 2px;
@@ -270,7 +337,8 @@ export const Style = createGlobalStyle`
 .mini-heading {
     font-size: 24px;
     color: #033168;
-    margin-top: 5%;
+    margin:auto;
+     margin-top: 5%;
     font-weight: 500;
 }
 .mini-para {

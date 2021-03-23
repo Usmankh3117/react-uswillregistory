@@ -217,7 +217,7 @@ function SignUp(props) {
 							</div>
 							<div className="login-block login-block-right">
 								<div className="login-form">
-									<div className="login-block-holder">
+									<div className="login-block-holder" style ={{padding:'20px'}}>
 										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
 											<div className="row">
 												<div className="col-md-4 input-1">
