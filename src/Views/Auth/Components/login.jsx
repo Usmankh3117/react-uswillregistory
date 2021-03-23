@@ -20,6 +20,7 @@ const defaultState = {
 	message: "",
 	messageType: "",
 	messageFor: "",
+	isValidate: "",
 	rememberMe: getCookie("rememberMe")
 }
 function Login(props) {
@@ -102,6 +103,10 @@ function Login(props) {
 				password: state.password
 			})
 		}
+		setState({
+			...state,
+			isValidate: !isValid
+		})
 	}
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
@@ -134,7 +139,10 @@ function Login(props) {
 		}
 
 	}
-
+	const validateEmail = (email) => {
+		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	}
 	return (
 		<React.Fragment>
 			<Style />
@@ -157,17 +165,17 @@ function Login(props) {
 								<div className="login-form">
 									<div className="login-block-holder" style={{ padding: '20px' }}>
 										<h2>Login</h2>
-										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
+										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-user"></i></span>
 												<input type="email" className="form-control" id="email" placeholder="Email" value={state.email} onChange={(e) => handleStateChange(e)} required />
 											</div>
-											<span style={{ color: "red" }}>Please enter the email address</span>
+											{state.isValidate && !validateEmail(state.email) ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.email === "" ? "" : "valid"} email address`}</span> : ""}
 											<div className="input-group">
 												<span className="input-group-addon"><i className="fa fa-lock"></i></span>
 												<input type="password" className="form-control" id="password" placeholder="Passowrd" autoComplete="new-password" value={state.password} onChange={(e) => handleStateChange(e)} required />
 											</div>
-											<span style={{ color: "red" }}>Please enter the Password</span>
+											{state.isValidate && state.password === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the Password`}</span> : ""}
 											{props.apiCallStatus.apiCallFor === "LoginUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 												<div className="loader-img text-center">
 													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />

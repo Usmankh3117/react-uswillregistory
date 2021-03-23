@@ -117,6 +117,19 @@ export const Wrapper = styled.section`
     transition: 0.3s;
     border: 2px solid #696b6d;
   }
+  .message-section > .container {
+    margin-bottom: 3% !important;
+  }
+  @media only screen and  (min-width: 992px) and (max-width: 1200px) {
+    .message-section > .container {
+      margin-bottom: 5% !important;
+    }
+  }
+  @media only screen and  (min-width: 768px) and (max-width: 992px) {
+    .message-section > .container {
+      margin-bottom: 9% !important;
+    }
+  }
   @media only screen and (max-width: 768px) {
     .c-input-field {
       margin: 2% 0% 2% 0%;
@@ -126,6 +139,9 @@ export const Wrapper = styled.section`
     }
     .c-submit {
       padding-bottom: 20px;
+    }
+    .message-section > .container {
+      margin-bottom: 9% !important;
     }
   }
 `;
