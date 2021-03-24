@@ -18,7 +18,7 @@ function ProfileContainer(props) {
                 <div className="row mg-top-50"></div>
                 <div className="row cc-width-row">
                     <div className="col-md-12">
-                        <div className="conatiner">
+                        <div className="conatiner form-tab-container">
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="cc-col-profile " onClick={() => redirectToUrl('/form')}>

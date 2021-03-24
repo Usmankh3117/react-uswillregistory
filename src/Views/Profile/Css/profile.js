@@ -12,6 +12,14 @@ export const Style = createGlobalStyle`
     color: #666666;
     padding-bottom: 2px;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1000px){
+    .form-tab-container{
+        margin-left:150px
+    }
+}
+
+
 .border-right {
     border-right: 2px solid #a6a6a6 !important;
 }
