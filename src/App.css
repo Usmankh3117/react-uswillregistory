@@ -597,13 +597,13 @@ a:active {
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 @media only screen and (min-width: 2560) {
   .last-will-section > .make-your-will {
-    margin-top: -2% !important;
+    margin-top: -3% !important;
   }
 }
 
 @media only screen and (min-width: 1441px) {
   .last-will-section > .make-your-will {
-    margin-top: -2% !important;
+    margin-top: -5% !important;
   }
   .last-will-section > .make-your-will {
     right: 37% !important;
@@ -629,7 +629,7 @@ a:active {
 
 @media only screen and (min-width: 1200px) {
   .last-will-section > .make-your-will {
-    margin-top: -3% !important;
+    margin-top: -5% !important;
   }
   .btn4 {
     /* float: right; */
@@ -764,7 +764,7 @@ a:active {
   .last-will-section > .make-your-will {
     position: absolute;
     /* top: 95%; */
-    margin-top: -4% !important;
+    margin-top: -7% !important;
     right: 8% !important;
   }
   .last-section > .make-will {
@@ -818,7 +818,7 @@ a:active {
     font-size: 11px !important;
   }
   .last-will-section > .make-your-will {
-    margin-top: -4% !important;
+    margin-top: -9% !important;
   }
   .submit-btn > .submit {
     font-size: 16px !important;
@@ -1164,7 +1164,7 @@ a:active {
     position: absolute;
     /* top: 99% !important; */
     right: 0% !important;
-    margin-top: -6% !important;
+    margin-top: -14% !important;
     text-align: center;
   }
 

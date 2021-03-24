@@ -76,7 +76,8 @@ const defaultState = {
 	"yearsList": getYearList(),
 	"message": "",
 	"messageType": "",
-	"messageFor": ""
+	"messageFor": "",
+	isValidate: false
 }
 
 function SignUp(props) {
@@ -160,11 +161,16 @@ function SignUp(props) {
 				"gender": state.form.gender
 			})
 		}
+		setState({
+			...state,
+			isValidate: !isValid
+		})
 	}
 	const validateForm = () => {
 		var form = document.getElementsByClassName('needs-validation')[0];
 		let isValid = true;
 		let msg = "";
+		let isShowAlert = true;
 		if (form.checkValidity() === false) {
 			isValid = false;
 			form.classList.add('was-validated');
@@ -176,6 +182,7 @@ function SignUp(props) {
 						elem.focus();
 					}
 					msg = `${property.replace("_", " ")} is required`;
+					isShowAlert = false;
 					break;
 				}
 			}
@@ -193,9 +200,15 @@ function SignUp(props) {
 				"messageType": "danger",
 				"messageFor": "signUp"
 			})
-			Swal.fire('Error!', msg, 'error')
+			if (isShowAlert) {
+				Swal.fire('Error!', msg, 'error')
+			}
 		}
 		return isValid;
+	}
+	const validateEmail = (email) => {
+		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
 	}
 	return (
 		<React.Fragment>
@@ -217,8 +230,8 @@ function SignUp(props) {
 							</div>
 							<div className="login-block login-block-right">
 								<div className="login-form">
-									<div className="login-block-holder" style ={{padding:'20px'}}>
-										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} >
+									<div className="login-block-holder" style={{ padding: '20px' }}>
+										<form className="needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
 											<div className="row">
 												<div className="col-md-4 input-1">
 													<Input value={state.form.first_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
@@ -235,22 +248,26 @@ function SignUp(props) {
 													<Input value={state.form.last_name} parentclassName="cc-row-reg" type="text" className="form-control-cc" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
 												</div>
 											</div>
-
+											{state.isValidate && (state.form.first_name === "" || state.form.last_name === "") ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.first_name === "" ? "first name" : state.form.last_name === "" ? "last name" : ""}`}</span> : ""}
 											<div className="row cc-row-reg">
 												<div className="col-lg-12 col-md-12 col-sm-12">
 													<Input value={state.form.email} type="email" className="form-control-cc" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
 												</div>
+
 											</div>
+											{state.isValidate && !validateEmail(state.form.email) ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.email === "" ? "" : "valid"} email address`}</span> : ""}
 											<div className="row cc-row-reg">
 												<div className="col-lg-12 col-md-12 col-sm-12">
 													<Input value={state.form.password} type="password" className="form-control-cc" id="password" placeholder="Your Password" onChange={(e) => handleStateChange(e)} />
 												</div>
 											</div>
+											{state.isValidate && state.form.password === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the Password`}</span> : ""}
 											<div className="row cc-row-reg">
 												<div className="col-lg-12 col-md-12 col-sm-12">
 													<Input value={state.form.repeatPassword} type="password" className="form-control-cc" id="repeatPassword" placeholder="Retype Password" onChange={(e) => handleStateChange(e)} />
 												</div>
 											</div>
+											{state.isValidate && state.form.repeatPassword === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the Retype Password`}</span> : ""}
 											<div className="row cc-row-reg">
 												<div className="col-lg-12 col-md-12 col-sm-12">
 													<div className="input-group-cc">
@@ -263,6 +280,7 @@ function SignUp(props) {
 													</div>
 												</div>
 											</div>
+											{state.isValidate && state.form.state === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the state`}</span> : ""}
 											<div className="row" style={{ paddingLeft: "15px", marginBottom: "-20px" }}><label style={{ marginTop: "20px", fontFamily: 'poppins', fontSize: "16px", fontWeight: "500", margin: "15px 0", color: "inherit" }}>Gender <span className="badge badge-dark">?</span></label></div>
 											<div className="row">
 												<div className="col-lg-4 col-md-4 col-sm-4  input-1">
@@ -284,6 +302,7 @@ function SignUp(props) {
 													</div>
 												</div>
 											</div>
+											{state.isValidate && state.form.gender === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the gender`}</span> : ""}
 											<div className="row" style={{ paddingLeft: "15px", marginBottom: "-20px" }}><label style={{ marginTop: "20px", fontFamily: 'poppins', fontSize: "16px", fontWeight: "500", margin: "15px 0", color: "inherit" }}>Date of Birth <span className="badge badge-dark">?</span></label></div>
 											<div className="row ">
 												<div className="col-lg-4 col-md-4 col-sm-4  input-1">
@@ -317,6 +336,7 @@ function SignUp(props) {
 													</div>
 												</div>
 											</div>
+											{state.isValidate && (state.form.month === "" || state.form.day === "" || state.form.year === "") ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the ${state.form.month === "" ? "month" : state.form.day === "" ? "day" : state.form.year === "" ? "year" : ""}`}</span> : ""}
 											{props.apiCallStatus.apiCallFor === "signUpUser" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
 												<div className="loader-img text-center">
 													<Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
@@ -371,7 +391,7 @@ const Input = (props) => {
 		delete data["parentclassName"]
 	}
 	return <div className={`input-group-cc ${parentClass ? parentClass : ""}`}>
-		<input {...data} required/>
+		<input {...data} required />
 	</div>
 }
 

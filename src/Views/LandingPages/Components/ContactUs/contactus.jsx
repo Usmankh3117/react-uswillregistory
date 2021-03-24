@@ -33,7 +33,7 @@ function ContactDetail(props) {
     return <section className="contact-section">
         <div className="container" style ={{width:'80%', padding:'0px 10px',margin:'auto'}}>
             <div className="row">
-                <div className="">
+                {/* <div className=""> */}
                     <div className="col-md-4 c-details">
                         <div className="c-detail-icon">
                             <i className="fa fa-globe" aria-hidden="true"></i>
@@ -66,7 +66,7 @@ function ContactDetail(props) {
                         </div>
 
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </div>
 

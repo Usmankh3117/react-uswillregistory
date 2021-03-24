@@ -3,6 +3,9 @@
   .left-outer-form-div {
     height: 120vh !important;
   }
+  .fNYgTC .left-outer-form-div h4{
+    width: 39.5% !important;
+  }
   .right-outer-form-div {
     position: relative;
     border: 1px solid #dcdcdc;
@@ -12,6 +15,9 @@
     border-radius: 10px;
     padding: 15px;
     width: 100%;
+  }
+  .sidebar-countdown{
+    top: 130px !important;
   }
 }
 
@@ -28,6 +34,12 @@
   }
   .left-outer-form-div {
     height: 130vh !important;
+  }
+  .fNYgTC .left-outer-form-div h4{
+    width: 58% !important;
+  }
+  .sidebar-countdown{
+    top: 130px !important;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -46,6 +58,9 @@
 }
 /* Monitor or Large scale Laptops */
 @media screen and (max-width: 1024px) {
+  .fNYgTC .sidebar-countdown p {
+    margin: 25px 0px 0px 0px !important;
+  }
   .cc-mar-top {
     margin-top: 130px !important;
   }
@@ -122,10 +137,13 @@
   }
 }
 /* Laptops and Tables */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 768px) {
   .right-outer-form-div {
     width: 100% !important;
+    margin: 0px !important;
   }
+}
+@media screen and (max-width: 768px) {
   .w-icon {
     top: -100px !important;
   }
