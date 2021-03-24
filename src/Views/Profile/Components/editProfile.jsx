@@ -74,7 +74,8 @@ const defaultState = {
     "yearsList": getYearList(),
     "message": "",
     "messageType": "",
-    "messageFor": ""
+    "messageFor": "",
+    isValidate: false
 }
 function EditProfile(props) {
     const [state, setState] = useState(defaultState);
@@ -91,6 +92,7 @@ function EditProfile(props) {
             }
             setState({
                 ...state,
+                isValidate: false,
                 form: {
                     email: props.userDetail.email,
                     first_name: props.userDetail.first_name,
@@ -176,6 +178,10 @@ function EditProfile(props) {
                 "mobile": state.form.mobile
             })
         }
+        setState({
+            ...state,
+            isValidate: !isValid
+        })
     }
     const validateForm = () => {
         var form = document.getElementsByClassName('needs-validation')[0];
@@ -289,7 +295,7 @@ function EditProfile(props) {
                     <div className="col-lg-8 col-md-8 col-sm-8">
                         <div className="row">
                             <div className="register-form prime-form">
-                                <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)}>
+                                <form className=" needs-validation" onSubmit={(e) => handleSubmit(e)} noValidate>
                                     <div className="row">
                                         <div className="col-lg-4 col-md-4 cc-input-ep col-sm-4">
                                             <Input value={state.form.first_name} type="text" className="form-control1" id="first_name" placeholder="First Name" onChange={(e) => handleStateChange(e)} />
@@ -303,27 +309,32 @@ function EditProfile(props) {
                                             <Input value={state.form.last_name} type="text" className="form-control1" id="last_name" placeholder="Last Name" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
-
+                                    {state.isValidate && (state.form.first_name === "" || state.form.last_name === "") ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.first_name === "" ? "first name" : state.form.last_name === "" ? "last name" : ""}`}</span> : ""}
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
+                                    {state.isValidate && !validateEmail(state.form.email) ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.email === "" ? "" : "valid"} email address`}</span> : ""}F
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
                                         </div>
+                                        {state.isValidate && state.form.city === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the city`}</span> : ""}
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
                                         </div>
+                                        {state.isValidate && state.form.mobile === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the mobile no.`}</span> : ""}
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
                                         </div>
+                                        {state.isValidate && state.form.zipcode === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the zipcode`}</span> : ""}
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
                                         </div>
+                                        {state.isValidate && state.form.bio === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the bio`}</span> : ""}
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
@@ -337,6 +348,7 @@ function EditProfile(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    {state.isValidate && state.form.state === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the state`}</span> : ""}
                                     <div className="row">
                                         <div style={{ margin: "7px 20px", display: "flex" }}> <div style={{ fontSize: "16px" }}>
                                             Gender <span className="badge badge-dark">?</span></div>
@@ -371,6 +383,7 @@ function EditProfile(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    {state.isValidate && state.form.state === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the gender`}</span> : ""}
                                     <div className="row">
                                         <div style={{ margin: "7px 20px", display: "flex" }}> <div style={{ fontSize: "16px" }}>
                                             Date of birth <span className="badge badge-dark">?</span></div>
@@ -406,6 +419,7 @@ function EditProfile(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    {state.isValidate && (state.form.month === "" || state.form.day === "" || state.form.year === "") ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the ${state.form.month === "" ? "month" : state.form.day === "" ? "day" : state.form.year === "" ? "year" : ""}`}</span> : ""}
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <div className="input-group1">
@@ -413,6 +427,7 @@ function EditProfile(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    {state.isValidate && state.form.address_1 === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the address 1`}</span> : ""}
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <div className="input-group1">
@@ -420,6 +435,7 @@ function EditProfile(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    {state.isValidate && state.form.address_2 === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the address 2`}</span> : ""}
                                     {props.apiCallStatus.apiCallFor === "updateUserDetail" && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                         <div className="loader-img text-center">
                                             <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
