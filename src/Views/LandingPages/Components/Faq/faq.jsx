@@ -234,7 +234,7 @@ function Messages(props) {
                     <span>Not Found Your Answer? Just Ask Us!</span>
                 </div>
                 <div style={{ fontWeight: "400" }} className="details">
-                    <span>Whether you have questions or you just like to say hello</span>
+                    <p style ={{padding:'10px'}}>Whether you have questions or you just like to say hello</p>
                 </div>
             </div>
             <form action="/" className="contact-us-form">

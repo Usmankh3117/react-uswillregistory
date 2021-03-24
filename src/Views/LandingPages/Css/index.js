@@ -397,7 +397,7 @@ export const Style = createGlobalStyle`
 }
 .info-mini-detail-b {
     color: #fff;
-    margin-bottom: 15%;
+    margin-bottom: 25%;
         opacity: 0.8;
     font-weight: 300;
 }
@@ -438,7 +438,7 @@ export const Style = createGlobalStyle`
 
 
 .last-will-section > .make-your-will > a{
-    right: 10%;
+    right: 5%;
     top: 36%;
     padding: 12px 26px 12px 26px;
     position: absolute;

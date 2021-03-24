@@ -512,7 +512,7 @@ function QuestionsContainer(props) {
         <GetStarted />
         <div className="form-section">
             <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-11.2">
                     <div className="col-lg-4 col-xl-3 col-md-4 col-sm-4 col-xs-12 page-description">
                         <PageDescription pageList={props.pageList} activePageId={state.activePageId} />
                     </div>

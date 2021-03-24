@@ -91,7 +91,7 @@ function ResetPassword(props) {
                                     <div className="col-lg-6 col-md-6 col-sm-6 login-form-div">
                                         <div className="row mg-top-top-extra-reset"></div>
                                         <div className="form-heading">
-                                            <h2 style={{ color: "#033168" }}>Reset Password</h2>
+                                            
                                             <p> Please reset your password below!</p>
                                         </div>
                                         <div className="login-form ">

@@ -86,7 +86,7 @@ export const Wrapper = styled.div`
     margin-bottom: 5px;
   }
   .form-btn-div {
-    margin-top: 1%;
+    margin-top: 5%;
   }
   .form-btn-div .exit-btn {
     float: right;
@@ -102,6 +102,7 @@ export const Wrapper = styled.div`
   .form-btn-div .exit-btn i {
     float: left;
     margin-top: 3px;
+    padding:0 10px
   }
   .form-btn-div .exit-btn:hover {
     border: 1px solid #ef3d3d !important;

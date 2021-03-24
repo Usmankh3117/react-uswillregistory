@@ -5,7 +5,7 @@ export default function Privacy(props) {
         <div className="container" style ={{marginBottom:'30px'}}>
             <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="col-lg-3 col-md-3 col-sm-6 left-div">
+                    <div className="col-lg-3 col-md-2.5 col-sm-6 left-div">
                         <p className="number-left">1. Using Our Services</p>
                         <p className="alpha-left">A. Personal Data that we collect about you</p>
                         <p className="alpha-left">B. Information that we collect automatically on our site.</p>

@@ -319,7 +319,7 @@ function EditProfile(props) {
                                             <Input value={state.form.email} type="email" className="form-control1" id="email" placeholder="Email" onChange={(e) => handleStateChange(e)} />
                                         </div>
                                     </div>
-                                    {state.isValidate && !validateEmail(state.form.email) ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.email === "" ? "" : "valid"} email address`}</span> : ""}F
+                                    {state.isValidate && !validateEmail(state.form.email) ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${state.form.email === "" ? "" : "valid"} email address`}</span> : ""}
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />

@@ -41,7 +41,7 @@ function ContentPage(props) {
                             : slugDetail && slugDetail.title ? <React.Fragment>
                                 <h1 className="top-heading"><span className="bold">{slugDetail && slugDetail.title ? slugDetail.title : ""}</span> </h1>
                                 <div dangerouslySetInnerHTML={{ __html: slugDetail && slugDetail.content ? slugDetail.content : "" }} />
-                            </React.Fragment> : <div className="error-template right-div">
+                            </React.Fragment> : <div className="error-template right-div" style ={{marginBottom:'30px'}}>
                                     <h1>
                                         Oops!</h1>
                                     <h2>

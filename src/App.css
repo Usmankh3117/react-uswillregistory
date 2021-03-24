@@ -1566,7 +1566,7 @@ a:active {
 }
 @media (max-width: 600px) {
   .navbar-collapse.collapse {
-    height: 300px !important;
+    height: 330px !important;
   }
 }
 .header-right {
@@ -1918,7 +1918,7 @@ nav.navbar-default .navbar-form {
   margin: auto 10px;
 }
 .input-group-cc2 label {
-  margin-top: 12px;
+  margin: auto 0;
   font-family: "poppins";
   font-weight: 400;
 }

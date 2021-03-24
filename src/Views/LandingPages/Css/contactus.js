@@ -71,7 +71,7 @@ export const Wrapper = styled.section`
   }
 
   .contact-us-form {
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 5%;
   }
   .c-input-field {
@@ -122,12 +122,12 @@ export const Wrapper = styled.section`
   }
   @media only screen and  (min-width: 992px) and (max-width: 1200px) {
     .message-section > .container {
-      margin-bottom: 5% !important;
+      margin-bottom: 10% !important;
     }
   }
   @media only screen and  (min-width: 768px) and (max-width: 992px) {
     .message-section > .container {
-      margin-bottom: 9% !important;
+      margin-bottom: 10% !important;
     }
   }
   @media only screen and (max-width: 768px) {
@@ -141,7 +141,7 @@ export const Wrapper = styled.section`
       padding-bottom: 20px;
     }
     .message-section > .container {
-      margin-bottom: 9% !important;
+      margin-bottom: 10% !important;
     }
   }
 `;

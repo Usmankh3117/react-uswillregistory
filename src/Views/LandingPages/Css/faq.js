@@ -40,9 +40,11 @@ export const Wrapper = styled.section`
   .faq-details > .faq-que {
     color: #033168;
     font-size: 16px;
-  }
+    padding: 0 10px;
+    }
   .faq-details > .faq-ans {
     color: #a7a7a7;
+    padding:0px 20px;
   }
 
   .leave-message {
