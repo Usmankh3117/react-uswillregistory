@@ -17,7 +17,8 @@ function QuestionsContainer(props) {
         message: "",
         messageType: "",
         messageFor: "",
-        isFormCompleted: false
+        isFormCompleted: false,
+        isValidate: false
     })
     useEffect(() => {
         props.getFormSection();
@@ -164,7 +165,8 @@ function QuestionsContainer(props) {
             setState({
                 ...state,
                 questions,
-                isFormCompleted
+                isFormCompleted,
+                isValidate: false
             })
             console.log(questions[state.activePageId])
         }
@@ -323,6 +325,10 @@ function QuestionsContainer(props) {
                 }
             }
         }
+        setState({
+            ...state,
+            isValidate: !isValid
+        })
     }
     const validateForm = () => {
         var form = document.getElementsByClassName('needs-validation')[0];
@@ -565,9 +571,9 @@ function QuestionsContainer(props) {
                                                             if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey]) {
                                                                 value = state.questions[state.activePageId][item.question_code][inputKey][childKey].value;
                                                             }
-                                                            return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} /></div> :
+                                                            return childElem.input === "text" || childElem.input === "number" ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText isValidate={state.isValidate} type={childElem.input} id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} placeholder={childElem.placeholder ? childElem.placeholder : childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} /></div> :
                                                                 childElem.input === "radio" || childElem.input === "select"
-                                                                    ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown type={childElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
+                                                                    ? <div key={childKeyIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown isValidate={state.isValidate} type={childElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : childElem.options}
                                                                         id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={childKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey)} placeholder={childElem.placeholder ? childElem.placeholder : childKey} /></div> : ""
                                                         }) : inputKey === "one" && item.inputs[inputKey]["primary"] && item.inputs[inputKey]["alternate"] ? Object.keys(item.inputs[inputKey]).map((childKey, childKeyIndex) => {
                                                             return Object.keys(item.inputs[inputKey][childKey]).map((nestedChildKey, nestedChildIndex) => {
@@ -578,9 +584,9 @@ function QuestionsContainer(props) {
                                                                 if (state.questions[state.activePageId] && state.questions[state.activePageId][item.question_code] && state.questions[state.activePageId][item.question_code][inputKey][childKey] && state.questions[state.activePageId][item.question_code][inputKey][childKey][nestedChildKey]) {
                                                                     value = state.questions[state.activePageId][item.question_code][inputKey][childKey][[nestedChildKey]].value;
                                                                 }
-                                                                return nestedChildElem.input === "text" || nestedChildElem.input === "number" ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText type={nestedChildElem.input} id={nestedChildKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={nestedChildKey} placeholder={nestedChildElem.placeholder ? nestedChildElem.placeholder : nestedChildKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey, childKey)} /></div> :
+                                                                return nestedChildElem.input === "text" || nestedChildElem.input === "number" ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><InputText isValidate={state.isValidate} type={nestedChildElem.input} id={nestedChildKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={nestedChildKey} placeholder={nestedChildElem.placeholder ? nestedChildElem.placeholder : nestedChildKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey, childKey)} /></div> :
                                                                     nestedChildElem.input === "radio" || nestedChildElem.input === "select"
-                                                                        ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown type={nestedChildElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : nestedChildElem.options}
+                                                                        ? <div key={nestedChildIndex} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}><DropDown isValidate={state.isValidate} type={nestedChildElem.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : nestedChildElem.options}
                                                                             id={childKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={nestedChildKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e, inputKey, childKey)} placeholder={nestedChildElem.placeholder ? nestedChildElem.placeholder : nestedChildKey} /></div> : ""
                                                             })
                                                         })
@@ -602,8 +608,8 @@ function QuestionsContainer(props) {
                                                                                 value = "";
                                                                             }
                                                                             return <><div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} `}> {arrInput.input === "text" ?
-                                                                                <InputText type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
-                                                                                arrInput.input === "radio" || arrInput.input === "select" ? <DropDown type={arrInput.input} key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
+                                                                                <InputText isValidate={state.isValidate} type={arrInput.input} id={arrInputKey + "-" + quesIndex} key={j} questionId={item.question_code} pageId={state.activePageId} value={value} name={arrInputKey} placeholder={arrInput.placeholder} handleChange={(questionId, pageId, e) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e, isPrimary, isAlternate)} /> :
+                                                                                arrInput.input === "radio" || arrInput.input === "select" ? <DropDown isValidate={state.isValidate} type={arrInput.input} key={j} options={arrInputKey === "state" ? props.stateList : arrInputKey === "charity" ? props.charityList : arrInput.options} id={arrInputKey + "-" + quesIndex} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e, isPrimary, isAlternate) => handleChangeOfArrayItem(pageId, questionId, 'change', quesIndex, e)} placeholder={input.placeholder} /> : ""}
                                                                             </div>
                                                                                 {
                                                                                     (arrFields.length - 1) === j ? < div className="col-lg-12 col-lg-12 col-sm-12" >
@@ -616,10 +622,10 @@ function QuestionsContainer(props) {
                                                                 <div className="col-lg-12 col-lg-12 col-sm-12 center">
                                                                     <button className="add-another-one" onClick={() => handleChangeOfArrayItem(state.activePageId, item.question_code, 'add', 'index', 'evnet', isPrimary, isAlternate)} >Add</button>
                                                                 </div>
-                                                            </React.Fragment> : inputKey === "birthdate" ? <DateInput id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
+                                                            </React.Fragment> : inputKey === "birthdate" ? <DateInput isValidate={state.isValidate} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> : <div key={i} className={`col-lg-${colLength} col-lg-${colLength} col-sm-${colLength} pd-left-0`}>
                                                                 {input.input === "text" ?
-                                                                    <InputText type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
-                                                                    input.input === "radio" || input.input === "select" ? <DropDown type={input.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
+                                                                    <InputText isValidate={state.isValidate} type={input.input} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} placeholder={input.placeholder} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} /> :
+                                                                    input.input === "radio" || input.input === "select" ? <DropDown isValidate={state.isValidate} type={input.input} options={inputKey === "state" ? props.stateList : inputKey === "charity" ? props.charityList : input.options} id={inputKey} questionId={item.question_code} pageId={state.activePageId} value={value} name={inputKey} handleChange={(questionId, pageId, e) => handlePageStateChange(questionId, pageId, e)} placeholder={input.placeholder} /> : ""}
                                                             </div>
                                                     })}
                                                 </div>
@@ -700,11 +706,14 @@ function PageDescription(props) {
 }
 
 function InputText(props) {
-    return <input  {...props} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required />
+    return <React.Fragment>
+        <input  {...props} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required />
+        {props.isValidate && props.value === "" ? <span style={{ color: 'red' }}><i class="fa fa-exclamation-circle"></i>{` Please enter the ${props.placeholder}`}</span> : ""}
+    </React.Fragment>
 }
 
 function DropDown(props) {
-    return props.type === "select" ? <select name={props.name} id={props.id} placeholder={props.placeholder} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required>
+    return <React.Fragment>{props.type === "select" ? <select name={props.name} id={props.id} placeholder={props.placeholder} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} className="form-input-field" required>
         <option value="">{props.placeholder}</option>
         {props.options.map((item, index) => {
             return <option key={index} value={item.value} selected={item.value === props.value}>{item.label}</option>
@@ -719,7 +728,9 @@ function DropDown(props) {
                 </div>
             </div>
         })}
-    </div > : ""
+    </div > : ""}
+        {props.isValidate && props.value === "" ? <span style={{ color: 'red' }}><i class="fa fa-exclamation-circle"></i>{` Please select this field`}</span> : ""}
+    </React.Fragment>
 }
 function DateInput(props) {
     const [state, setState] = useState({
@@ -828,6 +839,7 @@ function DateInput(props) {
                 </select>
             </div>
         </div>
+        {props.isValidate && (state.month === "" || state.day === "" || state.year === "") ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please select the ${state.month === "" ? "month" : state.day === "" ? "day" : state.year === "" ? "year" : ""}`}</span> : ""}
         {/* <div className="col-lg-12 col-lg-12 col-sm-12" style={{ paddingLeft: "0px" }}>
             <DatePicker
                 name={props.name} id={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, { target: { id: props.id, value: moment(e).format('YYYY-MM-DD') } })}
@@ -898,6 +910,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     sendEmail: () => dispatch(sendEmail()),
     downloadWill: () => dispatch(downloadWill())
 })
+
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
