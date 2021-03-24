@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   .header-lower-part {
     height: 90px;
   }
+  .form-container{
+    margin-left: 0px;
+    margin-right: 0px
+  }
   .left-outer-form-div {
     background-color: #033168;
     padding: 147px 50px 50px 50px;
@@ -29,7 +33,7 @@ export const Wrapper = styled.div`
     margin-left: -16%;
     border-radius: 10px;
     padding: 15px;
-    width: 114%;
+    width: 100%;
   }
   .sidebar-countdown {
     position: absolute;
@@ -44,10 +48,30 @@ export const Wrapper = styled.div`
     border: 1px solid green !important;
     color: #fff;
   }
+  @media screen and (min-width: 1024px) and (max-width: 2500px){
+    .form-container{
+      margin-left: -15px;
+      
+    }
+  }
+  
+  @media screen and (min-width: 1024px) and (max-width: 1400px){
+    .sidebar-countdown p {
+    padding: 6px 13px !important;
+    margin: 15px 0px 0px 4px !important;
+    font-size: 14px !important;
+    }
+  }
+
+  @media screen and (max-width: 1500px) and (min-width: 1440px){
+    .sidebar-countdown p {
+      margin: 18px 0px 0px 1px !important;
+    }
+  }
   .sidebar-countdown p {
     background-color: white;
-    padding: 6px 7px 6px 14px;
-    margin: 30px 0px 0px 0px;
+    padding: 6px 13px;
+    margin: 16px 0px 0px 1px;
     font-size: 18px;
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -347,14 +371,12 @@ export const Wrapper = styled.div`
       padding: 0px 0px 0px 15px;
     }
     .right-outer-form-div {
-      margin-left: -14%;
+     margin:auto;
     }
     .page-description {
       display: none;
     }
-    .page-form {
-      margin-left: 16%;
-    }
+    
     .form-btn-div .next-btn {
       width: 45%;
     }
@@ -370,14 +392,13 @@ export const Wrapper = styled.div`
       margin-left: 0px;
     }
     .right-outer-form-div {
-      margin-left: -12%;
+     margin:auto !important;
+     width:100% !important;
     }
     .page-description {
       display: none;
     }
-    .page-form {
-        margin-left: 15%;
-    }
+   
     .form-card {
       width: calc(100% - 40px);
     }

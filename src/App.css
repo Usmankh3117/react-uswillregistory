@@ -1020,10 +1020,11 @@ a:active {
 
 /* Wide Mobile = 480px */
 
-@media screen and (min-width: 300px) and (max-width: 500px) {
-  .submit-btn > .submit {
-    /* font-size: 16px !important;
-        padding: 4px 44px !important; */
+@media screen and (min-width: 300px) and (max-width: 400px) {
+  .last-will-section > .make-your-will {
+  
+    margin-top: -17% !important;
+  
   }
 }
 
@@ -1164,7 +1165,7 @@ a:active {
     position: absolute;
     /* top: 99% !important; */
     right: 0% !important;
-    margin-top: -14% !important;
+    margin-top: -14%;
     text-align: center;
   }
 
