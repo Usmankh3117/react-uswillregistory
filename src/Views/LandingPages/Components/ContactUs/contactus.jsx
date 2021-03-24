@@ -31,7 +31,7 @@ function GetStarted(props) {
 
 function ContactDetail(props) {
     return <section className="contact-section">
-        <div className="container" style ={{width:'100%', padding:'0px 10px',margin:'auto'}}>
+        <div className="container" style ={{width:'80%', padding:'0px 10px',margin:'auto'}}>
             <div className="row">
                 <div className="">
                     <div className="col-md-4 c-details">
