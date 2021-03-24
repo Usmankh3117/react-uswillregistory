@@ -517,12 +517,12 @@ function QuestionsContainer(props) {
     return <Wrapper>
         <GetStarted />
         <div className="form-section">
-            <div className="row form-conatiner">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-11.2">
+            <div className="row form-container" >
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 for-big-size">
                     <div className="col-lg-4 col-xl-3 col-md-4 col-sm-4 col-xs-12 page-description">
                         <PageDescription pageList={props.pageList} activePageId={state.activePageId} />
                     </div>
-                    <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 page-form">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 page-form">
                         <div className="right-outer-form-div">
                             <Sections sectionList={props.sectionList} activeSectionId={state.activeSectionId} />
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />

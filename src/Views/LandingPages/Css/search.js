@@ -85,7 +85,7 @@ make-your-will{
     background-color: #bfabab2e;
   }
 .search-details-section{
-    margin-bottom: 5% 
+    margin-bottom: 15% 
 }
 .search-detail-div {
     border: 1px solid #ffffff;

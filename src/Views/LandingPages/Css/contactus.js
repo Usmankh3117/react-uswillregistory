@@ -72,7 +72,7 @@ export const Wrapper = styled.section`
 
   .contact-us-form {
     margin-top: 10%;
-    margin-bottom: 5%;
+    margin-bottom: 15%;
   }
   .c-input-field {
     width: 100%;
