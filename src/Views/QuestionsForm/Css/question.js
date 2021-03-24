@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+.form-conatiner{
+margin-left:0px;
+margin-right:0px;
+}
   .started-img > img {
     width: 100%;
   }

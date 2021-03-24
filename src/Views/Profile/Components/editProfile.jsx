@@ -213,9 +213,9 @@ function EditProfile(props) {
         return isValid;
     }
     const validateEmail = (email) => {
-		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(String(email).toLowerCase());
-	}
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
     return <React.Fragment>
         <Style />
         <section className="profile-section">
@@ -324,21 +324,37 @@ function EditProfile(props) {
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.city} type="text" className="form-control1" id="city" placeholder="City" onChange={(e) => handleStateChange(e)} />
                                         </div>
-                                        {state.isValidate && state.form.city === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the city`}</span> : ""}
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.mobile} type="number" className="form-control1" id="mobile" placeholder="Mobile" onChange={(e) => handleStateChange(e)} />
                                         </div>
-                                        {state.isValidate && state.form.mobile === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the mobile no.`}</span> : ""}
                                     </div>
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            {state.isValidate && state.form.city === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the city`}</span> : ""}
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            {state.isValidate && state.form.mobile === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the mobile no.`}</span> : ""}
+                                        </div>
+                                    </div>
+
+
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.zipcode} type="number" className="form-control1" id="zipcode" placeholder="Zipcode" onChange={(e) => handleStateChange(e)} />
                                         </div>
-                                        {state.isValidate && state.form.zipcode === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the zipcode`}</span> : ""}
+
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <Input value={state.form.bio} type="text" className="form-control1" id="bio" placeholder="Bio" onChange={(e) => handleStateChange(e)} />
                                         </div>
-                                        {state.isValidate && state.form.bio === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the bio`}</span> : ""}
+
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            {state.isValidate && state.form.zipcode === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the zipcode`}</span> : ""}
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-6">
+                                            {state.isValidate && state.form.bio === "" ? <span style={{ color: "red" }}><i class="fa fa-exclamation-circle"></i> {` Please enter the bio`}</span> : ""}
+                                        </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
