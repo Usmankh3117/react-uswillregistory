@@ -66,10 +66,14 @@ export const Style = createGlobalStyle`
 .click-here-btn {
     font-size: 18px;
     color: white;
-    background-color: #033168;
+    background-color: #f85656;
     border-radius: 30px;
-    border: 1px solid #033168;
+    border: 1px solid #f85656;
     padding: 10px 50px 10px 50px;
+}
+.click-here-btn:hover {
+    background-color: #fff;
+    color: #f85656;
 }
 /* sign in style sheet */
 

@@ -40,7 +40,7 @@ function QuestionsContainer(props) {
                     answer = props.answerList[index]['answer']
                 }
                 if (props.answerList.findIndex(x => x.page_id === props.pageList[props.pageList.length - 1].id) !== -1) {
-                    // isFormCompleted = true;
+                    isFormCompleted = true;
                 }
             }
             quest.forEach(element => {
@@ -211,10 +211,10 @@ function QuestionsContainer(props) {
             } else if (props.pageList.length > 0 && props.answerList.length === 0) {
                 setState({
                     ...state,
-                    activePageId: 2,
+                    activePageId,
                     activeSectionId
                 })
-                props.getQuestionList(2);
+                props.getQuestionList(activePageId);
             }
             props.ClearApiByNameAction(props.apiCallStatus.apiCallFor)
         }
@@ -528,7 +528,7 @@ function QuestionsContainer(props) {
                             <PagesListing pageList={props.pageList} activePageId={state.activePageId} />
                             {state.isFormCompleted ? <SuccessMessage apiCallStatus={props.apiCallStatus} sendEmail={props.sendEmail} downloadWill={props.downloadWill} /> :
                                 <React.Fragment>
-                                    <form id="Basic" className="needs-validation" onSubmit={(e) => nextPage(e)}>
+                                    <form id="Basic" className="needs-validation" onSubmit={(e) => nextPage(e)} noValidate>
                                         {(props.apiCallStatus.apiCallFor === "getQuestionList" || props.apiCallStatus.apiCallFor === "getFormSection" || props.apiCallStatus.apiCallFor === "getAllAnswer") && !props.apiCallStatus.isCompleted && !props.apiCallStatus.isFailed ?
                                             <div className="loader-img text-center">
                                                 <Image style={{ width: "46px" }} name="Spinner-1s-200px.gif" alt='Loader' />
@@ -870,12 +870,12 @@ function SuccessMessage(props) {
                         </div>
                         : ""}
 
-                    <div className="col-lg-6 col-md-12 col-sm-6 ">
+                    <div className="col-lg-6 col-md-6 col-sm-6 mb-2">
                         <button className="btn btn-success" onClick={() => props.downloadWill()}>
                             Download Will
                         </button>
                     </div>
-                    <div className="col-lg-6 col-md-12 col-sm-6 ">
+                    <div className="col-lg-6 col-md-6 col-sm-6 ">
                         <button className="btn btn-success" onClick={() => props.sendEmail()}>
                             Send Email
                                 </button>

@@ -52,6 +52,24 @@ margin-right:0px;
     border: 1px solid green !important;
     color: #fff;
   }
+  .btn-success {
+    color: white;
+    background-color: #f85656;
+    border-radius: 30px;
+    border: 1px solid #f85656;
+}
+.btn {
+  outline: 0 !important;
+}
+.btn:hover{
+  background-color: #fff;
+  color: #f85656;
+}
+.btn:active{
+  background-color: #fff;
+  color: #f85656;
+}
+
   @media screen and (min-width: 1024px) and (max-width: 2500px){
     .form-container{
       margin-left: -15px;
@@ -392,6 +410,9 @@ margin-right:0px;
     }
   }
   @media (max-width: 576px) {
+    .mb-2{
+      margin-bottom:2px;
+    }
     .form_top_controls {
       margin-left: 0px;
     }
