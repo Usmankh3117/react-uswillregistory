@@ -8,6 +8,7 @@ import { getSlugPages } from "../LandingPages/Apicalls/landing";
 import { getCookie, setCookie } from "../../Services/cookies";
 import { logOutAction } from "../Auth/Actions/action";
 
+
 function Header(props) {
     const [state, setState] = useState({
         activeTab: "/"

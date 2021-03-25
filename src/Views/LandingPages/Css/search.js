@@ -17,6 +17,9 @@ make-your-will{
     float: left;
 }
 .search__form form input {
+    :focus{
+        outline: unset
+    }
     width: 94%;
     border: none;
     height: 48px;

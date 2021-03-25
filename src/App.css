@@ -192,7 +192,11 @@ a:active {
   /* display: block; */
   text-decoration: none !important;
 }
-
+@media screen and (min-width: 1440px)  {
+  .dropdown-menu{
+      left: -70%;
+  }
+}
 .active-menu {
   color: #023169;
 }
@@ -1494,14 +1498,14 @@ a:active {
 .navbar-default.navbar .navbar-nav > .active > a,
 .navbar-default.navbar .navbar-nav > .active > a:focus,
 .navbar-default.navbar .navbar-nav > .active > a:hover {
-  color: #012959;
+  color: #001c3d;
   background-color: transparent;
 }
 
 .navbar-default.navbar .navbar-nav > .active > a,
 .navbar-default.navbar .navbar-nav > .active > a:focus,
 .navbar-default.navbar .navbar-nav > .active > a:hover {
-  color: #012959;
+  color: #001c3d;
   background-color: transparent;
 }
 

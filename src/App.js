@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/signup" name="SignUp" component={SignUp} />
         <Route path="/forgot-password" name="ForgotPassword" component={ForgotPassword} />
         <Route path="/reset-password" name="ResetPassword" component={ResetPassword} />
-        <Route path="/verify/:id" name="VerifyAccount" component={VerifyAccount} />
+        <Route path="/verify" name="VerifyAccount" component={VerifyAccount} />
         <Route exact path="/profile" name="Profile" component={Profile} />
         <Route exact path="/edit-profile" name="EditProfile" component={EditProfile} />
         <Route exact path="/form" name="QuestionsForm" component={QuestionsForm} />
