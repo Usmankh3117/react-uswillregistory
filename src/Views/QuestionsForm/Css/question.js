@@ -119,7 +119,7 @@ margin-right:0px;
   .form-btn-div .exit-btn {
     float: right;
     padding: 10px 10px 10px 10px;
-    width: 20%;
+    width: 25%;
     border-radius: 30px;
     font-size: 15px;
     text-align: right;
@@ -140,7 +140,7 @@ margin-right:0px;
   .form-btn-div .next-btn {
     float: right;
     padding: 10px 10px 10px 10px;
-    width: 20%;
+    width: 25%;
     border-radius: 30px;
     font-size: 15px;
     text-align: left;

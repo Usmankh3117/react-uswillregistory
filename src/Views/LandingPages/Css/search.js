@@ -148,7 +148,7 @@ make-your-will{
     border-radius: 15px;
 }
 .last-will-section > .make-your-will > a{
-    right: 10%;
+    right: 5%;
     top: 36%;
     padding: 12px 26px 12px 26px;
     position: absolute;
