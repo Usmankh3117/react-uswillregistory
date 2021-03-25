@@ -46,7 +46,7 @@ function VerifyAccount(props) {
                         <div className="heading-section">
                             <h1 className="heading"><span className="bold">Account</span> Verification</h1>
 
-                        </div>
+                        </div> 
                     </div>
                     <div className="row mg-top-30"></div>
                     <div className="row">
