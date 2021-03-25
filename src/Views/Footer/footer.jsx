@@ -146,7 +146,7 @@ function Footer(props) {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 copyrights">
-                        <p>Copyright &copy;2019-2020 US Will Registry Co, a Delaware Public Benifits Corporation. All rights
+                        <p>Copyright &copy;2019-2020 U.S. Will Registry Co, a Delaware Public Benifits Corporation. All rights
                         reserved </p>
                     </div>
                 </div>

@@ -284,19 +284,37 @@ function SignUp(props) {
 											<div className="row" style={{ paddingLeft: "15px", marginBottom: "-20px" }}><label style={{ marginTop: "20px", fontFamily: 'poppins', fontSize: "16px", fontWeight: "500", margin: "15px 0", color: "inherit" }}>Gender <span className="badge badge-dark">?</span></label></div>
 											<div className="row">
 												<div className="col-lg-4 col-md-4 col-sm-4  input-1">
-													<div className="input-group-cc2 cc-row-reg">
+													<div className="input-group-cc2 cc-row-reg" onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "female"
+														}
+													})}>
 														<label className="label-gender">Female</label>
 														<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'female'} value="female" name="gender" />
 													</div>
 												</div>
 												<div className="col-lg-4 col-md-4 col-sm-4  input-2">
-													<div className="input-group-cc2 cc-row-reg">
+													<div className="input-group-cc2 cc-row-reg" onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "male"
+														}
+													})}>
 														<label className="label-gender">Male</label>
 														<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'male'} value="male" name="gender" />
 													</div>
 												</div>
 												<div className="col-lg-4 col-md-4 col-sm-4  input-3">
-													<div className="input-group-cc2 cc-row-reg">
+													<div className="input-group-cc2 cc-row-reg" onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "nonbinary"
+														}
+													})}>
 														<label className="label-gender" style={{ margin: "auto 0" }}>Non-binary</label>
 														<input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'nonbinary'} value="nonbinary" name="gender" />
 													</div>

@@ -215,7 +215,9 @@ margin-right:0px;
     margin-top: 1px;
     margin-left: 24px;
   }
-
+  .form_top_controls ul{
+    margin-bottom:0px;
+  }
   .form_top_controls ul li {
     list-style: none;
     font-size: 22px;
