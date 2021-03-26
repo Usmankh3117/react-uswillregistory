@@ -1,8 +1,8 @@
 import React from 'react';
-
+import '../../Css/nonprofit.css'
 const NonProfit = () => {
     return (
-        <div>
+        <div className = "name">
             Sajid
         </div>
     );
