@@ -80,7 +80,7 @@ export const Wrapper = styled.section`
     padding: 4%;
     margin: 2%;
     border: 1px solid #0d3460;
-    color: #dadada;
+    color: black;
   }
   .c-input-field-textarea {
     width: 100%;
@@ -88,7 +88,11 @@ export const Wrapper = styled.section`
     padding: 2%;
     margin: 1%;
     border: 1px solid #0d3460;
-    color: #dadada;
+    color:  black;
+  }
+  .alert-box{
+    margin: 2%;
+    color: red;
   }
   .c-submit {
     text-align: center;
@@ -136,6 +140,10 @@ export const Wrapper = styled.section`
     }
     .c-input-field-textarea {
       margin: 2% 0% 2% 0%;
+    }
+    .alert-box{
+      margin: 2% 0% 2% 0%;
+      color: red;
     }
     .c-submit {
       padding-bottom: 20px;

@@ -539,7 +539,7 @@ function QuestionsContainer(props) {
                                             let colLength = inputs ? 12 / inputs.length : 12;
                                             return item.dependencies.length === 0 || (item.dependencies.length > 0 && checkQuestionDependancy(item.dependencies, item.page_id)) ? <div className="row" key={index}>
                                                 <div className="col-lg-12 col-lg-12 col-sm-12">
-                                                    <p className="form-inner-heading">{item.question_text}</p>
+                                                    <p className="form-inner-heading">{`${index + 1}. ${item.question_text}`}</p>
                                                     {inputs && inputs.map((inputKey, i) => {
                                                         let input = item.inputs[inputKey];
                                                         let isPrimary = false;
@@ -722,7 +722,13 @@ function DropDown(props) {
         {props.options.map((item, index) => {
             let col = props.options.length < 4 ? parseInt(12 / props.options.length) : 4
             return <div className={`col-lg-${col} col-md-${col} col-sm-${col}  input-1`}>
-                <div className="input-group-cc2 cc-row-reg">
+                <div className="input-group-cc2 cc-row-reg" onClick={() => props.handleChange(props.questionId, props.pageId, {
+                    target: {
+                        name: props.id,
+                        type: "radio",
+                        value: item.value
+                    }
+                })}>
                     <label className="label-gender">{item.label}</label>
                     <input type="radio" className="form-control-cc2" name={props.id} onChange={(e) => props.handleChange(props.questionId, props.pageId, e)} checked={item.value === props.value} value={item.value} />
                 </div>

@@ -384,19 +384,37 @@ function EditProfile(props) {
                                         </div> */}
                                         <div className="row">
                                             <div className="col-lg-4 col-md-4 col-sm-4 cc-row-reg">
-                                                <div className="input-group-cc2 " style={{ marginLeft: "14px", marginRight: "-9px" }}>
+                                                <div className="input-group-cc2 " onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "female"
+														}
+													})} style={{ marginLeft: "14px", marginRight: "-9px" }}>
                                                     <label className="label-gender">Female</label>
                                                     <input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'female'} value="female" name="gender" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 col-md-4 col-sm-4 cc-row-reg">
-                                                <div className="input-group-cc2 " style={{ marginLeft: "-6px" }}>
+                                                <div className="input-group-cc2 " onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "male"
+														}
+													})} style={{ marginLeft: "-6px" }}>
                                                     <label className="label-gender">Male</label>
                                                     <input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'male'} value="male" name="gender" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 col-md-4 col-sm-4 cc-row-reg">
-                                                <div className="input-group-cc2 " style={{ marginLeft: "-19px", marginRight: "17px" }}>
+                                                <div className="input-group-cc2 " onClick={() => handleStateChange({
+														target: {
+															name: "gender",
+															type: "radio",
+															value: "nonbinary"
+														}
+													})} style={{ marginLeft: "-19px", marginRight: "17px" }}>
                                                     <label className="label-gender">Non-binary</label>
                                                     <input type="radio" className="form-control-cc2" onChange={(e) => handleStateChange(e)} checked={state.form.gender === 'nonbinary'} value="nonbinary" name="gender" />
                                                 </div>
