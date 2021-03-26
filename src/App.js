@@ -7,6 +7,7 @@ import Index from "./Views/LandingPages/Components/Index";
 import AboutUs from "./Views/LandingPages/Components/AboutUs/aboutus";
 import ContactUs from "./Views/LandingPages/Components/ContactUs/contactus";
 import Faq from "./Views/LandingPages/Components/Faq/faq";
+import NonProfit from "./Views/LandingPages/Components/NonProfit/NonProfit"
 import LastWill from "./Views/LandingPages/Components/LastWill/lastWill";
 import Privacy from "./Views/LandingPages/Components/Privacy/privacy";
 import Search from "./Views/LandingPages/Components/Search/search";
@@ -41,6 +42,7 @@ function App() {
         <Route exact path="/last-will" name="LastWill" component={LastWill} />
         <Route exact path="/privacy" name="Privacy" component={Privacy} />
         <Route exact path="/search" name="Search" component={Search} />
+        <Route exact path="/non-profit" name="NonProfit" component={NonProfit} />
         <Route exact path="/login" name="Login" component={Login} />
         {/* <Route exact path="/test" name="Test" component={Test} /> */}
         <Route exact path="/signup" name="SignUp" component={SignUp} />
