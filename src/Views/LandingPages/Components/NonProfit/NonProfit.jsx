@@ -3,7 +3,7 @@ import '../../Css/nonprofit.css'
 const NonProfit = () => {
     return (
         <div className = "name">
-            Sajid
+            Sajid Lakhani
         </div>
     );
 };
